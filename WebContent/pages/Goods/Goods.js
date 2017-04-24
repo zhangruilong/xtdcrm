@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Goodsclassify = "goods";
 	var Goodstitle = "当前位置:业务管理》" + Goodsclassify;
-	var Goodsaction = "GoodsAction.do";
+	var Goodsaction = "GoodsService.do";
 	var Goodsfields = ['goodsid'
 	        			    ,'goodsstadium' 
 	        			    ,'goodscode' 

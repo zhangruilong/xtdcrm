@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Stadiumclassify = "stadium";
 	var Stadiumtitle = "当前位置:业务管理》" + Stadiumclassify;
-	var Stadiumaction = "StadiumAction.do";
+	var Stadiumaction = "StadiumService.do";
 	var Stadiumfields = ['stadiumid'
 	        			    ,'stadiumcode' 
 	        			    ,'stadiumname' 

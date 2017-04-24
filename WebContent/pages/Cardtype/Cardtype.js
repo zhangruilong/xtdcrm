@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Cardtypeclassify = "cardtype";
 	var Cardtypetitle = "当前位置:业务管理》" + Cardtypeclassify;
-	var Cardtypeaction = "CardtypeAction.do";
+	var Cardtypeaction = "CardtypeService.do";
 	var Cardtypefields = ['cardtypeid'
 	        			    ,'cardtypestadium' 
 	        			    ,'cardtypename' 

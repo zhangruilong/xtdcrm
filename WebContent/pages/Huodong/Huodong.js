@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Huodongclassify = "huodong";
 	var Huodongtitle = "当前位置:业务管理》" + Huodongclassify;
-	var Huodongaction = "HuodongAction.do";
+	var Huodongaction = "HuodongService.do";
 	var Huodongfields = ['huodongid'
 	        			    ,'huodongstadium' 
 	        			    ,'huodongcode' 

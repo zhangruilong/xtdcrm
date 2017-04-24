@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Cuscardviewclassify = "cuscardview";
 	var Cuscardviewtitle = "当前位置:业务管理》" + Cuscardviewclassify;
-	var Cuscardviewaction = "CuscardviewAction.do";
+	var Cuscardviewaction = "CuscardviewService.do";
 	var Cuscardviewfields = ['cuscardid'
 	        			    ,'cuscardcustomer' 
 	        			    ,'cuscardstadium' 

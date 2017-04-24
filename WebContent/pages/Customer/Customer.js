@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Customerclassify = "customer";
 	var Customertitle = "当前位置:业务管理》" + Customerclassify;
-	var Customeraction = "CustomerAction.do";
+	var Customeraction = "CustomerService.do";
 	var Customerfields = ['customerid'
 	        			    ,'customerstadium' 
 	        			    ,'openid' 

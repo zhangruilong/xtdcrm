@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Appiontviewclassify = "appiontview";
 	var Appiontviewtitle = "当前位置:业务管理》" + Appiontviewclassify;
-	var Appiontviewaction = "AppiontviewAction.do";
+	var Appiontviewaction = "AppiontviewService.do";
 	var Appiontviewfields = ['appointid'
 	        			    ,'appointcustomer' 
 	        			    ,'appointcard' 

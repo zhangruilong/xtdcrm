@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Mycourseclassify = "mycourse";
 	var Mycoursetitle = "当前位置:业务管理》" + Mycourseclassify;
-	var Mycourseaction = "MycourseAction.do";
+	var Mycourseaction = "MycourseService.do";
 	var Mycoursefields = ['mycourseid'
 	        			    ,'mycoursecustomer' 
 	        			    ,'mycoursecoach' 

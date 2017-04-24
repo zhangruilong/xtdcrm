@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Ordermclassify = "orderm";
 	var Ordermtitle = "当前位置:业务管理》" + Ordermclassify;
-	var Ordermaction = "OrdermAction.do";
+	var Ordermaction = "OrdermService.do";
 	var Ordermfields = ['orderid'
 	        			    ,'orderstadium' 
 	        			    ,'ordercode' 

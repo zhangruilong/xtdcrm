@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Placetimeclassify = "placetime";
 	var Placetimetitle = "当前位置:业务管理》" + Placetimeclassify;
-	var Placetimeaction = "PlacetimeAction.do";
+	var Placetimeaction = "PlacetimeService.do";
 	var Placetimefields = ['placetimeid'
 	        			    ,'placetimestadium' 
 	        			    ,'placetimeproject' 

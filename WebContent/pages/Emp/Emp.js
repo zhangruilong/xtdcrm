@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Empclassify = "emp";
 	var Emptitle = "当前位置:业务管理》" + Empclassify;
-	var Empaction = "EmpAction.do";
+	var Empaction = "EmpService.do";
 	var Empfields = ['empid'
 	        			    ,'empstadium' 
 	        			    ,'empcode' 

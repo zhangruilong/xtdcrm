@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Notesclassify = "notes";
 	var Notestitle = "当前位置:业务管理》" + Notesclassify;
-	var Notesaction = "NotesAction.do";
+	var Notesaction = "NotesService.do";
 	var Notesfields = ['notesid'
 	        			    ,'notescustomer' 
 	        			    ,'notescard' 

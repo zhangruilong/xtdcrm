@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Ccustomerclassify = "ccustomer";
 	var Ccustomertitle = "当前位置:业务管理》" + Ccustomerclassify;
-	var Ccustomeraction = "CcustomerAction.do";
+	var Ccustomeraction = "CcustomerService.do";
 	var Ccustomerfields = ['ccustomerid'
 	        			    ,'ccustomercoach' 
 	        			    ,'ccustomercustomer' 

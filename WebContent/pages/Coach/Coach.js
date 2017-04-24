@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Coachclassify = "coach";
 	var Coachtitle = "当前位置:业务管理》" + Coachclassify;
-	var Coachaction = "CoachAction.do";
+	var Coachaction = "CoachService.do";
 	var Coachfields = ['coachid'
 	        			    ,'coachstadium' 
 	        			    ,'coachcode' 

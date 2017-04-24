@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Allcourseclassify = "allcourse";
 	var Allcoursetitle = "当前位置:业务管理》" + Allcourseclassify;
-	var Allcourseaction = "AllcourseAction.do";
+	var Allcourseaction = "AllcourseService.do";
 	var Allcoursefields = ['allcourseid'
 	        			    ,'allcoursestadium' 
 	        			    ,'allcoursecoach' 

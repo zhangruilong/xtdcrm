@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Tuifeiclassify = "tuifei";
 	var Tuifeititle = "当前位置:业务管理》" + Tuifeiclassify;
-	var Tuifeiaction = "TuifeiAction.do";
+	var Tuifeiaction = "TuifeiService.do";
 	var Tuifeifields = ['tuifeiid'
 	        			    ,'tuifeistadium' 
 	        			    ,'tuifeiname' 

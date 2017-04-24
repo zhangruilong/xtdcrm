@@ -1,7 +1,7 @@
 Ext.onReady(function() {
 	var Placeclassify = "place";
 	var Placetitle = "当前位置:业务管理》" + Placeclassify;
-	var Placeaction = "PlaceAction.do";
+	var Placeaction = "PlaceService.do";
 	var Placefields = ['placeid'
 	        			    ,'placestadium' 
 	        			    ,'placecode' 
