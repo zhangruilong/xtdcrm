@@ -35,8 +35,8 @@ public class CcustomerPoco
    		"ccustomerid",
 	 	"ccustomercoach",
 	 	"ccustomercustomer",
-	 	"createtime",
-	 	"creator",
+	 	"ccustomerinswhen",
+	 	"ccustomerinswho",
    };
    /**
     * 实体排序
@@ -49,8 +49,8 @@ public class CcustomerPoco
    		"ccustomerid",
 	 	"ccustomercoach",
 	 	"ccustomercustomer",
-	 	"createtime",
-	 	"creator",
+	 	"ccustomerinswhen",
+	 	"ccustomerinswho",
    };
 }
 

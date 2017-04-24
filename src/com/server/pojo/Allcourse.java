@@ -1,6 +1,7 @@
 package com.server.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.math.BigDecimal;
 /**
  * allcourse 实体类
  *@author ZhangRuiLong
@@ -12,17 +13,21 @@ public class Allcourse
     */
    private String allcourseid; 
    /**
-    * 教练ID
+    * 场馆
+    */
+   private String allcoursestadium;   
+   /**
+    * 教练
     */
    private String allcoursecoach;   
+   /**
+    * 
+    */
+   private String allcoursecoachname;   
    /**
     * 课程名
     */
    private String allcoursename;   
-   /**
-    * 项目
-    */
-   private String allcourseproject;   
    /**
     * 课时
     */
@@ -32,21 +37,17 @@ public class Allcourse
     */
    private String allcoursemoney;   
    /**
-    * 创建时间
+    * 项目
     */
-   private String createtime;   
+   private String allcourseproject;   
    /**
-    * 创建人
+    * 备注
     */
-   private String creator;   
+   private String allcoursedetail;   
    /**
-    * 更新时间
+    * 分类
     */
-   private String updtime;   
-   /**
-    * 更新人
-    */
-   private String updor;   
+   private String allcoursetype;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -66,7 +67,24 @@ public class Allcourse
 	}
 
 	/**
-	 *设置"教练ID"属性
+	 *设置"场馆"属性
+	 *@param allcoursestadium 实体的Allcoursestadium属性
+	 */
+	public void setAllcoursestadium(String allcoursestadium)
+	{
+		this.allcoursestadium = allcoursestadium;
+	}
+	
+	/**
+	 *获取"场馆"属性
+	 */
+	public String getAllcoursestadium()
+	{
+		return this.allcoursestadium;
+	}	   
+
+	/**
+	 *设置"教练"属性
 	 *@param allcoursecoach 实体的Allcoursecoach属性
 	 */
 	public void setAllcoursecoach(String allcoursecoach)
@@ -75,11 +93,28 @@ public class Allcourse
 	}
 	
 	/**
-	 *获取"教练ID"属性
+	 *获取"教练"属性
 	 */
 	public String getAllcoursecoach()
 	{
 		return this.allcoursecoach;
+	}	   
+
+	/**
+	 *设置""属性
+	 *@param allcoursecoachname 实体的Allcoursecoachname属性
+	 */
+	public void setAllcoursecoachname(String allcoursecoachname)
+	{
+		this.allcoursecoachname = allcoursecoachname;
+	}
+	
+	/**
+	 *获取""属性
+	 */
+	public String getAllcoursecoachname()
+	{
+		return this.allcoursecoachname;
 	}	   
 
 	/**
@@ -97,23 +132,6 @@ public class Allcourse
 	public String getAllcoursename()
 	{
 		return this.allcoursename;
-	}	   
-
-	/**
-	 *设置"项目"属性
-	 *@param allcourseproject 实体的Allcourseproject属性
-	 */
-	public void setAllcourseproject(String allcourseproject)
-	{
-		this.allcourseproject = allcourseproject;
-	}
-	
-	/**
-	 *获取"项目"属性
-	 */
-	public String getAllcourseproject()
-	{
-		return this.allcourseproject;
 	}	   
 
 	/**
@@ -151,71 +169,54 @@ public class Allcourse
 	}	   
 
 	/**
-	 *设置"创建时间"属性
-	 *@param createtime 实体的Createtime属性
+	 *设置"项目"属性
+	 *@param allcourseproject 实体的Allcourseproject属性
 	 */
-	public void setCreatetime(String createtime)
+	public void setAllcourseproject(String allcourseproject)
 	{
-		this.createtime = createtime;
+		this.allcourseproject = allcourseproject;
 	}
 	
 	/**
-	 *获取"创建时间"属性
+	 *获取"项目"属性
 	 */
-	public String getCreatetime()
+	public String getAllcourseproject()
 	{
-		return this.createtime;
+		return this.allcourseproject;
 	}	   
 
 	/**
-	 *设置"创建人"属性
-	 *@param creator 实体的Creator属性
+	 *设置"备注"属性
+	 *@param allcoursedetail 实体的Allcoursedetail属性
 	 */
-	public void setCreator(String creator)
+	public void setAllcoursedetail(String allcoursedetail)
 	{
-		this.creator = creator;
+		this.allcoursedetail = allcoursedetail;
 	}
 	
 	/**
-	 *获取"创建人"属性
+	 *获取"备注"属性
 	 */
-	public String getCreator()
+	public String getAllcoursedetail()
 	{
-		return this.creator;
+		return this.allcoursedetail;
 	}	   
 
 	/**
-	 *设置"更新时间"属性
-	 *@param updtime 实体的Updtime属性
+	 *设置"分类"属性
+	 *@param allcoursetype 实体的Allcoursetype属性
 	 */
-	public void setUpdtime(String updtime)
+	public void setAllcoursetype(String allcoursetype)
 	{
-		this.updtime = updtime;
+		this.allcoursetype = allcoursetype;
 	}
 	
 	/**
-	 *获取"更新时间"属性
+	 *获取"分类"属性
 	 */
-	public String getUpdtime()
+	public String getAllcoursetype()
 	{
-		return this.updtime;
-	}	   
-
-	/**
-	 *设置"更新人"属性
-	 *@param updor 实体的Updor属性
-	 */
-	public void setUpdor(String updor)
-	{
-		this.updor = updor;
-	}
-	
-	/**
-	 *获取"更新人"属性
-	 */
-	public String getUpdor()
-	{
-		return this.updor;
+		return this.allcoursetype;
 	}	   
 	public Allcourse() {
 		super();
@@ -223,27 +224,27 @@ public class Allcourse
 	}
 	public Allcourse(
 		String allcourseid
+	 	,String allcoursestadium
 	 	,String allcoursecoach
+	 	,String allcoursecoachname
 	 	,String allcoursename
-	 	,String allcourseproject
 	 	,String allcoursenum
 	 	,String allcoursemoney
-	 	,String createtime
-	 	,String creator
-	 	,String updtime
-	 	,String updor
+	 	,String allcourseproject
+	 	,String allcoursedetail
+	 	,String allcoursetype
 		 ){
 		super();
 		this.allcourseid = allcourseid;
+	 	this.allcoursestadium = allcoursestadium;
 	 	this.allcoursecoach = allcoursecoach;
+	 	this.allcoursecoachname = allcoursecoachname;
 	 	this.allcoursename = allcoursename;
-	 	this.allcourseproject = allcourseproject;
 	 	this.allcoursenum = allcoursenum;
 	 	this.allcoursemoney = allcoursemoney;
-	 	this.createtime = createtime;
-	 	this.creator = creator;
-	 	this.updtime = updtime;
-	 	this.updor = updor;
+	 	this.allcourseproject = allcourseproject;
+	 	this.allcoursedetail = allcoursedetail;
+	 	this.allcoursetype = allcoursetype;
 	}
 }
 

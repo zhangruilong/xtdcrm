@@ -1,6 +1,7 @@
 package com.server.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.math.BigDecimal;
 /**
  * customer 实体类
  *@author ZhangRuiLong
@@ -12,13 +13,9 @@ public class Customer
     */
    private String customerid; 
    /**
-    * 场馆ID
+    * 场馆
     */
    private String customerstadium;   
-   /**
-    * 编码
-    */
-   private String customercode;   
    /**
     * OPENID
     */
@@ -34,17 +31,17 @@ public class Customer
    /**
     * 年龄
     */
-   private Integer customerage;   
+   private String customerage;   
    /**
     * 身份证
     */
    private String customercdcard;   
    /**
-    * 家庭住址
+    * 住址
     */
    private String customerhome;   
    /**
-    * 单位地址
+    * 单位
     */
    private String customercompany;   
    /**
@@ -56,10 +53,6 @@ public class Customer
     */
    private String customerbirthday;   
    /**
-    * 纪念日
-    */
-   private String customergoodday;   
-   /**
     * 邮箱
     */
    private String customeremail;   
@@ -68,21 +61,13 @@ public class Customer
     */
    private String customerhow;   
    /**
-    * 入会时间
-    */
-   private String customertime;   
-   /**
     * 照片
     */
    private String customerimage;   
    /**
-    * 顾问
+    * 会籍管家
     */
    private String customeremp;   
-   /**
-    * 等级
-    */
-   private String customerlevel;   
    /**
     * 备注
     */
@@ -94,19 +79,19 @@ public class Customer
    /**
     * 创建时间
     */
-   private String createtime;   
+   private String customerinswhen;   
    /**
     * 创建人
     */
-   private String creator;   
+   private String customerinswho;   
    /**
     * 更新时间
     */
-   private String updtime;   
+   private String customerupdwhen;   
    /**
     * 更新人
     */
-   private String updor;   
+   private String customerupdwho;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -126,7 +111,7 @@ public class Customer
 	}
 
 	/**
-	 *设置"场馆ID"属性
+	 *设置"场馆"属性
 	 *@param customerstadium 实体的Customerstadium属性
 	 */
 	public void setCustomerstadium(String customerstadium)
@@ -135,28 +120,11 @@ public class Customer
 	}
 	
 	/**
-	 *获取"场馆ID"属性
+	 *获取"场馆"属性
 	 */
 	public String getCustomerstadium()
 	{
 		return this.customerstadium;
-	}	   
-
-	/**
-	 *设置"编码"属性
-	 *@param customercode 实体的Customercode属性
-	 */
-	public void setCustomercode(String customercode)
-	{
-		this.customercode = customercode;
-	}
-	
-	/**
-	 *获取"编码"属性
-	 */
-	public String getCustomercode()
-	{
-		return this.customercode;
 	}	   
 
 	/**
@@ -214,7 +182,7 @@ public class Customer
 	 *设置"年龄"属性
 	 *@param customerage 实体的Customerage属性
 	 */
-	public void setCustomerage(Integer customerage)
+	public void setCustomerage(String customerage)
 	{
 		this.customerage = customerage;
 	}
@@ -222,7 +190,7 @@ public class Customer
 	/**
 	 *获取"年龄"属性
 	 */
-	public Integer getCustomerage()
+	public String getCustomerage()
 	{
 		return this.customerage;
 	}	   
@@ -245,7 +213,7 @@ public class Customer
 	}	   
 
 	/**
-	 *设置"家庭住址"属性
+	 *设置"住址"属性
 	 *@param customerhome 实体的Customerhome属性
 	 */
 	public void setCustomerhome(String customerhome)
@@ -254,7 +222,7 @@ public class Customer
 	}
 	
 	/**
-	 *获取"家庭住址"属性
+	 *获取"住址"属性
 	 */
 	public String getCustomerhome()
 	{
@@ -262,7 +230,7 @@ public class Customer
 	}	   
 
 	/**
-	 *设置"单位地址"属性
+	 *设置"单位"属性
 	 *@param customercompany 实体的Customercompany属性
 	 */
 	public void setCustomercompany(String customercompany)
@@ -271,7 +239,7 @@ public class Customer
 	}
 	
 	/**
-	 *获取"单位地址"属性
+	 *获取"单位"属性
 	 */
 	public String getCustomercompany()
 	{
@@ -313,23 +281,6 @@ public class Customer
 	}	   
 
 	/**
-	 *设置"纪念日"属性
-	 *@param customergoodday 实体的Customergoodday属性
-	 */
-	public void setCustomergoodday(String customergoodday)
-	{
-		this.customergoodday = customergoodday;
-	}
-	
-	/**
-	 *获取"纪念日"属性
-	 */
-	public String getCustomergoodday()
-	{
-		return this.customergoodday;
-	}	   
-
-	/**
 	 *设置"邮箱"属性
 	 *@param customeremail 实体的Customeremail属性
 	 */
@@ -364,23 +315,6 @@ public class Customer
 	}	   
 
 	/**
-	 *设置"入会时间"属性
-	 *@param customertime 实体的Customertime属性
-	 */
-	public void setCustomertime(String customertime)
-	{
-		this.customertime = customertime;
-	}
-	
-	/**
-	 *获取"入会时间"属性
-	 */
-	public String getCustomertime()
-	{
-		return this.customertime;
-	}	   
-
-	/**
 	 *设置"照片"属性
 	 *@param customerimage 实体的Customerimage属性
 	 */
@@ -398,7 +332,7 @@ public class Customer
 	}	   
 
 	/**
-	 *设置"顾问"属性
+	 *设置"会籍管家"属性
 	 *@param customeremp 实体的Customeremp属性
 	 */
 	public void setCustomeremp(String customeremp)
@@ -407,28 +341,11 @@ public class Customer
 	}
 	
 	/**
-	 *获取"顾问"属性
+	 *获取"会籍管家"属性
 	 */
 	public String getCustomeremp()
 	{
 		return this.customeremp;
-	}	   
-
-	/**
-	 *设置"等级"属性
-	 *@param customerlevel 实体的Customerlevel属性
-	 */
-	public void setCustomerlevel(String customerlevel)
-	{
-		this.customerlevel = customerlevel;
-	}
-	
-	/**
-	 *获取"等级"属性
-	 */
-	public String getCustomerlevel()
-	{
-		return this.customerlevel;
 	}	   
 
 	/**
@@ -467,70 +384,70 @@ public class Customer
 
 	/**
 	 *设置"创建时间"属性
-	 *@param createtime 实体的Createtime属性
+	 *@param customerinswhen 实体的Customerinswhen属性
 	 */
-	public void setCreatetime(String createtime)
+	public void setCustomerinswhen(String customerinswhen)
 	{
-		this.createtime = createtime;
+		this.customerinswhen = customerinswhen;
 	}
 	
 	/**
 	 *获取"创建时间"属性
 	 */
-	public String getCreatetime()
+	public String getCustomerinswhen()
 	{
-		return this.createtime;
+		return this.customerinswhen;
 	}	   
 
 	/**
 	 *设置"创建人"属性
-	 *@param creator 实体的Creator属性
+	 *@param customerinswho 实体的Customerinswho属性
 	 */
-	public void setCreator(String creator)
+	public void setCustomerinswho(String customerinswho)
 	{
-		this.creator = creator;
+		this.customerinswho = customerinswho;
 	}
 	
 	/**
 	 *获取"创建人"属性
 	 */
-	public String getCreator()
+	public String getCustomerinswho()
 	{
-		return this.creator;
+		return this.customerinswho;
 	}	   
 
 	/**
 	 *设置"更新时间"属性
-	 *@param updtime 实体的Updtime属性
+	 *@param customerupdwhen 实体的Customerupdwhen属性
 	 */
-	public void setUpdtime(String updtime)
+	public void setCustomerupdwhen(String customerupdwhen)
 	{
-		this.updtime = updtime;
+		this.customerupdwhen = customerupdwhen;
 	}
 	
 	/**
 	 *获取"更新时间"属性
 	 */
-	public String getUpdtime()
+	public String getCustomerupdwhen()
 	{
-		return this.updtime;
+		return this.customerupdwhen;
 	}	   
 
 	/**
 	 *设置"更新人"属性
-	 *@param updor 实体的Updor属性
+	 *@param customerupdwho 实体的Customerupdwho属性
 	 */
-	public void setUpdor(String updor)
+	public void setCustomerupdwho(String customerupdwho)
 	{
-		this.updor = updor;
+		this.customerupdwho = customerupdwho;
 	}
 	
 	/**
 	 *获取"更新人"属性
 	 */
-	public String getUpdor()
+	public String getCustomerupdwho()
 	{
-		return this.updor;
+		return this.customerupdwho;
 	}	   
 	public Customer() {
 		super();
@@ -539,34 +456,29 @@ public class Customer
 	public Customer(
 		String customerid
 	 	,String customerstadium
-	 	,String customercode
 	 	,String openid
 	 	,String customername
 	 	,String customersex
-	 	,Integer customerage
+	 	,String customerage
 	 	,String customercdcard
 	 	,String customerhome
 	 	,String customercompany
 	 	,String customerphone
 	 	,String customerbirthday
-	 	,String customergoodday
 	 	,String customeremail
 	 	,String customerhow
-	 	,String customertime
 	 	,String customerimage
 	 	,String customeremp
-	 	,String customerlevel
 	 	,String customerdetail
 	 	,String customerstatue
-	 	,String createtime
-	 	,String creator
-	 	,String updtime
-	 	,String updor
+	 	,String customerinswhen
+	 	,String customerinswho
+	 	,String customerupdwhen
+	 	,String customerupdwho
 		 ){
 		super();
 		this.customerid = customerid;
 	 	this.customerstadium = customerstadium;
-	 	this.customercode = customercode;
 	 	this.openid = openid;
 	 	this.customername = customername;
 	 	this.customersex = customersex;
@@ -576,19 +488,16 @@ public class Customer
 	 	this.customercompany = customercompany;
 	 	this.customerphone = customerphone;
 	 	this.customerbirthday = customerbirthday;
-	 	this.customergoodday = customergoodday;
 	 	this.customeremail = customeremail;
 	 	this.customerhow = customerhow;
-	 	this.customertime = customertime;
 	 	this.customerimage = customerimage;
 	 	this.customeremp = customeremp;
-	 	this.customerlevel = customerlevel;
 	 	this.customerdetail = customerdetail;
 	 	this.customerstatue = customerstatue;
-	 	this.createtime = createtime;
-	 	this.creator = creator;
-	 	this.updtime = updtime;
-	 	this.updor = updor;
+	 	this.customerinswhen = customerinswhen;
+	 	this.customerinswho = customerinswho;
+	 	this.customerupdwhen = customerupdwhen;
+	 	this.customerupdwho = customerupdwho;
 	}
 }
 

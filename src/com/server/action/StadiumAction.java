@@ -5,7 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+//import org.apache.solr.common.SolrDocumentList;
 import com.server.pojo.Stadium;
 import com.server.poco.StadiumPoco;
 import com.system.tools.CommonConst;
@@ -14,6 +14,7 @@ import com.system.tools.pojo.Fileinfo;
 import com.system.tools.pojo.Queryinfo;
 import com.system.tools.util.CommonUtil;
 import com.system.tools.util.FileUtil;
+import com.system.tools.util.TypeUtil;
 import com.system.tools.pojo.Pageinfo;
 
 /**
@@ -21,7 +22,6 @@ import com.system.tools.pojo.Pageinfo;
  *@author ZhangRuiLong
  */
 public class StadiumAction extends BaseActionDao {
-	public String result = CommonConst.FAILURE;
 	public ArrayList<Stadium> cuss = null;
 	public Type TYPE = new TypeToken<ArrayList<Stadium>>() {}.getType();
 
@@ -30,11 +30,12 @@ public class StadiumAction extends BaseActionDao {
 		String json = request.getParameter("json");
 		System.out.println("json : " + json);
 		json = json.replace("\"\"", "null");
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Stadium temp:cuss){
 			if(CommonUtil.isNull(temp.getStadiumid()))
 				temp.setStadiumid(CommonUtil.getNewId());
 			result = insSingle(temp);
+//			if(CommonConst.SUCCESS.equals(result)) updSolr(temp);
 		}
 		responsePW(response, result);
 	}
@@ -42,9 +43,10 @@ public class StadiumAction extends BaseActionDao {
 	public void delAll(HttpServletRequest request, HttpServletResponse response){
 		String json = request.getParameter("json");
 		System.out.println("json : " + json);
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Stadium temp:cuss){
 			result = delSingle(temp,StadiumPoco.KEYCOLUMN);
+//			if(CommonConst.SUCCESS.equals(result)) delSolr(temp,StadiumPoco.KEYCOLUMN);
 		}
 		responsePW(response, result);
 	}
@@ -52,9 +54,13 @@ public class StadiumAction extends BaseActionDao {
 	public void updAll(HttpServletRequest request, HttpServletResponse response){
 		String json = request.getParameter("json");
 		System.out.println("json : " + json);
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Stadium temp:cuss){
-			result = updSingle(temp,StadiumPoco.KEYCOLUMN);
+			if(CommonUtil.isNull(temp.getStadiumid())){
+				temp.setStadiumid(CommonUtil.getNewId());
+				result = insSingle(temp);
+			}else result = updSingle(temp,StadiumPoco.KEYCOLUMN);
+//			if(CommonConst.SUCCESS.equals(result)) updSolr(temp);
 		}
 		responsePW(response, result);
 	}
@@ -62,7 +68,7 @@ public class StadiumAction extends BaseActionDao {
 	public void impAll(HttpServletRequest request, HttpServletResponse response){
 		Fileinfo fileinfo = FileUtil.upload(request,0,null,StadiumPoco.NAME,"impAll");
 		String json = FileUtil.impExcel(fileinfo.getPath(),StadiumPoco.FIELDNAME); 
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Stadium temp:cuss){
 			if(CommonUtil.isNull(temp.getStadiumid()))
 				temp.setStadiumid(CommonUtil.getNewId());
@@ -97,4 +103,12 @@ public class StadiumAction extends BaseActionDao {
 		result = CommonConst.GSON.toJson(pageinfo);
 		responsePW(response, result);
 	}
+	//solr查询
+//	public void selSolr(HttpServletRequest request, HttpServletResponse response){
+//		Queryinfo queryinfo = getSolrquery(request, Stadium.class, StadiumPoco.QUERYFIELDNAME, StadiumPoco.ORDER, TYPE);
+//		SolrDocumentList solrDocumentList = selSolr(queryinfo);
+//		Pageinfo pageinfo = new Pageinfo(TypeUtil.stringToInt(""+solrDocumentList.getNumFound()), solrDocumentList);
+//		result = CommonConst.GSON.toJson(pageinfo);
+//       responsePW(response, result);
+//    } 
 }

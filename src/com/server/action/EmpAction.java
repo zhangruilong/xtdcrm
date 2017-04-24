@@ -5,7 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+//import org.apache.solr.common.SolrDocumentList;
 import com.server.pojo.Emp;
 import com.server.poco.EmpPoco;
 import com.system.tools.CommonConst;
@@ -14,6 +14,7 @@ import com.system.tools.pojo.Fileinfo;
 import com.system.tools.pojo.Queryinfo;
 import com.system.tools.util.CommonUtil;
 import com.system.tools.util.FileUtil;
+import com.system.tools.util.TypeUtil;
 import com.system.tools.pojo.Pageinfo;
 
 /**
@@ -21,7 +22,6 @@ import com.system.tools.pojo.Pageinfo;
  *@author ZhangRuiLong
  */
 public class EmpAction extends BaseActionDao {
-	public String result = CommonConst.FAILURE;
 	public ArrayList<Emp> cuss = null;
 	public Type TYPE = new TypeToken<ArrayList<Emp>>() {}.getType();
 
@@ -30,11 +30,12 @@ public class EmpAction extends BaseActionDao {
 		String json = request.getParameter("json");
 		System.out.println("json : " + json);
 		json = json.replace("\"\"", "null");
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Emp temp:cuss){
 			if(CommonUtil.isNull(temp.getEmpid()))
 				temp.setEmpid(CommonUtil.getNewId());
 			result = insSingle(temp);
+//			if(CommonConst.SUCCESS.equals(result)) updSolr(temp);
 		}
 		responsePW(response, result);
 	}
@@ -42,9 +43,10 @@ public class EmpAction extends BaseActionDao {
 	public void delAll(HttpServletRequest request, HttpServletResponse response){
 		String json = request.getParameter("json");
 		System.out.println("json : " + json);
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Emp temp:cuss){
 			result = delSingle(temp,EmpPoco.KEYCOLUMN);
+//			if(CommonConst.SUCCESS.equals(result)) delSolr(temp,EmpPoco.KEYCOLUMN);
 		}
 		responsePW(response, result);
 	}
@@ -52,9 +54,13 @@ public class EmpAction extends BaseActionDao {
 	public void updAll(HttpServletRequest request, HttpServletResponse response){
 		String json = request.getParameter("json");
 		System.out.println("json : " + json);
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Emp temp:cuss){
-			result = updSingle(temp,EmpPoco.KEYCOLUMN);
+			if(CommonUtil.isNull(temp.getEmpid())){
+				temp.setEmpid(CommonUtil.getNewId());
+				result = insSingle(temp);
+			}else result = updSingle(temp,EmpPoco.KEYCOLUMN);
+//			if(CommonConst.SUCCESS.equals(result)) updSolr(temp);
 		}
 		responsePW(response, result);
 	}
@@ -62,7 +68,7 @@ public class EmpAction extends BaseActionDao {
 	public void impAll(HttpServletRequest request, HttpServletResponse response){
 		Fileinfo fileinfo = FileUtil.upload(request,0,null,EmpPoco.NAME,"impAll");
 		String json = FileUtil.impExcel(fileinfo.getPath(),EmpPoco.FIELDNAME); 
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Emp temp:cuss){
 			if(CommonUtil.isNull(temp.getEmpid()))
 				temp.setEmpid(CommonUtil.getNewId());
@@ -97,4 +103,12 @@ public class EmpAction extends BaseActionDao {
 		result = CommonConst.GSON.toJson(pageinfo);
 		responsePW(response, result);
 	}
+	//solr查询
+//	public void selSolr(HttpServletRequest request, HttpServletResponse response){
+//		Queryinfo queryinfo = getSolrquery(request, Emp.class, EmpPoco.QUERYFIELDNAME, EmpPoco.ORDER, TYPE);
+//		SolrDocumentList solrDocumentList = selSolr(queryinfo);
+//		Pageinfo pageinfo = new Pageinfo(TypeUtil.stringToInt(""+solrDocumentList.getNumFound()), solrDocumentList);
+//		result = CommonConst.GSON.toJson(pageinfo);
+//       responsePW(response, result);
+//    } 
 }

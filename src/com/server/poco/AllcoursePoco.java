@@ -23,30 +23,30 @@ public class AllcoursePoco
     */
    public static String[] CHINESENAME = {
    		"ID",
-	 	"教练ID",
+	 	"场馆",
+	 	"教练",
+	 	"",
 	 	"课程名",
-	 	"项目",
 	 	"课时",
 	 	"费用",
-	 	"创建时间",
-	 	"创建人",
-	 	"更新时间",
-	 	"更新人",
+	 	"项目",
+	 	"备注",
+	 	"分类",
 	};
 	/**
 	 * 实体英文字段
 	 */
    public static final String[] FIELDNAME = {
    		"allcourseid",
+	 	"allcoursestadium",
 	 	"allcoursecoach",
+	 	"allcoursecoachname",
 	 	"allcoursename",
-	 	"allcourseproject",
 	 	"allcoursenum",
 	 	"allcoursemoney",
-	 	"createtime",
-	 	"creator",
-	 	"updtime",
-	 	"updor",
+	 	"allcourseproject",
+	 	"allcoursedetail",
+	 	"allcoursetype",
    };
    /**
     * 实体排序
@@ -57,15 +57,15 @@ public class AllcoursePoco
 	 */
    public static final String[] QUERYFIELDNAME = {
    		"allcourseid",
+	 	"allcoursestadium",
 	 	"allcoursecoach",
+	 	"allcoursecoachname",
 	 	"allcoursename",
-	 	"allcourseproject",
 	 	"allcoursenum",
 	 	"allcoursemoney",
-	 	"createtime",
-	 	"creator",
-	 	"updtime",
-	 	"updor",
+	 	"allcourseproject",
+	 	"allcoursedetail",
+	 	"allcoursetype",
    };
 }
 

@@ -1,6 +1,7 @@
 package com.server.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.math.BigDecimal;
 /**
  * place 实体类
  *@author ZhangRuiLong
@@ -12,41 +13,29 @@ public class Place
     */
    private String placeid; 
    /**
-    * 场馆ID
+    * 场馆
     */
    private String placestadium;   
    /**
-    * 编码
+    * 位置
     */
    private String placecode;   
    /**
-    * 名称
+    * 场地
     */
    private String placename;   
-   /**
-    * 人数
-    */
-   private Integer placepeople;   
    /**
     * 备注
     */
    private String placedetail;   
    /**
-    * 状态
-    */
-   private String placestatue;   
-   /**
-    * 开始时间
-    */
-   private String placebegin;   
-   /**
-    * 结束时间
-    */
-   private String placeend;   
-   /**
     * 项目
     */
    private String placeproject;   
+   /**
+    * 状态
+    */
+   private String placestatue;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -66,7 +55,7 @@ public class Place
 	}
 
 	/**
-	 *设置"场馆ID"属性
+	 *设置"场馆"属性
 	 *@param placestadium 实体的Placestadium属性
 	 */
 	public void setPlacestadium(String placestadium)
@@ -75,7 +64,7 @@ public class Place
 	}
 	
 	/**
-	 *获取"场馆ID"属性
+	 *获取"场馆"属性
 	 */
 	public String getPlacestadium()
 	{
@@ -83,7 +72,7 @@ public class Place
 	}	   
 
 	/**
-	 *设置"编码"属性
+	 *设置"位置"属性
 	 *@param placecode 实体的Placecode属性
 	 */
 	public void setPlacecode(String placecode)
@@ -92,7 +81,7 @@ public class Place
 	}
 	
 	/**
-	 *获取"编码"属性
+	 *获取"位置"属性
 	 */
 	public String getPlacecode()
 	{
@@ -100,7 +89,7 @@ public class Place
 	}	   
 
 	/**
-	 *设置"名称"属性
+	 *设置"场地"属性
 	 *@param placename 实体的Placename属性
 	 */
 	public void setPlacename(String placename)
@@ -109,28 +98,11 @@ public class Place
 	}
 	
 	/**
-	 *获取"名称"属性
+	 *获取"场地"属性
 	 */
 	public String getPlacename()
 	{
 		return this.placename;
-	}	   
-
-	/**
-	 *设置"人数"属性
-	 *@param placepeople 实体的Placepeople属性
-	 */
-	public void setPlacepeople(Integer placepeople)
-	{
-		this.placepeople = placepeople;
-	}
-	
-	/**
-	 *获取"人数"属性
-	 */
-	public Integer getPlacepeople()
-	{
-		return this.placepeople;
 	}	   
 
 	/**
@@ -151,57 +123,6 @@ public class Place
 	}	   
 
 	/**
-	 *设置"状态"属性
-	 *@param placestatue 实体的Placestatue属性
-	 */
-	public void setPlacestatue(String placestatue)
-	{
-		this.placestatue = placestatue;
-	}
-	
-	/**
-	 *获取"状态"属性
-	 */
-	public String getPlacestatue()
-	{
-		return this.placestatue;
-	}	   
-
-	/**
-	 *设置"开始时间"属性
-	 *@param placebegin 实体的Placebegin属性
-	 */
-	public void setPlacebegin(String placebegin)
-	{
-		this.placebegin = placebegin;
-	}
-	
-	/**
-	 *获取"开始时间"属性
-	 */
-	public String getPlacebegin()
-	{
-		return this.placebegin;
-	}	   
-
-	/**
-	 *设置"结束时间"属性
-	 *@param placeend 实体的Placeend属性
-	 */
-	public void setPlaceend(String placeend)
-	{
-		this.placeend = placeend;
-	}
-	
-	/**
-	 *获取"结束时间"属性
-	 */
-	public String getPlaceend()
-	{
-		return this.placeend;
-	}	   
-
-	/**
 	 *设置"项目"属性
 	 *@param placeproject 实体的Placeproject属性
 	 */
@@ -217,6 +138,23 @@ public class Place
 	{
 		return this.placeproject;
 	}	   
+
+	/**
+	 *设置"状态"属性
+	 *@param placestatue 实体的Placestatue属性
+	 */
+	public void setPlacestatue(String placestatue)
+	{
+		this.placestatue = placestatue;
+	}
+	
+	/**
+	 *获取"状态"属性
+	 */
+	public String getPlacestatue()
+	{
+		return this.placestatue;
+	}	   
 	public Place() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -226,24 +164,18 @@ public class Place
 	 	,String placestadium
 	 	,String placecode
 	 	,String placename
-	 	,Integer placepeople
 	 	,String placedetail
-	 	,String placestatue
-	 	,String placebegin
-	 	,String placeend
 	 	,String placeproject
+	 	,String placestatue
 		 ){
 		super();
 		this.placeid = placeid;
 	 	this.placestadium = placestadium;
 	 	this.placecode = placecode;
 	 	this.placename = placename;
-	 	this.placepeople = placepeople;
 	 	this.placedetail = placedetail;
-	 	this.placestatue = placestatue;
-	 	this.placebegin = placebegin;
-	 	this.placeend = placeend;
 	 	this.placeproject = placeproject;
+	 	this.placestatue = placestatue;
 	}
 }
 

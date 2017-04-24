@@ -1,6 +1,7 @@
 package com.server.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.math.BigDecimal;
 /**
  * cuscard 实体类
  *@author ZhangRuiLong
@@ -16,17 +17,25 @@ public class Cuscard
     */
    private String cuscardcustomer;   
    /**
-    * 分类
+    * 场馆
     */
-   private String cuscardtype;   
+   private String cuscardstadium;   
    /**
     * 卡号
     */
    private String cuscardno;   
    /**
-    * 密码
+    * 卡种
     */
-   private String cuscardpsw;   
+   private String cuscardtypename;   
+   /**
+    * 分类
+    */
+   private String cuscardtypeclass;   
+   /**
+    * 有效期
+    */
+   private String cuscardday;   
    /**
     * 有效期开始
     */
@@ -36,25 +45,45 @@ public class Cuscard
     */
    private String cuscardend;   
    /**
-    * 卡余额
+    * 价格
     */
-   private Double cuscardmoney;   
+   private String cuscardprice;   
    /**
-    * 卡总次数
+    * 抵扣
     */
-   private Integer cuscardnums;   
+   private String cuscarddikou;   
    /**
-    * 卡余次
+    * 售价
     */
-   private Integer cuscardtimes;   
+   private String cuscardmoney;   
    /**
-    * 卡积分
+    * 停用qi x
     */
-   private Integer cuscardint;   
+   private String cuscardstop;   
+   /**
+    * 停用价格
+    */
+   private String cuscardstopmoney;   
+   /**
+    * 余次
+    */
+   private String cuscardtimes;   
+   /**
+    * 积分
+    */
+   private String cuscardpoint;   
    /**
     * 备注
     */
    private String cuscarddetail;   
+   /**
+    * 场次
+    */
+   private String cuscardchangci;   
+   /**
+    * 项目
+    */
+   private String cuscardproject;   
    /**
     * 状态
     */
@@ -62,19 +91,19 @@ public class Cuscard
    /**
     * 创建时间
     */
-   private String createtime;   
+   private String cuscardinswhen;   
    /**
     * 创建人
     */
-   private String creator;   
+   private String cuscardinswho;   
    /**
     * 更新时间
     */
-   private String updtime;   
+   private String cuscardupdwhen;   
    /**
     * 更新人
     */
-   private String updor;   
+   private String cuscardupdwho;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -111,20 +140,20 @@ public class Cuscard
 	}	   
 
 	/**
-	 *设置"分类"属性
-	 *@param cuscardtype 实体的Cuscardtype属性
+	 *设置"场馆"属性
+	 *@param cuscardstadium 实体的Cuscardstadium属性
 	 */
-	public void setCuscardtype(String cuscardtype)
+	public void setCuscardstadium(String cuscardstadium)
 	{
-		this.cuscardtype = cuscardtype;
+		this.cuscardstadium = cuscardstadium;
 	}
 	
 	/**
-	 *获取"分类"属性
+	 *获取"场馆"属性
 	 */
-	public String getCuscardtype()
+	public String getCuscardstadium()
 	{
-		return this.cuscardtype;
+		return this.cuscardstadium;
 	}	   
 
 	/**
@@ -145,20 +174,54 @@ public class Cuscard
 	}	   
 
 	/**
-	 *设置"密码"属性
-	 *@param cuscardpsw 实体的Cuscardpsw属性
+	 *设置"卡种"属性
+	 *@param cuscardtypename 实体的Cuscardtypename属性
 	 */
-	public void setCuscardpsw(String cuscardpsw)
+	public void setCuscardtypename(String cuscardtypename)
 	{
-		this.cuscardpsw = cuscardpsw;
+		this.cuscardtypename = cuscardtypename;
 	}
 	
 	/**
-	 *获取"密码"属性
+	 *获取"卡种"属性
 	 */
-	public String getCuscardpsw()
+	public String getCuscardtypename()
 	{
-		return this.cuscardpsw;
+		return this.cuscardtypename;
+	}	   
+
+	/**
+	 *设置"分类"属性
+	 *@param cuscardtypeclass 实体的Cuscardtypeclass属性
+	 */
+	public void setCuscardtypeclass(String cuscardtypeclass)
+	{
+		this.cuscardtypeclass = cuscardtypeclass;
+	}
+	
+	/**
+	 *获取"分类"属性
+	 */
+	public String getCuscardtypeclass()
+	{
+		return this.cuscardtypeclass;
+	}	   
+
+	/**
+	 *设置"有效期"属性
+	 *@param cuscardday 实体的Cuscardday属性
+	 */
+	public void setCuscardday(String cuscardday)
+	{
+		this.cuscardday = cuscardday;
+	}
+	
+	/**
+	 *获取"有效期"属性
+	 */
+	public String getCuscardday()
+	{
+		return this.cuscardday;
 	}	   
 
 	/**
@@ -196,71 +259,122 @@ public class Cuscard
 	}	   
 
 	/**
-	 *设置"卡余额"属性
+	 *设置"价格"属性
+	 *@param cuscardprice 实体的Cuscardprice属性
+	 */
+	public void setCuscardprice(String cuscardprice)
+	{
+		this.cuscardprice = cuscardprice;
+	}
+	
+	/**
+	 *获取"价格"属性
+	 */
+	public String getCuscardprice()
+	{
+		return this.cuscardprice;
+	}	   
+
+	/**
+	 *设置"抵扣"属性
+	 *@param cuscarddikou 实体的Cuscarddikou属性
+	 */
+	public void setCuscarddikou(String cuscarddikou)
+	{
+		this.cuscarddikou = cuscarddikou;
+	}
+	
+	/**
+	 *获取"抵扣"属性
+	 */
+	public String getCuscarddikou()
+	{
+		return this.cuscarddikou;
+	}	   
+
+	/**
+	 *设置"售价"属性
 	 *@param cuscardmoney 实体的Cuscardmoney属性
 	 */
-	public void setCuscardmoney(Double cuscardmoney)
+	public void setCuscardmoney(String cuscardmoney)
 	{
 		this.cuscardmoney = cuscardmoney;
 	}
 	
 	/**
-	 *获取"卡余额"属性
+	 *获取"售价"属性
 	 */
-	public Double getCuscardmoney()
+	public String getCuscardmoney()
 	{
 		return this.cuscardmoney;
 	}	   
 
 	/**
-	 *设置"卡总次数"属性
-	 *@param cuscardnums 实体的Cuscardnums属性
+	 *设置"停用qi x"属性
+	 *@param cuscardstop 实体的Cuscardstop属性
 	 */
-	public void setCuscardnums(Integer cuscardnums)
+	public void setCuscardstop(String cuscardstop)
 	{
-		this.cuscardnums = cuscardnums;
+		this.cuscardstop = cuscardstop;
 	}
 	
 	/**
-	 *获取"卡总次数"属性
+	 *获取"停用qi x"属性
 	 */
-	public Integer getCuscardnums()
+	public String getCuscardstop()
 	{
-		return this.cuscardnums;
+		return this.cuscardstop;
 	}	   
 
 	/**
-	 *设置"卡余次"属性
+	 *设置"停用价格"属性
+	 *@param cuscardstopmoney 实体的Cuscardstopmoney属性
+	 */
+	public void setCuscardstopmoney(String cuscardstopmoney)
+	{
+		this.cuscardstopmoney = cuscardstopmoney;
+	}
+	
+	/**
+	 *获取"停用价格"属性
+	 */
+	public String getCuscardstopmoney()
+	{
+		return this.cuscardstopmoney;
+	}	   
+
+	/**
+	 *设置"余次"属性
 	 *@param cuscardtimes 实体的Cuscardtimes属性
 	 */
-	public void setCuscardtimes(Integer cuscardtimes)
+	public void setCuscardtimes(String cuscardtimes)
 	{
 		this.cuscardtimes = cuscardtimes;
 	}
 	
 	/**
-	 *获取"卡余次"属性
+	 *获取"余次"属性
 	 */
-	public Integer getCuscardtimes()
+	public String getCuscardtimes()
 	{
 		return this.cuscardtimes;
 	}	   
 
 	/**
-	 *设置"卡积分"属性
-	 *@param cuscardint 实体的Cuscardint属性
+	 *设置"积分"属性
+	 *@param cuscardpoint 实体的Cuscardpoint属性
 	 */
-	public void setCuscardint(Integer cuscardint)
+	public void setCuscardpoint(String cuscardpoint)
 	{
-		this.cuscardint = cuscardint;
+		this.cuscardpoint = cuscardpoint;
 	}
 	
 	/**
-	 *获取"卡积分"属性
+	 *获取"积分"属性
 	 */
-	public Integer getCuscardint()
+	public String getCuscardpoint()
 	{
-		return this.cuscardint;
+		return this.cuscardpoint;
 	}	   
 
 	/**
@@ -278,6 +392,40 @@ public class Cuscard
 	public String getCuscarddetail()
 	{
 		return this.cuscarddetail;
+	}	   
+
+	/**
+	 *设置"场次"属性
+	 *@param cuscardchangci 实体的Cuscardchangci属性
+	 */
+	public void setCuscardchangci(String cuscardchangci)
+	{
+		this.cuscardchangci = cuscardchangci;
+	}
+	
+	/**
+	 *获取"场次"属性
+	 */
+	public String getCuscardchangci()
+	{
+		return this.cuscardchangci;
+	}	   
+
+	/**
+	 *设置"项目"属性
+	 *@param cuscardproject 实体的Cuscardproject属性
+	 */
+	public void setCuscardproject(String cuscardproject)
+	{
+		this.cuscardproject = cuscardproject;
+	}
+	
+	/**
+	 *获取"项目"属性
+	 */
+	public String getCuscardproject()
+	{
+		return this.cuscardproject;
 	}	   
 
 	/**
@@ -299,70 +447,70 @@ public class Cuscard
 
 	/**
 	 *设置"创建时间"属性
-	 *@param createtime 实体的Createtime属性
+	 *@param cuscardinswhen 实体的Cuscardinswhen属性
 	 */
-	public void setCreatetime(String createtime)
+	public void setCuscardinswhen(String cuscardinswhen)
 	{
-		this.createtime = createtime;
+		this.cuscardinswhen = cuscardinswhen;
 	}
 	
 	/**
 	 *获取"创建时间"属性
 	 */
-	public String getCreatetime()
+	public String getCuscardinswhen()
 	{
-		return this.createtime;
+		return this.cuscardinswhen;
 	}	   
 
 	/**
 	 *设置"创建人"属性
-	 *@param creator 实体的Creator属性
+	 *@param cuscardinswho 实体的Cuscardinswho属性
 	 */
-	public void setCreator(String creator)
+	public void setCuscardinswho(String cuscardinswho)
 	{
-		this.creator = creator;
+		this.cuscardinswho = cuscardinswho;
 	}
 	
 	/**
 	 *获取"创建人"属性
 	 */
-	public String getCreator()
+	public String getCuscardinswho()
 	{
-		return this.creator;
+		return this.cuscardinswho;
 	}	   
 
 	/**
 	 *设置"更新时间"属性
-	 *@param updtime 实体的Updtime属性
+	 *@param cuscardupdwhen 实体的Cuscardupdwhen属性
 	 */
-	public void setUpdtime(String updtime)
+	public void setCuscardupdwhen(String cuscardupdwhen)
 	{
-		this.updtime = updtime;
+		this.cuscardupdwhen = cuscardupdwhen;
 	}
 	
 	/**
 	 *获取"更新时间"属性
 	 */
-	public String getUpdtime()
+	public String getCuscardupdwhen()
 	{
-		return this.updtime;
+		return this.cuscardupdwhen;
 	}	   
 
 	/**
 	 *设置"更新人"属性
-	 *@param updor 实体的Updor属性
+	 *@param cuscardupdwho 实体的Cuscardupdwho属性
 	 */
-	public void setUpdor(String updor)
+	public void setCuscardupdwho(String cuscardupdwho)
 	{
-		this.updor = updor;
+		this.cuscardupdwho = cuscardupdwho;
 	}
 	
 	/**
 	 *获取"更新人"属性
 	 */
-	public String getUpdor()
+	public String getCuscardupdwho()
 	{
-		return this.updor;
+		return this.cuscardupdwho;
 	}	   
 	public Cuscard() {
 		super();
@@ -371,40 +519,54 @@ public class Cuscard
 	public Cuscard(
 		String cuscardid
 	 	,String cuscardcustomer
-	 	,String cuscardtype
+	 	,String cuscardstadium
 	 	,String cuscardno
-	 	,String cuscardpsw
+	 	,String cuscardtypename
+	 	,String cuscardtypeclass
+	 	,String cuscardday
 	 	,String cuscardbegin
 	 	,String cuscardend
-	 	,Double cuscardmoney
-	 	,Integer cuscardnums
-	 	,Integer cuscardtimes
-	 	,Integer cuscardint
+	 	,String cuscardprice
+	 	,String cuscarddikou
+	 	,String cuscardmoney
+	 	,String cuscardstop
+	 	,String cuscardstopmoney
+	 	,String cuscardtimes
+	 	,String cuscardpoint
 	 	,String cuscarddetail
+	 	,String cuscardchangci
+	 	,String cuscardproject
 	 	,String cuscardstatue
-	 	,String createtime
-	 	,String creator
-	 	,String updtime
-	 	,String updor
+	 	,String cuscardinswhen
+	 	,String cuscardinswho
+	 	,String cuscardupdwhen
+	 	,String cuscardupdwho
 		 ){
 		super();
 		this.cuscardid = cuscardid;
 	 	this.cuscardcustomer = cuscardcustomer;
-	 	this.cuscardtype = cuscardtype;
+	 	this.cuscardstadium = cuscardstadium;
 	 	this.cuscardno = cuscardno;
-	 	this.cuscardpsw = cuscardpsw;
+	 	this.cuscardtypename = cuscardtypename;
+	 	this.cuscardtypeclass = cuscardtypeclass;
+	 	this.cuscardday = cuscardday;
 	 	this.cuscardbegin = cuscardbegin;
 	 	this.cuscardend = cuscardend;
+	 	this.cuscardprice = cuscardprice;
+	 	this.cuscarddikou = cuscarddikou;
 	 	this.cuscardmoney = cuscardmoney;
-	 	this.cuscardnums = cuscardnums;
+	 	this.cuscardstop = cuscardstop;
+	 	this.cuscardstopmoney = cuscardstopmoney;
 	 	this.cuscardtimes = cuscardtimes;
-	 	this.cuscardint = cuscardint;
+	 	this.cuscardpoint = cuscardpoint;
 	 	this.cuscarddetail = cuscarddetail;
+	 	this.cuscardchangci = cuscardchangci;
+	 	this.cuscardproject = cuscardproject;
 	 	this.cuscardstatue = cuscardstatue;
-	 	this.createtime = createtime;
-	 	this.creator = creator;
-	 	this.updtime = updtime;
-	 	this.updor = updor;
+	 	this.cuscardinswhen = cuscardinswhen;
+	 	this.cuscardinswho = cuscardinswho;
+	 	this.cuscardupdwhen = cuscardupdwhen;
+	 	this.cuscardupdwho = cuscardupdwho;
 	}
 }
 

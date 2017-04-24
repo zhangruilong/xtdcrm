@@ -1,6 +1,7 @@
 package com.server.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.math.BigDecimal;
 /**
  * orderm 实体类
  *@author ZhangRuiLong
@@ -11,6 +12,10 @@ public class Orderm
     * ID,主键
     */
    private String orderid; 
+   /**
+    * 场馆
+    */
+   private String orderstadium;   
    /**
     * 商品编码
     */
@@ -26,7 +31,7 @@ public class Orderm
    /**
     * 下单金额
     */
-   private Double ordermoney;   
+   private String ordermoney;   
    /**
     * 打折
     */
@@ -34,7 +39,7 @@ public class Orderm
    /**
     * 实际金额
     */
-   private Double orderrightmoney;   
+   private String orderrightmoney;   
    /**
     * 照片
     */
@@ -50,19 +55,19 @@ public class Orderm
    /**
     * 创建时间
     */
-   private String createtime;   
+   private String orderinswhen;   
    /**
     * 创建人
     */
-   private String creator;   
+   private String orderinswho;   
    /**
     * 更新时间
     */
-   private String updtime;   
+   private String orderupdwhen;   
    /**
     * 更新人
     */
-   private String updor;   
+   private String orderupdwho;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -80,6 +85,23 @@ public class Orderm
 	{
 		return this.orderid;
 	}
+
+	/**
+	 *设置"场馆"属性
+	 *@param orderstadium 实体的Orderstadium属性
+	 */
+	public void setOrderstadium(String orderstadium)
+	{
+		this.orderstadium = orderstadium;
+	}
+	
+	/**
+	 *获取"场馆"属性
+	 */
+	public String getOrderstadium()
+	{
+		return this.orderstadium;
+	}	   
 
 	/**
 	 *设置"商品编码"属性
@@ -136,7 +158,7 @@ public class Orderm
 	 *设置"下单金额"属性
 	 *@param ordermoney 实体的Ordermoney属性
 	 */
-	public void setOrdermoney(Double ordermoney)
+	public void setOrdermoney(String ordermoney)
 	{
 		this.ordermoney = ordermoney;
 	}
@@ -144,7 +166,7 @@ public class Orderm
 	/**
 	 *获取"下单金额"属性
 	 */
-	public Double getOrdermoney()
+	public String getOrdermoney()
 	{
 		return this.ordermoney;
 	}	   
@@ -170,7 +192,7 @@ public class Orderm
 	 *设置"实际金额"属性
 	 *@param orderrightmoney 实体的Orderrightmoney属性
 	 */
-	public void setOrderrightmoney(Double orderrightmoney)
+	public void setOrderrightmoney(String orderrightmoney)
 	{
 		this.orderrightmoney = orderrightmoney;
 	}
@@ -178,7 +200,7 @@ public class Orderm
 	/**
 	 *获取"实际金额"属性
 	 */
-	public Double getOrderrightmoney()
+	public String getOrderrightmoney()
 	{
 		return this.orderrightmoney;
 	}	   
@@ -236,70 +258,70 @@ public class Orderm
 
 	/**
 	 *设置"创建时间"属性
-	 *@param createtime 实体的Createtime属性
+	 *@param orderinswhen 实体的Orderinswhen属性
 	 */
-	public void setCreatetime(String createtime)
+	public void setOrderinswhen(String orderinswhen)
 	{
-		this.createtime = createtime;
+		this.orderinswhen = orderinswhen;
 	}
 	
 	/**
 	 *获取"创建时间"属性
 	 */
-	public String getCreatetime()
+	public String getOrderinswhen()
 	{
-		return this.createtime;
+		return this.orderinswhen;
 	}	   
 
 	/**
 	 *设置"创建人"属性
-	 *@param creator 实体的Creator属性
+	 *@param orderinswho 实体的Orderinswho属性
 	 */
-	public void setCreator(String creator)
+	public void setOrderinswho(String orderinswho)
 	{
-		this.creator = creator;
+		this.orderinswho = orderinswho;
 	}
 	
 	/**
 	 *获取"创建人"属性
 	 */
-	public String getCreator()
+	public String getOrderinswho()
 	{
-		return this.creator;
+		return this.orderinswho;
 	}	   
 
 	/**
 	 *设置"更新时间"属性
-	 *@param updtime 实体的Updtime属性
+	 *@param orderupdwhen 实体的Orderupdwhen属性
 	 */
-	public void setUpdtime(String updtime)
+	public void setOrderupdwhen(String orderupdwhen)
 	{
-		this.updtime = updtime;
+		this.orderupdwhen = orderupdwhen;
 	}
 	
 	/**
 	 *获取"更新时间"属性
 	 */
-	public String getUpdtime()
+	public String getOrderupdwhen()
 	{
-		return this.updtime;
+		return this.orderupdwhen;
 	}	   
 
 	/**
 	 *设置"更新人"属性
-	 *@param updor 实体的Updor属性
+	 *@param orderupdwho 实体的Orderupdwho属性
 	 */
-	public void setUpdor(String updor)
+	public void setOrderupdwho(String orderupdwho)
 	{
-		this.updor = updor;
+		this.orderupdwho = orderupdwho;
 	}
 	
 	/**
 	 *获取"更新人"属性
 	 */
-	public String getUpdor()
+	public String getOrderupdwho()
 	{
-		return this.updor;
+		return this.orderupdwho;
 	}	   
 	public Orderm() {
 		super();
@@ -307,22 +329,24 @@ public class Orderm
 	}
 	public Orderm(
 		String orderid
+	 	,String orderstadium
 	 	,String ordercode
 	 	,String ordername
 	 	,String orderclass
-	 	,Double ordermoney
+	 	,String ordermoney
 	 	,String orderdiscount
-	 	,Double orderrightmoney
+	 	,String orderrightmoney
 	 	,String orderimage
 	 	,String orderdetail
 	 	,String orderstatue
-	 	,String createtime
-	 	,String creator
-	 	,String updtime
-	 	,String updor
+	 	,String orderinswhen
+	 	,String orderinswho
+	 	,String orderupdwhen
+	 	,String orderupdwho
 		 ){
 		super();
 		this.orderid = orderid;
+	 	this.orderstadium = orderstadium;
 	 	this.ordercode = ordercode;
 	 	this.ordername = ordername;
 	 	this.orderclass = orderclass;
@@ -332,10 +356,10 @@ public class Orderm
 	 	this.orderimage = orderimage;
 	 	this.orderdetail = orderdetail;
 	 	this.orderstatue = orderstatue;
-	 	this.createtime = createtime;
-	 	this.creator = creator;
-	 	this.updtime = updtime;
-	 	this.updor = updor;
+	 	this.orderinswhen = orderinswhen;
+	 	this.orderinswho = orderinswho;
+	 	this.orderupdwhen = orderupdwhen;
+	 	this.orderupdwho = orderupdwho;
 	}
 }
 

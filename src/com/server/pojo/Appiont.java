@@ -1,6 +1,7 @@
 package com.server.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.math.BigDecimal;
 /**
  * appiont 实体类
  *@author ZhangRuiLong
@@ -12,21 +13,25 @@ public class Appiont
     */
    private String appointid; 
    /**
-    * 会员ID
+    * 会员
     */
    private String appointcustomer;   
    /**
-    * 会员卡ID
+    * 会员卡
     */
    private String appointcard;   
    /**
-    * 场地ID
+    * 场馆
+    */
+   private String appointstadium;   
+   /**
+    * 项目
+    */
+   private String appointproject;   
+   /**
+    * 场地
     */
    private String appointplace;   
-   /**
-    * 课程ID
-    */
-   private String appointcourse;   
    /**
     * 场地
     */
@@ -34,15 +39,23 @@ public class Appiont
    /**
     * 课程
     */
+   private String appointcourse;   
+   /**
+    * 
+    */
    private String appointcoursename;   
+   /**
+    * 教练
+    */
+   private String appointcoach;   
    /**
     * 教练
     */
    private String appointcoachname;   
    /**
-    * 项目
+    * 预约
     */
-   private String appointproject;   
+   private String appointdate;   
    /**
     * 开始时间
     */
@@ -56,17 +69,21 @@ public class Appiont
     */
    private String appointdetail;   
    /**
+    * 类型
+    */
+   private String appointtype;   
+   /**
     * 状态
     */
    private String appointstatue;   
    /**
     * 创建时间
     */
-   private String createtime;   
+   private String appointinswhen;   
    /**
-    * 创建人
+    * 更新时间
     */
-   private String creator;   
+   private String appointupdwhen;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -86,7 +103,7 @@ public class Appiont
 	}
 
 	/**
-	 *设置"会员ID"属性
+	 *设置"会员"属性
 	 *@param appointcustomer 实体的Appointcustomer属性
 	 */
 	public void setAppointcustomer(String appointcustomer)
@@ -95,7 +112,7 @@ public class Appiont
 	}
 	
 	/**
-	 *获取"会员ID"属性
+	 *获取"会员"属性
 	 */
 	public String getAppointcustomer()
 	{
@@ -103,7 +120,7 @@ public class Appiont
 	}	   
 
 	/**
-	 *设置"会员卡ID"属性
+	 *设置"会员卡"属性
 	 *@param appointcard 实体的Appointcard属性
 	 */
 	public void setAppointcard(String appointcard)
@@ -112,7 +129,7 @@ public class Appiont
 	}
 	
 	/**
-	 *获取"会员卡ID"属性
+	 *获取"会员卡"属性
 	 */
 	public String getAppointcard()
 	{
@@ -120,7 +137,41 @@ public class Appiont
 	}	   
 
 	/**
-	 *设置"场地ID"属性
+	 *设置"场馆"属性
+	 *@param appointstadium 实体的Appointstadium属性
+	 */
+	public void setAppointstadium(String appointstadium)
+	{
+		this.appointstadium = appointstadium;
+	}
+	
+	/**
+	 *获取"场馆"属性
+	 */
+	public String getAppointstadium()
+	{
+		return this.appointstadium;
+	}	   
+
+	/**
+	 *设置"项目"属性
+	 *@param appointproject 实体的Appointproject属性
+	 */
+	public void setAppointproject(String appointproject)
+	{
+		this.appointproject = appointproject;
+	}
+	
+	/**
+	 *获取"项目"属性
+	 */
+	public String getAppointproject()
+	{
+		return this.appointproject;
+	}	   
+
+	/**
+	 *设置"场地"属性
 	 *@param appointplace 实体的Appointplace属性
 	 */
 	public void setAppointplace(String appointplace)
@@ -129,28 +180,11 @@ public class Appiont
 	}
 	
 	/**
-	 *获取"场地ID"属性
+	 *获取"场地"属性
 	 */
 	public String getAppointplace()
 	{
 		return this.appointplace;
-	}	   
-
-	/**
-	 *设置"课程ID"属性
-	 *@param appointcourse 实体的Appointcourse属性
-	 */
-	public void setAppointcourse(String appointcourse)
-	{
-		this.appointcourse = appointcourse;
-	}
-	
-	/**
-	 *获取"课程ID"属性
-	 */
-	public String getAppointcourse()
-	{
-		return this.appointcourse;
 	}	   
 
 	/**
@@ -172,6 +206,23 @@ public class Appiont
 
 	/**
 	 *设置"课程"属性
+	 *@param appointcourse 实体的Appointcourse属性
+	 */
+	public void setAppointcourse(String appointcourse)
+	{
+		this.appointcourse = appointcourse;
+	}
+	
+	/**
+	 *获取"课程"属性
+	 */
+	public String getAppointcourse()
+	{
+		return this.appointcourse;
+	}	   
+
+	/**
+	 *设置""属性
 	 *@param appointcoursename 实体的Appointcoursename属性
 	 */
 	public void setAppointcoursename(String appointcoursename)
@@ -180,11 +231,28 @@ public class Appiont
 	}
 	
 	/**
-	 *获取"课程"属性
+	 *获取""属性
 	 */
 	public String getAppointcoursename()
 	{
 		return this.appointcoursename;
+	}	   
+
+	/**
+	 *设置"教练"属性
+	 *@param appointcoach 实体的Appointcoach属性
+	 */
+	public void setAppointcoach(String appointcoach)
+	{
+		this.appointcoach = appointcoach;
+	}
+	
+	/**
+	 *获取"教练"属性
+	 */
+	public String getAppointcoach()
+	{
+		return this.appointcoach;
 	}	   
 
 	/**
@@ -205,20 +273,20 @@ public class Appiont
 	}	   
 
 	/**
-	 *设置"项目"属性
-	 *@param appointproject 实体的Appointproject属性
+	 *设置"预约"属性
+	 *@param appointdate 实体的Appointdate属性
 	 */
-	public void setAppointproject(String appointproject)
+	public void setAppointdate(String appointdate)
 	{
-		this.appointproject = appointproject;
+		this.appointdate = appointdate;
 	}
 	
 	/**
-	 *获取"项目"属性
+	 *获取"预约"属性
 	 */
-	public String getAppointproject()
+	public String getAppointdate()
 	{
-		return this.appointproject;
+		return this.appointdate;
 	}	   
 
 	/**
@@ -273,6 +341,23 @@ public class Appiont
 	}	   
 
 	/**
+	 *设置"类型"属性
+	 *@param appointtype 实体的Appointtype属性
+	 */
+	public void setAppointtype(String appointtype)
+	{
+		this.appointtype = appointtype;
+	}
+	
+	/**
+	 *获取"类型"属性
+	 */
+	public String getAppointtype()
+	{
+		return this.appointtype;
+	}	   
+
+	/**
 	 *设置"状态"属性
 	 *@param appointstatue 实体的Appointstatue属性
 	 */
@@ -291,36 +376,36 @@ public class Appiont
 
 	/**
 	 *设置"创建时间"属性
-	 *@param createtime 实体的Createtime属性
+	 *@param appointinswhen 实体的Appointinswhen属性
 	 */
-	public void setCreatetime(String createtime)
+	public void setAppointinswhen(String appointinswhen)
 	{
-		this.createtime = createtime;
+		this.appointinswhen = appointinswhen;
 	}
 	
 	/**
 	 *获取"创建时间"属性
 	 */
-	public String getCreatetime()
+	public String getAppointinswhen()
 	{
-		return this.createtime;
+		return this.appointinswhen;
 	}	   
 
 	/**
-	 *设置"创建人"属性
-	 *@param creator 实体的Creator属性
+	 *设置"更新时间"属性
+	 *@param appointupdwhen 实体的Appointupdwhen属性
 	 */
-	public void setCreator(String creator)
+	public void setAppointupdwhen(String appointupdwhen)
 	{
-		this.creator = creator;
+		this.appointupdwhen = appointupdwhen;
 	}
 	
 	/**
-	 *获取"创建人"属性
+	 *获取"更新时间"属性
 	 */
-	public String getCreator()
+	public String getAppointupdwhen()
 	{
-		return this.creator;
+		return this.appointupdwhen;
 	}	   
 	public Appiont() {
 		super();
@@ -330,35 +415,43 @@ public class Appiont
 		String appointid
 	 	,String appointcustomer
 	 	,String appointcard
-	 	,String appointplace
-	 	,String appointcourse
-	 	,String appointplacename
-	 	,String appointcoursename
-	 	,String appointcoachname
+	 	,String appointstadium
 	 	,String appointproject
+	 	,String appointplace
+	 	,String appointplacename
+	 	,String appointcourse
+	 	,String appointcoursename
+	 	,String appointcoach
+	 	,String appointcoachname
+	 	,String appointdate
 	 	,String appointbegin
 	 	,String appointend
 	 	,String appointdetail
+	 	,String appointtype
 	 	,String appointstatue
-	 	,String createtime
-	 	,String creator
+	 	,String appointinswhen
+	 	,String appointupdwhen
 		 ){
 		super();
 		this.appointid = appointid;
 	 	this.appointcustomer = appointcustomer;
 	 	this.appointcard = appointcard;
-	 	this.appointplace = appointplace;
-	 	this.appointcourse = appointcourse;
-	 	this.appointplacename = appointplacename;
-	 	this.appointcoursename = appointcoursename;
-	 	this.appointcoachname = appointcoachname;
+	 	this.appointstadium = appointstadium;
 	 	this.appointproject = appointproject;
+	 	this.appointplace = appointplace;
+	 	this.appointplacename = appointplacename;
+	 	this.appointcourse = appointcourse;
+	 	this.appointcoursename = appointcoursename;
+	 	this.appointcoach = appointcoach;
+	 	this.appointcoachname = appointcoachname;
+	 	this.appointdate = appointdate;
 	 	this.appointbegin = appointbegin;
 	 	this.appointend = appointend;
 	 	this.appointdetail = appointdetail;
+	 	this.appointtype = appointtype;
 	 	this.appointstatue = appointstatue;
-	 	this.createtime = createtime;
-	 	this.creator = creator;
+	 	this.appointinswhen = appointinswhen;
+	 	this.appointupdwhen = appointupdwhen;
 	}
 }
 

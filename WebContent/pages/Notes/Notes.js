@@ -5,129 +5,142 @@ Ext.onReady(function() {
 	var Notesfields = ['notesid'
 	        			    ,'notescustomer' 
 	        			    ,'notescard' 
-	        			    ,'notesplace' 
+	        			    ,'notesstadium' 
+	        			    ,'notescoach' 
 	        			    ,'notescourse' 
-	        			    ,'notesproject' 
-	        			    ,'notesbegin' 
-	        			    ,'notesend' 
-	        			    ,'creator' 
+	        			    ,'notesname' 
+	        			    ,'notesdetail' 
+	        			    ,'notestype' 
+	        			    ,'notsinswhen' 
+	        			    ,'notesinswho' 
 	        			      ];// 全部字段
 	var Noteskeycolumn = [ 'notesid' ];// 主键
-	var Notesstore = dataStore(Notesfields, basePath + Notesaction + "?method=selLimit");// 定义Notesstore
+	var Notesstore = dataStore(Notesfields, basePath + Notesaction + "?method=selQuery");// 定义Notesstore
 	var NotesdataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'NotesdataForm',
 		labelAlign : 'right',
 		frame : true,
 		layout : 'column',
 		items : [ {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
 				id : 'Notesnotesid',
-				name : 'notesid',
-				maxLength : 100
+				name : 'notesid'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '会员ID',
+				fieldLabel : '会员',
 				id : 'Notesnotescustomer',
-				name : 'notescustomer',
-				maxLength : 100
+				name : 'notescustomer'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '会员卡ID',
+				fieldLabel : '会员卡',
 				id : 'Notesnotescard',
-				name : 'notescard',
-				maxLength : 100
+				name : 'notescard'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '场地ID',
-				id : 'Notesnotesplace',
-				name : 'notesplace',
-				maxLength : 100
+				fieldLabel : '场馆',
+				id : 'Notesnotesstadium',
+				name : 'notesstadium'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '课程ID',
+				fieldLabel : '教练',
+				id : 'Notesnotescoach',
+				name : 'notescoach'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '课程',
 				id : 'Notesnotescourse',
-				name : 'notescourse',
-				maxLength : 100
+				name : 'notescourse'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '项目',
-				id : 'Notesnotesproject',
-				name : 'notesproject',
-				maxLength : 100
+				fieldLabel : '事件',
+				id : 'Notesnotesname',
+				name : 'notesname'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '入场时间',
-				id : 'Notesnotesbegin',
-				name : 'notesbegin',
-				maxLength : 100
+				fieldLabel : '详细',
+				id : 'Notesnotesdetail',
+				name : 'notesdetail'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '离场时间',
-				id : 'Notesnotesend',
-				name : 'notesend',
-				maxLength : 100
+				fieldLabel : '分类',
+				id : 'Notesnotestype',
+				name : 'notestype'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '创建时间',
+				id : 'Notesnotsinswhen',
+				name : 'notsinswhen'
+			} ]
+		}
+		, {
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建人',
-				id : 'Notescreator',
-				name : 'creator',
-				maxLength : 100
+				id : 'Notesnotesinswho',
+				name : 'notesinswho'
 			} ]
 		}
 		]
 	});
 	
-	//var Notesbbar = pagesizebar(Notesstore);//定义分页
+	var Notesbbar = pagesizebar(Notesstore);//定义分页
 	var Notesgrid =  Ext.create('Ext.grid.Panel', {
 		height : document.documentElement.clientHeight - 4,
 		width : '100%',
 		//title : Notestitle,
 		store : Notesstore,
-		//bbar : Notesbbar,
+		bbar : Notesbbar,
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
@@ -146,7 +159,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '会员ID',
+			header : '会员',
 			dataIndex : 'notescustomer',
 			sortable : true,  
 			editor: {
@@ -154,7 +167,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '会员卡ID',
+			header : '会员卡',
 			dataIndex : 'notescard',
 			sortable : true,  
 			editor: {
@@ -162,15 +175,23 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '场地ID',
-			dataIndex : 'notesplace',
+			header : '场馆',
+			dataIndex : 'notesstadium',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
             }
 		}
 		, {
-			header : '课程ID',
+			header : '教练',
+			dataIndex : 'notescoach',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '课程',
 			dataIndex : 'notescourse',
 			sortable : true,  
 			editor: {
@@ -178,24 +199,32 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '项目',
-			dataIndex : 'notesproject',
+			header : '事件',
+			dataIndex : 'notesname',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
             }
 		}
 		, {
-			header : '入场时间',
-			dataIndex : 'notesbegin',
+			header : '详细',
+			dataIndex : 'notesdetail',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
             }
 		}
 		, {
-			header : '离场时间',
-			dataIndex : 'notesend',
+			header : '分类',
+			dataIndex : 'notestype',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '创建时间',
+			dataIndex : 'notsinswhen',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -203,7 +232,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '创建人',
-			dataIndex : 'creator',
+			dataIndex : 'notesinswho',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -314,22 +343,29 @@ Ext.onReady(function() {
 				listeners : {
 					specialkey : function(field, e) {
 						if (e.getKey() == Ext.EventObject.ENTER) {
-							if ("" == Ext.getCmp("queryNotesaction").getValue()) {
-								Notesstore.load({
+							Notesstore.load({
 									params : {
-										json : queryjson
-									}
-								});
-							} else {
-								Notesstore.load({
-									params : {
+										start : 0,
+										limit : PAGESIZE,
 										json : queryjson,
 										query : Ext.getCmp("queryNotesaction").getValue()
 									}
-								});
-							}
+							});
 						}
 					}
+				}
+			},{
+				text : "查询",
+				xtype: 'button',
+				handler : function() {
+					Notesstore.load({
+							params : {
+								start : 0,
+								limit : PAGESIZE,
+								json : queryjson,
+								query : Ext.getCmp("queryNotesaction").getValue()
+							}
+					});
 				}
 			}
 		]

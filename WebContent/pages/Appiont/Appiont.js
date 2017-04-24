@@ -5,201 +5,230 @@ Ext.onReady(function() {
 	var Appiontfields = ['appointid'
 	        			    ,'appointcustomer' 
 	        			    ,'appointcard' 
-	        			    ,'appointplace' 
-	        			    ,'appointcourse' 
-	        			    ,'appointplacename' 
-	        			    ,'appointcoursename' 
-	        			    ,'appointcoachname' 
+	        			    ,'appointstadium' 
 	        			    ,'appointproject' 
+	        			    ,'appointplace' 
+	        			    ,'appointplacename' 
+	        			    ,'appointcourse' 
+	        			    ,'appointcoursename' 
+	        			    ,'appointcoach' 
+	        			    ,'appointcoachname' 
+	        			    ,'appointdate' 
 	        			    ,'appointbegin' 
 	        			    ,'appointend' 
 	        			    ,'appointdetail' 
+	        			    ,'appointtype' 
 	        			    ,'appointstatue' 
-	        			    ,'createtime' 
-	        			    ,'creator' 
+	        			    ,'appointinswhen' 
+	        			    ,'appointupdwhen' 
 	        			      ];// 全部字段
 	var Appiontkeycolumn = [ 'appointid' ];// 主键
-	var Appiontstore = dataStore(Appiontfields, basePath + Appiontaction + "?method=selLimit");// 定义Appiontstore
+	var Appiontstore = dataStore(Appiontfields, basePath + Appiontaction + "?method=selQuery");// 定义Appiontstore
 	var AppiontdataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'AppiontdataForm',
 		labelAlign : 'right',
 		frame : true,
 		layout : 'column',
 		items : [ {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
 				id : 'Appiontappointid',
-				name : 'appointid',
-				maxLength : 100
+				name : 'appointid'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '会员ID',
+				fieldLabel : '会员',
 				id : 'Appiontappointcustomer',
-				name : 'appointcustomer',
-				maxLength : 100
+				name : 'appointcustomer'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '会员卡ID',
+				fieldLabel : '会员卡',
 				id : 'Appiontappointcard',
-				name : 'appointcard',
-				maxLength : 100
+				name : 'appointcard'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '场地ID',
-				id : 'Appiontappointplace',
-				name : 'appointplace',
-				maxLength : 100
+				fieldLabel : '场馆',
+				id : 'Appiontappointstadium',
+				name : 'appointstadium'
 			} ]
 		}
 		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '课程ID',
-				id : 'Appiontappointcourse',
-				name : 'appointcourse',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '场地',
-				id : 'Appiontappointplacename',
-				name : 'appointplacename',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '课程',
-				id : 'Appiontappointcoursename',
-				name : 'appointcoursename',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '教练',
-				id : 'Appiontappointcoachname',
-				name : 'appointcoachname',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '项目',
 				id : 'Appiontappointproject',
-				name : 'appointproject',
-				maxLength : 100
+				name : 'appointproject'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '场地',
+				id : 'Appiontappointplace',
+				name : 'appointplace'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '场地',
+				id : 'Appiontappointplacename',
+				name : 'appointplacename'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '课程',
+				id : 'Appiontappointcourse',
+				name : 'appointcourse'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '',
+				id : 'Appiontappointcoursename',
+				name : 'appointcoursename'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '教练',
+				id : 'Appiontappointcoach',
+				name : 'appointcoach'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '教练',
+				id : 'Appiontappointcoachname',
+				name : 'appointcoachname'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '预约',
+				id : 'Appiontappointdate',
+				name : 'appointdate'
+			} ]
+		}
+		, {
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '开始时间',
 				id : 'Appiontappointbegin',
-				name : 'appointbegin',
-				maxLength : 100
+				name : 'appointbegin'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '结束时间',
 				id : 'Appiontappointend',
-				name : 'appointend',
-				maxLength : 100
+				name : 'appointend'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '备注',
 				id : 'Appiontappointdetail',
-				name : 'appointdetail',
-				maxLength : 100
+				name : 'appointdetail'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '类型',
+				id : 'Appiontappointtype',
+				name : 'appointtype'
+			} ]
+		}
+		, {
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '状态',
 				id : 'Appiontappointstatue',
-				name : 'appointstatue',
-				maxLength : 100
+				name : 'appointstatue'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建时间',
-				id : 'Appiontcreatetime',
-				name : 'createtime',
-				maxLength : 100
+				id : 'Appiontappointinswhen',
+				name : 'appointinswhen'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '创建人',
-				id : 'Appiontcreator',
-				name : 'creator',
-				maxLength : 100
+				fieldLabel : '更新时间',
+				id : 'Appiontappointupdwhen',
+				name : 'appointupdwhen'
 			} ]
 		}
 		]
 	});
 	
-	//var Appiontbbar = pagesizebar(Appiontstore);//定义分页
+	var Appiontbbar = pagesizebar(Appiontstore);//定义分页
 	var Appiontgrid =  Ext.create('Ext.grid.Panel', {
 		height : document.documentElement.clientHeight - 4,
 		width : '100%',
 		//title : Appionttitle,
 		store : Appiontstore,
-		//bbar : Appiontbbar,
+		bbar : Appiontbbar,
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
@@ -218,7 +247,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '会员ID',
+			header : '会员',
 			dataIndex : 'appointcustomer',
 			sortable : true,  
 			editor: {
@@ -226,7 +255,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '会员卡ID',
+			header : '会员卡',
 			dataIndex : 'appointcard',
 			sortable : true,  
 			editor: {
@@ -234,16 +263,24 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '场地ID',
-			dataIndex : 'appointplace',
+			header : '场馆',
+			dataIndex : 'appointstadium',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
             }
 		}
 		, {
-			header : '课程ID',
-			dataIndex : 'appointcourse',
+			header : '项目',
+			dataIndex : 'appointproject',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '场地',
+			dataIndex : 'appointplace',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -259,7 +296,23 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '课程',
+			dataIndex : 'appointcourse',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '',
 			dataIndex : 'appointcoursename',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '教练',
+			dataIndex : 'appointcoach',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -274,8 +327,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '项目',
-			dataIndex : 'appointproject',
+			header : '预约',
+			dataIndex : 'appointdate',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -306,6 +359,14 @@ Ext.onReady(function() {
             }
 		}
 		, {
+			header : '类型',
+			dataIndex : 'appointtype',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
 			header : '状态',
 			dataIndex : 'appointstatue',
 			sortable : true,  
@@ -315,15 +376,15 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '创建时间',
-			dataIndex : 'createtime',
+			dataIndex : 'appointinswhen',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
             }
 		}
 		, {
-			header : '创建人',
-			dataIndex : 'creator',
+			header : '更新时间',
+			dataIndex : 'appointupdwhen',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -434,22 +495,29 @@ Ext.onReady(function() {
 				listeners : {
 					specialkey : function(field, e) {
 						if (e.getKey() == Ext.EventObject.ENTER) {
-							if ("" == Ext.getCmp("queryAppiontaction").getValue()) {
-								Appiontstore.load({
+							Appiontstore.load({
 									params : {
-										json : queryjson
-									}
-								});
-							} else {
-								Appiontstore.load({
-									params : {
+										start : 0,
+										limit : PAGESIZE,
 										json : queryjson,
 										query : Ext.getCmp("queryAppiontaction").getValue()
 									}
-								});
-							}
+							});
 						}
 					}
+				}
+			},{
+				text : "查询",
+				xtype: 'button',
+				handler : function() {
+					Appiontstore.load({
+							params : {
+								start : 0,
+								limit : PAGESIZE,
+								json : queryjson,
+								query : Ext.getCmp("queryAppiontaction").getValue()
+							}
+					});
 				}
 			}
 		]

@@ -23,26 +23,34 @@ public class PlacetimePoco
     */
    public static String[] CHINESENAME = {
    		"ID",
-	 	"编码",
+	 	"场馆",
+	 	"项目",
+	 	"场地",
+	 	"场地",
+	 	"教练",
+	 	"教练",
 	 	"名称",
-	 	"备注",
-	 	"状态",
+	 	"日期",
 	 	"开始时间",
 	 	"结束时间",
-	 	"项目",
+	 	"备注",
 	};
 	/**
 	 * 实体英文字段
 	 */
    public static final String[] FIELDNAME = {
    		"placetimeid",
-	 	"placetimecode",
+	 	"placetimestadium",
+	 	"placetimeproject",
+	 	"placetimeplace",
+	 	"placetimeplacename",
+	 	"placetimecoach",
+	 	"placetimecoachname",
 	 	"placetimename",
-	 	"placetimedetail",
-	 	"placetimestatue",
+	 	"placetimedate",
 	 	"placetimebegin",
 	 	"placetimeend",
-	 	"placetimeproject",
+	 	"placetimedetail",
    };
    /**
     * 实体排序
@@ -53,13 +61,17 @@ public class PlacetimePoco
 	 */
    public static final String[] QUERYFIELDNAME = {
    		"placetimeid",
-	 	"placetimecode",
+	 	"placetimestadium",
+	 	"placetimeproject",
+	 	"placetimeplace",
+	 	"placetimeplacename",
+	 	"placetimecoach",
+	 	"placetimecoachname",
 	 	"placetimename",
-	 	"placetimedetail",
-	 	"placetimestatue",
+	 	"placetimedate",
 	 	"placetimebegin",
 	 	"placetimeend",
-	 	"placetimeproject",
+	 	"placetimedetail",
    };
 }
 

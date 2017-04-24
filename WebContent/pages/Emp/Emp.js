@@ -14,204 +14,188 @@ Ext.onReady(function() {
 	        			    ,'empaddress' 
 	        			    ,'empdetail' 
 	        			    ,'empstatue' 
-	        			    ,'createtime' 
-	        			    ,'creator' 
-	        			    ,'updtime' 
-	        			    ,'updor' 
+	        			    ,'empinswhen' 
+	        			    ,'empinswho' 
+	        			    ,'empupdwhen' 
+	        			    ,'empupdwho' 
 	        			      ];// 全部字段
 	var Empkeycolumn = [ 'empid' ];// 主键
-	var Empstore = dataStore(Empfields, basePath + Empaction + "?method=selLimit");// 定义Empstore
+	var Empstore = dataStore(Empfields, basePath + Empaction + "?method=selQuery");// 定义Empstore
 	var EmpdataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'EmpdataForm',
 		labelAlign : 'right',
 		frame : true,
 		layout : 'column',
 		items : [ {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
 				id : 'Empempid',
-				name : 'empid',
-				maxLength : 100
+				name : 'empid'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '场馆ID',
 				id : 'Empempstadium',
-				name : 'empstadium',
-				maxLength : 100
+				name : 'empstadium'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '编码',
 				id : 'Empempcode',
-				name : 'empcode',
-				maxLength : 100
+				name : 'empcode'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '姓名',
 				id : 'Empempname',
-				name : 'empname',
-				maxLength : 100
+				name : 'empname'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '年龄',
 				id : 'Empempage',
-				name : 'empage',
-				maxLength : 100
+				name : 'empage'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '性别',
 				id : 'Empempsex',
-				name : 'empsex',
-				maxLength : 100
+				name : 'empsex'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '手机',
 				id : 'Empempphone',
-				name : 'empphone',
-				maxLength : 100
+				name : 'empphone'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '邮箱',
 				id : 'Empempemail',
-				name : 'empemail',
-				maxLength : 100
+				name : 'empemail'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '照片',
 				id : 'Empempimage',
-				name : 'empimage',
-				maxLength : 100
+				name : 'empimage'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '地址',
 				id : 'Empempaddress',
-				name : 'empaddress',
-				maxLength : 100
+				name : 'empaddress'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '备注',
 				id : 'Empempdetail',
-				name : 'empdetail',
-				maxLength : 100
+				name : 'empdetail'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '状态',
 				id : 'Empempstatue',
-				name : 'empstatue',
-				maxLength : 100
+				name : 'empstatue'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建时间',
-				id : 'Empcreatetime',
-				name : 'createtime',
-				maxLength : 100
+				id : 'Empempinswhen',
+				name : 'empinswhen'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建人',
-				id : 'Empcreator',
-				name : 'creator',
-				maxLength : 100
+				id : 'Empempinswho',
+				name : 'empinswho'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '更新时间',
-				id : 'Empupdtime',
-				name : 'updtime',
-				maxLength : 100
+				id : 'Empempupdwhen',
+				name : 'empupdwhen'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '更新人',
-				id : 'Empupdor',
-				name : 'updor',
-				maxLength : 100
+				id : 'Empempupdwho',
+				name : 'empupdwho'
 			} ]
 		}
 		]
 	});
 	
-	//var Empbbar = pagesizebar(Empstore);//定义分页
+	var Empbbar = pagesizebar(Empstore);//定义分页
 	var Empgrid =  Ext.create('Ext.grid.Panel', {
 		height : document.documentElement.clientHeight - 4,
 		width : '100%',
 		//title : Emptitle,
 		store : Empstore,
-		//bbar : Empbbar,
+		bbar : Empbbar,
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
@@ -319,7 +303,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '创建时间',
-			dataIndex : 'createtime',
+			dataIndex : 'empinswhen',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -327,7 +311,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '创建人',
-			dataIndex : 'creator',
+			dataIndex : 'empinswho',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -335,7 +319,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '更新时间',
-			dataIndex : 'updtime',
+			dataIndex : 'empupdwhen',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -343,7 +327,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '更新人',
-			dataIndex : 'updor',
+			dataIndex : 'empupdwho',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -454,22 +438,29 @@ Ext.onReady(function() {
 				listeners : {
 					specialkey : function(field, e) {
 						if (e.getKey() == Ext.EventObject.ENTER) {
-							if ("" == Ext.getCmp("queryEmpaction").getValue()) {
-								Empstore.load({
+							Empstore.load({
 									params : {
-										json : queryjson
-									}
-								});
-							} else {
-								Empstore.load({
-									params : {
+										start : 0,
+										limit : PAGESIZE,
 										json : queryjson,
 										query : Ext.getCmp("queryEmpaction").getValue()
 									}
-								});
-							}
+							});
 						}
 					}
+				}
+			},{
+				text : "查询",
+				xtype: 'button',
+				handler : function() {
+					Empstore.load({
+							params : {
+								start : 0,
+								limit : PAGESIZE,
+								json : queryjson,
+								query : Ext.getCmp("queryEmpaction").getValue()
+							}
+					});
 				}
 			}
 		]

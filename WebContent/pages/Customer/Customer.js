@@ -4,7 +4,6 @@ Ext.onReady(function() {
 	var Customeraction = "CustomerAction.do";
 	var Customerfields = ['customerid'
 	        			    ,'customerstadium' 
-	        			    ,'customercode' 
 	        			    ,'openid' 
 	        			    ,'customername' 
 	        			    ,'customersex' 
@@ -14,312 +13,244 @@ Ext.onReady(function() {
 	        			    ,'customercompany' 
 	        			    ,'customerphone' 
 	        			    ,'customerbirthday' 
-	        			    ,'customergoodday' 
 	        			    ,'customeremail' 
 	        			    ,'customerhow' 
-	        			    ,'customertime' 
 	        			    ,'customerimage' 
 	        			    ,'customeremp' 
-	        			    ,'customerlevel' 
 	        			    ,'customerdetail' 
 	        			    ,'customerstatue' 
-	        			    ,'createtime' 
-	        			    ,'creator' 
-	        			    ,'updtime' 
-	        			    ,'updor' 
+	        			    ,'customerinswhen' 
+	        			    ,'customerinswho' 
+	        			    ,'customerupdwhen' 
+	        			    ,'customerupdwho' 
 	        			      ];// 全部字段
 	var Customerkeycolumn = [ 'customerid' ];// 主键
-	var Customerstore = dataStore(Customerfields, basePath + Customeraction + "?method=selLimit");// 定义Customerstore
+	var Customerstore = dataStore(Customerfields, basePath + Customeraction + "?method=selQuery");// 定义Customerstore
 	var CustomerdataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'CustomerdataForm',
 		labelAlign : 'right',
 		frame : true,
 		layout : 'column',
 		items : [ {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
 				id : 'Customercustomerid',
-				name : 'customerid',
-				maxLength : 100
+				name : 'customerid'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '场馆ID',
+				fieldLabel : '场馆',
 				id : 'Customercustomerstadium',
-				name : 'customerstadium',
-				maxLength : 100
+				name : 'customerstadium'
 			} ]
 		}
 		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '编码',
-				id : 'Customercustomercode',
-				name : 'customercode',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'OPENID',
 				id : 'Customeropenid',
-				name : 'openid',
-				maxLength : 100
+				name : 'openid'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '姓名',
 				id : 'Customercustomername',
-				name : 'customername',
-				maxLength : 100
+				name : 'customername'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '性别',
 				id : 'Customercustomersex',
-				name : 'customersex',
-				maxLength : 100
+				name : 'customersex'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '年龄',
 				id : 'Customercustomerage',
-				name : 'customerage',
-				maxLength : 100
+				name : 'customerage'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '身份证',
 				id : 'Customercustomercdcard',
-				name : 'customercdcard',
-				maxLength : 100
+				name : 'customercdcard'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '家庭住址',
+				fieldLabel : '住址',
 				id : 'Customercustomerhome',
-				name : 'customerhome',
-				maxLength : 100
+				name : 'customerhome'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '单位地址',
+				fieldLabel : '单位',
 				id : 'Customercustomercompany',
-				name : 'customercompany',
-				maxLength : 100
+				name : 'customercompany'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '手机',
 				id : 'Customercustomerphone',
-				name : 'customerphone',
-				maxLength : 100
+				name : 'customerphone'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '生日',
 				id : 'Customercustomerbirthday',
-				name : 'customerbirthday',
-				maxLength : 100
+				name : 'customerbirthday'
 			} ]
 		}
 		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '纪念日',
-				id : 'Customercustomergoodday',
-				name : 'customergoodday',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '邮箱',
 				id : 'Customercustomeremail',
-				name : 'customeremail',
-				maxLength : 100
+				name : 'customeremail'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '入会途径',
 				id : 'Customercustomerhow',
-				name : 'customerhow',
-				maxLength : 100
+				name : 'customerhow'
 			} ]
 		}
 		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '入会时间',
-				id : 'Customercustomertime',
-				name : 'customertime',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '照片',
 				id : 'Customercustomerimage',
-				name : 'customerimage',
-				maxLength : 100
+				name : 'customerimage'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '顾问',
+				fieldLabel : '会籍管家',
 				id : 'Customercustomeremp',
-				name : 'customeremp',
-				maxLength : 100
+				name : 'customeremp'
 			} ]
 		}
 		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '等级',
-				id : 'Customercustomerlevel',
-				name : 'customerlevel',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '备注',
 				id : 'Customercustomerdetail',
-				name : 'customerdetail',
-				maxLength : 100
+				name : 'customerdetail'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '状态',
 				id : 'Customercustomerstatue',
-				name : 'customerstatue',
-				maxLength : 100
+				name : 'customerstatue'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建时间',
-				id : 'Customercreatetime',
-				name : 'createtime',
-				maxLength : 100
+				id : 'Customercustomerinswhen',
+				name : 'customerinswhen'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建人',
-				id : 'Customercreator',
-				name : 'creator',
-				maxLength : 100
+				id : 'Customercustomerinswho',
+				name : 'customerinswho'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '更新时间',
-				id : 'Customerupdtime',
-				name : 'updtime',
-				maxLength : 100
+				id : 'Customercustomerupdwhen',
+				name : 'customerupdwhen'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '更新人',
-				id : 'Customerupdor',
-				name : 'updor',
-				maxLength : 100
+				id : 'Customercustomerupdwho',
+				name : 'customerupdwho'
 			} ]
 		}
 		]
 	});
 	
-	//var Customerbbar = pagesizebar(Customerstore);//定义分页
+	var Customerbbar = pagesizebar(Customerstore);//定义分页
 	var Customergrid =  Ext.create('Ext.grid.Panel', {
 		height : document.documentElement.clientHeight - 4,
 		width : '100%',
 		//title : Customertitle,
 		store : Customerstore,
-		//bbar : Customerbbar,
+		bbar : Customerbbar,
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
@@ -338,16 +269,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '场馆ID',
+			header : '场馆',
 			dataIndex : 'customerstadium',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '编码',
-			dataIndex : 'customercode',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -394,7 +317,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '家庭住址',
+			header : '住址',
 			dataIndex : 'customerhome',
 			sortable : true,  
 			editor: {
@@ -402,7 +325,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '单位地址',
+			header : '单位',
 			dataIndex : 'customercompany',
 			sortable : true,  
 			editor: {
@@ -426,14 +349,6 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '纪念日',
-			dataIndex : 'customergoodday',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
 			header : '邮箱',
 			dataIndex : 'customeremail',
 			sortable : true,  
@@ -450,14 +365,6 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '入会时间',
-			dataIndex : 'customertime',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
 			header : '照片',
 			dataIndex : 'customerimage',
 			sortable : true,  
@@ -466,16 +373,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '顾问',
+			header : '会籍管家',
 			dataIndex : 'customeremp',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '等级',
-			dataIndex : 'customerlevel',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -499,7 +398,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '创建时间',
-			dataIndex : 'createtime',
+			dataIndex : 'customerinswhen',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -507,7 +406,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '创建人',
-			dataIndex : 'creator',
+			dataIndex : 'customerinswho',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -515,7 +414,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '更新时间',
-			dataIndex : 'updtime',
+			dataIndex : 'customerupdwhen',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -523,7 +422,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '更新人',
-			dataIndex : 'updor',
+			dataIndex : 'customerupdwho',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -634,22 +533,29 @@ Ext.onReady(function() {
 				listeners : {
 					specialkey : function(field, e) {
 						if (e.getKey() == Ext.EventObject.ENTER) {
-							if ("" == Ext.getCmp("queryCustomeraction").getValue()) {
-								Customerstore.load({
+							Customerstore.load({
 									params : {
-										json : queryjson
-									}
-								});
-							} else {
-								Customerstore.load({
-									params : {
+										start : 0,
+										limit : PAGESIZE,
 										json : queryjson,
 										query : Ext.getCmp("queryCustomeraction").getValue()
 									}
-								});
-							}
+							});
 						}
 					}
+				}
+			},{
+				text : "查询",
+				xtype: 'button',
+				handler : function() {
+					Customerstore.load({
+							params : {
+								start : 0,
+								limit : PAGESIZE,
+								json : queryjson,
+								query : Ext.getCmp("queryCustomeraction").getValue()
+							}
+					});
 				}
 			}
 		]

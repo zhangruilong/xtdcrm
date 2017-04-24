@@ -23,6 +23,7 @@ public class OrdermPoco
     */
    public static String[] CHINESENAME = {
    		"ID",
+	 	"场馆",
 	 	"商品编码",
 	 	"商品名称",
 	 	"商品分类",
@@ -42,6 +43,7 @@ public class OrdermPoco
 	 */
    public static final String[] FIELDNAME = {
    		"orderid",
+	 	"orderstadium",
 	 	"ordercode",
 	 	"ordername",
 	 	"orderclass",
@@ -51,10 +53,10 @@ public class OrdermPoco
 	 	"orderimage",
 	 	"orderdetail",
 	 	"orderstatue",
-	 	"createtime",
-	 	"creator",
-	 	"updtime",
-	 	"updor",
+	 	"orderinswhen",
+	 	"orderinswho",
+	 	"orderupdwhen",
+	 	"orderupdwho",
    };
    /**
     * 实体排序
@@ -65,6 +67,7 @@ public class OrdermPoco
 	 */
    public static final String[] QUERYFIELDNAME = {
    		"orderid",
+	 	"orderstadium",
 	 	"ordercode",
 	 	"ordername",
 	 	"orderclass",
@@ -74,10 +77,10 @@ public class OrdermPoco
 	 	"orderimage",
 	 	"orderdetail",
 	 	"orderstatue",
-	 	"createtime",
-	 	"creator",
-	 	"updtime",
-	 	"updor",
+	 	"orderinswhen",
+	 	"orderinswho",
+	 	"orderupdwhen",
+	 	"orderupdwho",
    };
 }
 

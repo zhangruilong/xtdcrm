@@ -6,140 +6,97 @@ Ext.onReady(function() {
 	        			    ,'placestadium' 
 	        			    ,'placecode' 
 	        			    ,'placename' 
-	        			    ,'placepeople' 
 	        			    ,'placedetail' 
-	        			    ,'placestatue' 
-	        			    ,'placebegin' 
-	        			    ,'placeend' 
 	        			    ,'placeproject' 
+	        			    ,'placestatue' 
 	        			      ];// 全部字段
 	var Placekeycolumn = [ 'placeid' ];// 主键
-	var Placestore = dataStore(Placefields, basePath + Placeaction + "?method=selLimit");// 定义Placestore
+	var Placestore = dataStore(Placefields, basePath + Placeaction + "?method=selQuery");// 定义Placestore
 	var PlacedataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'PlacedataForm',
 		labelAlign : 'right',
 		frame : true,
 		layout : 'column',
 		items : [ {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
 				id : 'Placeplaceid',
-				name : 'placeid',
-				maxLength : 100
+				name : 'placeid'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '场馆ID',
+				fieldLabel : '场馆',
 				id : 'Placeplacestadium',
-				name : 'placestadium',
-				maxLength : 100
+				name : 'placestadium'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '编码',
+				fieldLabel : '位置',
 				id : 'Placeplacecode',
-				name : 'placecode',
-				maxLength : 100
+				name : 'placecode'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '名称',
+				fieldLabel : '场地',
 				id : 'Placeplacename',
-				name : 'placename',
-				maxLength : 100
+				name : 'placename'
 			} ]
 		}
 		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '人数',
-				id : 'Placeplacepeople',
-				name : 'placepeople',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '备注',
 				id : 'Placeplacedetail',
-				name : 'placedetail',
-				maxLength : 100
+				name : 'placedetail'
 			} ]
 		}
 		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '状态',
-				id : 'Placeplacestatue',
-				name : 'placestatue',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '开始时间',
-				id : 'Placeplacebegin',
-				name : 'placebegin',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '结束时间',
-				id : 'Placeplaceend',
-				name : 'placeend',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '项目',
 				id : 'Placeplaceproject',
-				name : 'placeproject',
-				maxLength : 100
+				name : 'placeproject'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '状态',
+				id : 'Placeplacestatue',
+				name : 'placestatue'
 			} ]
 		}
 		]
 	});
 	
-	//var Placebbar = pagesizebar(Placestore);//定义分页
+	var Placebbar = pagesizebar(Placestore);//定义分页
 	var Placegrid =  Ext.create('Ext.grid.Panel', {
 		height : document.documentElement.clientHeight - 4,
 		width : '100%',
 		//title : Placetitle,
 		store : Placestore,
-		//bbar : Placebbar,
+		bbar : Placebbar,
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
@@ -158,7 +115,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '场馆ID',
+			header : '场馆',
 			dataIndex : 'placestadium',
 			sortable : true,  
 			editor: {
@@ -166,7 +123,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '编码',
+			header : '位置',
 			dataIndex : 'placecode',
 			sortable : true,  
 			editor: {
@@ -174,16 +131,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '名称',
+			header : '场地',
 			dataIndex : 'placename',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '人数',
-			dataIndex : 'placepeople',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -198,32 +147,16 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '状态',
-			dataIndex : 'placestatue',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '开始时间',
-			dataIndex : 'placebegin',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '结束时间',
-			dataIndex : 'placeend',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
 			header : '项目',
 			dataIndex : 'placeproject',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '状态',
+			dataIndex : 'placestatue',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -334,22 +267,29 @@ Ext.onReady(function() {
 				listeners : {
 					specialkey : function(field, e) {
 						if (e.getKey() == Ext.EventObject.ENTER) {
-							if ("" == Ext.getCmp("queryPlaceaction").getValue()) {
-								Placestore.load({
+							Placestore.load({
 									params : {
-										json : queryjson
-									}
-								});
-							} else {
-								Placestore.load({
-									params : {
+										start : 0,
+										limit : PAGESIZE,
 										json : queryjson,
 										query : Ext.getCmp("queryPlaceaction").getValue()
 									}
-								});
-							}
+							});
 						}
 					}
+				}
+			},{
+				text : "查询",
+				xtype: 'button',
+				handler : function() {
+					Placestore.load({
+							params : {
+								start : 0,
+								limit : PAGESIZE,
+								json : queryjson,
+								query : Ext.getCmp("queryPlaceaction").getValue()
+							}
+					});
 				}
 			}
 		]

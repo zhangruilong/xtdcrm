@@ -55,10 +55,10 @@ public class EmpPoco
 	 	"empaddress",
 	 	"empdetail",
 	 	"empstatue",
-	 	"createtime",
-	 	"creator",
-	 	"updtime",
-	 	"updor",
+	 	"empinswhen",
+	 	"empinswho",
+	 	"empupdwhen",
+	 	"empupdwho",
    };
    /**
     * 实体排序
@@ -80,10 +80,10 @@ public class EmpPoco
 	 	"empaddress",
 	 	"empdetail",
 	 	"empstatue",
-	 	"createtime",
-	 	"creator",
-	 	"updtime",
-	 	"updor",
+	 	"empinswhen",
+	 	"empinswho",
+	 	"empupdwhen",
+	 	"empupdwho",
    };
 }
 

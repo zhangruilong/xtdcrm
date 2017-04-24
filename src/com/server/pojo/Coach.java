@@ -1,6 +1,7 @@
 package com.server.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.math.BigDecimal;
 /**
  * coach 实体类
  *@author ZhangRuiLong
@@ -52,13 +53,9 @@ public class Coach
     */
    private String coachstatue;   
    /**
-    * 创建时间
-    */
-   private String createtime;   
-   /**
     * 创建人
     */
-   private String creator;   
+   private String coachinswhen;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -248,37 +245,20 @@ public class Coach
 	}	   
 
 	/**
-	 *设置"创建时间"属性
-	 *@param createtime 实体的Createtime属性
-	 */
-	public void setCreatetime(String createtime)
-	{
-		this.createtime = createtime;
-	}
-	
-	/**
-	 *获取"创建时间"属性
-	 */
-	public String getCreatetime()
-	{
-		return this.createtime;
-	}	   
-
-	/**
 	 *设置"创建人"属性
-	 *@param creator 实体的Creator属性
+	 *@param coachinswhen 实体的Coachinswhen属性
 	 */
-	public void setCreator(String creator)
+	public void setCoachinswhen(String coachinswhen)
 	{
-		this.creator = creator;
+		this.coachinswhen = coachinswhen;
 	}
 	
 	/**
 	 *获取"创建人"属性
 	 */
-	public String getCreator()
+	public String getCoachinswhen()
 	{
-		return this.creator;
+		return this.coachinswhen;
 	}	   
 	public Coach() {
 		super();
@@ -296,8 +276,7 @@ public class Coach
 	 	,String coachimage
 	 	,String coachdetail
 	 	,String coachstatue
-	 	,String createtime
-	 	,String creator
+	 	,String coachinswhen
 		 ){
 		super();
 		this.coachid = coachid;
@@ -311,8 +290,7 @@ public class Coach
 	 	this.coachimage = coachimage;
 	 	this.coachdetail = coachdetail;
 	 	this.coachstatue = coachstatue;
-	 	this.createtime = createtime;
-	 	this.creator = creator;
+	 	this.coachinswhen = coachinswhen;
 	}
 }
 

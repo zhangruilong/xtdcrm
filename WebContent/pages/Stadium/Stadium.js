@@ -7,115 +7,107 @@ Ext.onReady(function() {
 	        			    ,'stadiumname' 
 	        			    ,'stadiumaddress' 
 	        			    ,'stadiumdetail' 
-	        			    ,'stadiumstatue' 
+	        			    ,'stadiumimage' 
 	        			    ,'stadiumx' 
 	        			    ,'stadiumy' 
 	        			      ];// 全部字段
 	var Stadiumkeycolumn = [ 'stadiumid' ];// 主键
-	var Stadiumstore = dataStore(Stadiumfields, basePath + Stadiumaction + "?method=selLimit");// 定义Stadiumstore
+	var Stadiumstore = dataStore(Stadiumfields, basePath + Stadiumaction + "?method=selQuery");// 定义Stadiumstore
 	var StadiumdataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'StadiumdataForm',
 		labelAlign : 'right',
 		frame : true,
 		layout : 'column',
 		items : [ {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
 				id : 'Stadiumstadiumid',
-				name : 'stadiumid',
-				maxLength : 100
+				name : 'stadiumid'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '编码',
 				id : 'Stadiumstadiumcode',
-				name : 'stadiumcode',
-				maxLength : 100
+				name : 'stadiumcode'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '名称',
 				id : 'Stadiumstadiumname',
-				name : 'stadiumname',
-				maxLength : 100
+				name : 'stadiumname'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '地址',
 				id : 'Stadiumstadiumaddress',
-				name : 'stadiumaddress',
-				maxLength : 100
+				name : 'stadiumaddress'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '备注',
 				id : 'Stadiumstadiumdetail',
-				name : 'stadiumdetail',
-				maxLength : 100
+				name : 'stadiumdetail'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '状态',
-				id : 'Stadiumstadiumstatue',
-				name : 'stadiumstatue',
-				maxLength : 100
+				fieldLabel : '照片',
+				id : 'Stadiumstadiumimage',
+				name : 'stadiumimage'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'X坐标',
 				id : 'Stadiumstadiumx',
-				name : 'stadiumx',
-				maxLength : 100
+				name : 'stadiumx'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'Y坐标',
 				id : 'Stadiumstadiumy',
-				name : 'stadiumy',
-				maxLength : 100
+				name : 'stadiumy'
 			} ]
 		}
 		]
 	});
 	
-	//var Stadiumbbar = pagesizebar(Stadiumstore);//定义分页
+	var Stadiumbbar = pagesizebar(Stadiumstore);//定义分页
 	var Stadiumgrid =  Ext.create('Ext.grid.Panel', {
 		height : document.documentElement.clientHeight - 4,
 		width : '100%',
 		//title : Stadiumtitle,
 		store : Stadiumstore,
-		//bbar : Stadiumbbar,
+		bbar : Stadiumbbar,
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
@@ -166,8 +158,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '状态',
-			dataIndex : 'stadiumstatue',
+			header : '照片',
+			dataIndex : 'stadiumimage',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -294,22 +286,29 @@ Ext.onReady(function() {
 				listeners : {
 					specialkey : function(field, e) {
 						if (e.getKey() == Ext.EventObject.ENTER) {
-							if ("" == Ext.getCmp("queryStadiumaction").getValue()) {
-								Stadiumstore.load({
+							Stadiumstore.load({
 									params : {
-										json : queryjson
-									}
-								});
-							} else {
-								Stadiumstore.load({
-									params : {
+										start : 0,
+										limit : PAGESIZE,
 										json : queryjson,
 										query : Ext.getCmp("queryStadiumaction").getValue()
 									}
-								});
-							}
+							});
 						}
 					}
+				}
+			},{
+				text : "查询",
+				xtype: 'button',
+				handler : function() {
+					Stadiumstore.load({
+							params : {
+								start : 0,
+								limit : PAGESIZE,
+								json : queryjson,
+								query : Ext.getCmp("queryStadiumaction").getValue()
+							}
+					});
 				}
 			}
 		]

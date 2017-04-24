@@ -23,11 +23,13 @@ public class GoodsPoco
     */
    public static String[] CHINESENAME = {
    		"ID",
+	 	"场馆",
 	 	"编码",
 	 	"名称",
 	 	"分类",
 	 	"现价",
 	 	"原价",
+	 	"库存",
 	 	"照片",
 	 	"备注",
 	 	"状态",
@@ -41,18 +43,20 @@ public class GoodsPoco
 	 */
    public static final String[] FIELDNAME = {
    		"goodsid",
+	 	"goodsstadium",
 	 	"goodscode",
 	 	"goodsname",
 	 	"goodsclass",
 	 	"goodsprice",
 	 	"goodsorgprice",
+	 	"goodsnum",
 	 	"goodsimage",
 	 	"goodsdetail",
 	 	"goodsstatue",
-	 	"createtime",
-	 	"creator",
-	 	"updtime",
-	 	"updor",
+	 	"goodsinswhen",
+	 	"goodsinswho",
+	 	"goodsupdwhen",
+	 	"goodsupdwho",
    };
    /**
     * 实体排序
@@ -63,18 +67,20 @@ public class GoodsPoco
 	 */
    public static final String[] QUERYFIELDNAME = {
    		"goodsid",
+	 	"goodsstadium",
 	 	"goodscode",
 	 	"goodsname",
 	 	"goodsclass",
 	 	"goodsprice",
 	 	"goodsorgprice",
+	 	"goodsnum",
 	 	"goodsimage",
 	 	"goodsdetail",
 	 	"goodsstatue",
-	 	"createtime",
-	 	"creator",
-	 	"updtime",
-	 	"updor",
+	 	"goodsinswhen",
+	 	"goodsinswho",
+	 	"goodsupdwhen",
+	 	"goodsupdwho",
    };
 }
 

@@ -1,6 +1,7 @@
 package com.server.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.math.BigDecimal;
 /**
  * cardtype 实体类
  *@author ZhangRuiLong
@@ -12,9 +13,9 @@ public class Cardtype
     */
    private String cardtypeid; 
    /**
-    * 编码
+    * 场馆
     */
-   private String cardtypecode;   
+   private String cardtypestadium;   
    /**
     * 名称
     */
@@ -32,13 +33,17 @@ public class Cardtype
     */
    private String cardtypeprice;   
    /**
-    * 卡余额
+    * 次数
     */
-   private Double cardtypemoney;   
+   private String cardtypetimes;   
    /**
-    * 卡余次
+    * 停用期限
     */
-   private Integer cardtypetimes;   
+   private String cardtypestop;   
+   /**
+    * 停用费用
+    */
+   private String cardtypestopmoney;   
    /**
     * 备注
     */
@@ -47,6 +52,14 @@ public class Cardtype
     * 状态
     */
    private String cardtypestatue;   
+   /**
+    * 场次
+    */
+   private String cardtypechangci;   
+   /**
+    * 项目
+    */
+   private String cardtypeproject;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -66,20 +79,20 @@ public class Cardtype
 	}
 
 	/**
-	 *设置"编码"属性
-	 *@param cardtypecode 实体的Cardtypecode属性
+	 *设置"场馆"属性
+	 *@param cardtypestadium 实体的Cardtypestadium属性
 	 */
-	public void setCardtypecode(String cardtypecode)
+	public void setCardtypestadium(String cardtypestadium)
 	{
-		this.cardtypecode = cardtypecode;
+		this.cardtypestadium = cardtypestadium;
 	}
 	
 	/**
-	 *获取"编码"属性
+	 *获取"场馆"属性
 	 */
-	public String getCardtypecode()
+	public String getCardtypestadium()
 	{
-		return this.cardtypecode;
+		return this.cardtypestadium;
 	}	   
 
 	/**
@@ -151,37 +164,54 @@ public class Cardtype
 	}	   
 
 	/**
-	 *设置"卡余额"属性
-	 *@param cardtypemoney 实体的Cardtypemoney属性
-	 */
-	public void setCardtypemoney(Double cardtypemoney)
-	{
-		this.cardtypemoney = cardtypemoney;
-	}
-	
-	/**
-	 *获取"卡余额"属性
-	 */
-	public Double getCardtypemoney()
-	{
-		return this.cardtypemoney;
-	}	   
-
-	/**
-	 *设置"卡余次"属性
+	 *设置"次数"属性
 	 *@param cardtypetimes 实体的Cardtypetimes属性
 	 */
-	public void setCardtypetimes(Integer cardtypetimes)
+	public void setCardtypetimes(String cardtypetimes)
 	{
 		this.cardtypetimes = cardtypetimes;
 	}
 	
 	/**
-	 *获取"卡余次"属性
+	 *获取"次数"属性
 	 */
-	public Integer getCardtypetimes()
+	public String getCardtypetimes()
 	{
 		return this.cardtypetimes;
+	}	   
+
+	/**
+	 *设置"停用期限"属性
+	 *@param cardtypestop 实体的Cardtypestop属性
+	 */
+	public void setCardtypestop(String cardtypestop)
+	{
+		this.cardtypestop = cardtypestop;
+	}
+	
+	/**
+	 *获取"停用期限"属性
+	 */
+	public String getCardtypestop()
+	{
+		return this.cardtypestop;
+	}	   
+
+	/**
+	 *设置"停用费用"属性
+	 *@param cardtypestopmoney 实体的Cardtypestopmoney属性
+	 */
+	public void setCardtypestopmoney(String cardtypestopmoney)
+	{
+		this.cardtypestopmoney = cardtypestopmoney;
+	}
+	
+	/**
+	 *获取"停用费用"属性
+	 */
+	public String getCardtypestopmoney()
+	{
+		return this.cardtypestopmoney;
 	}	   
 
 	/**
@@ -217,33 +247,73 @@ public class Cardtype
 	{
 		return this.cardtypestatue;
 	}	   
+
+	/**
+	 *设置"场次"属性
+	 *@param cardtypechangci 实体的Cardtypechangci属性
+	 */
+	public void setCardtypechangci(String cardtypechangci)
+	{
+		this.cardtypechangci = cardtypechangci;
+	}
+	
+	/**
+	 *获取"场次"属性
+	 */
+	public String getCardtypechangci()
+	{
+		return this.cardtypechangci;
+	}	   
+
+	/**
+	 *设置"项目"属性
+	 *@param cardtypeproject 实体的Cardtypeproject属性
+	 */
+	public void setCardtypeproject(String cardtypeproject)
+	{
+		this.cardtypeproject = cardtypeproject;
+	}
+	
+	/**
+	 *获取"项目"属性
+	 */
+	public String getCardtypeproject()
+	{
+		return this.cardtypeproject;
+	}	   
 	public Cardtype() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Cardtype(
 		String cardtypeid
-	 	,String cardtypecode
+	 	,String cardtypestadium
 	 	,String cardtypename
 	 	,String cardtypeclass
 	 	,String cardtypeday
 	 	,String cardtypeprice
-	 	,Double cardtypemoney
-	 	,Integer cardtypetimes
+	 	,String cardtypetimes
+	 	,String cardtypestop
+	 	,String cardtypestopmoney
 	 	,String cardtypedetail
 	 	,String cardtypestatue
+	 	,String cardtypechangci
+	 	,String cardtypeproject
 		 ){
 		super();
 		this.cardtypeid = cardtypeid;
-	 	this.cardtypecode = cardtypecode;
+	 	this.cardtypestadium = cardtypestadium;
 	 	this.cardtypename = cardtypename;
 	 	this.cardtypeclass = cardtypeclass;
 	 	this.cardtypeday = cardtypeday;
 	 	this.cardtypeprice = cardtypeprice;
-	 	this.cardtypemoney = cardtypemoney;
 	 	this.cardtypetimes = cardtypetimes;
+	 	this.cardtypestop = cardtypestop;
+	 	this.cardtypestopmoney = cardtypestopmoney;
 	 	this.cardtypedetail = cardtypedetail;
 	 	this.cardtypestatue = cardtypestatue;
+	 	this.cardtypechangci = cardtypechangci;
+	 	this.cardtypeproject = cardtypeproject;
 	}
 }
 

@@ -3,6 +3,7 @@ Ext.onReady(function() {
 	var Ordermtitle = "当前位置:业务管理》" + Ordermclassify;
 	var Ordermaction = "OrdermAction.do";
 	var Ordermfields = ['orderid'
+	        			    ,'orderstadium' 
 	        			    ,'ordercode' 
 	        			    ,'ordername' 
 	        			    ,'orderclass' 
@@ -12,182 +13,178 @@ Ext.onReady(function() {
 	        			    ,'orderimage' 
 	        			    ,'orderdetail' 
 	        			    ,'orderstatue' 
-	        			    ,'createtime' 
-	        			    ,'creator' 
-	        			    ,'updtime' 
-	        			    ,'updor' 
+	        			    ,'orderinswhen' 
+	        			    ,'orderinswho' 
+	        			    ,'orderupdwhen' 
+	        			    ,'orderupdwho' 
 	        			      ];// 全部字段
 	var Ordermkeycolumn = [ 'orderid' ];// 主键
-	var Ordermstore = dataStore(Ordermfields, basePath + Ordermaction + "?method=selLimit");// 定义Ordermstore
+	var Ordermstore = dataStore(Ordermfields, basePath + Ordermaction + "?method=selQuery");// 定义Ordermstore
 	var OrdermdataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'OrdermdataForm',
 		labelAlign : 'right',
 		frame : true,
 		layout : 'column',
 		items : [ {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
 				id : 'Ordermorderid',
-				name : 'orderid',
-				maxLength : 100
+				name : 'orderid'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '场馆',
+				id : 'Ordermorderstadium',
+				name : 'orderstadium'
+			} ]
+		}
+		, {
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '商品编码',
 				id : 'Ordermordercode',
-				name : 'ordercode',
-				maxLength : 100
+				name : 'ordercode'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '商品名称',
 				id : 'Ordermordername',
-				name : 'ordername',
-				maxLength : 100
+				name : 'ordername'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '商品分类',
 				id : 'Ordermorderclass',
-				name : 'orderclass',
-				maxLength : 100
+				name : 'orderclass'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '下单金额',
 				id : 'Ordermordermoney',
-				name : 'ordermoney',
-				maxLength : 100
+				name : 'ordermoney'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '打折',
 				id : 'Ordermorderdiscount',
-				name : 'orderdiscount',
-				maxLength : 100
+				name : 'orderdiscount'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '实际金额',
 				id : 'Ordermorderrightmoney',
-				name : 'orderrightmoney',
-				maxLength : 100
+				name : 'orderrightmoney'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '照片',
 				id : 'Ordermorderimage',
-				name : 'orderimage',
-				maxLength : 100
+				name : 'orderimage'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '备注',
 				id : 'Ordermorderdetail',
-				name : 'orderdetail',
-				maxLength : 100
+				name : 'orderdetail'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '状态',
 				id : 'Ordermorderstatue',
-				name : 'orderstatue',
-				maxLength : 100
+				name : 'orderstatue'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建时间',
-				id : 'Ordermcreatetime',
-				name : 'createtime',
-				maxLength : 100
+				id : 'Ordermorderinswhen',
+				name : 'orderinswhen'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建人',
-				id : 'Ordermcreator',
-				name : 'creator',
-				maxLength : 100
+				id : 'Ordermorderinswho',
+				name : 'orderinswho'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '更新时间',
-				id : 'Ordermupdtime',
-				name : 'updtime',
-				maxLength : 100
+				id : 'Ordermorderupdwhen',
+				name : 'orderupdwhen'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '更新人',
-				id : 'Ordermupdor',
-				name : 'updor',
-				maxLength : 100
+				id : 'Ordermorderupdwho',
+				name : 'orderupdwho'
 			} ]
 		}
 		]
 	});
 	
-	//var Ordermbbar = pagesizebar(Ordermstore);//定义分页
+	var Ordermbbar = pagesizebar(Ordermstore);//定义分页
 	var Ordermgrid =  Ext.create('Ext.grid.Panel', {
 		height : document.documentElement.clientHeight - 4,
 		width : '100%',
 		//title : Ordermtitle,
 		store : Ordermstore,
-		//bbar : Ordermbbar,
+		bbar : Ordermbbar,
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
@@ -203,6 +200,14 @@ Ext.onReady(function() {
 			editor: {
                 xtype: 'textfield',
                 editable: false
+            }
+		}
+		, {
+			header : '场馆',
+			dataIndex : 'orderstadium',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
             }
 		}
 		, {
@@ -279,7 +284,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '创建时间',
-			dataIndex : 'createtime',
+			dataIndex : 'orderinswhen',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -287,7 +292,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '创建人',
-			dataIndex : 'creator',
+			dataIndex : 'orderinswho',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -295,7 +300,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '更新时间',
-			dataIndex : 'updtime',
+			dataIndex : 'orderupdwhen',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -303,7 +308,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '更新人',
-			dataIndex : 'updor',
+			dataIndex : 'orderupdwho',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -414,22 +419,29 @@ Ext.onReady(function() {
 				listeners : {
 					specialkey : function(field, e) {
 						if (e.getKey() == Ext.EventObject.ENTER) {
-							if ("" == Ext.getCmp("queryOrdermaction").getValue()) {
-								Ordermstore.load({
+							Ordermstore.load({
 									params : {
-										json : queryjson
-									}
-								});
-							} else {
-								Ordermstore.load({
-									params : {
+										start : 0,
+										limit : PAGESIZE,
 										json : queryjson,
 										query : Ext.getCmp("queryOrdermaction").getValue()
 									}
-								});
-							}
+							});
 						}
 					}
+				}
+			},{
+				text : "查询",
+				xtype: 'button',
+				handler : function() {
+					Ordermstore.load({
+							params : {
+								start : 0,
+								limit : PAGESIZE,
+								json : queryjson,
+								query : Ext.getCmp("queryOrdermaction").getValue()
+							}
+					});
 				}
 			}
 		]

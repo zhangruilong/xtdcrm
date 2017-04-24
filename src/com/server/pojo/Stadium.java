@@ -1,6 +1,7 @@
 package com.server.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.math.BigDecimal;
 /**
  * stadium 实体类
  *@author ZhangRuiLong
@@ -28,9 +29,9 @@ public class Stadium
     */
    private String stadiumdetail;   
    /**
-    * 状态
+    * 照片
     */
-   private String stadiumstatue;   
+   private String stadiumimage;   
    /**
     * X坐标
     */
@@ -126,20 +127,20 @@ public class Stadium
 	}	   
 
 	/**
-	 *设置"状态"属性
-	 *@param stadiumstatue 实体的Stadiumstatue属性
+	 *设置"照片"属性
+	 *@param stadiumimage 实体的Stadiumimage属性
 	 */
-	public void setStadiumstatue(String stadiumstatue)
+	public void setStadiumimage(String stadiumimage)
 	{
-		this.stadiumstatue = stadiumstatue;
+		this.stadiumimage = stadiumimage;
 	}
 	
 	/**
-	 *获取"状态"属性
+	 *获取"照片"属性
 	 */
-	public String getStadiumstatue()
+	public String getStadiumimage()
 	{
-		return this.stadiumstatue;
+		return this.stadiumimage;
 	}	   
 
 	/**
@@ -185,7 +186,7 @@ public class Stadium
 	 	,String stadiumname
 	 	,String stadiumaddress
 	 	,String stadiumdetail
-	 	,String stadiumstatue
+	 	,String stadiumimage
 	 	,String stadiumx
 	 	,String stadiumy
 		 ){
@@ -195,7 +196,7 @@ public class Stadium
 	 	this.stadiumname = stadiumname;
 	 	this.stadiumaddress = stadiumaddress;
 	 	this.stadiumdetail = stadiumdetail;
-	 	this.stadiumstatue = stadiumstatue;
+	 	this.stadiumimage = stadiumimage;
 	 	this.stadiumx = stadiumx;
 	 	this.stadiumy = stadiumy;
 	}

@@ -1,6 +1,7 @@
 package com.server.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.math.BigDecimal;
 /**
  * mycourse 实体类
  *@author ZhangRuiLong
@@ -12,21 +13,21 @@ public class Mycourse
     */
    private String mycourseid; 
    /**
-    * 教练ID
+    * 会员
+    */
+   private String mycoursecustomer;   
+   /**
+    * 教练
     */
    private String mycoursecoach;   
    /**
-    * 会员ID
+    * 教练
     */
-   private String mycoursecustomer;   
+   private String mycoursecoachname;   
    /**
     * 课程名
     */
    private String mycoursename;   
-   /**
-    * 项目
-    */
-   private String mycourseproject;   
    /**
     * 课时
     */
@@ -40,21 +41,33 @@ public class Mycourse
     */
    private String mycoursemoney;   
    /**
+    * 项目
+    */
+   private String mycourseproject;   
+   /**
+    * 备注
+    */
+   private String mycoursedetail;   
+   /**
+    * 分类
+    */
+   private String mycoursetype;   
+   /**
+    * 开始
+    */
+   private String mycoursebegin;   
+   /**
+    * 结束
+    */
+   private String mycourseend;   
+   /**
     * 创建时间
     */
-   private String createtime;   
-   /**
-    * 创建人
-    */
-   private String creator;   
+   private String mycourseinswhen;   
    /**
     * 更新时间
     */
-   private String updtime;   
-   /**
-    * 更新人
-    */
-   private String updor;   
+   private String mycourseupdwhen;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -74,24 +87,7 @@ public class Mycourse
 	}
 
 	/**
-	 *设置"教练ID"属性
-	 *@param mycoursecoach 实体的Mycoursecoach属性
-	 */
-	public void setMycoursecoach(String mycoursecoach)
-	{
-		this.mycoursecoach = mycoursecoach;
-	}
-	
-	/**
-	 *获取"教练ID"属性
-	 */
-	public String getMycoursecoach()
-	{
-		return this.mycoursecoach;
-	}	   
-
-	/**
-	 *设置"会员ID"属性
+	 *设置"会员"属性
 	 *@param mycoursecustomer 实体的Mycoursecustomer属性
 	 */
 	public void setMycoursecustomer(String mycoursecustomer)
@@ -100,11 +96,45 @@ public class Mycourse
 	}
 	
 	/**
-	 *获取"会员ID"属性
+	 *获取"会员"属性
 	 */
 	public String getMycoursecustomer()
 	{
 		return this.mycoursecustomer;
+	}	   
+
+	/**
+	 *设置"教练"属性
+	 *@param mycoursecoach 实体的Mycoursecoach属性
+	 */
+	public void setMycoursecoach(String mycoursecoach)
+	{
+		this.mycoursecoach = mycoursecoach;
+	}
+	
+	/**
+	 *获取"教练"属性
+	 */
+	public String getMycoursecoach()
+	{
+		return this.mycoursecoach;
+	}	   
+
+	/**
+	 *设置"教练"属性
+	 *@param mycoursecoachname 实体的Mycoursecoachname属性
+	 */
+	public void setMycoursecoachname(String mycoursecoachname)
+	{
+		this.mycoursecoachname = mycoursecoachname;
+	}
+	
+	/**
+	 *获取"教练"属性
+	 */
+	public String getMycoursecoachname()
+	{
+		return this.mycoursecoachname;
 	}	   
 
 	/**
@@ -122,23 +152,6 @@ public class Mycourse
 	public String getMycoursename()
 	{
 		return this.mycoursename;
-	}	   
-
-	/**
-	 *设置"项目"属性
-	 *@param mycourseproject 实体的Mycourseproject属性
-	 */
-	public void setMycourseproject(String mycourseproject)
-	{
-		this.mycourseproject = mycourseproject;
-	}
-	
-	/**
-	 *获取"项目"属性
-	 */
-	public String getMycourseproject()
-	{
-		return this.mycourseproject;
 	}	   
 
 	/**
@@ -193,71 +206,122 @@ public class Mycourse
 	}	   
 
 	/**
-	 *设置"创建时间"属性
-	 *@param createtime 实体的Createtime属性
+	 *设置"项目"属性
+	 *@param mycourseproject 实体的Mycourseproject属性
 	 */
-	public void setCreatetime(String createtime)
+	public void setMycourseproject(String mycourseproject)
 	{
-		this.createtime = createtime;
+		this.mycourseproject = mycourseproject;
+	}
+	
+	/**
+	 *获取"项目"属性
+	 */
+	public String getMycourseproject()
+	{
+		return this.mycourseproject;
+	}	   
+
+	/**
+	 *设置"备注"属性
+	 *@param mycoursedetail 实体的Mycoursedetail属性
+	 */
+	public void setMycoursedetail(String mycoursedetail)
+	{
+		this.mycoursedetail = mycoursedetail;
+	}
+	
+	/**
+	 *获取"备注"属性
+	 */
+	public String getMycoursedetail()
+	{
+		return this.mycoursedetail;
+	}	   
+
+	/**
+	 *设置"分类"属性
+	 *@param mycoursetype 实体的Mycoursetype属性
+	 */
+	public void setMycoursetype(String mycoursetype)
+	{
+		this.mycoursetype = mycoursetype;
+	}
+	
+	/**
+	 *获取"分类"属性
+	 */
+	public String getMycoursetype()
+	{
+		return this.mycoursetype;
+	}	   
+
+	/**
+	 *设置"开始"属性
+	 *@param mycoursebegin 实体的Mycoursebegin属性
+	 */
+	public void setMycoursebegin(String mycoursebegin)
+	{
+		this.mycoursebegin = mycoursebegin;
+	}
+	
+	/**
+	 *获取"开始"属性
+	 */
+	public String getMycoursebegin()
+	{
+		return this.mycoursebegin;
+	}	   
+
+	/**
+	 *设置"结束"属性
+	 *@param mycourseend 实体的Mycourseend属性
+	 */
+	public void setMycourseend(String mycourseend)
+	{
+		this.mycourseend = mycourseend;
+	}
+	
+	/**
+	 *获取"结束"属性
+	 */
+	public String getMycourseend()
+	{
+		return this.mycourseend;
+	}	   
+
+	/**
+	 *设置"创建时间"属性
+	 *@param mycourseinswhen 实体的Mycourseinswhen属性
+	 */
+	public void setMycourseinswhen(String mycourseinswhen)
+	{
+		this.mycourseinswhen = mycourseinswhen;
 	}
 	
 	/**
 	 *获取"创建时间"属性
 	 */
-	public String getCreatetime()
+	public String getMycourseinswhen()
 	{
-		return this.createtime;
-	}	   
-
-	/**
-	 *设置"创建人"属性
-	 *@param creator 实体的Creator属性
-	 */
-	public void setCreator(String creator)
-	{
-		this.creator = creator;
-	}
-	
-	/**
-	 *获取"创建人"属性
-	 */
-	public String getCreator()
-	{
-		return this.creator;
+		return this.mycourseinswhen;
 	}	   
 
 	/**
 	 *设置"更新时间"属性
-	 *@param updtime 实体的Updtime属性
+	 *@param mycourseupdwhen 实体的Mycourseupdwhen属性
 	 */
-	public void setUpdtime(String updtime)
+	public void setMycourseupdwhen(String mycourseupdwhen)
 	{
-		this.updtime = updtime;
+		this.mycourseupdwhen = mycourseupdwhen;
 	}
 	
 	/**
 	 *获取"更新时间"属性
 	 */
-	public String getUpdtime()
+	public String getMycourseupdwhen()
 	{
-		return this.updtime;
-	}	   
-
-	/**
-	 *设置"更新人"属性
-	 *@param updor 实体的Updor属性
-	 */
-	public void setUpdor(String updor)
-	{
-		this.updor = updor;
-	}
-	
-	/**
-	 *获取"更新人"属性
-	 */
-	public String getUpdor()
-	{
-		return this.updor;
+		return this.mycourseupdwhen;
 	}	   
 	public Mycourse() {
 		super();
@@ -265,31 +329,37 @@ public class Mycourse
 	}
 	public Mycourse(
 		String mycourseid
-	 	,String mycoursecoach
 	 	,String mycoursecustomer
+	 	,String mycoursecoach
+	 	,String mycoursecoachname
 	 	,String mycoursename
-	 	,String mycourseproject
 	 	,String mycoursenum
 	 	,String mycoursenuma
 	 	,String mycoursemoney
-	 	,String createtime
-	 	,String creator
-	 	,String updtime
-	 	,String updor
+	 	,String mycourseproject
+	 	,String mycoursedetail
+	 	,String mycoursetype
+	 	,String mycoursebegin
+	 	,String mycourseend
+	 	,String mycourseinswhen
+	 	,String mycourseupdwhen
 		 ){
 		super();
 		this.mycourseid = mycourseid;
-	 	this.mycoursecoach = mycoursecoach;
 	 	this.mycoursecustomer = mycoursecustomer;
+	 	this.mycoursecoach = mycoursecoach;
+	 	this.mycoursecoachname = mycoursecoachname;
 	 	this.mycoursename = mycoursename;
-	 	this.mycourseproject = mycourseproject;
 	 	this.mycoursenum = mycoursenum;
 	 	this.mycoursenuma = mycoursenuma;
 	 	this.mycoursemoney = mycoursemoney;
-	 	this.createtime = createtime;
-	 	this.creator = creator;
-	 	this.updtime = updtime;
-	 	this.updor = updor;
+	 	this.mycourseproject = mycourseproject;
+	 	this.mycoursedetail = mycoursedetail;
+	 	this.mycoursetype = mycoursetype;
+	 	this.mycoursebegin = mycoursebegin;
+	 	this.mycourseend = mycourseend;
+	 	this.mycourseinswhen = mycourseinswhen;
+	 	this.mycourseupdwhen = mycourseupdwhen;
 	}
 }
 

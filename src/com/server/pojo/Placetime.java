@@ -1,6 +1,7 @@
 package com.server.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.math.BigDecimal;
 /**
  * placetime 实体类
  *@author ZhangRuiLong
@@ -12,21 +13,37 @@ public class Placetime
     */
    private String placetimeid; 
    /**
-    * 编码
+    * 场馆
     */
-   private String placetimecode;   
+   private String placetimestadium;   
+   /**
+    * 项目
+    */
+   private String placetimeproject;   
+   /**
+    * 场地
+    */
+   private String placetimeplace;   
+   /**
+    * 场地
+    */
+   private String placetimeplacename;   
+   /**
+    * 教练
+    */
+   private String placetimecoach;   
+   /**
+    * 教练
+    */
+   private String placetimecoachname;   
    /**
     * 名称
     */
    private String placetimename;   
    /**
-    * 备注
+    * 日期
     */
-   private String placetimedetail;   
-   /**
-    * 状态
-    */
-   private String placetimestatue;   
+   private String placetimedate;   
    /**
     * 开始时间
     */
@@ -36,9 +53,9 @@ public class Placetime
     */
    private String placetimeend;   
    /**
-    * 项目
+    * 备注
     */
-   private String placetimeproject;   
+   private String placetimedetail;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -58,20 +75,105 @@ public class Placetime
 	}
 
 	/**
-	 *设置"编码"属性
-	 *@param placetimecode 实体的Placetimecode属性
+	 *设置"场馆"属性
+	 *@param placetimestadium 实体的Placetimestadium属性
 	 */
-	public void setPlacetimecode(String placetimecode)
+	public void setPlacetimestadium(String placetimestadium)
 	{
-		this.placetimecode = placetimecode;
+		this.placetimestadium = placetimestadium;
 	}
 	
 	/**
-	 *获取"编码"属性
+	 *获取"场馆"属性
 	 */
-	public String getPlacetimecode()
+	public String getPlacetimestadium()
 	{
-		return this.placetimecode;
+		return this.placetimestadium;
+	}	   
+
+	/**
+	 *设置"项目"属性
+	 *@param placetimeproject 实体的Placetimeproject属性
+	 */
+	public void setPlacetimeproject(String placetimeproject)
+	{
+		this.placetimeproject = placetimeproject;
+	}
+	
+	/**
+	 *获取"项目"属性
+	 */
+	public String getPlacetimeproject()
+	{
+		return this.placetimeproject;
+	}	   
+
+	/**
+	 *设置"场地"属性
+	 *@param placetimeplace 实体的Placetimeplace属性
+	 */
+	public void setPlacetimeplace(String placetimeplace)
+	{
+		this.placetimeplace = placetimeplace;
+	}
+	
+	/**
+	 *获取"场地"属性
+	 */
+	public String getPlacetimeplace()
+	{
+		return this.placetimeplace;
+	}	   
+
+	/**
+	 *设置"场地"属性
+	 *@param placetimeplacename 实体的Placetimeplacename属性
+	 */
+	public void setPlacetimeplacename(String placetimeplacename)
+	{
+		this.placetimeplacename = placetimeplacename;
+	}
+	
+	/**
+	 *获取"场地"属性
+	 */
+	public String getPlacetimeplacename()
+	{
+		return this.placetimeplacename;
+	}	   
+
+	/**
+	 *设置"教练"属性
+	 *@param placetimecoach 实体的Placetimecoach属性
+	 */
+	public void setPlacetimecoach(String placetimecoach)
+	{
+		this.placetimecoach = placetimecoach;
+	}
+	
+	/**
+	 *获取"教练"属性
+	 */
+	public String getPlacetimecoach()
+	{
+		return this.placetimecoach;
+	}	   
+
+	/**
+	 *设置"教练"属性
+	 *@param placetimecoachname 实体的Placetimecoachname属性
+	 */
+	public void setPlacetimecoachname(String placetimecoachname)
+	{
+		this.placetimecoachname = placetimecoachname;
+	}
+	
+	/**
+	 *获取"教练"属性
+	 */
+	public String getPlacetimecoachname()
+	{
+		return this.placetimecoachname;
 	}	   
 
 	/**
@@ -92,37 +194,20 @@ public class Placetime
 	}	   
 
 	/**
-	 *设置"备注"属性
-	 *@param placetimedetail 实体的Placetimedetail属性
+	 *设置"日期"属性
+	 *@param placetimedate 实体的Placetimedate属性
 	 */
-	public void setPlacetimedetail(String placetimedetail)
+	public void setPlacetimedate(String placetimedate)
 	{
-		this.placetimedetail = placetimedetail;
+		this.placetimedate = placetimedate;
 	}
 	
 	/**
-	 *获取"备注"属性
+	 *获取"日期"属性
 	 */
-	public String getPlacetimedetail()
+	public String getPlacetimedate()
 	{
-		return this.placetimedetail;
-	}	   
-
-	/**
-	 *设置"状态"属性
-	 *@param placetimestatue 实体的Placetimestatue属性
-	 */
-	public void setPlacetimestatue(String placetimestatue)
-	{
-		this.placetimestatue = placetimestatue;
-	}
-	
-	/**
-	 *获取"状态"属性
-	 */
-	public String getPlacetimestatue()
-	{
-		return this.placetimestatue;
+		return this.placetimedate;
 	}	   
 
 	/**
@@ -160,20 +245,20 @@ public class Placetime
 	}	   
 
 	/**
-	 *设置"项目"属性
-	 *@param placetimeproject 实体的Placetimeproject属性
+	 *设置"备注"属性
+	 *@param placetimedetail 实体的Placetimedetail属性
 	 */
-	public void setPlacetimeproject(String placetimeproject)
+	public void setPlacetimedetail(String placetimedetail)
 	{
-		this.placetimeproject = placetimeproject;
+		this.placetimedetail = placetimedetail;
 	}
 	
 	/**
-	 *获取"项目"属性
+	 *获取"备注"属性
 	 */
-	public String getPlacetimeproject()
+	public String getPlacetimedetail()
 	{
-		return this.placetimeproject;
+		return this.placetimedetail;
 	}	   
 	public Placetime() {
 		super();
@@ -181,23 +266,31 @@ public class Placetime
 	}
 	public Placetime(
 		String placetimeid
-	 	,String placetimecode
+	 	,String placetimestadium
+	 	,String placetimeproject
+	 	,String placetimeplace
+	 	,String placetimeplacename
+	 	,String placetimecoach
+	 	,String placetimecoachname
 	 	,String placetimename
-	 	,String placetimedetail
-	 	,String placetimestatue
+	 	,String placetimedate
 	 	,String placetimebegin
 	 	,String placetimeend
-	 	,String placetimeproject
+	 	,String placetimedetail
 		 ){
 		super();
 		this.placetimeid = placetimeid;
-	 	this.placetimecode = placetimecode;
+	 	this.placetimestadium = placetimestadium;
+	 	this.placetimeproject = placetimeproject;
+	 	this.placetimeplace = placetimeplace;
+	 	this.placetimeplacename = placetimeplacename;
+	 	this.placetimecoach = placetimecoach;
+	 	this.placetimecoachname = placetimecoachname;
 	 	this.placetimename = placetimename;
-	 	this.placetimedetail = placetimedetail;
-	 	this.placetimestatue = placetimestatue;
+	 	this.placetimedate = placetimedate;
 	 	this.placetimebegin = placetimebegin;
 	 	this.placetimeend = placetimeend;
-	 	this.placetimeproject = placetimeproject;
+	 	this.placetimedetail = placetimedetail;
 	}
 }
 

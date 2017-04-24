@@ -3,119 +3,155 @@ Ext.onReady(function() {
 	var Placetimetitle = "当前位置:业务管理》" + Placetimeclassify;
 	var Placetimeaction = "PlacetimeAction.do";
 	var Placetimefields = ['placetimeid'
-	        			    ,'placetimecode' 
+	        			    ,'placetimestadium' 
+	        			    ,'placetimeproject' 
+	        			    ,'placetimeplace' 
+	        			    ,'placetimeplacename' 
+	        			    ,'placetimecoach' 
+	        			    ,'placetimecoachname' 
 	        			    ,'placetimename' 
-	        			    ,'placetimedetail' 
-	        			    ,'placetimestatue' 
+	        			    ,'placetimedate' 
 	        			    ,'placetimebegin' 
 	        			    ,'placetimeend' 
-	        			    ,'placetimeproject' 
+	        			    ,'placetimedetail' 
 	        			      ];// 全部字段
 	var Placetimekeycolumn = [ 'placetimeid' ];// 主键
-	var Placetimestore = dataStore(Placetimefields, basePath + Placetimeaction + "?method=selLimit");// 定义Placetimestore
+	var Placetimestore = dataStore(Placetimefields, basePath + Placetimeaction + "?method=selQuery");// 定义Placetimestore
 	var PlacetimedataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'PlacetimedataForm',
 		labelAlign : 'right',
 		frame : true,
 		layout : 'column',
 		items : [ {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
 				id : 'Placetimeplacetimeid',
-				name : 'placetimeid',
-				maxLength : 100
+				name : 'placetimeid'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '编码',
-				id : 'Placetimeplacetimecode',
-				name : 'placetimecode',
-				maxLength : 100
+				fieldLabel : '场馆',
+				id : 'Placetimeplacetimestadium',
+				name : 'placetimestadium'
 			} ]
 		}
 		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '名称',
-				id : 'Placetimeplacetimename',
-				name : 'placetimename',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '备注',
-				id : 'Placetimeplacetimedetail',
-				name : 'placetimedetail',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '状态',
-				id : 'Placetimeplacetimestatue',
-				name : 'placetimestatue',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '开始时间',
-				id : 'Placetimeplacetimebegin',
-				name : 'placetimebegin',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '结束时间',
-				id : 'Placetimeplacetimeend',
-				name : 'placetimeend',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '项目',
 				id : 'Placetimeplacetimeproject',
-				name : 'placetimeproject',
-				maxLength : 100
+				name : 'placetimeproject'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '场地',
+				id : 'Placetimeplacetimeplace',
+				name : 'placetimeplace'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '场地',
+				id : 'Placetimeplacetimeplacename',
+				name : 'placetimeplacename'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '教练',
+				id : 'Placetimeplacetimecoach',
+				name : 'placetimecoach'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '教练',
+				id : 'Placetimeplacetimecoachname',
+				name : 'placetimecoachname'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '名称',
+				id : 'Placetimeplacetimename',
+				name : 'placetimename'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '日期',
+				id : 'Placetimeplacetimedate',
+				name : 'placetimedate'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '开始时间',
+				id : 'Placetimeplacetimebegin',
+				name : 'placetimebegin'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '结束时间',
+				id : 'Placetimeplacetimeend',
+				name : 'placetimeend'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '备注',
+				id : 'Placetimeplacetimedetail',
+				name : 'placetimedetail'
 			} ]
 		}
 		]
 	});
 	
-	//var Placetimebbar = pagesizebar(Placetimestore);//定义分页
+	var Placetimebbar = pagesizebar(Placetimestore);//定义分页
 	var Placetimegrid =  Ext.create('Ext.grid.Panel', {
 		height : document.documentElement.clientHeight - 4,
 		width : '100%',
 		//title : Placetimetitle,
 		store : Placetimestore,
-		//bbar : Placetimebbar,
+		bbar : Placetimebbar,
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
@@ -134,8 +170,48 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '编码',
-			dataIndex : 'placetimecode',
+			header : '场馆',
+			dataIndex : 'placetimestadium',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '项目',
+			dataIndex : 'placetimeproject',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '场地',
+			dataIndex : 'placetimeplace',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '场地',
+			dataIndex : 'placetimeplacename',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '教练',
+			dataIndex : 'placetimecoach',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '教练',
+			dataIndex : 'placetimecoachname',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -150,16 +226,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '备注',
-			dataIndex : 'placetimedetail',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '状态',
-			dataIndex : 'placetimestatue',
+			header : '日期',
+			dataIndex : 'placetimedate',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -182,8 +250,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '项目',
-			dataIndex : 'placetimeproject',
+			header : '备注',
+			dataIndex : 'placetimedetail',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -294,22 +362,29 @@ Ext.onReady(function() {
 				listeners : {
 					specialkey : function(field, e) {
 						if (e.getKey() == Ext.EventObject.ENTER) {
-							if ("" == Ext.getCmp("queryPlacetimeaction").getValue()) {
-								Placetimestore.load({
+							Placetimestore.load({
 									params : {
-										json : queryjson
-									}
-								});
-							} else {
-								Placetimestore.load({
-									params : {
+										start : 0,
+										limit : PAGESIZE,
 										json : queryjson,
 										query : Ext.getCmp("queryPlacetimeaction").getValue()
 									}
-								});
-							}
+							});
 						}
 					}
+				}
+			},{
+				text : "查询",
+				xtype: 'button',
+				handler : function() {
+					Placetimestore.load({
+							params : {
+								start : 0,
+								limit : PAGESIZE,
+								json : queryjson,
+								query : Ext.getCmp("queryPlacetimeaction").getValue()
+							}
+					});
 				}
 			}
 		]

@@ -5,7 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+//import org.apache.solr.common.SolrDocumentList;
 import com.server.pojo.Placetime;
 import com.server.poco.PlacetimePoco;
 import com.system.tools.CommonConst;
@@ -14,6 +14,7 @@ import com.system.tools.pojo.Fileinfo;
 import com.system.tools.pojo.Queryinfo;
 import com.system.tools.util.CommonUtil;
 import com.system.tools.util.FileUtil;
+import com.system.tools.util.TypeUtil;
 import com.system.tools.pojo.Pageinfo;
 
 /**
@@ -21,7 +22,6 @@ import com.system.tools.pojo.Pageinfo;
  *@author ZhangRuiLong
  */
 public class PlacetimeAction extends BaseActionDao {
-	public String result = CommonConst.FAILURE;
 	public ArrayList<Placetime> cuss = null;
 	public Type TYPE = new TypeToken<ArrayList<Placetime>>() {}.getType();
 
@@ -30,11 +30,12 @@ public class PlacetimeAction extends BaseActionDao {
 		String json = request.getParameter("json");
 		System.out.println("json : " + json);
 		json = json.replace("\"\"", "null");
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Placetime temp:cuss){
 			if(CommonUtil.isNull(temp.getPlacetimeid()))
 				temp.setPlacetimeid(CommonUtil.getNewId());
 			result = insSingle(temp);
+//			if(CommonConst.SUCCESS.equals(result)) updSolr(temp);
 		}
 		responsePW(response, result);
 	}
@@ -42,9 +43,10 @@ public class PlacetimeAction extends BaseActionDao {
 	public void delAll(HttpServletRequest request, HttpServletResponse response){
 		String json = request.getParameter("json");
 		System.out.println("json : " + json);
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Placetime temp:cuss){
 			result = delSingle(temp,PlacetimePoco.KEYCOLUMN);
+//			if(CommonConst.SUCCESS.equals(result)) delSolr(temp,PlacetimePoco.KEYCOLUMN);
 		}
 		responsePW(response, result);
 	}
@@ -52,9 +54,13 @@ public class PlacetimeAction extends BaseActionDao {
 	public void updAll(HttpServletRequest request, HttpServletResponse response){
 		String json = request.getParameter("json");
 		System.out.println("json : " + json);
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Placetime temp:cuss){
-			result = updSingle(temp,PlacetimePoco.KEYCOLUMN);
+			if(CommonUtil.isNull(temp.getPlacetimeid())){
+				temp.setPlacetimeid(CommonUtil.getNewId());
+				result = insSingle(temp);
+			}else result = updSingle(temp,PlacetimePoco.KEYCOLUMN);
+//			if(CommonConst.SUCCESS.equals(result)) updSolr(temp);
 		}
 		responsePW(response, result);
 	}
@@ -62,7 +68,7 @@ public class PlacetimeAction extends BaseActionDao {
 	public void impAll(HttpServletRequest request, HttpServletResponse response){
 		Fileinfo fileinfo = FileUtil.upload(request,0,null,PlacetimePoco.NAME,"impAll");
 		String json = FileUtil.impExcel(fileinfo.getPath(),PlacetimePoco.FIELDNAME); 
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Placetime temp:cuss){
 			if(CommonUtil.isNull(temp.getPlacetimeid()))
 				temp.setPlacetimeid(CommonUtil.getNewId());
@@ -97,4 +103,12 @@ public class PlacetimeAction extends BaseActionDao {
 		result = CommonConst.GSON.toJson(pageinfo);
 		responsePW(response, result);
 	}
+	//solr查询
+//	public void selSolr(HttpServletRequest request, HttpServletResponse response){
+//		Queryinfo queryinfo = getSolrquery(request, Placetime.class, PlacetimePoco.QUERYFIELDNAME, PlacetimePoco.ORDER, TYPE);
+//		SolrDocumentList solrDocumentList = selSolr(queryinfo);
+//		Pageinfo pageinfo = new Pageinfo(TypeUtil.stringToInt(""+solrDocumentList.getNumFound()), solrDocumentList);
+//		result = CommonConst.GSON.toJson(pageinfo);
+//       responsePW(response, result);
+//    } 
 }

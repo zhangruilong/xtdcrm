@@ -23,30 +23,36 @@ public class CardtypePoco
     */
    public static String[] CHINESENAME = {
    		"ID",
-	 	"编码",
+	 	"场馆",
 	 	"名称",
 	 	"分类",
 	 	"有效期",
 	 	"价格",
-	 	"卡余额",
-	 	"卡余次",
+	 	"次数",
+	 	"停用期限",
+	 	"停用费用",
 	 	"备注",
 	 	"状态",
+	 	"场次",
+	 	"项目",
 	};
 	/**
 	 * 实体英文字段
 	 */
    public static final String[] FIELDNAME = {
    		"cardtypeid",
-	 	"cardtypecode",
+	 	"cardtypestadium",
 	 	"cardtypename",
 	 	"cardtypeclass",
 	 	"cardtypeday",
 	 	"cardtypeprice",
-	 	"cardtypemoney",
 	 	"cardtypetimes",
+	 	"cardtypestop",
+	 	"cardtypestopmoney",
 	 	"cardtypedetail",
 	 	"cardtypestatue",
+	 	"cardtypechangci",
+	 	"cardtypeproject",
    };
    /**
     * 实体排序
@@ -57,15 +63,18 @@ public class CardtypePoco
 	 */
    public static final String[] QUERYFIELDNAME = {
    		"cardtypeid",
-	 	"cardtypecode",
+	 	"cardtypestadium",
 	 	"cardtypename",
 	 	"cardtypeclass",
 	 	"cardtypeday",
 	 	"cardtypeprice",
-	 	"cardtypemoney",
 	 	"cardtypetimes",
+	 	"cardtypestop",
+	 	"cardtypestopmoney",
 	 	"cardtypedetail",
 	 	"cardtypestatue",
+	 	"cardtypechangci",
+	 	"cardtypeproject",
    };
 }
 

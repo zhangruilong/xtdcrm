@@ -33,7 +33,6 @@ public class CoachPoco
 	 	"照片",
 	 	"备注",
 	 	"状态",
-	 	"创建时间",
 	 	"创建人",
 	};
 	/**
@@ -51,8 +50,7 @@ public class CoachPoco
 	 	"coachimage",
 	 	"coachdetail",
 	 	"coachstatue",
-	 	"createtime",
-	 	"creator",
+	 	"coachinswhen",
    };
    /**
     * 实体排序
@@ -73,8 +71,7 @@ public class CoachPoco
 	 	"coachimage",
 	 	"coachdetail",
 	 	"coachstatue",
-	 	"createtime",
-	 	"creator",
+	 	"coachinswhen",
    };
 }
 

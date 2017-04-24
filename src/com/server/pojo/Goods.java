@@ -1,6 +1,7 @@
 package com.server.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.math.BigDecimal;
 /**
  * goods 实体类
  *@author ZhangRuiLong
@@ -11,6 +12,10 @@ public class Goods
     * ID,主键
     */
    private String goodsid; 
+   /**
+    * 场馆
+    */
+   private String goodsstadium;   
    /**
     * 编码
     */
@@ -26,11 +31,15 @@ public class Goods
    /**
     * 现价
     */
-   private Double goodsprice;   
+   private String goodsprice;   
    /**
     * 原价
     */
-   private Double goodsorgprice;   
+   private String goodsorgprice;   
+   /**
+    * 库存
+    */
+   private String goodsnum;   
    /**
     * 照片
     */
@@ -46,19 +55,19 @@ public class Goods
    /**
     * 创建时间
     */
-   private String createtime;   
+   private String goodsinswhen;   
    /**
     * 创建人
     */
-   private String creator;   
+   private String goodsinswho;   
    /**
     * 更新时间
     */
-   private String updtime;   
+   private String goodsupdwhen;   
    /**
     * 更新人
     */
-   private String updor;   
+   private String goodsupdwho;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -76,6 +85,23 @@ public class Goods
 	{
 		return this.goodsid;
 	}
+
+	/**
+	 *设置"场馆"属性
+	 *@param goodsstadium 实体的Goodsstadium属性
+	 */
+	public void setGoodsstadium(String goodsstadium)
+	{
+		this.goodsstadium = goodsstadium;
+	}
+	
+	/**
+	 *获取"场馆"属性
+	 */
+	public String getGoodsstadium()
+	{
+		return this.goodsstadium;
+	}	   
 
 	/**
 	 *设置"编码"属性
@@ -132,7 +158,7 @@ public class Goods
 	 *设置"现价"属性
 	 *@param goodsprice 实体的Goodsprice属性
 	 */
-	public void setGoodsprice(Double goodsprice)
+	public void setGoodsprice(String goodsprice)
 	{
 		this.goodsprice = goodsprice;
 	}
@@ -140,7 +166,7 @@ public class Goods
 	/**
 	 *获取"现价"属性
 	 */
-	public Double getGoodsprice()
+	public String getGoodsprice()
 	{
 		return this.goodsprice;
 	}	   
@@ -149,7 +175,7 @@ public class Goods
 	 *设置"原价"属性
 	 *@param goodsorgprice 实体的Goodsorgprice属性
 	 */
-	public void setGoodsorgprice(Double goodsorgprice)
+	public void setGoodsorgprice(String goodsorgprice)
 	{
 		this.goodsorgprice = goodsorgprice;
 	}
@@ -157,9 +183,26 @@ public class Goods
 	/**
 	 *获取"原价"属性
 	 */
-	public Double getGoodsorgprice()
+	public String getGoodsorgprice()
 	{
 		return this.goodsorgprice;
+	}	   
+
+	/**
+	 *设置"库存"属性
+	 *@param goodsnum 实体的Goodsnum属性
+	 */
+	public void setGoodsnum(String goodsnum)
+	{
+		this.goodsnum = goodsnum;
+	}
+	
+	/**
+	 *获取"库存"属性
+	 */
+	public String getGoodsnum()
+	{
+		return this.goodsnum;
 	}	   
 
 	/**
@@ -215,70 +258,70 @@ public class Goods
 
 	/**
 	 *设置"创建时间"属性
-	 *@param createtime 实体的Createtime属性
+	 *@param goodsinswhen 实体的Goodsinswhen属性
 	 */
-	public void setCreatetime(String createtime)
+	public void setGoodsinswhen(String goodsinswhen)
 	{
-		this.createtime = createtime;
+		this.goodsinswhen = goodsinswhen;
 	}
 	
 	/**
 	 *获取"创建时间"属性
 	 */
-	public String getCreatetime()
+	public String getGoodsinswhen()
 	{
-		return this.createtime;
+		return this.goodsinswhen;
 	}	   
 
 	/**
 	 *设置"创建人"属性
-	 *@param creator 实体的Creator属性
+	 *@param goodsinswho 实体的Goodsinswho属性
 	 */
-	public void setCreator(String creator)
+	public void setGoodsinswho(String goodsinswho)
 	{
-		this.creator = creator;
+		this.goodsinswho = goodsinswho;
 	}
 	
 	/**
 	 *获取"创建人"属性
 	 */
-	public String getCreator()
+	public String getGoodsinswho()
 	{
-		return this.creator;
+		return this.goodsinswho;
 	}	   
 
 	/**
 	 *设置"更新时间"属性
-	 *@param updtime 实体的Updtime属性
+	 *@param goodsupdwhen 实体的Goodsupdwhen属性
 	 */
-	public void setUpdtime(String updtime)
+	public void setGoodsupdwhen(String goodsupdwhen)
 	{
-		this.updtime = updtime;
+		this.goodsupdwhen = goodsupdwhen;
 	}
 	
 	/**
 	 *获取"更新时间"属性
 	 */
-	public String getUpdtime()
+	public String getGoodsupdwhen()
 	{
-		return this.updtime;
+		return this.goodsupdwhen;
 	}	   
 
 	/**
 	 *设置"更新人"属性
-	 *@param updor 实体的Updor属性
+	 *@param goodsupdwho 实体的Goodsupdwho属性
 	 */
-	public void setUpdor(String updor)
+	public void setGoodsupdwho(String goodsupdwho)
 	{
-		this.updor = updor;
+		this.goodsupdwho = goodsupdwho;
 	}
 	
 	/**
 	 *获取"更新人"属性
 	 */
-	public String getUpdor()
+	public String getGoodsupdwho()
 	{
-		return this.updor;
+		return this.goodsupdwho;
 	}	   
 	public Goods() {
 		super();
@@ -286,33 +329,37 @@ public class Goods
 	}
 	public Goods(
 		String goodsid
+	 	,String goodsstadium
 	 	,String goodscode
 	 	,String goodsname
 	 	,String goodsclass
-	 	,Double goodsprice
-	 	,Double goodsorgprice
+	 	,String goodsprice
+	 	,String goodsorgprice
+	 	,String goodsnum
 	 	,String goodsimage
 	 	,String goodsdetail
 	 	,String goodsstatue
-	 	,String createtime
-	 	,String creator
-	 	,String updtime
-	 	,String updor
+	 	,String goodsinswhen
+	 	,String goodsinswho
+	 	,String goodsupdwhen
+	 	,String goodsupdwho
 		 ){
 		super();
 		this.goodsid = goodsid;
+	 	this.goodsstadium = goodsstadium;
 	 	this.goodscode = goodscode;
 	 	this.goodsname = goodsname;
 	 	this.goodsclass = goodsclass;
 	 	this.goodsprice = goodsprice;
 	 	this.goodsorgprice = goodsorgprice;
+	 	this.goodsnum = goodsnum;
 	 	this.goodsimage = goodsimage;
 	 	this.goodsdetail = goodsdetail;
 	 	this.goodsstatue = goodsstatue;
-	 	this.createtime = createtime;
-	 	this.creator = creator;
-	 	this.updtime = updtime;
-	 	this.updor = updor;
+	 	this.goodsinswhen = goodsinswhen;
+	 	this.goodsinswho = goodsinswho;
+	 	this.goodsupdwhen = goodsupdwhen;
+	 	this.goodsupdwho = goodsupdwho;
 	}
 }
 

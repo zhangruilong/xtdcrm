@@ -23,15 +23,12 @@ public class PlacePoco
     */
    public static String[] CHINESENAME = {
    		"ID",
-	 	"场馆ID",
-	 	"编码",
-	 	"名称",
-	 	"人数",
+	 	"场馆",
+	 	"位置",
+	 	"场地",
 	 	"备注",
-	 	"状态",
-	 	"开始时间",
-	 	"结束时间",
 	 	"项目",
+	 	"状态",
 	};
 	/**
 	 * 实体英文字段
@@ -41,12 +38,9 @@ public class PlacePoco
 	 	"placestadium",
 	 	"placecode",
 	 	"placename",
-	 	"placepeople",
 	 	"placedetail",
-	 	"placestatue",
-	 	"placebegin",
-	 	"placeend",
 	 	"placeproject",
+	 	"placestatue",
    };
    /**
     * 实体排序
@@ -60,12 +54,9 @@ public class PlacePoco
 	 	"placestadium",
 	 	"placecode",
 	 	"placename",
-	 	"placepeople",
 	 	"placedetail",
-	 	"placestatue",
-	 	"placebegin",
-	 	"placeend",
 	 	"placeproject",
+	 	"placestatue",
    };
 }
 

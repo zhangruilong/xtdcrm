@@ -1,6 +1,7 @@
 package com.server.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.math.BigDecimal;
 /**
  * ccustomer 实体类
  *@author ZhangRuiLong
@@ -22,11 +23,11 @@ public class Ccustomer
    /**
     * 创建时间
     */
-   private String createtime;   
+   private String ccustomerinswhen;   
    /**
     * 创建人
     */
-   private String creator;   
+   private String ccustomerinswho;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -81,36 +82,36 @@ public class Ccustomer
 
 	/**
 	 *设置"创建时间"属性
-	 *@param createtime 实体的Createtime属性
+	 *@param ccustomerinswhen 实体的Ccustomerinswhen属性
 	 */
-	public void setCreatetime(String createtime)
+	public void setCcustomerinswhen(String ccustomerinswhen)
 	{
-		this.createtime = createtime;
+		this.ccustomerinswhen = ccustomerinswhen;
 	}
 	
 	/**
 	 *获取"创建时间"属性
 	 */
-	public String getCreatetime()
+	public String getCcustomerinswhen()
 	{
-		return this.createtime;
+		return this.ccustomerinswhen;
 	}	   
 
 	/**
 	 *设置"创建人"属性
-	 *@param creator 实体的Creator属性
+	 *@param ccustomerinswho 实体的Ccustomerinswho属性
 	 */
-	public void setCreator(String creator)
+	public void setCcustomerinswho(String ccustomerinswho)
 	{
-		this.creator = creator;
+		this.ccustomerinswho = ccustomerinswho;
 	}
 	
 	/**
 	 *获取"创建人"属性
 	 */
-	public String getCreator()
+	public String getCcustomerinswho()
 	{
-		return this.creator;
+		return this.ccustomerinswho;
 	}	   
 	public Ccustomer() {
 		super();
@@ -120,15 +121,15 @@ public class Ccustomer
 		String ccustomerid
 	 	,String ccustomercoach
 	 	,String ccustomercustomer
-	 	,String createtime
-	 	,String creator
+	 	,String ccustomerinswhen
+	 	,String ccustomerinswho
 		 ){
 		super();
 		this.ccustomerid = ccustomerid;
 	 	this.ccustomercoach = ccustomercoach;
 	 	this.ccustomercustomer = ccustomercustomer;
-	 	this.createtime = createtime;
-	 	this.creator = creator;
+	 	this.ccustomerinswhen = ccustomerinswhen;
+	 	this.ccustomerinswho = ccustomerinswho;
 	}
 }
 

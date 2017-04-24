@@ -4,466 +4,517 @@ Ext.onReady(function() {
 	var Cuscardviewaction = "CuscardviewAction.do";
 	var Cuscardviewfields = ['cuscardid'
 	        			    ,'cuscardcustomer' 
-	        			    ,'cuscardtype' 
+	        			    ,'cuscardstadium' 
 	        			    ,'cuscardno' 
-	        			    ,'cuscardpsw' 
+	        			    ,'cuscardtypename' 
+	        			    ,'cuscardtypeclass' 
+	        			    ,'cuscardday' 
 	        			    ,'cuscardbegin' 
 	        			    ,'cuscardend' 
+	        			    ,'cuscardprice' 
+	        			    ,'cuscarddikou' 
 	        			    ,'cuscardmoney' 
-	        			    ,'cuscardnums' 
+	        			    ,'cuscardstop' 
+	        			    ,'cuscardstopmoney' 
 	        			    ,'cuscardtimes' 
-	        			    ,'cuscardint' 
+	        			    ,'cuscardpoint' 
 	        			    ,'cuscarddetail' 
+	        			    ,'cuscardchangci' 
+	        			    ,'cuscardproject' 
 	        			    ,'cuscardstatue' 
-	        			    ,'createtime' 
-	        			    ,'creator' 
-	        			    ,'updtime' 
-	        			    ,'updor' 
+	        			    ,'cuscardinswhen' 
+	        			    ,'cuscardinswho' 
+	        			    ,'cuscardupdwhen' 
+	        			    ,'cuscardupdwho' 
+	        			    ,'customerid' 
 	        			    ,'customerstadium' 
-	        			    ,'customercode' 
-	        			    ,'customername' 
-	        			    ,'customerphone' 
 	        			    ,'openid' 
+	        			    ,'customername' 
 	        			    ,'customersex' 
 	        			    ,'customerage' 
 	        			    ,'customercdcard' 
 	        			    ,'customerhome' 
 	        			    ,'customercompany' 
+	        			    ,'customerphone' 
 	        			    ,'customerbirthday' 
-	        			    ,'customergoodday' 
 	        			    ,'customeremail' 
 	        			    ,'customerhow' 
-	        			    ,'customertime' 
 	        			    ,'customerimage' 
 	        			    ,'customeremp' 
-	        			    ,'customerlevel' 
 	        			    ,'customerdetail' 
 	        			    ,'customerstatue' 
+	        			    ,'customerinswhen' 
+	        			    ,'customerinswho' 
+	        			    ,'customerupdwhen' 
+	        			    ,'customerupdwho' 
 	        			      ];// 全部字段
 	var Cuscardviewkeycolumn = [ 'cuscardid' ];// 主键
-	var Cuscardviewstore = dataStore(Cuscardviewfields, basePath + Cuscardviewaction + "?method=selLimit");// 定义Cuscardviewstore
+	var Cuscardviewstore = dataStore(Cuscardviewfields, basePath + Cuscardviewaction + "?method=selQuery");// 定义Cuscardviewstore
 	var CuscardviewdataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'CuscardviewdataForm',
 		labelAlign : 'right',
 		frame : true,
 		layout : 'column',
 		items : [ {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
 				id : 'Cuscardviewcuscardid',
-				name : 'cuscardid',
-				maxLength : 100
+				name : 'cuscardid'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '会员ID',
 				id : 'Cuscardviewcuscardcustomer',
-				name : 'cuscardcustomer',
-				maxLength : 100
+				name : 'cuscardcustomer'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '分类',
-				id : 'Cuscardviewcuscardtype',
-				name : 'cuscardtype',
-				maxLength : 100
+				fieldLabel : '场馆',
+				id : 'Cuscardviewcuscardstadium',
+				name : 'cuscardstadium'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '卡号',
 				id : 'Cuscardviewcuscardno',
-				name : 'cuscardno',
-				maxLength : 100
+				name : 'cuscardno'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '密码',
-				id : 'Cuscardviewcuscardpsw',
-				name : 'cuscardpsw',
-				maxLength : 100
+				fieldLabel : '卡种',
+				id : 'Cuscardviewcuscardtypename',
+				name : 'cuscardtypename'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '分类',
+				id : 'Cuscardviewcuscardtypeclass',
+				name : 'cuscardtypeclass'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '有效期',
+				id : 'Cuscardviewcuscardday',
+				name : 'cuscardday'
+			} ]
+		}
+		, {
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '有效期开始',
 				id : 'Cuscardviewcuscardbegin',
-				name : 'cuscardbegin',
-				maxLength : 100
+				name : 'cuscardbegin'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '有效期结束',
 				id : 'Cuscardviewcuscardend',
-				name : 'cuscardend',
-				maxLength : 100
+				name : 'cuscardend'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '卡余额',
+				fieldLabel : '价格',
+				id : 'Cuscardviewcuscardprice',
+				name : 'cuscardprice'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '抵扣',
+				id : 'Cuscardviewcuscarddikou',
+				name : 'cuscarddikou'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '售价',
 				id : 'Cuscardviewcuscardmoney',
-				name : 'cuscardmoney',
-				maxLength : 100
+				name : 'cuscardmoney'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '卡总次数',
-				id : 'Cuscardviewcuscardnums',
-				name : 'cuscardnums',
-				maxLength : 100
+				fieldLabel : '停用qi x',
+				id : 'Cuscardviewcuscardstop',
+				name : 'cuscardstop'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '卡余次',
+				fieldLabel : '停用价格',
+				id : 'Cuscardviewcuscardstopmoney',
+				name : 'cuscardstopmoney'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '余次',
 				id : 'Cuscardviewcuscardtimes',
-				name : 'cuscardtimes',
-				maxLength : 100
+				name : 'cuscardtimes'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '卡积分',
-				id : 'Cuscardviewcuscardint',
-				name : 'cuscardint',
-				maxLength : 100
+				fieldLabel : '积分',
+				id : 'Cuscardviewcuscardpoint',
+				name : 'cuscardpoint'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '备注',
 				id : 'Cuscardviewcuscarddetail',
-				name : 'cuscarddetail',
-				maxLength : 100
+				name : 'cuscarddetail'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '场次',
+				id : 'Cuscardviewcuscardchangci',
+				name : 'cuscardchangci'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '项目',
+				id : 'Cuscardviewcuscardproject',
+				name : 'cuscardproject'
+			} ]
+		}
+		, {
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '状态',
 				id : 'Cuscardviewcuscardstatue',
-				name : 'cuscardstatue',
-				maxLength : 100
+				name : 'cuscardstatue'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建时间',
-				id : 'Cuscardviewcreatetime',
-				name : 'createtime',
-				maxLength : 100
+				id : 'Cuscardviewcuscardinswhen',
+				name : 'cuscardinswhen'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建人',
-				id : 'Cuscardviewcreator',
-				name : 'creator',
-				maxLength : 100
+				id : 'Cuscardviewcuscardinswho',
+				name : 'cuscardinswho'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '更新时间',
-				id : 'Cuscardviewupdtime',
-				name : 'updtime',
-				maxLength : 100
+				id : 'Cuscardviewcuscardupdwhen',
+				name : 'cuscardupdwhen'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '更新人',
-				id : 'Cuscardviewupdor',
-				name : 'updor',
-				maxLength : 100
+				id : 'Cuscardviewcuscardupdwho',
+				name : 'cuscardupdwho'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '场馆ID',
+				fieldLabel : 'ID',
+				id : 'Cuscardviewcustomerid',
+				name : 'customerid'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '场馆',
 				id : 'Cuscardviewcustomerstadium',
-				name : 'customerstadium',
-				maxLength : 100
+				name : 'customerstadium'
 			} ]
 		}
 		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '编码',
-				id : 'Cuscardviewcustomercode',
-				name : 'customercode',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '姓名',
-				id : 'Cuscardviewcustomername',
-				name : 'customername',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '手机',
-				id : 'Cuscardviewcustomerphone',
-				name : 'customerphone',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'OPENID',
 				id : 'Cuscardviewopenid',
-				name : 'openid',
-				maxLength : 100
+				name : 'openid'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '姓名',
+				id : 'Cuscardviewcustomername',
+				name : 'customername'
+			} ]
+		}
+		, {
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '性别',
 				id : 'Cuscardviewcustomersex',
-				name : 'customersex',
-				maxLength : 100
+				name : 'customersex'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '年龄',
 				id : 'Cuscardviewcustomerage',
-				name : 'customerage',
-				maxLength : 100
+				name : 'customerage'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '身份证',
 				id : 'Cuscardviewcustomercdcard',
-				name : 'customercdcard',
-				maxLength : 100
+				name : 'customercdcard'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '家庭住址',
+				fieldLabel : '住址',
 				id : 'Cuscardviewcustomerhome',
-				name : 'customerhome',
-				maxLength : 100
+				name : 'customerhome'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '单位地址',
+				fieldLabel : '单位',
 				id : 'Cuscardviewcustomercompany',
-				name : 'customercompany',
-				maxLength : 100
+				name : 'customercompany'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '手机',
+				id : 'Cuscardviewcustomerphone',
+				name : 'customerphone'
+			} ]
+		}
+		, {
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '生日',
 				id : 'Cuscardviewcustomerbirthday',
-				name : 'customerbirthday',
-				maxLength : 100
+				name : 'customerbirthday'
 			} ]
 		}
 		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '纪念日',
-				id : 'Cuscardviewcustomergoodday',
-				name : 'customergoodday',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '邮箱',
 				id : 'Cuscardviewcustomeremail',
-				name : 'customeremail',
-				maxLength : 100
+				name : 'customeremail'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '入会途径',
 				id : 'Cuscardviewcustomerhow',
-				name : 'customerhow',
-				maxLength : 100
+				name : 'customerhow'
 			} ]
 		}
 		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '入会时间',
-				id : 'Cuscardviewcustomertime',
-				name : 'customertime',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '照片',
 				id : 'Cuscardviewcustomerimage',
-				name : 'customerimage',
-				maxLength : 100
+				name : 'customerimage'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '顾问',
+				fieldLabel : '会籍管家',
 				id : 'Cuscardviewcustomeremp',
-				name : 'customeremp',
-				maxLength : 100
+				name : 'customeremp'
 			} ]
 		}
 		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '等级',
-				id : 'Cuscardviewcustomerlevel',
-				name : 'customerlevel',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '备注',
 				id : 'Cuscardviewcustomerdetail',
-				name : 'customerdetail',
-				maxLength : 100
+				name : 'customerdetail'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '状态',
 				id : 'Cuscardviewcustomerstatue',
-				name : 'customerstatue',
-				maxLength : 100
+				name : 'customerstatue'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '创建时间',
+				id : 'Cuscardviewcustomerinswhen',
+				name : 'customerinswhen'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '创建人',
+				id : 'Cuscardviewcustomerinswho',
+				name : 'customerinswho'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '更新时间',
+				id : 'Cuscardviewcustomerupdwhen',
+				name : 'customerupdwhen'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '更新人',
+				id : 'Cuscardviewcustomerupdwho',
+				name : 'customerupdwho'
 			} ]
 		}
 		]
 	});
 	
-	//var Cuscardviewbbar = pagesizebar(Cuscardviewstore);//定义分页
+	var Cuscardviewbbar = pagesizebar(Cuscardviewstore);//定义分页
 	var Cuscardviewgrid =  Ext.create('Ext.grid.Panel', {
 		height : document.documentElement.clientHeight - 4,
 		width : '100%',
 		//title : Cuscardviewtitle,
 		store : Cuscardviewstore,
-		//bbar : Cuscardviewbbar,
+		bbar : Cuscardviewbbar,
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
@@ -490,8 +541,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '分类',
-			dataIndex : 'cuscardtype',
+			header : '场馆',
+			dataIndex : 'cuscardstadium',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -506,8 +557,24 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '密码',
-			dataIndex : 'cuscardpsw',
+			header : '卡种',
+			dataIndex : 'cuscardtypename',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '分类',
+			dataIndex : 'cuscardtypeclass',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '有效期',
+			dataIndex : 'cuscardday',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -530,7 +597,23 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '卡余额',
+			header : '价格',
+			dataIndex : 'cuscardprice',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '抵扣',
+			dataIndex : 'cuscarddikou',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '售价',
 			dataIndex : 'cuscardmoney',
 			sortable : true,  
 			editor: {
@@ -538,15 +621,23 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '卡总次数',
-			dataIndex : 'cuscardnums',
+			header : '停用qi x',
+			dataIndex : 'cuscardstop',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
             }
 		}
 		, {
-			header : '卡余次',
+			header : '停用价格',
+			dataIndex : 'cuscardstopmoney',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '余次',
 			dataIndex : 'cuscardtimes',
 			sortable : true,  
 			editor: {
@@ -554,8 +645,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '卡积分',
-			dataIndex : 'cuscardint',
+			header : '积分',
+			dataIndex : 'cuscardpoint',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -564,6 +655,22 @@ Ext.onReady(function() {
 		, {
 			header : '备注',
 			dataIndex : 'cuscarddetail',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '场次',
+			dataIndex : 'cuscardchangci',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '项目',
+			dataIndex : 'cuscardproject',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -579,7 +686,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '创建时间',
-			dataIndex : 'createtime',
+			dataIndex : 'cuscardinswhen',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -587,7 +694,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '创建人',
-			dataIndex : 'creator',
+			dataIndex : 'cuscardinswho',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -595,7 +702,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '更新时间',
-			dataIndex : 'updtime',
+			dataIndex : 'cuscardupdwhen',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -603,39 +710,23 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '更新人',
-			dataIndex : 'updor',
+			dataIndex : 'cuscardupdwho',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
             }
 		}
 		, {
-			header : '场馆ID',
+			header : 'ID',
+			dataIndex : 'customerid',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '场馆',
 			dataIndex : 'customerstadium',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '编码',
-			dataIndex : 'customercode',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '姓名',
-			dataIndex : 'customername',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '手机',
-			dataIndex : 'customerphone',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -644,6 +735,14 @@ Ext.onReady(function() {
 		, {
 			header : 'OPENID',
 			dataIndex : 'openid',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '姓名',
+			dataIndex : 'customername',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -674,7 +773,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '家庭住址',
+			header : '住址',
 			dataIndex : 'customerhome',
 			sortable : true,  
 			editor: {
@@ -682,8 +781,16 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '单位地址',
+			header : '单位',
 			dataIndex : 'customercompany',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '手机',
+			dataIndex : 'customerphone',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -692,14 +799,6 @@ Ext.onReady(function() {
 		, {
 			header : '生日',
 			dataIndex : 'customerbirthday',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '纪念日',
-			dataIndex : 'customergoodday',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -722,14 +821,6 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '入会时间',
-			dataIndex : 'customertime',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
 			header : '照片',
 			dataIndex : 'customerimage',
 			sortable : true,  
@@ -738,16 +829,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '顾问',
+			header : '会籍管家',
 			dataIndex : 'customeremp',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '等级',
-			dataIndex : 'customerlevel',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -764,6 +847,38 @@ Ext.onReady(function() {
 		, {
 			header : '状态',
 			dataIndex : 'customerstatue',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '创建时间',
+			dataIndex : 'customerinswhen',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '创建人',
+			dataIndex : 'customerinswho',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '更新时间',
+			dataIndex : 'customerupdwhen',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '更新人',
+			dataIndex : 'customerupdwho',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -874,22 +989,29 @@ Ext.onReady(function() {
 				listeners : {
 					specialkey : function(field, e) {
 						if (e.getKey() == Ext.EventObject.ENTER) {
-							if ("" == Ext.getCmp("queryCuscardviewaction").getValue()) {
-								Cuscardviewstore.load({
+							Cuscardviewstore.load({
 									params : {
-										json : queryjson
-									}
-								});
-							} else {
-								Cuscardviewstore.load({
-									params : {
+										start : 0,
+										limit : PAGESIZE,
 										json : queryjson,
 										query : Ext.getCmp("queryCuscardviewaction").getValue()
 									}
-								});
-							}
+							});
 						}
 					}
+				}
+			},{
+				text : "查询",
+				xtype: 'button',
+				handler : function() {
+					Cuscardviewstore.load({
+							params : {
+								start : 0,
+								limit : PAGESIZE,
+								json : queryjson,
+								query : Ext.getCmp("queryCuscardviewaction").getValue()
+							}
+					});
 				}
 			}
 		]

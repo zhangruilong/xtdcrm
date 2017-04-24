@@ -3,143 +3,133 @@ Ext.onReady(function() {
 	var Allcoursetitle = "当前位置:业务管理》" + Allcourseclassify;
 	var Allcourseaction = "AllcourseAction.do";
 	var Allcoursefields = ['allcourseid'
+	        			    ,'allcoursestadium' 
 	        			    ,'allcoursecoach' 
+	        			    ,'allcoursecoachname' 
 	        			    ,'allcoursename' 
-	        			    ,'allcourseproject' 
 	        			    ,'allcoursenum' 
 	        			    ,'allcoursemoney' 
-	        			    ,'createtime' 
-	        			    ,'creator' 
-	        			    ,'updtime' 
-	        			    ,'updor' 
+	        			    ,'allcourseproject' 
+	        			    ,'allcoursedetail' 
+	        			    ,'allcoursetype' 
 	        			      ];// 全部字段
 	var Allcoursekeycolumn = [ 'allcourseid' ];// 主键
-	var Allcoursestore = dataStore(Allcoursefields, basePath + Allcourseaction + "?method=selLimit");// 定义Allcoursestore
+	var Allcoursestore = dataStore(Allcoursefields, basePath + Allcourseaction + "?method=selQuery");// 定义Allcoursestore
 	var AllcoursedataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'AllcoursedataForm',
 		labelAlign : 'right',
 		frame : true,
 		layout : 'column',
 		items : [ {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
 				id : 'Allcourseallcourseid',
-				name : 'allcourseid',
-				maxLength : 100
+				name : 'allcourseid'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '教练ID',
-				id : 'Allcourseallcoursecoach',
-				name : 'allcoursecoach',
-				maxLength : 100
+				fieldLabel : '场馆',
+				id : 'Allcourseallcoursestadium',
+				name : 'allcoursestadium'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '教练',
+				id : 'Allcourseallcoursecoach',
+				name : 'allcoursecoach'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '',
+				id : 'Allcourseallcoursecoachname',
+				name : 'allcoursecoachname'
+			} ]
+		}
+		, {
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '课程名',
 				id : 'Allcourseallcoursename',
-				name : 'allcoursename',
-				maxLength : 100
+				name : 'allcoursename'
 			} ]
 		}
 		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '项目',
-				id : 'Allcourseallcourseproject',
-				name : 'allcourseproject',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '课时',
 				id : 'Allcourseallcoursenum',
-				name : 'allcoursenum',
-				maxLength : 100
+				name : 'allcoursenum'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '费用',
 				id : 'Allcourseallcoursemoney',
-				name : 'allcoursemoney',
-				maxLength : 100
+				name : 'allcoursemoney'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '创建时间',
-				id : 'Allcoursecreatetime',
-				name : 'createtime',
-				maxLength : 100
+				fieldLabel : '项目',
+				id : 'Allcourseallcourseproject',
+				name : 'allcourseproject'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '创建人',
-				id : 'Allcoursecreator',
-				name : 'creator',
-				maxLength : 100
+				fieldLabel : '备注',
+				id : 'Allcourseallcoursedetail',
+				name : 'allcoursedetail'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '更新时间',
-				id : 'Allcourseupdtime',
-				name : 'updtime',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '更新人',
-				id : 'Allcourseupdor',
-				name : 'updor',
-				maxLength : 100
+				fieldLabel : '分类',
+				id : 'Allcourseallcoursetype',
+				name : 'allcoursetype'
 			} ]
 		}
 		]
 	});
 	
-	//var Allcoursebbar = pagesizebar(Allcoursestore);//定义分页
+	var Allcoursebbar = pagesizebar(Allcoursestore);//定义分页
 	var Allcoursegrid =  Ext.create('Ext.grid.Panel', {
 		height : document.documentElement.clientHeight - 4,
 		width : '100%',
 		//title : Allcoursetitle,
 		store : Allcoursestore,
-		//bbar : Allcoursebbar,
+		bbar : Allcoursebbar,
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
@@ -158,8 +148,24 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '教练ID',
+			header : '场馆',
+			dataIndex : 'allcoursestadium',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '教练',
 			dataIndex : 'allcoursecoach',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '',
+			dataIndex : 'allcoursecoachname',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -168,14 +174,6 @@ Ext.onReady(function() {
 		, {
 			header : '课程名',
 			dataIndex : 'allcoursename',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '项目',
-			dataIndex : 'allcourseproject',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -198,32 +196,24 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '创建时间',
-			dataIndex : 'createtime',
+			header : '项目',
+			dataIndex : 'allcourseproject',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
             }
 		}
 		, {
-			header : '创建人',
-			dataIndex : 'creator',
+			header : '备注',
+			dataIndex : 'allcoursedetail',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
             }
 		}
 		, {
-			header : '更新时间',
-			dataIndex : 'updtime',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '更新人',
-			dataIndex : 'updor',
+			header : '分类',
+			dataIndex : 'allcoursetype',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -334,22 +324,29 @@ Ext.onReady(function() {
 				listeners : {
 					specialkey : function(field, e) {
 						if (e.getKey() == Ext.EventObject.ENTER) {
-							if ("" == Ext.getCmp("queryAllcourseaction").getValue()) {
-								Allcoursestore.load({
+							Allcoursestore.load({
 									params : {
-										json : queryjson
-									}
-								});
-							} else {
-								Allcoursestore.load({
-									params : {
+										start : 0,
+										limit : PAGESIZE,
 										json : queryjson,
 										query : Ext.getCmp("queryAllcourseaction").getValue()
 									}
-								});
-							}
+							});
 						}
 					}
+				}
+			},{
+				text : "查询",
+				xtype: 'button',
+				handler : function() {
+					Allcoursestore.load({
+							params : {
+								start : 0,
+								limit : PAGESIZE,
+								json : queryjson,
+								query : Ext.getCmp("queryAllcourseaction").getValue()
+							}
+					});
 				}
 			}
 		]

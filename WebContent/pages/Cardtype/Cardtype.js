@@ -3,143 +3,166 @@ Ext.onReady(function() {
 	var Cardtypetitle = "当前位置:业务管理》" + Cardtypeclassify;
 	var Cardtypeaction = "CardtypeAction.do";
 	var Cardtypefields = ['cardtypeid'
-	        			    ,'cardtypecode' 
+	        			    ,'cardtypestadium' 
 	        			    ,'cardtypename' 
 	        			    ,'cardtypeclass' 
 	        			    ,'cardtypeday' 
 	        			    ,'cardtypeprice' 
-	        			    ,'cardtypemoney' 
 	        			    ,'cardtypetimes' 
+	        			    ,'cardtypestop' 
+	        			    ,'cardtypestopmoney' 
 	        			    ,'cardtypedetail' 
 	        			    ,'cardtypestatue' 
+	        			    ,'cardtypechangci' 
+	        			    ,'cardtypeproject' 
 	        			      ];// 全部字段
 	var Cardtypekeycolumn = [ 'cardtypeid' ];// 主键
-	var Cardtypestore = dataStore(Cardtypefields, basePath + Cardtypeaction + "?method=selLimit");// 定义Cardtypestore
+	var Cardtypestore = dataStore(Cardtypefields, basePath + Cardtypeaction + "?method=selQuery");// 定义Cardtypestore
 	var CardtypedataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'CardtypedataForm',
 		labelAlign : 'right',
 		frame : true,
 		layout : 'column',
 		items : [ {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
 				id : 'Cardtypecardtypeid',
-				name : 'cardtypeid',
-				maxLength : 100
+				name : 'cardtypeid'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '编码',
-				id : 'Cardtypecardtypecode',
-				name : 'cardtypecode',
-				maxLength : 100
+				fieldLabel : '场馆',
+				id : 'Cardtypecardtypestadium',
+				name : 'cardtypestadium'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '名称',
 				id : 'Cardtypecardtypename',
-				name : 'cardtypename',
-				maxLength : 100
+				name : 'cardtypename'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '分类',
 				id : 'Cardtypecardtypeclass',
-				name : 'cardtypeclass',
-				maxLength : 100
+				name : 'cardtypeclass'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '有效期',
 				id : 'Cardtypecardtypeday',
-				name : 'cardtypeday',
-				maxLength : 100
+				name : 'cardtypeday'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '价格',
 				id : 'Cardtypecardtypeprice',
-				name : 'cardtypeprice',
-				maxLength : 100
+				name : 'cardtypeprice'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '卡余额',
-				id : 'Cardtypecardtypemoney',
-				name : 'cardtypemoney',
-				maxLength : 100
-			} ]
-		}
-		, {
-			columnWidth : 1,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '卡余次',
+				fieldLabel : '次数',
 				id : 'Cardtypecardtypetimes',
-				name : 'cardtypetimes',
-				maxLength : 100
+				name : 'cardtypetimes'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '停用期限',
+				id : 'Cardtypecardtypestop',
+				name : 'cardtypestop'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '停用费用',
+				id : 'Cardtypecardtypestopmoney',
+				name : 'cardtypestopmoney'
+			} ]
+		}
+		, {
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '备注',
 				id : 'Cardtypecardtypedetail',
-				name : 'cardtypedetail',
-				maxLength : 100
+				name : 'cardtypedetail'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '状态',
 				id : 'Cardtypecardtypestatue',
-				name : 'cardtypestatue',
-				maxLength : 100
+				name : 'cardtypestatue'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '场次',
+				id : 'Cardtypecardtypechangci',
+				name : 'cardtypechangci'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '项目',
+				id : 'Cardtypecardtypeproject',
+				name : 'cardtypeproject'
 			} ]
 		}
 		]
 	});
 	
-	//var Cardtypebbar = pagesizebar(Cardtypestore);//定义分页
+	var Cardtypebbar = pagesizebar(Cardtypestore);//定义分页
 	var Cardtypegrid =  Ext.create('Ext.grid.Panel', {
 		height : document.documentElement.clientHeight - 4,
 		width : '100%',
 		//title : Cardtypetitle,
 		store : Cardtypestore,
-		//bbar : Cardtypebbar,
+		bbar : Cardtypebbar,
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
@@ -158,8 +181,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '编码',
-			dataIndex : 'cardtypecode',
+			header : '场馆',
+			dataIndex : 'cardtypestadium',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -198,16 +221,24 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '卡余额',
-			dataIndex : 'cardtypemoney',
+			header : '次数',
+			dataIndex : 'cardtypetimes',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
             }
 		}
 		, {
-			header : '卡余次',
-			dataIndex : 'cardtypetimes',
+			header : '停用期限',
+			dataIndex : 'cardtypestop',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '停用费用',
+			dataIndex : 'cardtypestopmoney',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -224,6 +255,22 @@ Ext.onReady(function() {
 		, {
 			header : '状态',
 			dataIndex : 'cardtypestatue',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '场次',
+			dataIndex : 'cardtypechangci',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '项目',
+			dataIndex : 'cardtypeproject',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -334,22 +381,29 @@ Ext.onReady(function() {
 				listeners : {
 					specialkey : function(field, e) {
 						if (e.getKey() == Ext.EventObject.ENTER) {
-							if ("" == Ext.getCmp("queryCardtypeaction").getValue()) {
-								Cardtypestore.load({
+							Cardtypestore.load({
 									params : {
-										json : queryjson
-									}
-								});
-							} else {
-								Cardtypestore.load({
-									params : {
+										start : 0,
+										limit : PAGESIZE,
 										json : queryjson,
 										query : Ext.getCmp("queryCardtypeaction").getValue()
 									}
-								});
-							}
+							});
 						}
 					}
+				}
+			},{
+				text : "查询",
+				xtype: 'button',
+				handler : function() {
+					Cardtypestore.load({
+							params : {
+								start : 0,
+								limit : PAGESIZE,
+								json : queryjson,
+								query : Ext.getCmp("queryCardtypeaction").getValue()
+							}
+					});
 				}
 			}
 		]

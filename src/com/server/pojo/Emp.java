@@ -1,6 +1,7 @@
 package com.server.pojo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.math.BigDecimal;
 /**
  * emp 实体类
  *@author ZhangRuiLong
@@ -58,19 +59,19 @@ public class Emp
    /**
     * 创建时间
     */
-   private String createtime;   
+   private String empinswhen;   
    /**
     * 创建人
     */
-   private String creator;   
+   private String empinswho;   
    /**
     * 更新时间
     */
-   private String updtime;   
+   private String empupdwhen;   
    /**
     * 更新人
     */
-   private String updor;   
+   private String empupdwho;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -278,70 +279,70 @@ public class Emp
 
 	/**
 	 *设置"创建时间"属性
-	 *@param createtime 实体的Createtime属性
+	 *@param empinswhen 实体的Empinswhen属性
 	 */
-	public void setCreatetime(String createtime)
+	public void setEmpinswhen(String empinswhen)
 	{
-		this.createtime = createtime;
+		this.empinswhen = empinswhen;
 	}
 	
 	/**
 	 *获取"创建时间"属性
 	 */
-	public String getCreatetime()
+	public String getEmpinswhen()
 	{
-		return this.createtime;
+		return this.empinswhen;
 	}	   
 
 	/**
 	 *设置"创建人"属性
-	 *@param creator 实体的Creator属性
+	 *@param empinswho 实体的Empinswho属性
 	 */
-	public void setCreator(String creator)
+	public void setEmpinswho(String empinswho)
 	{
-		this.creator = creator;
+		this.empinswho = empinswho;
 	}
 	
 	/**
 	 *获取"创建人"属性
 	 */
-	public String getCreator()
+	public String getEmpinswho()
 	{
-		return this.creator;
+		return this.empinswho;
 	}	   
 
 	/**
 	 *设置"更新时间"属性
-	 *@param updtime 实体的Updtime属性
+	 *@param empupdwhen 实体的Empupdwhen属性
 	 */
-	public void setUpdtime(String updtime)
+	public void setEmpupdwhen(String empupdwhen)
 	{
-		this.updtime = updtime;
+		this.empupdwhen = empupdwhen;
 	}
 	
 	/**
 	 *获取"更新时间"属性
 	 */
-	public String getUpdtime()
+	public String getEmpupdwhen()
 	{
-		return this.updtime;
+		return this.empupdwhen;
 	}	   
 
 	/**
 	 *设置"更新人"属性
-	 *@param updor 实体的Updor属性
+	 *@param empupdwho 实体的Empupdwho属性
 	 */
-	public void setUpdor(String updor)
+	public void setEmpupdwho(String empupdwho)
 	{
-		this.updor = updor;
+		this.empupdwho = empupdwho;
 	}
 	
 	/**
 	 *获取"更新人"属性
 	 */
-	public String getUpdor()
+	public String getEmpupdwho()
 	{
-		return this.updor;
+		return this.empupdwho;
 	}	   
 	public Emp() {
 		super();
@@ -360,10 +361,10 @@ public class Emp
 	 	,String empaddress
 	 	,String empdetail
 	 	,String empstatue
-	 	,String createtime
-	 	,String creator
-	 	,String updtime
-	 	,String updor
+	 	,String empinswhen
+	 	,String empinswho
+	 	,String empupdwhen
+	 	,String empupdwho
 		 ){
 		super();
 		this.empid = empid;
@@ -378,10 +379,10 @@ public class Emp
 	 	this.empaddress = empaddress;
 	 	this.empdetail = empdetail;
 	 	this.empstatue = empstatue;
-	 	this.createtime = createtime;
-	 	this.creator = creator;
-	 	this.updtime = updtime;
-	 	this.updor = updor;
+	 	this.empinswhen = empinswhen;
+	 	this.empinswho = empinswho;
+	 	this.empupdwhen = empupdwhen;
+	 	this.empupdwho = empupdwho;
 	}
 }
 

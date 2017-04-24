@@ -5,7 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+//import org.apache.solr.common.SolrDocumentList;
 import com.server.pojo.Cuscardview;
 import com.server.poco.CuscardviewPoco;
 import com.system.tools.CommonConst;
@@ -14,6 +14,7 @@ import com.system.tools.pojo.Fileinfo;
 import com.system.tools.pojo.Queryinfo;
 import com.system.tools.util.CommonUtil;
 import com.system.tools.util.FileUtil;
+import com.system.tools.util.TypeUtil;
 import com.system.tools.pojo.Pageinfo;
 
 /**
@@ -21,7 +22,6 @@ import com.system.tools.pojo.Pageinfo;
  *@author ZhangRuiLong
  */
 public class CuscardviewAction extends BaseActionDao {
-	public String result = CommonConst.FAILURE;
 	public ArrayList<Cuscardview> cuss = null;
 	public Type TYPE = new TypeToken<ArrayList<Cuscardview>>() {}.getType();
 
@@ -30,11 +30,12 @@ public class CuscardviewAction extends BaseActionDao {
 		String json = request.getParameter("json");
 		System.out.println("json : " + json);
 		json = json.replace("\"\"", "null");
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Cuscardview temp:cuss){
 			if(CommonUtil.isNull(temp.getCuscardid()))
 				temp.setCuscardid(CommonUtil.getNewId());
 			result = insSingle(temp);
+//			if(CommonConst.SUCCESS.equals(result)) updSolr(temp);
 		}
 		responsePW(response, result);
 	}
@@ -42,9 +43,10 @@ public class CuscardviewAction extends BaseActionDao {
 	public void delAll(HttpServletRequest request, HttpServletResponse response){
 		String json = request.getParameter("json");
 		System.out.println("json : " + json);
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Cuscardview temp:cuss){
 			result = delSingle(temp,CuscardviewPoco.KEYCOLUMN);
+//			if(CommonConst.SUCCESS.equals(result)) delSolr(temp,CuscardviewPoco.KEYCOLUMN);
 		}
 		responsePW(response, result);
 	}
@@ -52,9 +54,13 @@ public class CuscardviewAction extends BaseActionDao {
 	public void updAll(HttpServletRequest request, HttpServletResponse response){
 		String json = request.getParameter("json");
 		System.out.println("json : " + json);
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Cuscardview temp:cuss){
-			result = updSingle(temp,CuscardviewPoco.KEYCOLUMN);
+			if(CommonUtil.isNull(temp.getCuscardid())){
+				temp.setCuscardid(CommonUtil.getNewId());
+				result = insSingle(temp);
+			}else result = updSingle(temp,CuscardviewPoco.KEYCOLUMN);
+//			if(CommonConst.SUCCESS.equals(result)) updSolr(temp);
 		}
 		responsePW(response, result);
 	}
@@ -62,7 +68,7 @@ public class CuscardviewAction extends BaseActionDao {
 	public void impAll(HttpServletRequest request, HttpServletResponse response){
 		Fileinfo fileinfo = FileUtil.upload(request,0,null,CuscardviewPoco.NAME,"impAll");
 		String json = FileUtil.impExcel(fileinfo.getPath(),CuscardviewPoco.FIELDNAME); 
-		if(CommonUtil.isNotEmpty(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Cuscardview temp:cuss){
 			if(CommonUtil.isNull(temp.getCuscardid()))
 				temp.setCuscardid(CommonUtil.getNewId());
@@ -97,4 +103,12 @@ public class CuscardviewAction extends BaseActionDao {
 		result = CommonConst.GSON.toJson(pageinfo);
 		responsePW(response, result);
 	}
+	//solr查询
+//	public void selSolr(HttpServletRequest request, HttpServletResponse response){
+//		Queryinfo queryinfo = getSolrquery(request, Cuscardview.class, CuscardviewPoco.QUERYFIELDNAME, CuscardviewPoco.ORDER, TYPE);
+//		SolrDocumentList solrDocumentList = selSolr(queryinfo);
+//		Pageinfo pageinfo = new Pageinfo(TypeUtil.stringToInt(""+solrDocumentList.getNumFound()), solrDocumentList);
+//		result = CommonConst.GSON.toJson(pageinfo);
+//       responsePW(response, result);
+//    } 
 }

@@ -27,7 +27,7 @@ public class StadiumPoco
 	 	"名称",
 	 	"地址",
 	 	"备注",
-	 	"状态",
+	 	"照片",
 	 	"X坐标",
 	 	"Y坐标",
 	};
@@ -40,7 +40,7 @@ public class StadiumPoco
 	 	"stadiumname",
 	 	"stadiumaddress",
 	 	"stadiumdetail",
-	 	"stadiumstatue",
+	 	"stadiumimage",
 	 	"stadiumx",
 	 	"stadiumy",
    };
@@ -57,7 +57,7 @@ public class StadiumPoco
 	 	"stadiumname",
 	 	"stadiumaddress",
 	 	"stadiumdetail",
-	 	"stadiumstatue",
+	 	"stadiumimage",
 	 	"stadiumx",
 	 	"stadiumy",
    };

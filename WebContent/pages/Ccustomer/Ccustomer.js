@@ -5,81 +5,76 @@ Ext.onReady(function() {
 	var Ccustomerfields = ['ccustomerid'
 	        			    ,'ccustomercoach' 
 	        			    ,'ccustomercustomer' 
-	        			    ,'createtime' 
-	        			    ,'creator' 
+	        			    ,'ccustomerinswhen' 
+	        			    ,'ccustomerinswho' 
 	        			      ];// 全部字段
 	var Ccustomerkeycolumn = [ 'ccustomerid' ];// 主键
-	var Ccustomerstore = dataStore(Ccustomerfields, basePath + Ccustomeraction + "?method=selLimit");// 定义Ccustomerstore
+	var Ccustomerstore = dataStore(Ccustomerfields, basePath + Ccustomeraction + "?method=selQuery");// 定义Ccustomerstore
 	var CcustomerdataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'CcustomerdataForm',
 		labelAlign : 'right',
 		frame : true,
 		layout : 'column',
 		items : [ {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
 				id : 'Ccustomerccustomerid',
-				name : 'ccustomerid',
-				maxLength : 100
+				name : 'ccustomerid'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '教练ID',
 				id : 'Ccustomerccustomercoach',
-				name : 'ccustomercoach',
-				maxLength : 100
+				name : 'ccustomercoach'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '会员ID',
 				id : 'Ccustomerccustomercustomer',
-				name : 'ccustomercustomer',
-				maxLength : 100
+				name : 'ccustomercustomer'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建时间',
-				id : 'Ccustomercreatetime',
-				name : 'createtime',
-				maxLength : 100
+				id : 'Ccustomerccustomerinswhen',
+				name : 'ccustomerinswhen'
 			} ]
 		}
 		, {
-			columnWidth : 1,
+			columnWidth : .5,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建人',
-				id : 'Ccustomercreator',
-				name : 'creator',
-				maxLength : 100
+				id : 'Ccustomerccustomerinswho',
+				name : 'ccustomerinswho'
 			} ]
 		}
 		]
 	});
 	
-	//var Ccustomerbbar = pagesizebar(Ccustomerstore);//定义分页
+	var Ccustomerbbar = pagesizebar(Ccustomerstore);//定义分页
 	var Ccustomergrid =  Ext.create('Ext.grid.Panel', {
 		height : document.documentElement.clientHeight - 4,
 		width : '100%',
 		//title : Ccustomertitle,
 		store : Ccustomerstore,
-		//bbar : Ccustomerbbar,
+		bbar : Ccustomerbbar,
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
@@ -115,7 +110,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '创建时间',
-			dataIndex : 'createtime',
+			dataIndex : 'ccustomerinswhen',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -123,7 +118,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '创建人',
-			dataIndex : 'creator',
+			dataIndex : 'ccustomerinswho',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -234,22 +229,29 @@ Ext.onReady(function() {
 				listeners : {
 					specialkey : function(field, e) {
 						if (e.getKey() == Ext.EventObject.ENTER) {
-							if ("" == Ext.getCmp("queryCcustomeraction").getValue()) {
-								Ccustomerstore.load({
+							Ccustomerstore.load({
 									params : {
-										json : queryjson
-									}
-								});
-							} else {
-								Ccustomerstore.load({
-									params : {
+										start : 0,
+										limit : PAGESIZE,
 										json : queryjson,
 										query : Ext.getCmp("queryCcustomeraction").getValue()
 									}
-								});
-							}
+							});
 						}
 					}
+				}
+			},{
+				text : "查询",
+				xtype: 'button',
+				handler : function() {
+					Ccustomerstore.load({
+							params : {
+								start : 0,
+								limit : PAGESIZE,
+								json : queryjson,
+								query : Ext.getCmp("queryCcustomeraction").getValue()
+							}
+					});
 				}
 			}
 		]

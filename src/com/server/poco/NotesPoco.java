@@ -23,13 +23,15 @@ public class NotesPoco
     */
    public static String[] CHINESENAME = {
    		"ID",
-	 	"会员ID",
-	 	"会员卡ID",
-	 	"场地ID",
-	 	"课程ID",
-	 	"项目",
-	 	"入场时间",
-	 	"离场时间",
+	 	"会员",
+	 	"会员卡",
+	 	"场馆",
+	 	"教练",
+	 	"课程",
+	 	"事件",
+	 	"详细",
+	 	"分类",
+	 	"创建时间",
 	 	"创建人",
 	};
 	/**
@@ -39,12 +41,14 @@ public class NotesPoco
    		"notesid",
 	 	"notescustomer",
 	 	"notescard",
-	 	"notesplace",
+	 	"notesstadium",
+	 	"notescoach",
 	 	"notescourse",
-	 	"notesproject",
-	 	"notesbegin",
-	 	"notesend",
-	 	"creator",
+	 	"notesname",
+	 	"notesdetail",
+	 	"notestype",
+	 	"notsinswhen",
+	 	"notesinswho",
    };
    /**
     * 实体排序
@@ -57,12 +61,14 @@ public class NotesPoco
    		"notesid",
 	 	"notescustomer",
 	 	"notescard",
-	 	"notesplace",
+	 	"notesstadium",
+	 	"notescoach",
 	 	"notescourse",
-	 	"notesproject",
-	 	"notesbegin",
-	 	"notesend",
-	 	"creator",
+	 	"notesname",
+	 	"notesdetail",
+	 	"notestype",
+	 	"notsinswhen",
+	 	"notesinswho",
    };
 }
 
