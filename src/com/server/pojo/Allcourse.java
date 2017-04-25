@@ -21,7 +21,7 @@ public class Allcourse
     */
    private String allcoursecoach;   
    /**
-    * 
+    * 教练
     */
    private String allcoursecoachname;   
    /**
@@ -101,7 +101,7 @@ public class Allcourse
 	}	   
 
 	/**
-	 *设置""属性
+	 *设置"教练"属性
 	 *@param allcoursecoachname 实体的Allcoursecoachname属性
 	 */
 	public void setAllcoursecoachname(String allcoursecoachname)
@@ -110,7 +110,7 @@ public class Allcourse
 	}
 	
 	/**
-	 *获取""属性
+	 *获取"教练"属性
 	 */
 	public String getAllcoursecoachname()
 	{

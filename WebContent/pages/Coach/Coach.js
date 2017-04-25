@@ -37,7 +37,7 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '场馆ID',
+				fieldLabel : '场馆',
 				id : 'Coachcoachstadium',
 				name : 'coachstadium'
 			} ]
@@ -170,7 +170,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '场馆ID',
+			header : '场馆',
 			dataIndex : 'coachstadium',
 			sortable : true,  
 			editor: {

@@ -55,7 +55,7 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '',
+				fieldLabel : '教练',
 				id : 'Allcourseallcoursecoachname',
 				name : 'allcoursecoachname'
 			} ]
@@ -164,7 +164,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '',
+			header : '教练',
 			dataIndex : 'allcoursecoachname',
 			sortable : true,  
 			editor: {

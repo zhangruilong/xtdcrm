@@ -13,7 +13,7 @@ public class Coach
     */
    private String coachid; 
    /**
-    * 场馆ID
+    * 场馆
     */
    private String coachstadium;   
    /**
@@ -75,7 +75,7 @@ public class Coach
 	}
 
 	/**
-	 *设置"场馆ID"属性
+	 *设置"场馆"属性
 	 *@param coachstadium 实体的Coachstadium属性
 	 */
 	public void setCoachstadium(String coachstadium)
@@ -84,7 +84,7 @@ public class Coach
 	}
 	
 	/**
-	 *获取"场馆ID"属性
+	 *获取"场馆"属性
 	 */
 	public String getCoachstadium()
 	{

@@ -68,7 +68,7 @@ public class AppiontviewPoco
 	 	"价格",
 	 	"抵扣",
 	 	"售价",
-	 	"停用qi x",
+	 	"停用期限",
 	 	"停用价格",
 	 	"余次",
 	 	"积分",

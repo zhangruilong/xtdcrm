@@ -57,7 +57,7 @@ public class Cuscard
     */
    private String cuscardmoney;   
    /**
-    * 停用qi x
+    * 停用期限
     */
    private String cuscardstop;   
    /**
@@ -310,7 +310,7 @@ public class Cuscard
 	}	   
 
 	/**
-	 *设置"停用qi x"属性
+	 *设置"停用期限"属性
 	 *@param cuscardstop 实体的Cuscardstop属性
 	 */
 	public void setCuscardstop(String cuscardstop)
@@ -319,7 +319,7 @@ public class Cuscard
 	}
 	
 	/**
-	 *获取"停用qi x"属性
+	 *获取"停用期限"属性
 	 */
 	public String getCuscardstop()
 	{

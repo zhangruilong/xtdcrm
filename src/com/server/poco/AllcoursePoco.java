@@ -25,7 +25,7 @@ public class AllcoursePoco
    		"ID",
 	 	"场馆",
 	 	"教练",
-	 	"",
+	 	"教练",
 	 	"课程名",
 	 	"课时",
 	 	"费用",

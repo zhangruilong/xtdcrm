@@ -31,12 +31,22 @@
 		<link>
 			<name>zrlextsrc</name>
 			<type>2</type>
-			<location>/Users/zhangruilong/Documents/develop/j2eeworkspace/zrlext/src</location>
+			<locationURI>zrlextsrc</locationURI>
 		</link>
 		<link>
 			<name>WebContent/zrlextpages</name>
 			<type>2</type>
-			<location>/Users/zhangruilong/Documents/develop/j2eeworkspace/zrlext/WebContent/zrlextpages</location>
+			<locationURI>zrlextpages</locationURI>
 		</link>
 	</linkedResources>
+	<variableList>
+		<variable>
+			<name>zrlextpages</name>
+			<value>file:/Users/zhangruilong/Documents/j2eeworkspace/zrlext/WebContent/zrlextpages</value>
+		</variable>
+		<variable>
+			<name>zrlextsrc</name>
+			<value>file:/Users/zhangruilong/Documents/j2eeworkspace/zrlext/src</value>
+		</variable>
+	</variableList>
 </projectDescription>

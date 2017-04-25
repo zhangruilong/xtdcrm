@@ -23,7 +23,7 @@ public class CoachPoco
     */
    public static String[] CHINESENAME = {
    		"ID",
-	 	"场馆ID",
+	 	"场馆",
 	 	"编码",
 	 	"姓名",
 	 	"手机",

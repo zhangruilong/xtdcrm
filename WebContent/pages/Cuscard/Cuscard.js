@@ -159,7 +159,7 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '停用qi x',
+				fieldLabel : '停用期限',
 				id : 'Cuscardcuscardstop',
 				name : 'cuscardstop'
 			} ]
@@ -390,7 +390,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '停用qi x',
+			header : '停用期限',
 			dataIndex : 'cuscardstop',
 			sortable : true,  
 			editor: {
