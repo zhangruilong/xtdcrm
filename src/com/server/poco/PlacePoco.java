@@ -9,19 +9,19 @@ public class PlacePoco
    /**
     * 实体中文名
     */
-   public static String NAME = "place";
+   public static final String NAME = "place";
    /**
     * 实体表名
     */
-   public static String TABLE = "Place";
+   public static final String TABLE = "Place";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"placeid"};
+   public static final String[] KEYCOLUMN = {"placeid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"场馆",
 	 	"位置",

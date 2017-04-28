@@ -9,19 +9,19 @@ public class TuifeiPoco
    /**
     * 实体中文名
     */
-   public static String NAME = "tuifei";
+   public static final String NAME = "tuifei";
    /**
     * 实体表名
     */
-   public static String TABLE = "Tuifei";
+   public static final String TABLE = "Tuifei";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"tuifeiid"};
+   public static final String[] KEYCOLUMN = {"tuifeiid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"场馆",
 	 	"名称",

@@ -9,19 +9,19 @@ public class NotesPoco
    /**
     * 实体中文名
     */
-   public static String NAME = "notes";
+   public static final String NAME = "notes";
    /**
     * 实体表名
     */
-   public static String TABLE = "Notes";
+   public static final String TABLE = "Notes";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"notesid"};
+   public static final String[] KEYCOLUMN = {"notesid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"会员",
 	 	"会员卡",

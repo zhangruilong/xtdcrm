@@ -9,19 +9,19 @@ public class CoachPoco
    /**
     * 实体中文名
     */
-   public static String NAME = "coach";
+   public static final String NAME = "coach";
    /**
     * 实体表名
     */
-   public static String TABLE = "Coach";
+   public static final String TABLE = "Coach";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"coachid"};
+   public static final String[] KEYCOLUMN = {"coachid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"场馆",
 	 	"编码",

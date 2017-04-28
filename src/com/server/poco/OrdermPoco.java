@@ -9,19 +9,19 @@ public class OrdermPoco
    /**
     * 实体中文名
     */
-   public static String NAME = "orderm";
+   public static final String NAME = "orderm";
    /**
     * 实体表名
     */
-   public static String TABLE = "Orderm";
+   public static final String TABLE = "Orderm";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"orderid"};
+   public static final String[] KEYCOLUMN = {"orderid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"场馆",
 	 	"商品编码",

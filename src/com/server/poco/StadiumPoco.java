@@ -9,19 +9,19 @@ public class StadiumPoco
    /**
     * 实体中文名
     */
-   public static String NAME = "stadium";
+   public static final String NAME = "stadium";
    /**
     * 实体表名
     */
-   public static String TABLE = "Stadium";
+   public static final String TABLE = "Stadium";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"stadiumid"};
+   public static final String[] KEYCOLUMN = {"stadiumid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"编码",
 	 	"名称",

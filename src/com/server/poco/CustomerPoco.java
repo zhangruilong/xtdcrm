@@ -9,19 +9,19 @@ public class CustomerPoco
    /**
     * 实体中文名
     */
-   public static String NAME = "customer";
+   public static final String NAME = "customer";
    /**
     * 实体表名
     */
-   public static String TABLE = "Customer";
+   public static final String TABLE = "Customer";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"customerid"};
+   public static final String[] KEYCOLUMN = {"customerid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"场馆",
 	 	"OPENID",

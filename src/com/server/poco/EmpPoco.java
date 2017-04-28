@@ -9,19 +9,19 @@ public class EmpPoco
    /**
     * 实体中文名
     */
-   public static String NAME = "emp";
+   public static final String NAME = "emp";
    /**
     * 实体表名
     */
-   public static String TABLE = "Emp";
+   public static final String TABLE = "Emp";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"empid"};
+   public static final String[] KEYCOLUMN = {"empid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"场馆ID",
 	 	"编码",

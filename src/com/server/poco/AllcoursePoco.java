@@ -9,19 +9,19 @@ public class AllcoursePoco
    /**
     * 实体中文名
     */
-   public static String NAME = "allcourse";
+   public static final String NAME = "allcourse";
    /**
     * 实体表名
     */
-   public static String TABLE = "Allcourse";
+   public static final String TABLE = "Allcourse";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"allcourseid"};
+   public static final String[] KEYCOLUMN = {"allcourseid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"场馆",
 	 	"教练",

@@ -9,19 +9,19 @@ public class PlacetimePoco
    /**
     * 实体中文名
     */
-   public static String NAME = "placetime";
+   public static final String NAME = "placetime";
    /**
     * 实体表名
     */
-   public static String TABLE = "Placetime";
+   public static final String TABLE = "Placetime";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"placetimeid"};
+   public static final String[] KEYCOLUMN = {"placetimeid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"场馆",
 	 	"项目",

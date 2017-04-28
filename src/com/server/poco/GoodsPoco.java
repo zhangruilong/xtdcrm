@@ -9,19 +9,19 @@ public class GoodsPoco
    /**
     * 实体中文名
     */
-   public static String NAME = "goods";
+   public static final String NAME = "goods";
    /**
     * 实体表名
     */
-   public static String TABLE = "Goods";
+   public static final String TABLE = "Goods";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"goodsid"};
+   public static final String[] KEYCOLUMN = {"goodsid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"场馆",
 	 	"编码",

@@ -9,19 +9,19 @@ public class MycoursePoco
    /**
     * 实体中文名
     */
-   public static String NAME = "mycourse";
+   public static final String NAME = "mycourse";
    /**
     * 实体表名
     */
-   public static String TABLE = "Mycourse";
+   public static final String TABLE = "Mycourse";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"mycourseid"};
+   public static final String[] KEYCOLUMN = {"mycourseid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"会员",
 	 	"教练",

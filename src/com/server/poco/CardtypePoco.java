@@ -9,19 +9,19 @@ public class CardtypePoco
    /**
     * 实体中文名
     */
-   public static String NAME = "cardtype";
+   public static final String NAME = "cardtype";
    /**
     * 实体表名
     */
-   public static String TABLE = "Cardtype";
+   public static final String TABLE = "Cardtype";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"cardtypeid"};
+   public static final String[] KEYCOLUMN = {"cardtypeid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"场馆",
 	 	"名称",

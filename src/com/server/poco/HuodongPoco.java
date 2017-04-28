@@ -9,19 +9,19 @@ public class HuodongPoco
    /**
     * 实体中文名
     */
-   public static String NAME = "huodong";
+   public static final String NAME = "huodong";
    /**
     * 实体表名
     */
-   public static String TABLE = "Huodong";
+   public static final String TABLE = "Huodong";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"huodongid"};
+   public static final String[] KEYCOLUMN = {"huodongid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"",
 	 	"场馆",
 	 	"优惠码",

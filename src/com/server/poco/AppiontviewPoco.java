@@ -9,19 +9,19 @@ public class AppiontviewPoco
    /**
     * 实体中文名
     */
-   public static String NAME = "appiontview";
+   public static final String NAME = "appiontview";
    /**
     * 实体表名
     */
-   public static String TABLE = "Appiontview";
+   public static final String TABLE = "Appiontview";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"appointid"};
+   public static final String[] KEYCOLUMN = {"appointid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"会员",
 	 	"会员卡",

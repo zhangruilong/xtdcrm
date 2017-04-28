@@ -9,19 +9,19 @@ public class CuscardviewPoco
    /**
     * 实体中文名
     */
-   public static String NAME = "cuscardview";
+   public static final String NAME = "cuscardview";
    /**
     * 实体表名
     */
-   public static String TABLE = "Cuscardview";
+   public static final String TABLE = "Cuscardview";
    /**
     * 实体主键
     */
-   public static String[] KEYCOLUMN = {"cuscardid"};
+   public static final String[] KEYCOLUMN = {"cuscardid"};
    /**
     * 实体中文字段
     */
-   public static String[] CHINESENAME = {
+   public static final String[] CHINESENAME = {
    		"ID",
 	 	"会员ID",
 	 	"场馆",
