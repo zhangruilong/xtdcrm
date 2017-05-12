@@ -86,6 +86,7 @@ public class AppiontviewPoco
 	 	"教练",
 	 	"类型",
 	 	"更新时间",
+	 	"编码",
 	};
 	/**
 	 * 实体英文字段
@@ -155,6 +156,7 @@ public class AppiontviewPoco
 	 	"appointcoachname",
 	 	"appointtype",
 	 	"appointupdwhen",
+	 	"customercode",
    };
    /**
     * 实体排序
@@ -228,6 +230,7 @@ public class AppiontviewPoco
 	 	"appointcoachname",
 	 	"appointtype",
 	 	"appointupdwhen",
+	 	"customercode",
    };
 }
 

@@ -51,7 +51,7 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [{
 				xtype : 'textfield',
-				fieldLabel : '卡号',
+				fieldLabel : '起始卡号',
 				id : 'cuscardno',
 				name : 'cuscardno',
 				allowBlank : false,
@@ -80,6 +80,7 @@ Ext.onReady(function() {
 				id : 'cuscardtypeclass',
 				name : 'cuscardtypeclass',
 				maxLength : 100,
+				hidden : true,
 				readOnly:true,
 				anchor : '100%'
 			},{
@@ -88,6 +89,7 @@ Ext.onReady(function() {
 				id : 'cuscardprice',
 				name : 'cuscardprice',
 				allowBlank : false,
+				hidden : true,
 				readOnly:true,
 				maxLength : 100,
 				anchor : '100%'
@@ -98,6 +100,7 @@ Ext.onReady(function() {
 				id : 'cuscarddikou',
 				name : 'cuscarddikou',
 				allowBlank : false,
+				hidden : true,
 				value : 0,
 				maxLength : 100,
 				anchor : '100%',
@@ -112,6 +115,7 @@ Ext.onReady(function() {
 				fieldLabel : '售价',
 				id : 'cuscardmoney',
 				name : 'cuscardmoney',
+				hidden : true,
 				allowBlank : false,
 				maxLength : 100,
 				anchor : '100%'
@@ -162,6 +166,7 @@ Ext.onReady(function() {
 				readOnly:true,
 				name : 'cuscardchangci',
 				allowBlank : false,
+				hidden : true,
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -171,6 +176,7 @@ Ext.onReady(function() {
 				name : 'cuscardint',
 				allowBlank : false,
 				value : 0,
+				hidden : true,
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -179,6 +185,7 @@ Ext.onReady(function() {
 				id : 'cuscardstadium',
 				name : 'cuscardstadium',
 				maxLength : 100,
+				hidden : true,
 				readOnly:true,
 				anchor : '100%'
 			},{
@@ -186,6 +193,7 @@ Ext.onReady(function() {
 				fieldLabel : '停用期限',
 				id : 'cuscardstop',
 				name : 'cuscardstop',
+				hidden : true,
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -193,6 +201,7 @@ Ext.onReady(function() {
 				fieldLabel : '停用费用',
 				id : 'cuscardstopmoney',
 				name : 'cuscardstopmoney',
+				hidden : true,
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -200,6 +209,7 @@ Ext.onReady(function() {
 				fieldLabel : '项目',
 				id : 'cuscardproject',
 				name : 'cuscardproject',
+				hidden : true,
 				maxLength : 100,
 				anchor : '100%'
 			} ]
@@ -207,12 +217,22 @@ Ext.onReady(function() {
 		, {
 			columnWidth : .5,
 			layout : 'form',
-			items : [ {
+			items : [{
+				xtype : 'numberfield',
+				fieldLabel : '发卡数量',
+				id : 'cuscardaddnum',
+				name : 'cuscardaddnum',
+				allowBlank : false,
+				maxLength : 100,
+				anchor : '100%'
+			}, {
 				xtype : 'textfield',
 				fieldLabel : '会员姓名',
 				id : 'customername',
 				name : 'customername',
 				allowBlank : false,
+				hidden : true,
+				value : '批量发卡',
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -227,6 +247,7 @@ Ext.onReady(function() {
 				valueField : 'name',
 				hiddenName : 'customersex',
 				triggerAction : 'all',
+				hidden : true,
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -234,6 +255,7 @@ Ext.onReady(function() {
 				fieldLabel : '年龄',
 				id : 'customerage',
 				name : 'customerage',
+				hidden : true,
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -242,7 +264,7 @@ Ext.onReady(function() {
 				id : 'customerphone',
 				name : 'customerphone',
 				maxLength : 100,
-				allowBlank : false,
+				hidden : true,
 				anchor : '100%'
 			},{
 				xtype : 'textfield',
@@ -256,6 +278,7 @@ Ext.onReady(function() {
 				fieldLabel : '邮箱',
 				id : 'customeremail',
 				name : 'customeremail',
+				hidden : true,
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -263,12 +286,14 @@ Ext.onReady(function() {
 				fieldLabel : '照片',
 				id : 'customerimage',
 				name : 'customerimage',
+				hidden : true,
 				anchor : '95%'
 			},{
 				xtype : 'textfield',
 				fieldLabel : '证件号码',
 				id : 'customercdcard',
 				name : 'customercdcard',
+				hidden : true,
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -277,6 +302,7 @@ Ext.onReady(function() {
 				id : 'customerbirthday',
 				name : 'customerbirthday',
 				maxLength : 100,
+				hidden : true,
 				format : 'Y-m-d',
 				anchor : '100%'
 			},{
@@ -284,6 +310,7 @@ Ext.onReady(function() {
 				fieldLabel : '入会途径',
 				id : 'customerhow',
 				name : 'customerhow',
+				hidden : true,
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -291,6 +318,7 @@ Ext.onReady(function() {
 				fieldLabel : '会籍管家',
 				id : 'customeremp',
 				name : 'customeremp',
+				hidden : true,
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -298,6 +326,7 @@ Ext.onReady(function() {
 				fieldLabel : '住址',
 				id : 'customerhome',
 				name : 'customerhome',
+				hidden : true,
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -358,50 +387,19 @@ Ext.onReady(function() {
 			text : "确认发卡",
 			iconCls : 'add',
 			handler : function() {
-				var num = GetRandomNum(1000000000,4294967294);//闸机的客户号4字节无符号整形
-				Ext.getCmp("customercode").setValue(num);
 				if (CustomercuscardviewdataForm.form.isValid()) {
 					var json = "[" + Ext.encode(CustomercuscardviewdataForm.form.getValues(false)) + "]";
 					CustomercuscardviewdataForm.form.submit({
-						url : basePath + "CuscardService.do?method=insCuscardinsCustomer&json="+json,
+						url : basePath + "CuscardService.do?method=insAllCuscard&cuscardaddnum="+Ext.getCmp("cuscardaddnum").getValue()+"&json="+json,
 						waitTitle : '提示',
 						waitMsg : '正在处理数据,请稍候...',
 						method : 'GET',
 						params : {//改
+							cuscardaddnum : Ext.getCmp("cuscardaddnum").getValue(),
 							json : json
 						},
 						success : function(form, action) {
-							if(action.result.code==200){
-								Ext.Msg.confirm('请确认是否继续发卡', '<b>提示:</b>'+action.result.msg, function(btn, text) {
-									if (btn == 'yes') {
-										CustomercuscardviewdataForm.form.submit({
-											url : basePath + "CuscardService.do?method=insAll",
-											waitTitle : '提示',
-											waitMsg : '正在处理数据,请稍候...',
-											method : 'GET',
-											params : {//改
-												json : json
-											},
-											success : function(form, action) {
-												Ext.Msg.alert('提示', action.result.msg,function(){
-												});
-											},
-											failure : function(form, action) {
-												Ext.Msg.alert('提示', '网络出现问题，请稍后再试');
-											},
-											waitMsg : '正在处理数据,请稍候...'
-										});
-									}
-								})
-							}else
 							Ext.Msg.alert('提示', action.result.msg,function(){
-//								var zhajicard;
-//								zhajicard.UID = num;
-//								zhajicard.CARD = Ext.getCmp("cuscardno").getValue();
-//								zhajicard.CARD_XTD = Ext.getCmp("cuscardno").getValue();
-//								zhajicard.EXPIRE_FROM = Ext.getCmp("cuscardbegin").getValue();
-//								zhajicard.EXPIRE_TO = Ext.getCmp("cuscardend").getValue();
-//								zhajiall(zhajicard);
 							});
 						},
 						failure : function(form, action) {

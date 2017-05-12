@@ -5,6 +5,7 @@ Ext.onReady(function() {
 	var Customerfields = ['customerid'
 	        			    ,'customerstadium' 
 	        			    ,'openid' 
+	        			    ,'customercode' 
 	        			    ,'customername' 
 	        			    ,'customersex' 
 	        			    ,'customerage' 
@@ -59,6 +60,16 @@ Ext.onReady(function() {
 				fieldLabel : 'OPENID',
 				id : 'Customeropenid',
 				name : 'openid'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '编码',
+				id : 'Customercustomercode',
+				name : 'customercode'
 			} ]
 		}
 		, {
@@ -279,6 +290,14 @@ Ext.onReady(function() {
 		, {
 			header : 'OPENID',
 			dataIndex : 'openid',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '编码',
+			dataIndex : 'customercode',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'

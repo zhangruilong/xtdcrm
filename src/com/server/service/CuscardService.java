@@ -71,4 +71,33 @@ public class CuscardService extends CuscardAction {
 		result = doAll(sqls);
 		responsePW(response, result);
 	}
+	// 批量发卡
+	public void insAllCuscard(HttpServletRequest request, HttpServletResponse response){
+		String json = request.getParameter("json");
+		System.out.println("json : " + json);
+		json = json.replace("\"\"", "null");
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		ArrayList<Customer> sCustomer = CommonConst.GSON.fromJson(json, new TypeToken<ArrayList<Customer>>() {}.getType());
+		Cuscard temp = cuss.get(0);
+		String cuscardaddnum = request.getParameter("cuscardaddnum");
+		int cuscardnobegin = TypeUtil.stringToInt(temp.getCuscardno());
+		for(int i=0;i<TypeUtil.stringToInt(cuscardaddnum);i++){
+			ArrayList<String> sqls = new ArrayList<String>();
+			String newid = CommonUtil.getNewId();
+			temp.setCuscardid(newid);
+			temp.setCuscardcustomer(newid);
+			//会员卡号向后顺延
+			String cuscardno = TypeUtil.intToString(cuscardnobegin+i);
+			temp.setCuscardno(cuscardno);
+			sqls.add(getInsSingleSql(temp));
+			//新增一个批量发卡的会员
+			Customer mCustomer = sCustomer.get(0);
+			mCustomer.setCustomerid(newid);
+			mCustomer.setCustomerphone(cuscardno);
+			mCustomer.setCustomercode(cuscardno);
+			sqls.add(getInsSingleSql(mCustomer));
+			result = doAll(sqls);
+		}
+		responsePW(response, result);
+	}
 }

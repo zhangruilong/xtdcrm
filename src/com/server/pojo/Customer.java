@@ -21,6 +21,10 @@ public class Customer
     */
    private String openid;   
    /**
+    * 编码
+    */
+   private String customercode;   
+   /**
     * 姓名
     */
    private String customername;   
@@ -142,6 +146,23 @@ public class Customer
 	public String getOpenid()
 	{
 		return this.openid;
+	}	   
+
+	/**
+	 *设置"编码"属性
+	 *@param customercode 实体的Customercode属性
+	 */
+	public void setCustomercode(String customercode)
+	{
+		this.customercode = customercode;
+	}
+	
+	/**
+	 *获取"编码"属性
+	 */
+	public String getCustomercode()
+	{
+		return this.customercode;
 	}	   
 
 	/**
@@ -457,6 +478,7 @@ public class Customer
 		String customerid
 	 	,String customerstadium
 	 	,String openid
+	 	,String customercode
 	 	,String customername
 	 	,String customersex
 	 	,String customerage
@@ -480,6 +502,7 @@ public class Customer
 		this.customerid = customerid;
 	 	this.customerstadium = customerstadium;
 	 	this.openid = openid;
+	 	this.customercode = customercode;
 	 	this.customername = customername;
 	 	this.customersex = customersex;
 	 	this.customerage = customerage;

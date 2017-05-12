@@ -12,6 +12,8 @@ Ext.onReady(function() {
 	        			    ,'allcourseproject' 
 	        			    ,'allcoursedetail' 
 	        			    ,'allcoursetype' 
+	        			    ,'allcoursebegin' 
+	        			    ,'allcourseend' 
 	        			      ];// 全部字段
 	var Allcoursekeycolumn = [ 'allcourseid' ];// 主键
 	var Allcoursestore = dataStore(Allcoursefields, basePath + Allcourseaction + "?method=selQuery");// 定义Allcoursestore
@@ -120,6 +122,26 @@ Ext.onReady(function() {
 				name : 'allcoursetype'
 			} ]
 		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '开始',
+				id : 'Allcourseallcoursebegin',
+				name : 'allcoursebegin'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '结束',
+				id : 'Allcourseallcourseend',
+				name : 'allcourseend'
+			} ]
+		}
 		]
 	});
 	
@@ -214,6 +236,22 @@ Ext.onReady(function() {
 		, {
 			header : '分类',
 			dataIndex : 'allcoursetype',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '开始',
+			dataIndex : 'allcoursebegin',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '结束',
+			dataIndex : 'allcourseend',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'

@@ -7,12 +7,14 @@ Ext.onReady(function() {
 	        			    ,'coachcode' 
 	        			    ,'coachname' 
 	        			    ,'coachphone' 
+	        			    ,'coachprice' 
 	        			    ,'coachaddress' 
 	        			    ,'coachsex' 
 	        			    ,'coachage' 
 	        			    ,'coachimage' 
 	        			    ,'coachdetail' 
 	        			    ,'coachstatue' 
+	        			    ,'coachinswho' 
 	        			    ,'coachinswhen' 
 	        			      ];// 全部字段
 	var Coachkeycolumn = [ 'coachid' ];// 主键
@@ -77,7 +79,17 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '地址',
+				fieldLabel : '价位',
+				id : 'Coachcoachprice',
+				name : 'coachprice'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '其他信息',
 				id : 'Coachcoachaddress',
 				name : 'coachaddress'
 			} ]
@@ -138,6 +150,16 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建人',
+				id : 'Coachcoachinswho',
+				name : 'coachinswho'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '创建时间',
 				id : 'Coachcoachinswhen',
 				name : 'coachinswhen'
 			} ]
@@ -202,7 +224,15 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '地址',
+			header : '价位',
+			dataIndex : 'coachprice',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '其他信息',
 			dataIndex : 'coachaddress',
 			sortable : true,  
 			editor: {
@@ -251,6 +281,14 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '创建人',
+			dataIndex : 'coachinswho',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '创建时间',
 			dataIndex : 'coachinswhen',
 			sortable : true,  
 			editor: {

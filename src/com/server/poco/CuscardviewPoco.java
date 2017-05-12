@@ -67,6 +67,7 @@ public class CuscardviewPoco
 	 	"创建人",
 	 	"更新时间",
 	 	"更新人",
+	 	"编码",
 	};
 	/**
 	 * 实体英文字段
@@ -117,6 +118,7 @@ public class CuscardviewPoco
 	 	"customerinswho",
 	 	"customerupdwhen",
 	 	"customerupdwho",
+	 	"customercode",
    };
    /**
     * 实体排序
@@ -171,6 +173,7 @@ public class CuscardviewPoco
 	 	"customerinswho",
 	 	"customerupdwhen",
 	 	"customerupdwho",
+	 	"customercode",
    };
 }
 

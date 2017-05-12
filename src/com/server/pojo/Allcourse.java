@@ -48,6 +48,14 @@ public class Allcourse
     * 分类
     */
    private String allcoursetype;   
+   /**
+    * 开始
+    */
+   private String allcoursebegin;   
+   /**
+    * 结束
+    */
+   private String allcourseend;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -218,6 +226,40 @@ public class Allcourse
 	{
 		return this.allcoursetype;
 	}	   
+
+	/**
+	 *设置"开始"属性
+	 *@param allcoursebegin 实体的Allcoursebegin属性
+	 */
+	public void setAllcoursebegin(String allcoursebegin)
+	{
+		this.allcoursebegin = allcoursebegin;
+	}
+	
+	/**
+	 *获取"开始"属性
+	 */
+	public String getAllcoursebegin()
+	{
+		return this.allcoursebegin;
+	}	   
+
+	/**
+	 *设置"结束"属性
+	 *@param allcourseend 实体的Allcourseend属性
+	 */
+	public void setAllcourseend(String allcourseend)
+	{
+		this.allcourseend = allcourseend;
+	}
+	
+	/**
+	 *获取"结束"属性
+	 */
+	public String getAllcourseend()
+	{
+		return this.allcourseend;
+	}	   
 	public Allcourse() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -233,6 +275,8 @@ public class Allcourse
 	 	,String allcourseproject
 	 	,String allcoursedetail
 	 	,String allcoursetype
+	 	,String allcoursebegin
+	 	,String allcourseend
 		 ){
 		super();
 		this.allcourseid = allcourseid;
@@ -245,6 +289,8 @@ public class Allcourse
 	 	this.allcourseproject = allcourseproject;
 	 	this.allcoursedetail = allcoursedetail;
 	 	this.allcoursetype = allcoursetype;
+	 	this.allcoursebegin = allcoursebegin;
+	 	this.allcourseend = allcourseend;
 	}
 }
 

@@ -47,6 +47,7 @@ Ext.onReady(function() {
 	        			    ,'customerinswho' 
 	        			    ,'customerupdwhen' 
 	        			    ,'customerupdwho' 
+	        			    ,'customercode' 
 	        			      ];// 全部字段
 	var Cuscardviewkeycolumn = [ 'cuscardid' ];// 主键
 	var Cuscardviewstore = dataStore(Cuscardviewfields, basePath + Cuscardviewaction + "?method=selQuery");// 定义Cuscardviewstore
@@ -505,6 +506,16 @@ Ext.onReady(function() {
 				name : 'customerupdwho'
 			} ]
 		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '编码',
+				id : 'Cuscardviewcustomercode',
+				name : 'customercode'
+			} ]
+		}
 		]
 	});
 	
@@ -879,6 +890,14 @@ Ext.onReady(function() {
 		, {
 			header : '更新人',
 			dataIndex : 'customerupdwho',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '编码',
+			dataIndex : 'customercode',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'

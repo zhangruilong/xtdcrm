@@ -32,6 +32,8 @@ public class AllcoursePoco
 	 	"项目",
 	 	"备注",
 	 	"分类",
+	 	"开始",
+	 	"结束",
 	};
 	/**
 	 * 实体英文字段
@@ -47,6 +49,8 @@ public class AllcoursePoco
 	 	"allcourseproject",
 	 	"allcoursedetail",
 	 	"allcoursetype",
+	 	"allcoursebegin",
+	 	"allcourseend",
    };
    /**
     * 实体排序
@@ -66,6 +70,8 @@ public class AllcoursePoco
 	 	"allcourseproject",
 	 	"allcoursedetail",
 	 	"allcoursetype",
+	 	"allcoursebegin",
+	 	"allcourseend",
    };
 }
 

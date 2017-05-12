@@ -264,6 +264,10 @@ public class Appiontview
     * 更新时间
     */
    private String appointupdwhen;   
+   /**
+    * 编码
+    */
+   private String customercode;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -1352,6 +1356,23 @@ public class Appiontview
 	{
 		return this.appointupdwhen;
 	}	   
+
+	/**
+	 *设置"编码"属性
+	 *@param customercode 实体的Customercode属性
+	 */
+	public void setCustomercode(String customercode)
+	{
+		this.customercode = customercode;
+	}
+	
+	/**
+	 *获取"编码"属性
+	 */
+	public String getCustomercode()
+	{
+		return this.customercode;
+	}	   
 	public Appiontview() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -1421,6 +1442,7 @@ public class Appiontview
 	 	,String appointcoachname
 	 	,String appointtype
 	 	,String appointupdwhen
+	 	,String customercode
 		 ){
 		super();
 		this.appointid = appointid;
@@ -1487,6 +1509,7 @@ public class Appiontview
 	 	this.appointcoachname = appointcoachname;
 	 	this.appointtype = appointtype;
 	 	this.appointupdwhen = appointupdwhen;
+	 	this.customercode = customercode;
 	}
 }
 

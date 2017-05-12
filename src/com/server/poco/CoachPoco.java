@@ -27,13 +27,15 @@ public class CoachPoco
 	 	"编码",
 	 	"姓名",
 	 	"手机",
-	 	"地址",
+	 	"价位",
+	 	"其他信息",
 	 	"性别",
 	 	"年龄",
 	 	"照片",
 	 	"备注",
 	 	"状态",
 	 	"创建人",
+	 	"创建时间",
 	};
 	/**
 	 * 实体英文字段
@@ -44,12 +46,14 @@ public class CoachPoco
 	 	"coachcode",
 	 	"coachname",
 	 	"coachphone",
+	 	"coachprice",
 	 	"coachaddress",
 	 	"coachsex",
 	 	"coachage",
 	 	"coachimage",
 	 	"coachdetail",
 	 	"coachstatue",
+	 	"coachinswho",
 	 	"coachinswhen",
    };
    /**
@@ -65,12 +69,14 @@ public class CoachPoco
 	 	"coachcode",
 	 	"coachname",
 	 	"coachphone",
+	 	"coachprice",
 	 	"coachaddress",
 	 	"coachsex",
 	 	"coachage",
 	 	"coachimage",
 	 	"coachdetail",
 	 	"coachstatue",
+	 	"coachinswho",
 	 	"coachinswhen",
    };
 }

@@ -29,7 +29,11 @@ public class Coach
     */
    private String coachphone;   
    /**
-    * 地址
+    * 价位
+    */
+   private String coachprice;   
+   /**
+    * 其他信息
     */
    private String coachaddress;   
    /**
@@ -54,6 +58,10 @@ public class Coach
    private String coachstatue;   
    /**
     * 创建人
+    */
+   private String coachinswho;   
+   /**
+    * 创建时间
     */
    private String coachinswhen;   
     //属性方法	    
@@ -143,7 +151,24 @@ public class Coach
 	}	   
 
 	/**
-	 *设置"地址"属性
+	 *设置"价位"属性
+	 *@param coachprice 实体的Coachprice属性
+	 */
+	public void setCoachprice(String coachprice)
+	{
+		this.coachprice = coachprice;
+	}
+	
+	/**
+	 *获取"价位"属性
+	 */
+	public String getCoachprice()
+	{
+		return this.coachprice;
+	}	   
+
+	/**
+	 *设置"其他信息"属性
 	 *@param coachaddress 实体的Coachaddress属性
 	 */
 	public void setCoachaddress(String coachaddress)
@@ -152,7 +177,7 @@ public class Coach
 	}
 	
 	/**
-	 *获取"地址"属性
+	 *获取"其他信息"属性
 	 */
 	public String getCoachaddress()
 	{
@@ -246,6 +271,23 @@ public class Coach
 
 	/**
 	 *设置"创建人"属性
+	 *@param coachinswho 实体的Coachinswho属性
+	 */
+	public void setCoachinswho(String coachinswho)
+	{
+		this.coachinswho = coachinswho;
+	}
+	
+	/**
+	 *获取"创建人"属性
+	 */
+	public String getCoachinswho()
+	{
+		return this.coachinswho;
+	}	   
+
+	/**
+	 *设置"创建时间"属性
 	 *@param coachinswhen 实体的Coachinswhen属性
 	 */
 	public void setCoachinswhen(String coachinswhen)
@@ -254,7 +296,7 @@ public class Coach
 	}
 	
 	/**
-	 *获取"创建人"属性
+	 *获取"创建时间"属性
 	 */
 	public String getCoachinswhen()
 	{
@@ -270,12 +312,14 @@ public class Coach
 	 	,String coachcode
 	 	,String coachname
 	 	,String coachphone
+	 	,String coachprice
 	 	,String coachaddress
 	 	,String coachsex
 	 	,String coachage
 	 	,String coachimage
 	 	,String coachdetail
 	 	,String coachstatue
+	 	,String coachinswho
 	 	,String coachinswhen
 		 ){
 		super();
@@ -284,12 +328,14 @@ public class Coach
 	 	this.coachcode = coachcode;
 	 	this.coachname = coachname;
 	 	this.coachphone = coachphone;
+	 	this.coachprice = coachprice;
 	 	this.coachaddress = coachaddress;
 	 	this.coachsex = coachsex;
 	 	this.coachage = coachage;
 	 	this.coachimage = coachimage;
 	 	this.coachdetail = coachdetail;
 	 	this.coachstatue = coachstatue;
+	 	this.coachinswho = coachinswho;
 	 	this.coachinswhen = coachinswhen;
 	}
 }

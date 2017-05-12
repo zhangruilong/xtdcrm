@@ -66,6 +66,7 @@ Ext.onReady(function() {
 	        			    ,'appointcoachname' 
 	        			    ,'appointtype' 
 	        			    ,'appointupdwhen' 
+	        			    ,'customercode' 
 	        			      ];// 全部字段
 	var Appiontviewkeycolumn = [ 'appointid' ];// 主键
 	var Appiontviewstore = dataStore(Appiontviewfields, basePath + Appiontviewaction + "?method=selQuery");// 定义Appiontviewstore
@@ -714,6 +715,16 @@ Ext.onReady(function() {
 				name : 'appointupdwhen'
 			} ]
 		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '编码',
+				id : 'Appiontviewcustomercode',
+				name : 'customercode'
+			} ]
+		}
 		]
 	});
 	
@@ -1240,6 +1251,14 @@ Ext.onReady(function() {
 		, {
 			header : '更新时间',
 			dataIndex : 'appointupdwhen',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '编码',
+			dataIndex : 'customercode',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'

@@ -337,7 +337,7 @@ Ext.onReady(function() {
 	CustomercuscardviewdataForm.form.isValid();
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,
-		layout : 'border',
+		layout : 'fit',
 		bodyStyle : 'padding:0px;',
 		items : [ CustomercuscardviewdataForm ]
 	});

@@ -188,6 +188,10 @@ public class Cuscardview
     * 更新人
     */
    private String customerupdwho;   
+   /**
+    * 编码
+    */
+   private String customercode;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -953,6 +957,23 @@ public class Cuscardview
 	{
 		return this.customerupdwho;
 	}	   
+
+	/**
+	 *设置"编码"属性
+	 *@param customercode 实体的Customercode属性
+	 */
+	public void setCustomercode(String customercode)
+	{
+		this.customercode = customercode;
+	}
+	
+	/**
+	 *获取"编码"属性
+	 */
+	public String getCustomercode()
+	{
+		return this.customercode;
+	}	   
 	public Cuscardview() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -1003,6 +1024,7 @@ public class Cuscardview
 	 	,String customerinswho
 	 	,String customerupdwhen
 	 	,String customerupdwho
+	 	,String customercode
 		 ){
 		super();
 		this.cuscardid = cuscardid;
@@ -1050,6 +1072,7 @@ public class Cuscardview
 	 	this.customerinswho = customerinswho;
 	 	this.customerupdwhen = customerupdwhen;
 	 	this.customerupdwho = customerupdwho;
+	 	this.customercode = customercode;
 	}
 }
 

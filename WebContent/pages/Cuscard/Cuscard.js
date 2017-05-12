@@ -3,53 +3,32 @@ Ext.onReady(function() {
 	var Cuscardtitle = "当前位置:业务管理》" + Cuscardclassify;
 	var Cuscardaction = "CuscardService.do";
 	var Cuscardfields = ['cuscardid'
-	    ,'cuscardcustomer' 
-	    ,'cuscardstadium' 
-	    ,'cuscardno' 
-	    ,'cuscardtypename' 
-	    ,'cuscardtypeclass' 
-	    ,'cuscardday' 
-	    ,'cuscardbegin' 
-	    ,'cuscardend' 
-	    ,'cuscardprice' 
-	    ,'cuscarddikou' 
-	    ,'cuscardmoney' 
-	    ,'cuscardstop' 
-	    ,'cuscardstopmoney' 
-	    ,'cuscardtimes' 
-	    ,'cuscardpoint' 
-	    ,'cuscarddetail' 
-	    ,'cuscardchangci' 
-	    ,'cuscardproject' 
-	    ,'cuscardstatue' 
-	    ,'cuscardinswhen' 
-	    ,'cuscardinswho' 
-	    ,'cuscardupdwhen' 
-	    ,'cuscardupdwho' 
-	    ,'customerid' 
-	    ,'customerstadium' 
-	    ,'openid' 
-	    ,'customername' 
-	    ,'customersex' 
-	    ,'customerage' 
-	    ,'customercdcard' 
-	    ,'customerhome' 
-	    ,'customercompany' 
-	    ,'customerphone' 
-	    ,'customerbirthday' 
-	    ,'customeremail' 
-	    ,'customerhow' 
-	    ,'customerimage' 
-	    ,'customeremp' 
-	    ,'customerdetail' 
-	    ,'customerstatue' 
-	    ,'customerinswhen' 
-	    ,'customerinswho' 
-	    ,'customerupdwhen' 
-	    ,'customerupdwho' 
-	      ];// 全部字段
+	        			    ,'cuscardcustomer' 
+	        			    ,'cuscardstadium' 
+	        			    ,'cuscardno' 
+	        			    ,'cuscardtypename' 
+	        			    ,'cuscardtypeclass' 
+	        			    ,'cuscardday' 
+	        			    ,'cuscardbegin' 
+	        			    ,'cuscardend' 
+	        			    ,'cuscardprice' 
+	        			    ,'cuscarddikou' 
+	        			    ,'cuscardmoney' 
+	        			    ,'cuscardstop' 
+	        			    ,'cuscardstopmoney' 
+	        			    ,'cuscardtimes' 
+	        			    ,'cuscardpoint' 
+	        			    ,'cuscarddetail' 
+	        			    ,'cuscardchangci' 
+	        			    ,'cuscardproject' 
+	        			    ,'cuscardstatue' 
+	        			    ,'cuscardinswhen' 
+	        			    ,'cuscardinswho' 
+	        			    ,'cuscardupdwhen' 
+	        			    ,'cuscardupdwho' 
+	        			      ];// 全部字段
 	var Cuscardkeycolumn = [ 'cuscardid' ];// 主键
-	var Cuscardstore = dataStore(Cuscardfields, basePath + "CuscardviewService.do" + "?method=selQuery");// 定义Cuscardstore
+	var Cuscardstore = dataStore(Cuscardfields, basePath + Cuscardaction + "?method=selQuery");// 定义Cuscardstore
 	var CuscarddataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'CuscarddataForm',
 		labelAlign : 'right',
@@ -325,20 +304,10 @@ Ext.onReady(function() {
 		, {
 			header : '会员ID',
 			dataIndex : 'cuscardcustomer',
-			hidden : true,  
+			sortable : true,  
 			editor: {
                 xtype: 'textfield'
             }
-		}
-		, {
-			header : '姓名',
-			dataIndex : 'customername',
-			sortable : true
-		}
-		, {
-			header : '手机',
-			dataIndex : 'customerphone',
-			sortable : true
 		}
 		, {
 			header : '场馆',
