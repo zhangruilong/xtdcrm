@@ -4,11 +4,14 @@ Ext.onReady(function() {
 	var Mycourseaction = "MycourseService.do";
 	var Mycoursefields = ['mycourseid'
 	        			    ,'mycoursecustomer' 
+	        			    ,'mycoursename' 
+	        			    ,'mycoursestadium' 
 	        			    ,'mycoursecoach' 
 	        			    ,'mycoursecoachname' 
-	        			    ,'mycoursename' 
 	        			    ,'mycoursenum' 
 	        			    ,'mycoursenuma' 
+	        			    ,'mycourseprice' 
+	        			    ,'mycoursedikou' 
 	        			    ,'mycoursemoney' 
 	        			    ,'mycourseproject' 
 	        			    ,'mycoursedetail' 
@@ -26,14 +29,10 @@ Ext.onReady(function() {
 		frame : true,
 		layout : 'column',
 		items : [ {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : 'ID',
-				id : 'Mycoursemycourseid',
-				name : 'mycourseid'
-			} ]
+			xtype : 'hidden',
+			fieldLabel : 'ID',
+			id : 'Mycoursemycourseid',
+			name : 'mycourseid'
 		}
 		, {
 			columnWidth : .5,
@@ -42,27 +41,17 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				fieldLabel : '会员',
 				id : 'Mycoursemycoursecustomer',
-				name : 'mycoursecustomer'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '教练',
-				id : 'Mycoursemycoursecoach',
-				name : 'mycoursecoach'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '教练',
-				id : 'Mycoursemycoursecoachname',
-				name : 'mycoursecoachname'
+				name : 'mycoursecustomer',
+				allowBlank : false,
+				editable : false,
+				triggers: {
+			        bar: {
+			            cls: 'my-bar-trigger',
+			            handler: function() {
+			            	selectCustomer();
+			            }
+			        }
+				}
 			} ]
 		}
 		, {
@@ -72,7 +61,45 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				fieldLabel : '课程名',
 				id : 'Mycoursemycoursename',
-				name : 'mycoursename'
+				name : 'mycoursename',
+				allowBlank : false,
+				editable : false,
+				triggers: {
+			        bar: {
+			            cls: 'my-bar-trigger',
+			            handler: function() {
+			            	selectAllcourse();
+			            }
+			        }
+				}
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '场馆',
+				id : 'Mycoursemycoursestadium',
+				name : 'mycoursestadium',
+				editable : false
+			} ]
+		}
+		, {
+			xtype : 'hidden',
+			fieldLabel : '教练',
+			id : 'Mycoursemycoursecoach',
+			name : 'mycoursecoach'
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '教练',
+				id : 'Mycoursemycoursecoachname',
+				name : 'mycoursecoachname',
+				editable : false
 			} ]
 		}
 		, {
@@ -82,7 +109,8 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				fieldLabel : '课时',
 				id : 'Mycoursemycoursenum',
-				name : 'mycoursenum'
+				name : 'mycoursenum',
+				editable : false
 			} ]
 		}
 		, {
@@ -92,7 +120,8 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				fieldLabel : '剩余课时',
 				id : 'Mycoursemycoursenuma',
-				name : 'mycoursenuma'
+				name : 'mycoursenuma',
+				editable : false
 			} ]
 		}
 		, {
@@ -100,7 +129,33 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '费用',
+				fieldLabel : '价格',
+				id : 'Mycoursemycourseprice',
+				name : 'mycourseprice',
+				editable : false
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'numberfield',
+				fieldLabel : '抵扣',
+				id : 'Mycoursemycoursedikou',
+				name : 'mycoursedikou',
+				listeners : {
+					blur : function(field, e) {
+						Ext.getCmp("Mycoursemycoursemoney").setValue(Ext.getCmp("Mycoursemycourseprice").getValue()-Ext.getCmp("Mycoursemycoursedikou").getValue());
+					}
+				}
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'numberfield',
+				fieldLabel : '售价',
 				id : 'Mycoursemycoursemoney',
 				name : 'mycoursemoney'
 			} ]
@@ -112,7 +167,43 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				fieldLabel : '项目',
 				id : 'Mycoursemycourseproject',
-				name : 'mycourseproject'
+				name : 'mycourseproject',
+				editable : false
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'datefield',
+				fieldLabel : '开始',
+				id : 'Mycoursemycoursebegin',
+				name : 'mycoursebegin',
+				format : 'Y-m-d',
+				allowBlank : false
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'datefield',
+				fieldLabel : '结束',
+				id : 'Mycoursemycourseend',
+				name : 'mycourseend',
+				format : 'Y-m-d',
+				allowBlank : false
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '分类',
+				id : 'Mycoursemycoursetype',
+				name : 'mycoursetype',
+				editable : false
 			} ]
 		}
 		, {
@@ -123,56 +214,6 @@ Ext.onReady(function() {
 				fieldLabel : '备注',
 				id : 'Mycoursemycoursedetail',
 				name : 'mycoursedetail'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '分类',
-				id : 'Mycoursemycoursetype',
-				name : 'mycoursetype'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '开始',
-				id : 'Mycoursemycoursebegin',
-				name : 'mycoursebegin'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '结束',
-				id : 'Mycoursemycourseend',
-				name : 'mycourseend'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '创建时间',
-				id : 'Mycoursemycourseinswhen',
-				name : 'mycourseinswhen'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '更新时间',
-				id : 'Mycoursemycourseupdwhen',
-				name : 'mycourseupdwhen'
 			} ]
 		}
 		]
@@ -211,6 +252,22 @@ Ext.onReady(function() {
             }
 		}
 		, {
+			header : '课程名',
+			dataIndex : 'mycoursename',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '场馆',
+			dataIndex : 'mycoursestadium',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
 			header : '教练',
 			dataIndex : 'mycoursecoach',
 			sortable : true,  
@@ -221,14 +278,6 @@ Ext.onReady(function() {
 		, {
 			header : '教练',
 			dataIndex : 'mycoursecoachname',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '课程名',
-			dataIndex : 'mycoursename',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -251,7 +300,23 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '费用',
+			header : '价格',
+			dataIndex : 'mycourseprice',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '抵扣',
+			dataIndex : 'mycoursedikou',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '售价',
 			dataIndex : 'mycoursemoney',
 			sortable : true,  
 			editor: {
@@ -320,7 +385,6 @@ Ext.onReady(function() {
 				iconCls : 'add',
 				handler : function() {
 					MycoursedataForm.form.reset();
-					Ext.getCmp("Mycoursemycourseid").setEditable (true);
 					createTextWindow(basePath + Mycourseaction + "?method=insAll", "新增", MycoursedataForm, Mycoursestore);
 				}
 			},'-',{
@@ -345,7 +409,6 @@ Ext.onReady(function() {
 						return;
 					}
 					MycoursedataForm.form.reset();
-					Ext.getCmp("Mycoursemycourseid").setEditable (false);
 					createTextWindow(basePath + Mycourseaction + "?method=updAll", "修改", MycoursedataForm, Mycoursestore);
 					MycoursedataForm.form.loadRecord(selections[0]);
 				}

@@ -17,6 +17,14 @@ public class Mycourse
     */
    private String mycoursecustomer;   
    /**
+    * 课程名
+    */
+   private String mycoursename;   
+   /**
+    * 场馆
+    */
+   private String mycoursestadium;   
+   /**
     * 教练
     */
    private String mycoursecoach;   
@@ -24,10 +32,6 @@ public class Mycourse
     * 教练
     */
    private String mycoursecoachname;   
-   /**
-    * 课程名
-    */
-   private String mycoursename;   
    /**
     * 课时
     */
@@ -37,7 +41,15 @@ public class Mycourse
     */
    private String mycoursenuma;   
    /**
-    * 费用
+    * 价格
+    */
+   private String mycourseprice;   
+   /**
+    * 抵扣
+    */
+   private String mycoursedikou;   
+   /**
+    * 售价
     */
    private String mycoursemoney;   
    /**
@@ -104,6 +116,40 @@ public class Mycourse
 	}	   
 
 	/**
+	 *设置"课程名"属性
+	 *@param mycoursename 实体的Mycoursename属性
+	 */
+	public void setMycoursename(String mycoursename)
+	{
+		this.mycoursename = mycoursename;
+	}
+	
+	/**
+	 *获取"课程名"属性
+	 */
+	public String getMycoursename()
+	{
+		return this.mycoursename;
+	}	   
+
+	/**
+	 *设置"场馆"属性
+	 *@param mycoursestadium 实体的Mycoursestadium属性
+	 */
+	public void setMycoursestadium(String mycoursestadium)
+	{
+		this.mycoursestadium = mycoursestadium;
+	}
+	
+	/**
+	 *获取"场馆"属性
+	 */
+	public String getMycoursestadium()
+	{
+		return this.mycoursestadium;
+	}	   
+
+	/**
 	 *设置"教练"属性
 	 *@param mycoursecoach 实体的Mycoursecoach属性
 	 */
@@ -135,23 +181,6 @@ public class Mycourse
 	public String getMycoursecoachname()
 	{
 		return this.mycoursecoachname;
-	}	   
-
-	/**
-	 *设置"课程名"属性
-	 *@param mycoursename 实体的Mycoursename属性
-	 */
-	public void setMycoursename(String mycoursename)
-	{
-		this.mycoursename = mycoursename;
-	}
-	
-	/**
-	 *获取"课程名"属性
-	 */
-	public String getMycoursename()
-	{
-		return this.mycoursename;
 	}	   
 
 	/**
@@ -189,7 +218,41 @@ public class Mycourse
 	}	   
 
 	/**
-	 *设置"费用"属性
+	 *设置"价格"属性
+	 *@param mycourseprice 实体的Mycourseprice属性
+	 */
+	public void setMycourseprice(String mycourseprice)
+	{
+		this.mycourseprice = mycourseprice;
+	}
+	
+	/**
+	 *获取"价格"属性
+	 */
+	public String getMycourseprice()
+	{
+		return this.mycourseprice;
+	}	   
+
+	/**
+	 *设置"抵扣"属性
+	 *@param mycoursedikou 实体的Mycoursedikou属性
+	 */
+	public void setMycoursedikou(String mycoursedikou)
+	{
+		this.mycoursedikou = mycoursedikou;
+	}
+	
+	/**
+	 *获取"抵扣"属性
+	 */
+	public String getMycoursedikou()
+	{
+		return this.mycoursedikou;
+	}	   
+
+	/**
+	 *设置"售价"属性
 	 *@param mycoursemoney 实体的Mycoursemoney属性
 	 */
 	public void setMycoursemoney(String mycoursemoney)
@@ -198,7 +261,7 @@ public class Mycourse
 	}
 	
 	/**
-	 *获取"费用"属性
+	 *获取"售价"属性
 	 */
 	public String getMycoursemoney()
 	{
@@ -330,11 +393,14 @@ public class Mycourse
 	public Mycourse(
 		String mycourseid
 	 	,String mycoursecustomer
+	 	,String mycoursename
+	 	,String mycoursestadium
 	 	,String mycoursecoach
 	 	,String mycoursecoachname
-	 	,String mycoursename
 	 	,String mycoursenum
 	 	,String mycoursenuma
+	 	,String mycourseprice
+	 	,String mycoursedikou
 	 	,String mycoursemoney
 	 	,String mycourseproject
 	 	,String mycoursedetail
@@ -347,11 +413,14 @@ public class Mycourse
 		super();
 		this.mycourseid = mycourseid;
 	 	this.mycoursecustomer = mycoursecustomer;
+	 	this.mycoursename = mycoursename;
+	 	this.mycoursestadium = mycoursestadium;
 	 	this.mycoursecoach = mycoursecoach;
 	 	this.mycoursecoachname = mycoursecoachname;
-	 	this.mycoursename = mycoursename;
 	 	this.mycoursenum = mycoursenum;
 	 	this.mycoursenuma = mycoursenuma;
+	 	this.mycourseprice = mycourseprice;
+	 	this.mycoursedikou = mycoursedikou;
 	 	this.mycoursemoney = mycoursemoney;
 	 	this.mycourseproject = mycourseproject;
 	 	this.mycoursedetail = mycoursedetail;
