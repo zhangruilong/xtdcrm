@@ -126,7 +126,8 @@ Ext.onReady(function() {
 				anchor : '100%',
 				listeners : {
 					blur : function(field, e) {
-						Ext.getCmp("cuscardend").setValue(Ext.getCmp("cuscardbegin").getValue());
+						var dt = Ext.Date.add(new Date(Ext.getCmp("cuscardbegin").getValue()), Ext.Date.DAY, Ext.getCmp("cuscardday").getValue());
+						Ext.getCmp("cuscardend").setValue(dt);
 					}
 				}
 			},{
