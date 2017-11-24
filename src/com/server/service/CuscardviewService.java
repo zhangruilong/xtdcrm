@@ -23,5 +23,10 @@ import com.system.tools.pojo.Pageinfo;
  *@author ZhangRuiLong
  */
 public class CuscardviewService extends CuscardviewAction {
-
+	public void wxlogin(HttpServletRequest request, HttpServletResponse response){
+		Queryinfo queryinfo = getQueryinfo(request, Cuscardview.class, CuscardviewPoco.QUERYFIELDNAME, CuscardviewPoco.ORDER, TYPE);
+		Pageinfo pageinfo = new Pageinfo(0, selAll(queryinfo));
+		result = CommonConst.GSON.toJson(pageinfo);
+		responsePW(response, result);
+	}
 }

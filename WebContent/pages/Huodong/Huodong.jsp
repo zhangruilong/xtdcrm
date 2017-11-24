@@ -2,6 +2,8 @@
 <html>
   <head>
 	<%@ include file="/zrlextpages/common/common.jsp" %>
+	<script type="text/javascript" src="Cardtype.js"></script>
+	<script type="text/javascript" src="Notesmoneys.js"></script>
 	<script type="text/javascript" src="Huodong.js"></script>
   </head>
 </html>

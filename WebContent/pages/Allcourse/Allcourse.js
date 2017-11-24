@@ -25,6 +25,7 @@ Ext.onReady(function() {
 		items : [ {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
@@ -38,20 +39,21 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '场馆',
+				value : currentuser.roledetail,
 				id : 'Allcourseallcoursestadium',
 				name : 'allcoursestadium'
 			} ]
 		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '教练',
-				id : 'Allcourseallcoursecoach',
-				name : 'allcoursecoach'
-			} ]
-		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '教练',
+//				id : 'Allcourseallcoursecoach',
+//				name : 'allcoursecoach'
+//			} ]
+//		}
 		, {
 			columnWidth : .5,
 			layout : 'form',
@@ -59,7 +61,14 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				fieldLabel : '教练',
 				id : 'Allcourseallcoursecoachname',
-				name : 'allcoursecoachname'
+				name : 'allcoursecoachname',
+				triggers: {
+			        bar: {
+			            handler: function() {
+			            	selectcoach();
+			            }
+			        }
+				}
 			} ]
 		}
 		, {
@@ -96,7 +105,14 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : courseStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '项目',
 				id : 'Allcourseallcourseproject',
 				name : 'allcourseproject'
@@ -126,8 +142,9 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'datefield',
 				fieldLabel : '开始',
+				format : 'Y-m-d',
 				id : 'Allcourseallcoursebegin',
 				name : 'allcoursebegin'
 			} ]
@@ -136,8 +153,9 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'datefield',
 				fieldLabel : '结束',
+				format : 'Y-m-d',
 				id : 'Allcourseallcourseend',
 				name : 'allcourseend'
 			} ]
@@ -155,14 +173,11 @@ Ext.onReady(function() {
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
-	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
 			header : 'ID',
 			dataIndex : 'allcourseid',
+			hidden : true,
 			sortable : true, 
 			editor: {
                 xtype: 'textfield',
@@ -172,14 +187,6 @@ Ext.onReady(function() {
 		, {
 			header : '场馆',
 			dataIndex : 'allcoursestadium',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '教练',
-			dataIndex : 'allcoursecoach',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -390,6 +397,12 @@ Ext.onReady(function() {
 		]
 	});
 	Allcoursegrid.region = 'center';
+	Allcoursestore.on("beforeload",function(){ 
+		Allcoursestore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryAllcourseService").getValue()
+		}; 
+	});
 	Allcoursestore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

@@ -65,6 +65,10 @@ public class Cuscard
     */
    private String cuscardstopmoney;   
    /**
+    * 卡种次数
+    */
+   private String cuscardnums;   
+   /**
     * 余次
     */
    private String cuscardtimes;   
@@ -344,6 +348,23 @@ public class Cuscard
 	}	   
 
 	/**
+	 *设置"卡种次数"属性
+	 *@param cuscardnums 实体的Cuscardnums属性
+	 */
+	public void setCuscardnums(String cuscardnums)
+	{
+		this.cuscardnums = cuscardnums;
+	}
+	
+	/**
+	 *获取"卡种次数"属性
+	 */
+	public String getCuscardnums()
+	{
+		return this.cuscardnums;
+	}	   
+
+	/**
 	 *设置"余次"属性
 	 *@param cuscardtimes 实体的Cuscardtimes属性
 	 */
@@ -531,6 +552,7 @@ public class Cuscard
 	 	,String cuscardmoney
 	 	,String cuscardstop
 	 	,String cuscardstopmoney
+	 	,String cuscardnums
 	 	,String cuscardtimes
 	 	,String cuscardpoint
 	 	,String cuscarddetail
@@ -557,6 +579,7 @@ public class Cuscard
 	 	this.cuscardmoney = cuscardmoney;
 	 	this.cuscardstop = cuscardstop;
 	 	this.cuscardstopmoney = cuscardstopmoney;
+	 	this.cuscardnums = cuscardnums;
 	 	this.cuscardtimes = cuscardtimes;
 	 	this.cuscardpoint = cuscardpoint;
 	 	this.cuscarddetail = cuscarddetail;

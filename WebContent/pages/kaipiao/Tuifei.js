@@ -20,6 +20,7 @@ Ext.onReady(function() {
 		items : [ {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
@@ -31,7 +32,14 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : stadiumStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '场馆',
 				id : 'Tuifeituifeistadium',
 				name : 'tuifeistadium'
@@ -42,9 +50,19 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '名称',
+				fieldLabel : '会员卡',
 				id : 'Tuifeituifeiname',
 				name : 'tuifeiname'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '课程',
+				id : 'Tuifeituifeimoney',
+				name : 'tuifeimoney'
 			} ]
 		}
 		, {
@@ -61,18 +79,11 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '金额',
-				id : 'Tuifeituifeimoney',
-				name : 'tuifeimoney'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '创建时间',
+				xtype : 'datefield',
+				fieldLabel : '操作时间',
+				format : 'Y-m-d',
+				hidden: true,
+				value : new Date(),
 				id : 'Tuifeituifeiinswhen',
 				name : 'tuifeiinswhen'
 			} ]
@@ -82,7 +93,9 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '创建人',
+				fieldLabel : '操作人',
+				hidden: true,
+				value : currentuser.username,
 				id : 'Tuifeituifeiinswho',
 				name : 'tuifeiinswho'
 			} ]
@@ -99,10 +112,6 @@ Ext.onReady(function() {
 		bbar : Tuifeibbar,
 	    selModel: {
 	        type: 'checkboxmodel'
-	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
 	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
@@ -123,8 +132,16 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '名称',
+			header : '会员卡',
 			dataIndex : 'tuifeiname',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '课程',
+			dataIndex : 'tuifeimoney',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -133,14 +150,6 @@ Ext.onReady(function() {
 		, {
 			header : '备注',
 			dataIndex : 'tuifeidetail',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '金额',
-			dataIndex : 'tuifeimoney',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -295,6 +304,12 @@ Ext.onReady(function() {
 		]
 	});
 	Tuifeigrid.region = 'center';
+	Tuifeistore.on("beforeload",function(){ 
+		Tuifeistore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryTuifeiaction").getValue()
+		}; 
+	});
 	Tuifeistore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

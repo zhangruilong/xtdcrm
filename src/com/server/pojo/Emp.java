@@ -13,17 +13,29 @@ public class Emp
     */
    private String empid; 
    /**
-    * 场馆ID
+    * 场馆
     */
    private String empstadium;   
    /**
-    * 编码
+    * 工号
     */
    private String empcode;   
+   /**
+    * 系统账号
+    */
+   private String empsysname;   
    /**
     * 姓名
     */
    private String empname;   
+   /**
+    * 职位
+    */
+   private String empposition;   
+   /**
+    * 上级
+    */
+   private String emppposition;   
    /**
     * 年龄
     */
@@ -45,10 +57,6 @@ public class Emp
     */
    private String empimage;   
    /**
-    * 地址
-    */
-   private String empaddress;   
-   /**
     * 备注
     */
    private String empdetail;   
@@ -64,14 +72,6 @@ public class Emp
     * 创建人
     */
    private String empinswho;   
-   /**
-    * 更新时间
-    */
-   private String empupdwhen;   
-   /**
-    * 更新人
-    */
-   private String empupdwho;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -91,7 +91,7 @@ public class Emp
 	}
 
 	/**
-	 *设置"场馆ID"属性
+	 *设置"场馆"属性
 	 *@param empstadium 实体的Empstadium属性
 	 */
 	public void setEmpstadium(String empstadium)
@@ -100,7 +100,7 @@ public class Emp
 	}
 	
 	/**
-	 *获取"场馆ID"属性
+	 *获取"场馆"属性
 	 */
 	public String getEmpstadium()
 	{
@@ -108,7 +108,7 @@ public class Emp
 	}	   
 
 	/**
-	 *设置"编码"属性
+	 *设置"工号"属性
 	 *@param empcode 实体的Empcode属性
 	 */
 	public void setEmpcode(String empcode)
@@ -117,11 +117,28 @@ public class Emp
 	}
 	
 	/**
-	 *获取"编码"属性
+	 *获取"工号"属性
 	 */
 	public String getEmpcode()
 	{
 		return this.empcode;
+	}	   
+
+	/**
+	 *设置"系统账号"属性
+	 *@param empsysname 实体的Empsysname属性
+	 */
+	public void setEmpsysname(String empsysname)
+	{
+		this.empsysname = empsysname;
+	}
+	
+	/**
+	 *获取"系统账号"属性
+	 */
+	public String getEmpsysname()
+	{
+		return this.empsysname;
 	}	   
 
 	/**
@@ -139,6 +156,40 @@ public class Emp
 	public String getEmpname()
 	{
 		return this.empname;
+	}	   
+
+	/**
+	 *设置"职位"属性
+	 *@param empposition 实体的Empposition属性
+	 */
+	public void setEmpposition(String empposition)
+	{
+		this.empposition = empposition;
+	}
+	
+	/**
+	 *获取"职位"属性
+	 */
+	public String getEmpposition()
+	{
+		return this.empposition;
+	}	   
+
+	/**
+	 *设置"上级"属性
+	 *@param emppposition 实体的Emppposition属性
+	 */
+	public void setEmppposition(String emppposition)
+	{
+		this.emppposition = emppposition;
+	}
+	
+	/**
+	 *获取"上级"属性
+	 */
+	public String getEmppposition()
+	{
+		return this.emppposition;
 	}	   
 
 	/**
@@ -227,23 +278,6 @@ public class Emp
 	}	   
 
 	/**
-	 *设置"地址"属性
-	 *@param empaddress 实体的Empaddress属性
-	 */
-	public void setEmpaddress(String empaddress)
-	{
-		this.empaddress = empaddress;
-	}
-	
-	/**
-	 *获取"地址"属性
-	 */
-	public String getEmpaddress()
-	{
-		return this.empaddress;
-	}	   
-
-	/**
 	 *设置"备注"属性
 	 *@param empdetail 实体的Empdetail属性
 	 */
@@ -310,40 +344,6 @@ public class Emp
 	{
 		return this.empinswho;
 	}	   
-
-	/**
-	 *设置"更新时间"属性
-	 *@param empupdwhen 实体的Empupdwhen属性
-	 */
-	public void setEmpupdwhen(String empupdwhen)
-	{
-		this.empupdwhen = empupdwhen;
-	}
-	
-	/**
-	 *获取"更新时间"属性
-	 */
-	public String getEmpupdwhen()
-	{
-		return this.empupdwhen;
-	}	   
-
-	/**
-	 *设置"更新人"属性
-	 *@param empupdwho 实体的Empupdwho属性
-	 */
-	public void setEmpupdwho(String empupdwho)
-	{
-		this.empupdwho = empupdwho;
-	}
-	
-	/**
-	 *获取"更新人"属性
-	 */
-	public String getEmpupdwho()
-	{
-		return this.empupdwho;
-	}	   
 	public Emp() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -352,37 +352,37 @@ public class Emp
 		String empid
 	 	,String empstadium
 	 	,String empcode
+	 	,String empsysname
 	 	,String empname
+	 	,String empposition
+	 	,String emppposition
 	 	,String empage
 	 	,String empsex
 	 	,String empphone
 	 	,String empemail
 	 	,String empimage
-	 	,String empaddress
 	 	,String empdetail
 	 	,String empstatue
 	 	,String empinswhen
 	 	,String empinswho
-	 	,String empupdwhen
-	 	,String empupdwho
 		 ){
 		super();
 		this.empid = empid;
 	 	this.empstadium = empstadium;
 	 	this.empcode = empcode;
+	 	this.empsysname = empsysname;
 	 	this.empname = empname;
+	 	this.empposition = empposition;
+	 	this.emppposition = emppposition;
 	 	this.empage = empage;
 	 	this.empsex = empsex;
 	 	this.empphone = empphone;
 	 	this.empemail = empemail;
 	 	this.empimage = empimage;
-	 	this.empaddress = empaddress;
 	 	this.empdetail = empdetail;
 	 	this.empstatue = empstatue;
 	 	this.empinswhen = empinswhen;
 	 	this.empinswho = empinswho;
-	 	this.empupdwhen = empupdwhen;
-	 	this.empupdwho = empupdwho;
 	}
 }
 

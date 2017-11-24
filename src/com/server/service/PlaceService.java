@@ -23,5 +23,12 @@ import com.system.tools.pojo.Pageinfo;
  *@author ZhangRuiLong
  */
 public class PlaceService extends PlaceAction {
-
+	//查询场地
+	public void selPlacename(HttpServletRequest request, HttpServletResponse response){
+		String wheresql = request.getParameter("wheresql");
+		String sql = "select DISTINCT(pl.placename),pl.placestadium,pl.placeproject,pl.placeid from place pl where "+wheresql+" GROUP BY pl.placename";
+		Pageinfo pageinfo = new Pageinfo(0, selAll(Place.class,sql));
+		result = CommonConst.GSON.toJson(pageinfo);
+		responsePW(response, result);
+	}
 }

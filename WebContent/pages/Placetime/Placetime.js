@@ -11,9 +11,12 @@ Ext.onReady(function() {
 	        			    ,'placetimecoachname' 
 	        			    ,'placetimename' 
 	        			    ,'placetimedate' 
-	        			    ,'placetimebegin' 
-	        			    ,'placetimeend' 
 	        			    ,'placetimedetail' 
+	        			    ,'calendarId' 
+	        			    ,'title' 
+	        			    ,'startDate' 
+	        			    ,'endDate' 
+	        			    ,'description' 
 	        			      ];// 全部字段
 	var Placetimekeycolumn = [ 'placetimeid' ];// 主键
 	var Placetimestore = dataStore(Placetimefields, basePath + Placetimeaction + "?method=selQuery");// 定义Placetimestore
@@ -25,6 +28,7 @@ Ext.onReady(function() {
 		items : [ {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
@@ -52,16 +56,16 @@ Ext.onReady(function() {
 				name : 'placetimeproject'
 			} ]
 		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '场地',
-				id : 'Placetimeplacetimeplace',
-				name : 'placetimeplace'
-			} ]
-		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '场地',
+//				id : 'Placetimeplacetimeplace',
+//				name : 'placetimeplace'
+//			} ]
+//		}
 		, {
 			columnWidth : .5,
 			layout : 'form',
@@ -72,16 +76,16 @@ Ext.onReady(function() {
 				name : 'placetimeplacename'
 			} ]
 		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '教练',
-				id : 'Placetimeplacetimecoach',
-				name : 'placetimecoach'
-			} ]
-		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '教练',
+//				id : 'Placetimeplacetimecoach',
+//				name : 'placetimecoach'
+//			} ]
+//		}
 		, {
 			columnWidth : .5,
 			layout : 'form',
@@ -117,9 +121,39 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
+				fieldLabel : '场次',
+				id : 'Placetimeplacetimedetail',
+				name : 'placetimedetail'
+			} ]
+		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : 'calendarId',
+//				id : 'PlacetimecalendarId',
+//				name : 'calendarId'
+//			} ]
+//		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '标题',
+				id : 'Placetimetitle',
+				name : 'title'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
 				fieldLabel : '开始时间',
-				id : 'Placetimeplacetimebegin',
-				name : 'placetimebegin'
+				id : 'PlacetimestartDate',
+				name : 'startDate'
 			} ]
 		}
 		, {
@@ -128,8 +162,8 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '结束时间',
-				id : 'Placetimeplacetimeend',
-				name : 'placetimeend'
+				id : 'PlacetimeendDate',
+				name : 'endDate'
 			} ]
 		}
 		, {
@@ -137,9 +171,9 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '备注',
-				id : 'Placetimeplacetimedetail',
-				name : 'placetimedetail'
+				fieldLabel : '描述',
+				id : 'Placetimedescription',
+				name : 'description'
 			} ]
 		}
 		]
@@ -154,10 +188,6 @@ Ext.onReady(function() {
 		bbar : Placetimebbar,
 	    selModel: {
 	        type: 'checkboxmodel'
-	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
 	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
@@ -185,14 +215,14 @@ Ext.onReady(function() {
                 xtype: 'textfield'
             }
 		}
-		, {
-			header : '场地',
-			dataIndex : 'placetimeplace',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
+//		, {
+//			header : '场地',
+//			dataIndex : 'placetimeplace',
+//			sortable : true,  
+//			editor: {
+//                xtype: 'textfield'
+//            }
+//		}
 		, {
 			header : '场地',
 			dataIndex : 'placetimeplacename',
@@ -201,14 +231,14 @@ Ext.onReady(function() {
                 xtype: 'textfield'
             }
 		}
-		, {
-			header : '教练',
-			dataIndex : 'placetimecoach',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
+//		, {
+//			header : '教练',
+//			dataIndex : 'placetimecoach',
+//			sortable : true,  
+//			editor: {
+//                xtype: 'textfield'
+//            }
+//		}
 		, {
 			header : '教练',
 			dataIndex : 'placetimecoachname',
@@ -234,8 +264,24 @@ Ext.onReady(function() {
             }
 		}
 		, {
+			header : '场次',
+			dataIndex : 'placetimedetail',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '标题',
+			dataIndex : 'title',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
 			header : '开始时间',
-			dataIndex : 'placetimebegin',
+			dataIndex : 'startDate',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -243,15 +289,15 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '结束时间',
-			dataIndex : 'placetimeend',
+			dataIndex : 'endDate',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
             }
 		}
 		, {
-			header : '备注',
-			dataIndex : 'placetimedetail',
+			header : '描述',
+			dataIndex : 'description',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -259,25 +305,6 @@ Ext.onReady(function() {
 		}
 		],
 		tbar : [{
-				text : Ext.os.deviceType === 'Phone' ? null : "新增",
-				iconCls : 'add',
-				handler : function() {
-					PlacetimedataForm.form.reset();
-					Ext.getCmp("Placetimeplacetimeid").setEditable (true);
-					createTextWindow(basePath + Placetimeaction + "?method=insAll", "新增", PlacetimedataForm, Placetimestore);
-				}
-			},'-',{
-				text : Ext.os.deviceType === 'Phone' ? null : "保存",
-				iconCls : 'ok',
-				handler : function() {
-					var selections = Placetimegrid.getSelection();
-					if (Ext.isEmpty(selections)) {
-						Ext.Msg.alert('提示', '请至少选择一条数据！');
-						return;
-					}
-					commonSave(basePath + Placetimeaction + "?method=updAll",selections);
-				}
-			},'-',{
 				text : Ext.os.deviceType === 'Phone' ? null : "修改",
 				iconCls : 'edit',
 				handler : function() {
@@ -291,6 +318,18 @@ Ext.onReady(function() {
 					Ext.getCmp("Placetimeplacetimeid").setEditable (false);
 					createTextWindow(basePath + Placetimeaction + "?method=updAll", "修改", PlacetimedataForm, Placetimestore);
 					PlacetimedataForm.form.loadRecord(selections[0]);
+				}
+			},'-',{
+				text : Ext.os.deviceType === 'Phone' ? null : "查看预约会员",
+				iconCls : 'query',
+				handler : function() {
+					var selections = Placetimegrid.getSelection();
+					if (selections.length != 1) {
+						Ext.Msg.alert('提示', '请选择一条数据！', function() {
+						});
+						return;
+					}
+					selAppiont(selections[0]);
 				}
 			},'-',{
 	            text: '操作',
@@ -390,6 +429,12 @@ Ext.onReady(function() {
 		]
 	});
 	Placetimegrid.region = 'center';
+	Placetimestore.on("beforeload",function(){ 
+		Placetimestore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryPlacetimeaction").getValue()
+		}; 
+	});
 	Placetimestore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

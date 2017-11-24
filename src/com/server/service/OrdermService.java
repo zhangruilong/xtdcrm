@@ -23,5 +23,11 @@ import com.system.tools.pojo.Pageinfo;
  *@author ZhangRuiLong
  */
 public class OrdermService extends OrdermAction {
-
+	//查询所有
+	public void selReport(HttpServletRequest request, HttpServletResponse response){
+		String selectsql = "select orderstadium,ordercode,ordername,orderclass,SUM(ordermoney) as ordermoney,SUM(orderdiscount) as orderdiscount,SUM(orderrightmoney) as orderrightmoney from orderm";
+		Pageinfo pageinfo = new Pageinfo(0, selAll(Orderm.class, selectsql));
+		result = CommonConst.GSON.toJson(pageinfo);
+		responsePW(response, result);
+	}
 }

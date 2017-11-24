@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="lib/weui.min.css">
+<link rel="stylesheet" href="lib/jquery-weui.min.css">
+<script src="common/common.js"></script>
+</head>
+
+<body ontouchstart>
+	<div class="weui-panel weui-panel_access">
+	  <div class="weui-panel__hd">购买课程</div>
+	  <div id="content" class="weui-panel__bd">
+	    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" onclick="nextpage('1')">
+	      <div class="weui-media-box__hd">
+	        <img class="weui-media-box__thumb" src="">
+	      </div>
+	      <div class="weui-media-box__bd">
+	        <h4 class="weui-media-box__title">课程一</h4>
+	        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+	      </div>
+	    </a>
+	  </div>
+	</div>
+	<div id="dialogs">
+	<!--BEGIN dialog1-->
+        <div class="js_dialog" id="iosDialog1" style="display: none;">
+            <div class="weui-mask"></div>
+            <div class="weui-dialog">
+                <div class="weui-dialog__hd"><strong class="weui-dialog__title">弹窗标题</strong></div>
+                <div class="weui-dialog__bd">弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内</div>
+                <div class="weui-dialog__ft">
+                    <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">辅助操作</a>
+                    <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">主操作</a>
+                </div>
+            </div>
+        </div>
+        <!--END dialog1-->
+    </div>
+	<script src="lib/jquery-2.1.4.js"></script>
+	<script src="lib/fastclick.js"></script>
+	<script>
+		$(function() {
+			FastClick.attach(document.body);
+	        $('#dialogs').on('click', '.weui-dialog__btn', function(){
+	            $(this).parents('.js_dialog').fadeOut(200);
+	        });
+			$.ajax({
+				url:"CoachcourseService.do?method=selAll",
+				type:"post",
+				data:{
+					wheresql:"coachcoursestadium='"+window.localStorage.getItem('stadium')+"'"
+				},
+				success: function(r) {
+	    			var resp = eval('('+r+')'); 
+	    			$("#content").html("");
+	    			$.each(resp.root, function(i, item) {	
+	    				$("#content").append('<a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" onclick="nextpage(\''
+	    						+item.coachcourseid+'\')">'
+	    					    +'<div class="weui-media-box__hd"><img class="weui-media-box__thumb" src=""></div>'
+	    					    +'<div class="weui-media-box__bd"><h4 class="weui-media-box__title">'
+	    					    +item.coachcoursename+'</h4><p class="weui-media-box__desc">'
+	    					    +item.coachcourseproject
+	    					    +' 单节价格:¥'+window.localStorage.getItem('coachprice')
+	    					    +'</p></div></a>');
+	    			});
+	    		},
+	    		error:function(r) {
+	    			var resp = eval(r); 
+	    			alert(resp.msg);
+	    		}
+			});
+		});
+	</script>
+	<script src="lib/jquery-weui.min.js"></script>
+
+	<script>
+		function nextpage(value){
+			//$('#iosDialog1').fadeIn(200);
+			$.prompt({
+				  title: '确认购买',
+				  text: '私教课10节起卖，请在输入10的倍数',
+				  input: '10',
+				  empty: false, // 是否允许为空
+				  onOK: function (input) {
+				    //点击确认
+					  $.ajax({
+							url:"MycourseService.do?method=buyallcourse",
+							type:"post",
+							data:{
+								courseid : value,
+								mycoursenum : input,
+								customerid : customer.customerid,
+								coachid : window.localStorage.getItem('coachid'),
+								coachname : window.localStorage.getItem('coachname'),
+								coachprice : window.localStorage.getItem('coachprice')
+							},
+							success: function(r) {
+				    			var resp = eval('('+r+')');
+				    			alert(resp.msg);
+				    		},
+				    		error:function(r) {
+				    			var resp = eval(r); 
+				    			alert(resp.msg);
+				    		}
+						});
+				  },
+				  onCancel: function () {
+				    //点击取消
+				  }
+				});
+		}
+	</script>
+</body>
+</html>

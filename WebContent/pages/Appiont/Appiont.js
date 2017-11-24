@@ -32,6 +32,7 @@ Ext.onReady(function() {
 		items : [ {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
@@ -232,13 +233,10 @@ Ext.onReady(function() {
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
-	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
 			header : 'ID',
+			hidden : true,
 			dataIndex : 'appointid',
 			sortable : true, 
 			editor: {
@@ -523,6 +521,12 @@ Ext.onReady(function() {
 		]
 	});
 	Appiontgrid.region = 'center';
+	Appiontstore.on("beforeload",function(){ 
+		Appiontstore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryAppiontService").getValue()
+		}; 
+	});
 	Appiontstore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

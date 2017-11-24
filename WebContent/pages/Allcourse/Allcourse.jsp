@@ -2,6 +2,7 @@
 <html>
   <head>
 	<%@ include file="/zrlextpages/common/common.jsp" %>
+	<script type="text/javascript" src="Coach.js"></script>
 	<script type="text/javascript" src="Allcourse.js"></script>
   </head>
 </html>

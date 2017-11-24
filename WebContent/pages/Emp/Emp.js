@@ -1,26 +1,26 @@
 Ext.onReady(function() {
 	var Empclassify = "emp";
 	var Emptitle = "当前位置:业务管理》" + Empclassify;
-	var Empaction = "EmpService.do";
+	var EmpService = "EmpService.do";
 	var Empfields = ['empid'
 	        			    ,'empstadium' 
 	        			    ,'empcode' 
+	        			    ,'empsysname' 
 	        			    ,'empname' 
+	        			    ,'empposition' 
+	        			    ,'emppposition' 
 	        			    ,'empage' 
 	        			    ,'empsex' 
 	        			    ,'empphone' 
 	        			    ,'empemail' 
 	        			    ,'empimage' 
-	        			    ,'empaddress' 
 	        			    ,'empdetail' 
 	        			    ,'empstatue' 
 	        			    ,'empinswhen' 
 	        			    ,'empinswho' 
-	        			    ,'empupdwhen' 
-	        			    ,'empupdwho' 
 	        			      ];// 全部字段
 	var Empkeycolumn = [ 'empid' ];// 主键
-	var Empstore = dataStore(Empfields, basePath + Empaction + "?method=selQuery");// 定义Empstore
+	var Empstore = dataStore(Empfields, basePath + EmpService + "?method=selQuery");// 定义Empstore
 	var EmpdataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'EmpdataForm',
 		labelAlign : 'right',
@@ -41,7 +41,7 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '场馆ID',
+				fieldLabel : '场馆',
 				id : 'Empempstadium',
 				name : 'empstadium'
 			} ]
@@ -51,9 +51,19 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '编码',
+				fieldLabel : '工号',
 				id : 'Empempcode',
 				name : 'empcode'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '系统账号',
+				id : 'Empempsysname',
+				name : 'empsysname'
 			} ]
 		}
 		, {
@@ -64,6 +74,26 @@ Ext.onReady(function() {
 				fieldLabel : '姓名',
 				id : 'Empempname',
 				name : 'empname'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '职位',
+				id : 'Empempposition',
+				name : 'empposition'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '上级',
+				id : 'Empemppposition',
+				name : 'emppposition'
 			} ]
 		}
 		, {
@@ -121,16 +151,6 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '地址',
-				id : 'Empempaddress',
-				name : 'empaddress'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
 				fieldLabel : '备注',
 				id : 'Empempdetail',
 				name : 'empdetail'
@@ -150,7 +170,9 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'datefield',
+				format : 'Y-m-d',
+				value : new Date(),
 				fieldLabel : '创建时间',
 				id : 'Empempinswhen',
 				name : 'empinswhen'
@@ -161,29 +183,10 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
+				value : currentuser.username,
 				fieldLabel : '创建人',
 				id : 'Empempinswho',
 				name : 'empinswho'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '更新时间',
-				id : 'Empempupdwhen',
-				name : 'empupdwhen'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '更新人',
-				id : 'Empempupdwho',
-				name : 'empupdwho'
 			} ]
 		}
 		]
@@ -214,7 +217,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '场馆ID',
+			header : '场馆',
 			dataIndex : 'empstadium',
 			sortable : true,  
 			editor: {
@@ -222,8 +225,16 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '编码',
+			header : '工号',
 			dataIndex : 'empcode',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '系统账号',
+			dataIndex : 'empsysname',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -232,6 +243,22 @@ Ext.onReady(function() {
 		, {
 			header : '姓名',
 			dataIndex : 'empname',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '职位',
+			dataIndex : 'empposition',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '上级',
+			dataIndex : 'emppposition',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -278,14 +305,6 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '地址',
-			dataIndex : 'empaddress',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
 			header : '备注',
 			dataIndex : 'empdetail',
 			sortable : true,  
@@ -317,22 +336,6 @@ Ext.onReady(function() {
                 xtype: 'textfield'
             }
 		}
-		, {
-			header : '更新时间',
-			dataIndex : 'empupdwhen',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '更新人',
-			dataIndex : 'empupdwho',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
 		],
 		tbar : [{
 				text : Ext.os.deviceType === 'Phone' ? null : "新增",
@@ -340,7 +343,7 @@ Ext.onReady(function() {
 				handler : function() {
 					EmpdataForm.form.reset();
 					Ext.getCmp("Empempid").setEditable (true);
-					createTextWindow(basePath + Empaction + "?method=insAll", "新增", EmpdataForm, Empstore);
+					createTextWindow(basePath + EmpService + "?method=insAll", "新增", EmpdataForm, Empstore);
 				}
 			},'-',{
 				text : Ext.os.deviceType === 'Phone' ? null : "保存",
@@ -351,7 +354,7 @@ Ext.onReady(function() {
 						Ext.Msg.alert('提示', '请至少选择一条数据！');
 						return;
 					}
-					commonSave(basePath + Empaction + "?method=updAll",selections);
+					commonSave(basePath + EmpService + "?method=updAll",selections);
 				}
 			},'-',{
 				text : Ext.os.deviceType === 'Phone' ? null : "修改",
@@ -365,7 +368,7 @@ Ext.onReady(function() {
 					}
 					EmpdataForm.form.reset();
 					Ext.getCmp("Empempid").setEditable (false);
-					createTextWindow(basePath + Empaction + "?method=updAll", "修改", EmpdataForm, Empstore);
+					createTextWindow(basePath + EmpService + "?method=updAll", "修改", EmpdataForm, Empstore);
 					EmpdataForm.form.loadRecord(selections[0]);
 				}
 			},'-',{
@@ -384,13 +387,13 @@ Ext.onReady(function() {
 	        						Ext.Msg.alert('提示', '请至少选择一条数据！');
 	        						return;
 	        					}
-	        					commonDelete(basePath + Empaction + "?method=delAll",selections,Empstore,Empkeycolumn);
+	        					commonDelete(basePath + EmpService + "?method=delAll",selections,Empstore,Empkeycolumn);
 	        				}
 	                    },{
 	                    	text : "导入",
 	        				iconCls : 'imp',
 	        				handler : function() {
-	        					commonImp(basePath + Empaction + "?method=impAll","导入",Empstore);
+	        					commonImp(basePath + EmpService + "?method=impAll","导入",Empstore);
 	        				}
 	                    },{
 	                    	text : "导出",
@@ -398,7 +401,7 @@ Ext.onReady(function() {
 	        				handler : function() {
 	        					Ext.Msg.confirm('请确认', '<b>提示:</b>请确认要导出当前数据？', function(btn, text) {
 	        						if (btn == 'yes') {
-	        							window.location.href = basePath + Empaction + "?method=expAll&json="+queryjson+"&query="+Ext.getCmp("queryEmpaction").getValue(); 
+	        							window.location.href = basePath + EmpService + "?method=expAll&json="+queryjson+"&query="+Ext.getCmp("queryEmpService").getValue(); 
 	        						}
 	        					});
 	        				}
@@ -423,14 +426,14 @@ Ext.onReady(function() {
     						iconCls : 'select',
     						handler : function() {
     							Ext.getCmp("Empempid").setEditable (true);
-    							createQueryWindow("筛选", EmpdataForm, Empstore,Ext.getCmp("queryEmpaction").getValue());
+    							createQueryWindow("筛选", EmpdataForm, Empstore,Ext.getCmp("queryEmpService").getValue());
     						}
     					}]
 	                }
 	            }
 			},'->',{
 				xtype : 'textfield',
-				id : 'queryEmpaction',
+				id : 'queryEmpService',
 				name : 'query',
 				emptyText : '模糊匹配',
 				width : 100,
@@ -443,7 +446,7 @@ Ext.onReady(function() {
 										start : 0,
 										limit : PAGESIZE,
 										json : queryjson,
-										query : Ext.getCmp("queryEmpaction").getValue()
+										query : Ext.getCmp("queryEmpService").getValue()
 									}
 							});
 						}
@@ -458,7 +461,7 @@ Ext.onReady(function() {
 								start : 0,
 								limit : PAGESIZE,
 								json : queryjson,
-								query : Ext.getCmp("queryEmpaction").getValue()
+								query : Ext.getCmp("queryEmpService").getValue()
 							}
 					});
 				}
@@ -466,6 +469,12 @@ Ext.onReady(function() {
 		]
 	});
 	Empgrid.region = 'center';
+	Empstore.on("beforeload",function(){ 
+		Empstore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryEmpService").getValue()
+		}; 
+	});
 	Empstore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

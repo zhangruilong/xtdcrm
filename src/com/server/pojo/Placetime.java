@@ -45,17 +45,29 @@ public class Placetime
     */
    private String placetimedate;   
    /**
-    * 开始时间
-    */
-   private String placetimebegin;   
-   /**
-    * 结束时间
-    */
-   private String placetimeend;   
-   /**
     * 备注
     */
    private String placetimedetail;   
+   /**
+    * calendarId
+    */
+   private Integer calendarId;   
+   /**
+    * 标题
+    */
+   private String title;   
+   /**
+    * 开始时间
+    */
+   private String startDate;   
+   /**
+    * 结束时间
+    */
+   private String endDate;   
+   /**
+    * 备注
+    */
+   private String description;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -211,40 +223,6 @@ public class Placetime
 	}	   
 
 	/**
-	 *设置"开始时间"属性
-	 *@param placetimebegin 实体的Placetimebegin属性
-	 */
-	public void setPlacetimebegin(String placetimebegin)
-	{
-		this.placetimebegin = placetimebegin;
-	}
-	
-	/**
-	 *获取"开始时间"属性
-	 */
-	public String getPlacetimebegin()
-	{
-		return this.placetimebegin;
-	}	   
-
-	/**
-	 *设置"结束时间"属性
-	 *@param placetimeend 实体的Placetimeend属性
-	 */
-	public void setPlacetimeend(String placetimeend)
-	{
-		this.placetimeend = placetimeend;
-	}
-	
-	/**
-	 *获取"结束时间"属性
-	 */
-	public String getPlacetimeend()
-	{
-		return this.placetimeend;
-	}	   
-
-	/**
 	 *设置"备注"属性
 	 *@param placetimedetail 实体的Placetimedetail属性
 	 */
@@ -260,6 +238,91 @@ public class Placetime
 	{
 		return this.placetimedetail;
 	}	   
+
+	/**
+	 *设置"calendarId"属性
+	 *@param calendarId 实体的CalendarId属性
+	 */
+	public void setCalendarId(Integer calendarId)
+	{
+		this.calendarId = calendarId;
+	}
+	
+	/**
+	 *获取"calendarId"属性
+	 */
+	public Integer getCalendarId()
+	{
+		return this.calendarId;
+	}	   
+
+	/**
+	 *设置"标题"属性
+	 *@param title 实体的Title属性
+	 */
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
+	
+	/**
+	 *获取"标题"属性
+	 */
+	public String getTitle()
+	{
+		return this.title;
+	}	   
+
+	/**
+	 *设置"开始时间"属性
+	 *@param startDate 实体的StartDate属性
+	 */
+	public void setStartDate(String startDate)
+	{
+		this.startDate = startDate;
+	}
+	
+	/**
+	 *获取"开始时间"属性
+	 */
+	public String getStartDate()
+	{
+		return this.startDate;
+	}	   
+
+	/**
+	 *设置"结束时间"属性
+	 *@param endDate 实体的EndDate属性
+	 */
+	public void setEndDate(String endDate)
+	{
+		this.endDate = endDate;
+	}
+	
+	/**
+	 *获取"结束时间"属性
+	 */
+	public String getEndDate()
+	{
+		return this.endDate;
+	}	   
+
+	/**
+	 *设置"备注"属性
+	 *@param description 实体的Description属性
+	 */
+	public void setDescription(String description)
+	{
+		this.description = description;
+	}
+	
+	/**
+	 *获取"备注"属性
+	 */
+	public String getDescription()
+	{
+		return this.description;
+	}	   
 	public Placetime() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -274,9 +337,12 @@ public class Placetime
 	 	,String placetimecoachname
 	 	,String placetimename
 	 	,String placetimedate
-	 	,String placetimebegin
-	 	,String placetimeend
 	 	,String placetimedetail
+	 	,Integer calendarId
+	 	,String title
+	 	,String startDate
+	 	,String endDate
+	 	,String description
 		 ){
 		super();
 		this.placetimeid = placetimeid;
@@ -288,9 +354,12 @@ public class Placetime
 	 	this.placetimecoachname = placetimecoachname;
 	 	this.placetimename = placetimename;
 	 	this.placetimedate = placetimedate;
-	 	this.placetimebegin = placetimebegin;
-	 	this.placetimeend = placetimeend;
 	 	this.placetimedetail = placetimedetail;
+	 	this.calendarId = calendarId;
+	 	this.title = title;
+	 	this.startDate = startDate;
+	 	this.endDate = endDate;
+	 	this.description = description;
 	}
 }
 

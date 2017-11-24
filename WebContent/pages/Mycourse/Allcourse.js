@@ -53,7 +53,7 @@ function selectAllcourse() {
 		, {
 			header : '教练',
 			dataIndex : 'allcoursecoach',
-			sortable : true,  
+			hidden : true,  
 			editor: {
                 xtype: 'textfield'
             }
@@ -169,6 +169,12 @@ function selectAllcourse() {
 		]
 	});
 	Allcoursegrid.region = 'center';
+	Allcoursestore.on("beforeload",function(){ 
+		Allcoursestore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryAllcourseaction").getValue()
+		}; 
+	});
 	Allcoursestore.load();//加载数据
 	var selectgridWindow = new Ext.Window({
 		layout : 'fit', // 设置窗口布局模式
@@ -198,7 +204,7 @@ function selectAllcourse() {
 							} 
 							Ext.getCmp('Mycoursemycoursename').setValue(selectRows[0].get("allcoursename"));
 							Ext.getCmp('Mycoursemycoursestadium').setValue(selectRows[0].get("allcoursestadium"));
-							Ext.getCmp('Mycoursemycoursecoach').setValue(selectRows[0].get("allcoursecoach"));
+//							Ext.getCmp('Mycoursemycoursecoach').setValue(selectRows[0].get("allcoursecoach"));
 							Ext.getCmp('Mycoursemycoursecoachname').setValue(selectRows[0].get("allcoursecoachname"));
 							Ext.getCmp('Mycoursemycoursenum').setValue(selectRows[0].get("allcoursenum"));
 							Ext.getCmp('Mycoursemycoursenuma').setValue(selectRows[0].get("allcoursenum"));
@@ -206,7 +212,7 @@ function selectAllcourse() {
 							Ext.getCmp('Mycoursemycoursemoney').setValue(selectRows[0].get("allcoursemoney"));
 							Ext.getCmp('Mycoursemycourseproject').setValue(selectRows[0].get("allcourseproject"));
 							Ext.getCmp('Mycoursemycoursedetail').setValue(selectRows[0].get("allcoursedetail"));
-							Ext.getCmp('Mycoursemycoursetype').setValue(selectRows[0].get("allcoursetype"));
+							Ext.getCmp('Mycoursemycoursetype').setValue("培训课");
 							Ext.getCmp('Mycoursemycoursebegin').setValue(selectRows[0].get("allcoursebegin"));
 							Ext.getCmp('Mycoursemycourseend').setValue(selectRows[0].get("allcourseend"));
 							selectgridWindow.close();

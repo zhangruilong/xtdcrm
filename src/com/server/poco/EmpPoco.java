@@ -23,21 +23,21 @@ public class EmpPoco
     */
    public static final String[] CHINESENAME = {
    		"ID",
-	 	"场馆ID",
-	 	"编码",
+	 	"场馆",
+	 	"工号",
+	 	"系统账号",
 	 	"姓名",
+	 	"职位",
+	 	"上级",
 	 	"年龄",
 	 	"性别",
 	 	"手机",
 	 	"邮箱",
 	 	"照片",
-	 	"地址",
 	 	"备注",
 	 	"状态",
 	 	"创建时间",
 	 	"创建人",
-	 	"更新时间",
-	 	"更新人",
 	};
 	/**
 	 * 实体英文字段
@@ -46,19 +46,19 @@ public class EmpPoco
    		"empid",
 	 	"empstadium",
 	 	"empcode",
+	 	"empsysname",
 	 	"empname",
+	 	"empposition",
+	 	"emppposition",
 	 	"empage",
 	 	"empsex",
 	 	"empphone",
 	 	"empemail",
 	 	"empimage",
-	 	"empaddress",
 	 	"empdetail",
 	 	"empstatue",
 	 	"empinswhen",
 	 	"empinswho",
-	 	"empupdwhen",
-	 	"empupdwho",
    };
    /**
     * 实体排序
@@ -71,19 +71,19 @@ public class EmpPoco
    		"empid",
 	 	"empstadium",
 	 	"empcode",
+	 	"empsysname",
 	 	"empname",
+	 	"empposition",
+	 	"emppposition",
 	 	"empage",
 	 	"empsex",
 	 	"empphone",
 	 	"empemail",
 	 	"empimage",
-	 	"empaddress",
 	 	"empdetail",
 	 	"empstatue",
 	 	"empinswhen",
 	 	"empinswho",
-	 	"empupdwhen",
-	 	"empupdwho",
    };
 }
 

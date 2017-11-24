@@ -26,8 +26,6 @@ public class NotesPoco
 	 	"会员",
 	 	"会员卡",
 	 	"场馆",
-	 	"教练",
-	 	"课程",
 	 	"事件",
 	 	"详细",
 	 	"分类",
@@ -42,12 +40,10 @@ public class NotesPoco
 	 	"notescustomer",
 	 	"notescard",
 	 	"notesstadium",
-	 	"notescoach",
-	 	"notescourse",
 	 	"notesname",
 	 	"notesdetail",
 	 	"notestype",
-	 	"notsinswhen",
+	 	"notesinswhen",
 	 	"notesinswho",
    };
    /**
@@ -62,12 +58,10 @@ public class NotesPoco
 	 	"notescustomer",
 	 	"notescard",
 	 	"notesstadium",
-	 	"notescoach",
-	 	"notescourse",
 	 	"notesname",
 	 	"notesdetail",
 	 	"notestype",
-	 	"notsinswhen",
+	 	"notesinswhen",
 	 	"notesinswho",
    };
 }

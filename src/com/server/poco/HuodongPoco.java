@@ -22,11 +22,11 @@ public class HuodongPoco
     * 实体中文字段
     */
    public static final String[] CHINESENAME = {
-   		"",
+   		"ID",
 	 	"场馆",
 	 	"优惠码",
 	 	"名称",
-	 	"卡种",
+	 	"项目",
 	 	"卡种",
 	 	"数量",
 	 	"开始",

@@ -11,7 +11,7 @@ Ext.onReady(function() {
 	        			    ,'placestatue' 
 	        			      ];// 全部字段
 	var Placekeycolumn = [ 'placeid' ];// 主键
-	var Placestore = dataStore(Placefields, basePath + Placeaction + "?method=selQuery");// 定义Placestore
+	var Placestore = dataStore(Placefields, basePath + Placeaction + "?method=selQuery&wheresql=placeproject!='球类'");// 定义Placestore
 	var PlacedataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'PlacedataForm',
 		labelAlign : 'right',
@@ -20,6 +20,7 @@ Ext.onReady(function() {
 		items : [ {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
@@ -31,7 +32,14 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : stadiumStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '场馆',
 				id : 'Placeplacestadium',
 				name : 'placestadium'
@@ -71,22 +79,29 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : projectStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '项目',
 				id : 'Placeplaceproject',
 				name : 'placeproject'
 			} ]
 		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '状态',
-				id : 'Placeplacestatue',
-				name : 'placestatue'
-			} ]
-		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '状态',
+//				id : 'Placeplacestatue',
+//				name : 'placestatue'
+//			} ]
+//		}
 		]
 	});
 	
@@ -99,10 +114,6 @@ Ext.onReady(function() {
 		bbar : Placebbar,
 	    selModel: {
 	        type: 'checkboxmodel'
-	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
 	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
@@ -154,14 +165,14 @@ Ext.onReady(function() {
                 xtype: 'textfield'
             }
 		}
-		, {
-			header : '状态',
-			dataIndex : 'placestatue',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
+//		, {
+//			header : '状态',
+//			dataIndex : 'placestatue',
+//			sortable : true,  
+//			editor: {
+//                xtype: 'textfield'
+//            }
+//		}
 		],
 		tbar : [{
 				text : Ext.os.deviceType === 'Phone' ? null : "新增",
@@ -196,6 +207,13 @@ Ext.onReady(function() {
 					Ext.getCmp("Placeplaceid").setEditable (false);
 					createTextWindow(basePath + Placeaction + "?method=updAll", "修改", PlacedataForm, Placestore);
 					PlacedataForm.form.loadRecord(selections[0]);
+				}
+			},'-',{
+				text : "筛选",
+				iconCls : 'select',
+				handler : function() {
+					Ext.getCmp("Placeplaceid").setEditable (true);
+					createQueryWindow("筛选", PlacedataForm, Placestore,Ext.getCmp("queryPlaceaction").getValue());
 				}
 			},'-',{
 	            text: '操作',
@@ -247,14 +265,7 @@ Ext.onReady(function() {
 	        					}
 	        					commonAttach(fid, Placeclassify);
 	        				}
-	                    },{
-	        				text : "筛选",
-    						iconCls : 'select',
-    						handler : function() {
-    							Ext.getCmp("Placeplaceid").setEditable (true);
-    							createQueryWindow("筛选", PlacedataForm, Placestore,Ext.getCmp("queryPlaceaction").getValue());
-    						}
-    					}]
+	                    }]
 	                }
 	            }
 			},'->',{
@@ -295,6 +306,12 @@ Ext.onReady(function() {
 		]
 	});
 	Placegrid.region = 'center';
+	Placestore.on("beforeload",function(){ 
+		Placestore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryPlaceaction").getValue()
+		}; 
+	});
 	Placestore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

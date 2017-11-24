@@ -25,14 +25,6 @@ public class Notes
     */
    private String notesstadium;   
    /**
-    * 教练
-    */
-   private String notescoach;   
-   /**
-    * 课程
-    */
-   private String notescourse;   
-   /**
     * 事件
     */
    private String notesname;   
@@ -47,7 +39,7 @@ public class Notes
    /**
     * 创建时间
     */
-   private String notsinswhen;   
+   private String notesinswhen;   
    /**
     * 创建人
     */
@@ -122,40 +114,6 @@ public class Notes
 	}	   
 
 	/**
-	 *设置"教练"属性
-	 *@param notescoach 实体的Notescoach属性
-	 */
-	public void setNotescoach(String notescoach)
-	{
-		this.notescoach = notescoach;
-	}
-	
-	/**
-	 *获取"教练"属性
-	 */
-	public String getNotescoach()
-	{
-		return this.notescoach;
-	}	   
-
-	/**
-	 *设置"课程"属性
-	 *@param notescourse 实体的Notescourse属性
-	 */
-	public void setNotescourse(String notescourse)
-	{
-		this.notescourse = notescourse;
-	}
-	
-	/**
-	 *获取"课程"属性
-	 */
-	public String getNotescourse()
-	{
-		return this.notescourse;
-	}	   
-
-	/**
 	 *设置"事件"属性
 	 *@param notesname 实体的Notesname属性
 	 */
@@ -208,19 +166,19 @@ public class Notes
 
 	/**
 	 *设置"创建时间"属性
-	 *@param notsinswhen 实体的Notsinswhen属性
+	 *@param notesinswhen 实体的Notesinswhen属性
 	 */
-	public void setNotsinswhen(String notsinswhen)
+	public void setNotesinswhen(String notesinswhen)
 	{
-		this.notsinswhen = notsinswhen;
+		this.notesinswhen = notesinswhen;
 	}
 	
 	/**
 	 *获取"创建时间"属性
 	 */
-	public String getNotsinswhen()
+	public String getNotesinswhen()
 	{
-		return this.notsinswhen;
+		return this.notesinswhen;
 	}	   
 
 	/**
@@ -248,12 +206,10 @@ public class Notes
 	 	,String notescustomer
 	 	,String notescard
 	 	,String notesstadium
-	 	,String notescoach
-	 	,String notescourse
 	 	,String notesname
 	 	,String notesdetail
 	 	,String notestype
-	 	,String notsinswhen
+	 	,String notesinswhen
 	 	,String notesinswho
 		 ){
 		super();
@@ -261,12 +217,10 @@ public class Notes
 	 	this.notescustomer = notescustomer;
 	 	this.notescard = notescard;
 	 	this.notesstadium = notesstadium;
-	 	this.notescoach = notescoach;
-	 	this.notescourse = notescourse;
 	 	this.notesname = notesname;
 	 	this.notesdetail = notesdetail;
 	 	this.notestype = notestype;
-	 	this.notsinswhen = notsinswhen;
+	 	this.notesinswhen = notesinswhen;
 	 	this.notesinswho = notesinswho;
 	}
 }

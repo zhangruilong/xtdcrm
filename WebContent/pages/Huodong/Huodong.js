@@ -26,9 +26,10 @@ Ext.onReady(function() {
 		items : [ {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '',
+				fieldLabel : 'ID',
 				id : 'Huodonghuodongid',
 				name : 'huodongid'
 			} ]
@@ -37,22 +38,29 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : stadiumStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '场馆',
 				id : 'Huodonghuodongstadium',
 				name : 'huodongstadium'
 			} ]
 		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '优惠码',
-				id : 'Huodonghuodongcode',
-				name : 'huodongcode'
-			} ]
-		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '优惠码(起始)',
+//				id : 'Huodonghuodongcode',
+//				name : 'huodongcode'
+//			} ]
+//		}
 		, {
 			columnWidth : .5,
 			layout : 'form',
@@ -67,10 +75,18 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '卡种',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : projectStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
+				fieldLabel : '项目(课程)',
 				id : 'Huodonghuodongcardtype',
-				name : 'huodongcardtype'
+				name : 'huodongcardtype',
+				editable : false
 			} ]
 		}
 		, {
@@ -80,7 +96,14 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				fieldLabel : '卡种',
 				id : 'Huodonghuodongcardtypename',
-				name : 'huodongcardtypename'
+				name : 'huodongcardtypename',
+				triggers: {
+			        bar: {
+			            handler: function() {
+			            	selectCardtype();
+			            }
+			        }
+				}
 			} ]
 		}
 		, {
@@ -93,26 +116,26 @@ Ext.onReady(function() {
 				name : 'huodongnum'
 			} ]
 		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '开始',
-				id : 'Huodonghuodongbegin',
-				name : 'huodongbegin'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '结束',
-				id : 'Huodonghuodongend',
-				name : 'huodongend'
-			} ]
-		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '开始',
+//				id : 'Huodonghuodongbegin',
+//				name : 'huodongbegin'
+//			} ]
+//		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '结束',
+//				id : 'Huodonghuodongend',
+//				name : 'huodongend'
+//			} ]
+//		}
 		, {
 			columnWidth : .5,
 			layout : 'form',
@@ -123,36 +146,36 @@ Ext.onReady(function() {
 				name : 'huodongmoney'
 			} ]
 		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '状态',
-				id : 'Huodonghuodongstatue',
-				name : 'huodongstatue'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '创建时间',
-				id : 'Huodonghuodonginswhen',
-				name : 'huodonginswhen'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '创建人',
-				id : 'Huodonghuodonginswho',
-				name : 'huodonginswho'
-			} ]
-		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '状态',
+//				id : 'Huodonghuodongstatue',
+//				name : 'huodongstatue'
+//			} ]
+//		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '创建时间',
+//				id : 'Huodonghuodonginswhen',
+//				name : 'huodonginswhen'
+//			} ]
+//		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '创建人',
+//				id : 'Huodonghuodonginswho',
+//				name : 'huodonginswho'
+//			} ]
+//		}
 		]
 	});
 	
@@ -166,15 +189,11 @@ Ext.onReady(function() {
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
-	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
-			header : '',
+			header : 'ID',
 			dataIndex : 'huodongid',
-			sortable : true, 
+			hidden : true, 
 			editor: {
                 xtype: 'textfield',
                 editable: false
@@ -205,9 +224,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '卡种',
+			header : '项目',
 			dataIndex : 'huodongcardtype',
-			sortable : true,  
 			editor: {
                 xtype: 'textfield'
             }
@@ -228,22 +246,22 @@ Ext.onReady(function() {
                 xtype: 'textfield'
             }
 		}
-		, {
-			header : '开始',
-			dataIndex : 'huodongbegin',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '结束',
-			dataIndex : 'huodongend',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
+//		, {
+//			header : '开始',
+//			dataIndex : 'huodongbegin',
+//			sortable : true,  
+//			editor: {
+//                xtype: 'textfield'
+//            }
+//		}
+//		, {
+//			header : '结束',
+//			dataIndex : 'huodongend',
+//			sortable : true,  
+//			editor: {
+//                xtype: 'textfield'
+//            }
+//		}
 		, {
 			header : '折让',
 			dataIndex : 'huodongmoney',
@@ -260,30 +278,44 @@ Ext.onReady(function() {
                 xtype: 'textfield'
             }
 		}
-		, {
-			header : '创建时间',
-			dataIndex : 'huodonginswhen',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '创建人',
-			dataIndex : 'huodonginswho',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
+//		, {
+//			header : '创建时间',
+//			dataIndex : 'huodonginswhen',
+//			sortable : true,  
+//			editor: {
+//                xtype: 'textfield'
+//            }
+//		}
+//		, {
+//			header : '创建人',
+//			dataIndex : 'huodonginswho',
+//			sortable : true,  
+//			editor: {
+//                xtype: 'textfield'
+//            }
+//		}
 		],
-		tbar : [{
+		tbar : [
+			{
+				text : Ext.os.deviceType === 'Phone' ? null : "查看参与人员",
+				iconCls : 'query',
+				handler : function() {
+					var selections = Huodonggrid.getSelection();
+					if (selections.length != 1) {
+						Ext.Msg.alert('提示', '请选择一条数据！', function() {
+						});
+						return;
+					}
+					selnotes(selections[0]);
+				}
+			},'-',
+			{
 				text : Ext.os.deviceType === 'Phone' ? null : "新增",
 				iconCls : 'add',
 				handler : function() {
 					HuodongdataForm.form.reset();
 					Ext.getCmp("Huodonghuodongid").setEditable (true);
-					createTextWindow(basePath + Huodongaction + "?method=insAll", "新增", HuodongdataForm, Huodongstore);
+					createTextWindow(basePath + Huodongaction + "?method=addhuodong", "新增", HuodongdataForm, Huodongstore);
 				}
 			},'-',{
 				text : Ext.os.deviceType === 'Phone' ? null : "保存",
@@ -409,6 +441,12 @@ Ext.onReady(function() {
 		]
 	});
 	Huodonggrid.region = 'center';
+	Huodongstore.on("beforeload",function(){ 
+		Huodongstore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryHuodongaction").getValue()
+		}; 
+	});
 	Huodongstore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

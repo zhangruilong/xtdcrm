@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="lib/weui.min.css">
+<link rel="stylesheet" href="lib/jquery-weui.min.css">
+<script src="common/common.js"></script>
+  </head>
+
+  <body ontouchstart>
+
+    <div class="weui-tab">
+      <div class="weui-navbar">
+        <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+          会员卡
+        </a>
+        <a class="weui-navbar__item" href="#tab2">
+          课程
+        </a>
+      </div>
+      <div class="weui-tab__bd">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+          	<div class="weui-cells">
+			  <a class="weui-cell weui-cell_access" href="javascript:;">
+			    <div class="weui-cell__bd">
+			      <p>卡种 卡号</p>
+			    </div>
+			    <div class="weui-cell__ft">余次(0)
+			    </div>
+			  </a>
+			</div>
+        </div>
+        <div id="tab2" class="weui-tab__bd-item">
+          <div class="weui-cells">
+			  <a class="weui-cell weui-cell_access" href="javascript:;">
+			    <div class="weui-cell__bd">
+			      <p>项目 课程名</p>
+			    </div>
+			    <div class="weui-cell__ft">余课(0)
+			    </div>
+			  </a>
+			</div>
+        </div>
+      </div>
+    </div>
+<script src="lib/jquery-2.1.4.js"></script>
+<script src="lib/fastclick.js"></script>
+<script>
+  $(function() {
+    FastClick.attach(document.body);
+    customer = JSON.parse(window.localStorage.getItem("customer"));
+    $.ajax({
+		url:"CuscardService.do?method=selAll",
+		type:"post",
+		data:{
+			wheresql : "Cuscardcustomer='"+customer.customerid+"'"
+		},
+		success: function(r) {
+			var resp = eval('('+r+')'); 
+			$("#tab1 .weui-cells").html("");
+			$.each(resp.root, function(i, item) {
+				if(item.cuscardtypeclass=="时间卡"){
+					$("#tab1 .weui-cells").append('<a class="weui-cell weui-cell_access" href="javascript:;" onclick="nextpage(\''
+							+item.cuscardid+'\');">'
+							+'<div class="weui-cell__bd"><p>'
+							+item.cuscardtypename+' '+item.cuscardno+'</p></div>'
+							);
+				}else
+				$("#tab1 .weui-cells").append('<a class="weui-cell weui-cell_access" href="javascript:;" onclick="nextpage(\''
+						+item.cuscardid+'\');">'
+						+'<div class="weui-cell__bd"><p>'
+						+item.cuscardtypename+' '+item.cuscardno+'</p></div>'
+						+'<div class="weui-cell__ft">余次('
+						+item.cuscardtimes+')</div></a>');
+			});
+		},
+		error:function(r) {
+			var resp = eval(r); 
+			alert(resp.msg);
+		}
+	});
+    $.ajax({
+		url:"MycourseService.do?method=selAll",
+		type:"post",
+		data:{
+			wheresql : "Mycoursecustomer='"+customer.customerid+"'"
+		},
+		success: function(r) {
+			var resp = eval('('+r+')'); 
+			$("#tab2 .weui-cells").html("");
+			$.each(resp.root, function(i, item) {	
+				$("#tab2 .weui-cells").append('<a class="weui-cell weui-cell_access" href="javascript:;" onclick="nextpage(\''
+						+item.mycourseid+'\');">'
+						+'<div class="weui-cell__bd"><p>'
+						+item.mycourseproject+' '+item.mycoursename+'</p></div>'
+						+'<div class="weui-cell__ft">余课('
+						+item.mycoursenuma+')</div></a>');
+			});
+		},
+		error:function(r) {
+			var resp = eval(r); 
+			alert(resp.msg);
+		}
+	});
+  });
+</script>
+<script src="lib/jquery-weui.min.js"></script>
+
+    <script>
+    function nextpage(value){
+	}
+    </script>
+  </body>
+</html>

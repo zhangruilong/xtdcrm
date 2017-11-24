@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="lib/weui.min.css">
+<link rel="stylesheet" href="lib/jquery-weui.min.css">
+<script src="common/common.js"></script>
+</head>
+
+<body ontouchstart>
+	<div id="content" class="weui-cells">
+		<a class="weui-cell weui-cell_access" href="javascript:;" onclick="nextpage('新天地旗舰馆');">
+			<div class="weui-cell__bd">
+				<p>新天地旗舰馆</p>
+			</div>
+			<div class="weui-cell__ft">
+    		</div>
+		</a>
+	</div>
+	<script src="lib/jquery-2.1.4.js"></script>
+	<script src="lib/fastclick.js"></script>
+	<script>
+		$(function() {
+			FastClick.attach(document.body);
+			$.ajax({
+				url:"StadiumService.do?method=selAll",
+				type:"post",
+				data:{
+				},
+				success: function(r) {
+	    			var resp = eval('('+r+')'); 
+	    			$("#content").html("");
+	    			$.each(resp.root, function(i, item) {	
+	    				$("#content").append('<a class="weui-cell weui-cell_access" href="javascript:;" onclick="nextpage(\''
+	    						+item.stadiumname+'\');">'
+	    						+'<div class="weui-cell__bd"><p>'
+	    						+item.stadiumname+'</p></div>'
+	    						+'<div class="weui-cell__ft"></div></a>');
+	    			});
+	    		},
+	    		error:function(r) {
+	    			var resp = eval(r); 
+	    			alert(resp.msg);
+	    		}
+			});
+		});
+	</script>
+	<script src="lib/jquery-weui.min.js"></script>
+
+	<script>
+		function nextpage(value){
+			window.localStorage.setItem('stadium',value);
+			window.location.href = "placetime.html";
+		}
+	</script>
+</body>
+</html>

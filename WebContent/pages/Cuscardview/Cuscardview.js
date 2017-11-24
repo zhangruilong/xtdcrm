@@ -58,6 +58,7 @@ Ext.onReady(function() {
 		layout : 'column',
 		items : [ {
 			columnWidth : .5,
+			hidden : true,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
@@ -528,10 +529,6 @@ Ext.onReady(function() {
 		bbar : Cuscardviewbbar,
 	    selModel: {
 	        type: 'checkboxmodel'
-	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
 	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
@@ -1036,6 +1033,12 @@ Ext.onReady(function() {
 		]
 	});
 	Cuscardviewgrid.region = 'center';
+	Cuscardviewstore.on("beforeload",function(){ 
+		Cuscardviewstore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryCuscardviewaction").getValue()
+		}; 
+	});
 	Cuscardviewstore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

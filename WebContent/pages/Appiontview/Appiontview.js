@@ -78,6 +78,7 @@ Ext.onReady(function() {
 		items : [ {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
@@ -218,6 +219,7 @@ Ext.onReady(function() {
 		, {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
@@ -418,6 +420,7 @@ Ext.onReady(function() {
 		, {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
@@ -738,14 +741,11 @@ Ext.onReady(function() {
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
-	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
 			header : 'ID',
 			dataIndex : 'appointid',
+			hidden : true,
 			sortable : true, 
 			editor: {
                 xtype: 'textfield',
@@ -858,6 +858,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : 'ID',
+			hidden : true,
 			dataIndex : 'customerid',
 			sortable : true,  
 			editor: {
@@ -1018,6 +1019,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : 'ID',
+			hidden : true,
 			dataIndex : 'cuscardid',
 			sortable : true,  
 			editor: {
@@ -1397,6 +1399,12 @@ Ext.onReady(function() {
 		]
 	});
 	Appiontviewgrid.region = 'center';
+	Appiontviewstore.on("beforeload",function(){ 
+		Appiontviewstore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryAppiontviewService").getValue()
+		}; 
+	});
 	Appiontviewstore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

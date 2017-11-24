@@ -26,6 +26,7 @@ Ext.onReady(function() {
 		items : [ {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
@@ -37,7 +38,15 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : stadiumStore,
+				mode : 'local',
+				allowBlank : false,
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '场馆',
 				id : 'Cardtypecardtypestadium',
 				name : 'cardtypestadium'
@@ -48,6 +57,7 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
+				allowBlank : false,
 				fieldLabel : '名称',
 				id : 'Cardtypecardtypename',
 				name : 'cardtypename'
@@ -57,7 +67,15 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : cardStore,
+				allowBlank : false,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '分类',
 				id : 'Cardtypecardtypeclass',
 				name : 'cardtypeclass'
@@ -69,6 +87,7 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '有效期',
+				allowBlank : false,
 				id : 'Cardtypecardtypeday',
 				name : 'cardtypeday'
 			} ]
@@ -79,6 +98,7 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '价格',
+				allowBlank : false,
 				id : 'Cardtypecardtypeprice',
 				name : 'cardtypeprice'
 			} ]
@@ -89,6 +109,8 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '次数',
+				allowBlank : false,
+				value : '0',
 				id : 'Cardtypecardtypetimes',
 				name : 'cardtypetimes'
 			} ]
@@ -99,6 +121,8 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '停用期限',
+				value : '62',
+				allowBlank : false,
 				id : 'Cardtypecardtypestop',
 				name : 'cardtypestop'
 			} ]
@@ -125,10 +149,13 @@ Ext.onReady(function() {
 		}
 		, {
 			columnWidth : .5,
+			hidden : true,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '状态',
+				allowBlank : false,
+				value : '启用',
 				id : 'Cardtypecardtypestatue',
 				name : 'cardtypestatue'
 			} ]
@@ -137,7 +164,15 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : changciStore,
+				allowBlank : false,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '场次',
 				id : 'Cardtypecardtypechangci',
 				name : 'cardtypechangci'
@@ -147,7 +182,15 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : projectStore,
+				allowBlank : false,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '项目',
 				id : 'Cardtypecardtypeproject',
 				name : 'cardtypeproject'
@@ -165,10 +208,6 @@ Ext.onReady(function() {
 		bbar : Cardtypebbar,
 	    selModel: {
 	        type: 'checkboxmodel'
-	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
 	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
@@ -255,7 +294,7 @@ Ext.onReady(function() {
 		, {
 			header : '状态',
 			dataIndex : 'cardtypestatue',
-			sortable : true,  
+			hidden : true,  
 			editor: {
                 xtype: 'textfield'
             }
@@ -409,6 +448,12 @@ Ext.onReady(function() {
 		]
 	});
 	Cardtypegrid.region = 'center';
+	Cardtypestore.on("beforeload",function(){ 
+		Cardtypestore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryCardtypeaction").getValue()
+		}; 
+	});
 	Cardtypestore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

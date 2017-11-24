@@ -26,11 +26,6 @@ Ext.onReady(function() {
 		items : [ {
 			items : [ {
 				xtype : 'textfield',
-				id : 'cuscardid',
-				name : 'cuscardid',
-				hidden : true
-			},{
-				xtype : 'textfield',
 				id : 'cuscardcustomer',
 				name : 'cuscardcustomer',
 				hidden : true
@@ -68,7 +63,6 @@ Ext.onReady(function() {
 				anchor : '100%',
 				triggers: {
 			        bar: {
-			            cls: 'my-bar-trigger',
 			            handler: function() {
 			            	selectCardtype();
 			            }
@@ -91,13 +85,43 @@ Ext.onReady(function() {
 				readOnly:true,
 				maxLength : 100,
 				anchor : '100%'
-			}
-			,{
+			},{
+				xtype : 'textfield',
+				fieldLabel : '优惠码',
+				id : 'cuscardid',
+				name : 'cuscardid',
+				maxLength : 100,
+				anchor : '100%',
+				listeners : {
+					blur : function(field, e) {
+						Ext.Ajax.request({
+							url : basePath + "HuodongService.do?method=selAll",
+							method : 'POST',
+							params : {
+								wheresql : "huodongcode='"+Ext.getCmp("cuscardid").getValue()
+								+"' and huodongcardtypename='"+Ext.getCmp("cuscardtypename").getValue()
+								+"' and huodongstatue is null"
+							},
+							success : function(response) {
+								var resp = Ext.decode(response.responseText); 
+								Ext.getCmp("cuscarddikou").setValue(0);
+								Ext.each(resp.root, function(temp, index) {  
+									Ext.getCmp("cuscarddikou").setValue(temp.huodongmoney);
+									window.localStorage.setItem("huodong",temp.huodongid);
+							    });
+								Ext.getCmp("cuscardmoney").setValue(Ext.getCmp("cuscardprice").getValue()-Ext.getCmp("cuscarddikou").getValue());
+							},
+							failure : function(response) {
+								Ext.Msg.alert('提示', '网络出现问题，请稍后再试');
+							}
+						});
+					}
+				}
+			},{
 				xtype : 'numberfield',
-				fieldLabel : '折扣',
+				fieldLabel : '折让',
 				id : 'cuscarddikou',
 				name : 'cuscarddikou',
-				allowBlank : false,
 				value : 0,
 				maxLength : 100,
 				anchor : '100%',
@@ -106,13 +130,12 @@ Ext.onReady(function() {
 						Ext.getCmp("cuscardmoney").setValue(Ext.getCmp("cuscardprice").getValue()-Ext.getCmp("cuscarddikou").getValue());
 					}
 				}
-			}
-			,{
+			},{
 				xtype : 'numberfield',
 				fieldLabel : '售价',
 				id : 'cuscardmoney',
 				name : 'cuscardmoney',
-				allowBlank : false,
+				readOnly:true,
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -121,8 +144,8 @@ Ext.onReady(function() {
 				id : 'cuscardbegin',
 				name : 'cuscardbegin',
 				format : 'Y-m-d',
-				allowBlank : false,
 				maxLength : 100,
+				hidden : true,
 				anchor : '100%',
 				listeners : {
 					blur : function(field, e) {
@@ -144,8 +167,8 @@ Ext.onReady(function() {
 				id : 'cuscardend',
 				name : 'cuscardend',
 				format : 'Y-m-d',
-				allowBlank : false,
 				maxLength : 100,
+				hidden : true,
 				anchor : '100%'
 			},{
 				xtype : 'numberfield',
@@ -153,7 +176,6 @@ Ext.onReady(function() {
 				id : 'cuscardtimes',
 				readOnly:true,
 				name : 'cuscardtimes',
-				allowBlank : false,
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -187,6 +209,7 @@ Ext.onReady(function() {
 				fieldLabel : '停用期限',
 				id : 'cuscardstop',
 				name : 'cuscardstop',
+				hidden : true,
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -194,13 +217,28 @@ Ext.onReady(function() {
 				fieldLabel : '停用费用',
 				id : 'cuscardstopmoney',
 				name : 'cuscardstopmoney',
+				hidden : true,
+				maxLength : 100,
+				anchor : '100%'
+			},{
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : projectStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
+				fieldLabel : '项目',
+				id : 'cuscardproject',
+				name : 'cuscardproject',
 				maxLength : 100,
 				anchor : '100%'
 			},{
 				xtype : 'textfield',
-				fieldLabel : '项目',
-				id : 'cuscardproject',
-				name : 'cuscardproject',
+				fieldLabel : '备注',
+				id : 'cuscarddetail',
+				name : 'cuscarddetail',
 				maxLength : 100,
 				anchor : '100%'
 			} ]
@@ -281,7 +319,14 @@ Ext.onReady(function() {
 				format : 'Y-m-d',
 				anchor : '100%'
 			},{
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : ruhuiStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '入会途径',
 				id : 'customerhow',
 				name : 'customerhow',
@@ -293,19 +338,19 @@ Ext.onReady(function() {
 				id : 'customeremp',
 				name : 'customeremp',
 				maxLength : 100,
-				anchor : '100%'
+				anchor : '100%',
+				triggers: {
+			        bar: {
+			            handler: function() {
+			            	selectemp();
+			            }
+			        }
+				}
 			},{
 				xtype : 'textfield',
 				fieldLabel : '住址',
 				id : 'customerhome',
 				name : 'customerhome',
-				maxLength : 100,
-				anchor : '100%'
-			},{
-				xtype : 'textfield',
-				fieldLabel : '备注',
-				id : 'cuscarddetail',
-				name : 'cuscarddetail',
 				maxLength : 100,
 				anchor : '100%'
 			},{
@@ -349,8 +394,8 @@ Ext.onReady(function() {
 				id : 'cuscardstatue',
 				name : 'cuscardstatue',
 				maxLength : 100,
-				value : "启用",
-				readOnly:true,
+				value : "停用",
+				hidden:true,
 				anchor : '100%'
 			}]
 		}
@@ -362,6 +407,10 @@ Ext.onReady(function() {
 				var num = GetRandomNum(1000000000,4294967294);//闸机的客户号4字节无符号整形
 				Ext.getCmp("customercode").setValue(num);
 				if (CustomercuscardviewdataForm.form.isValid()) {
+					var dtbegin = Ext.Date.add(new Date(), Ext.Date.DAY, 60);
+					Ext.getCmp("cuscardbegin").setValue(dtbegin);
+					var dtend = Ext.Date.add(new Date(Ext.getCmp("cuscardbegin").getValue()), Ext.Date.DAY, Ext.getCmp("cuscardday").getValue());
+					Ext.getCmp("cuscardend").setValue(dtend);
 					var json = "[" + Ext.encode(CustomercuscardviewdataForm.form.getValues(false)) + "]";
 					CustomercuscardviewdataForm.form.submit({
 						url : basePath + "CuscardService.do?method=insCuscardinsCustomer&json="+json,
@@ -369,32 +418,10 @@ Ext.onReady(function() {
 						waitMsg : '正在处理数据,请稍候...',
 						method : 'GET',
 						params : {//改
+							huodong : Ext.getCmp("cuscardid").getValue(),
 							json : json
 						},
 						success : function(form, action) {
-							if(action.result.code==200){
-								Ext.Msg.confirm('请确认是否继续发卡', '<b>提示:</b>'+action.result.msg, function(btn, text) {
-									if (btn == 'yes') {
-										CustomercuscardviewdataForm.form.submit({
-											url : basePath + "CuscardService.do?method=insAll",
-											waitTitle : '提示',
-											waitMsg : '正在处理数据,请稍候...',
-											method : 'GET',
-											params : {//改
-												json : json
-											},
-											success : function(form, action) {
-												Ext.Msg.alert('提示', action.result.msg,function(){
-												});
-											},
-											failure : function(form, action) {
-												Ext.Msg.alert('提示', '网络出现问题，请稍后再试');
-											},
-											waitMsg : '正在处理数据,请稍候...'
-										});
-									}
-								})
-							}else
 							Ext.Msg.alert('提示', action.result.msg,function(){
 //								var zhajicard;
 //								zhajicard.UID = num;

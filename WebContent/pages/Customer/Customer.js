@@ -35,6 +35,7 @@ Ext.onReady(function() {
 		items : [ {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
@@ -46,7 +47,14 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : stadiumStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '场馆',
 				id : 'Customercustomerstadium',
 				name : 'customerstadium'
@@ -189,7 +197,14 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				fieldLabel : '会籍管家',
 				id : 'Customercustomeremp',
-				name : 'customeremp'
+				name : 'customeremp',
+				triggers: {
+			        bar: {
+			            handler: function() {
+			            	selectemp();
+			            }
+			        }
+				}
 			} ]
 		}
 		, {
@@ -197,16 +212,30 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '备注',
+				fieldLabel : '教练管家',
 				id : 'Customercustomerdetail',
-				name : 'customerdetail'
+				name : 'customerdetail',
+				triggers: {
+			        bar: {
+			            handler: function() {
+			            	selectcoach();
+			            }
+			        }
+				}
 			} ]
 		}
 		, {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : customerStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '状态',
 				id : 'Customercustomerstatue',
 				name : 'customerstatue'
@@ -216,8 +245,10 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'datefield',
 				fieldLabel : '创建时间',
+				format : 'Y-m-d',
+				value : new Date(),
 				id : 'Customercustomerinswhen',
 				name : 'customerinswhen'
 			} ]
@@ -228,28 +259,9 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建人',
+				value : currentuser.username,
 				id : 'Customercustomerinswho',
 				name : 'customerinswho'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '更新时间',
-				id : 'Customercustomerupdwhen',
-				name : 'customerupdwhen'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '更新人',
-				id : 'Customercustomerupdwho',
-				name : 'customerupdwho'
 			} ]
 		}
 		]
@@ -265,32 +277,20 @@ Ext.onReady(function() {
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
-	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
 			header : 'ID',
 			dataIndex : 'customerid',
-			sortable : true, 
+			hidden : true, 
 			editor: {
                 xtype: 'textfield',
                 editable: false
             }
 		}
 		, {
-			header : '场馆',
-			dataIndex : 'customerstadium',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
 			header : 'OPENID',
 			dataIndex : 'openid',
-			sortable : true,  
+			hidden : true,  
 			editor: {
                 xtype: 'textfield'
             }
@@ -298,7 +298,7 @@ Ext.onReady(function() {
 		, {
 			header : '编码',
 			dataIndex : 'customercode',
-			sortable : true,  
+			hidden : true,  
 			editor: {
                 xtype: 'textfield'
             }
@@ -328,30 +328,6 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '身份证',
-			dataIndex : 'customercdcard',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '住址',
-			dataIndex : 'customerhome',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '单位',
-			dataIndex : 'customercompany',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
 			header : '手机',
 			dataIndex : 'customerphone',
 			sortable : true,  
@@ -360,16 +336,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '生日',
-			dataIndex : 'customerbirthday',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '邮箱',
-			dataIndex : 'customeremail',
+			header : '身份证号',
+			dataIndex : 'customercdcard',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -384,8 +352,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '照片',
-			dataIndex : 'customerimage',
+			header : '所属场馆',
+			dataIndex : 'customerstadium',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -400,8 +368,48 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '备注',
+			header : '教练管家',
 			dataIndex : 'customerdetail',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '生日',
+			dataIndex : 'customerbirthday',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '单位',
+			dataIndex : 'customercompany',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '邮箱',
+			dataIndex : 'customeremail',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '照片',
+			dataIndex : 'customerimage',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '住址',
+			dataIndex : 'customerhome',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -449,6 +457,28 @@ Ext.onReady(function() {
 		}
 		],
 		tbar : [{
+					text : Ext.os.deviceType === 'Phone' ? null : "操作查询",
+					handler : function() {
+						var selections = Customergrid.getSelection();
+						if (selections.length != 1) {
+							Ext.Msg.alert('提示', '请选择一条数据！', function() {
+							});
+							return;
+						}
+						getnotes(selections[0].data["customerid"]);
+					}
+				},'-',{
+					text : Ext.os.deviceType === 'Phone' ? null : "分配管家",
+					iconCls : 'edit',
+					handler : function() {
+						var selections = Customergrid.getSelection();
+    					if (Ext.isEmpty(selections)) {
+    						Ext.Msg.alert('提示', '请至少选择一条数据！');
+    						return;
+    					}
+    					updallemp(basePath + Customeraction + "?method=updAll",selections,Customerstore,Customerkeycolumn);
+					}
+			},'-',{
 				text : Ext.os.deviceType === 'Phone' ? null : "新增",
 				iconCls : 'add',
 				handler : function() {
@@ -481,6 +511,18 @@ Ext.onReady(function() {
 					Ext.getCmp("Customercustomerid").setEditable (false);
 					createTextWindow(basePath + Customeraction + "?method=updAll", "修改", CustomerdataForm, Customerstore);
 					CustomerdataForm.form.loadRecord(selections[0]);
+				}
+			},'-',{
+				text : Ext.os.deviceType === 'Phone' ? null : "上传照片",
+				iconCls : 'edit',
+				handler : function() {
+					var selections = Customergrid.getSelection();
+					if (selections.length != 1) {
+						Ext.Msg.alert('提示', '请选择一条数据！', function() {
+						});
+						return;
+					}
+					commonImageUpload("Customer","Customerimage","Customerid",selections[0].data['customerid']);
 				}
 			},'-',{
 	            text: '操作',
@@ -580,6 +622,12 @@ Ext.onReady(function() {
 		]
 	});
 	Customergrid.region = 'center';
+	Customerstore.on("beforeload",function(){ 
+		Customerstore.getProxy().extraParams = {
+			json : queryjson,
+			query : Ext.getCmp("queryCustomeraction").getValue()
+		}; 
+	});
 	Customerstore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

@@ -28,6 +28,7 @@ Ext.onReady(function() {
 		items : [ {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
@@ -187,10 +188,6 @@ Ext.onReady(function() {
 		bbar : Goodsbbar,
 	    selModel: {
 	        type: 'checkboxmodel'
-	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
 	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
@@ -447,6 +444,12 @@ Ext.onReady(function() {
 		]
 	});
 	Goodsgrid.region = 'center';
+	Goodsstore.on("beforeload",function(){ 
+		Goodsstore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryGoodsaction").getValue()
+		}; 
+	});
 	Goodsstore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

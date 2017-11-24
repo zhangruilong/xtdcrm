@@ -23,5 +23,21 @@ import com.system.tools.pojo.Pageinfo;
  *@author ZhangRuiLong
  */
 public class HuodongService extends HuodongAction {
-
+	//新增
+	public void addhuodong(HttpServletRequest request, HttpServletResponse response){
+		String json = request.getParameter("json");
+		System.out.println("json : " + json);
+		json = json.replace("\"\"", "null");
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		for(Huodong temp:cuss){
+			int num = TypeUtil.stringToInt(temp.getHuodongnum());
+			for(int i=0;i<num;i++){
+				String newid = CommonUtil.getNewId();
+				temp.setHuodongid(newid);
+				temp.setHuodongcode(newid);
+				result = insSingle(temp);
+			}
+		}
+		responsePW(response, result);
+	}
 }

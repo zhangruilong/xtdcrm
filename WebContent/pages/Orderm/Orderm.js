@@ -27,6 +27,7 @@ Ext.onReady(function() {
 		layout : 'column',
 		items : [ {
 			columnWidth : .5,
+			hidden : true,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
@@ -39,10 +40,37 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : stadiumStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '场馆',
 				id : 'Ordermorderstadium',
 				name : 'orderstadium'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '手机号',
+				id : 'Ordermorderupdwhen',
+				name : 'orderupdwhen'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '会员',
+				id : 'Ordermorderupdwho',
+				name : 'orderupdwho'
 			} ]
 		}
 		, {
@@ -80,6 +108,16 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
+				fieldLabel : '数量',
+				id : 'Ordermorderstatue',
+				name : 'orderstatue'
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
 				fieldLabel : '下单金额',
 				id : 'Ordermordermoney',
 				name : 'ordermoney'
@@ -110,16 +148,6 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '照片',
-				id : 'Ordermorderimage',
-				name : 'orderimage'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
 				fieldLabel : '备注',
 				id : 'Ordermorderdetail',
 				name : 'orderdetail'
@@ -129,18 +157,10 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '状态',
-				id : 'Ordermorderstatue',
-				name : 'orderstatue'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
+				xtype : 'datefield',
 				fieldLabel : '创建时间',
+				format : 'Y-m-d',
+				value : new Date(),
 				id : 'Ordermorderinswhen',
 				name : 'orderinswhen'
 			} ]
@@ -151,28 +171,9 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建人',
+				value : currentuser.username,
 				id : 'Ordermorderinswho',
 				name : 'orderinswho'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '更新时间',
-				id : 'Ordermorderupdwhen',
-				name : 'orderupdwhen'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '更新人',
-				id : 'Ordermorderupdwho',
-				name : 'orderupdwho'
 			} ]
 		}
 		]
@@ -188,10 +189,6 @@ Ext.onReady(function() {
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
-	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
 			header : 'ID',
@@ -205,6 +202,22 @@ Ext.onReady(function() {
 		, {
 			header : '场馆',
 			dataIndex : 'orderstadium',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '手机号',
+			dataIndex : 'orderupdwhen',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '会员',
+			dataIndex : 'orderupdwho',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -235,6 +248,14 @@ Ext.onReady(function() {
             }
 		}
 		, {
+			header : '数量',
+			dataIndex : 'orderstatue',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
 			header : '下单金额',
 			dataIndex : 'ordermoney',
 			sortable : true,  
@@ -259,24 +280,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '照片',
-			dataIndex : 'orderimage',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
 			header : '备注',
 			dataIndex : 'orderdetail',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '状态',
-			dataIndex : 'orderstatue',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -293,22 +298,6 @@ Ext.onReady(function() {
 		, {
 			header : '创建人',
 			dataIndex : 'orderinswho',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '更新时间',
-			dataIndex : 'orderupdwhen',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '更新人',
-			dataIndex : 'orderupdwho',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -447,6 +436,12 @@ Ext.onReady(function() {
 		]
 	});
 	Ordermgrid.region = 'center';
+	Ordermstore.on("beforeload",function(){ 
+		Ordermstore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryOrdermaction").getValue()
+		}; 
+	});
 	Ordermstore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

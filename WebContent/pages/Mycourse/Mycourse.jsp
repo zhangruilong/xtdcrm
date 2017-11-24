@@ -2,6 +2,7 @@
 <html>
   <head>
 	<%@ include file="/zrlextpages/common/common.jsp" %>
+	<script type="text/javascript" src="Appiont.js"></script>
 	<script type="text/javascript" src="Allcourse.js"></script>
 	<script type="text/javascript" src="Customer.js"></script>
 	<script type="text/javascript" src="Mycourse.js"></script>

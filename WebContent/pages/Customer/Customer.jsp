@@ -2,6 +2,10 @@
 <html>
   <head>
 	<%@ include file="/zrlextpages/common/common.jsp" %>
+	<script type="text/javascript" src="Emp.js"></script>
+	<script type="text/javascript" src="updallEmp.js"></script>
+	<script type="text/javascript" src="Coach.js"></script>
+	<script type="text/javascript" src="Notes.js"></script>
 	<script type="text/javascript" src="Customer.js"></script>
   </head>
 </html>

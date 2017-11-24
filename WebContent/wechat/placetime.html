@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="lib/weui.min.css">
+<link rel="stylesheet" href="lib/jquery-weui.min.css">
+<script src="common/common.js"></script>
+</head>
+
+<body ontouchstart>
+	<header class='demos-header'>
+       <div class="weui-cells">
+	      <div class="weui-cell">
+	        <div class="weui-cell__hd"><label for="" class="weui-label">日期：</label></div>
+	        <div class="weui-cell__bd">
+	          <input id="placetimedate" type="text" data-toggle="date">
+	        </div>
+	      </div>
+	      <div class="weui-cell weui-cell_select weui-cell_select-after">
+	        <div class="weui-cell__hd">
+	          <label for="" class="weui-label">项目：</label>
+	        </div>
+	        <div class="weui-cell__bd">
+	          <select id="placetimeproject" class="weui-select" name="select1">
+	            <option value="瑜伽">瑜伽</option>
+	          	<option value="普拉提">普拉提</option>
+	            <option value="舞蹈">舞蹈</option>
+	            <option value="单车">单车</option>
+	            <option value="健身操">有氧操</option>
+	          </select>
+	        </div>
+	      </div>
+	      <div class="weui-cell weui-cell_select weui-cell_select-after">
+	        <div class="weui-cell__hd">
+	          <label for="" class="weui-label">场次：</label>
+	        </div>
+	        <div class="weui-cell__bd">
+	          <select id="placetimedetail" class="weui-select" name="select2">
+	          </select>
+	        </div>
+	      </div>
+           <div class="weui-cell">
+	            <div class="weui-cell__hd">
+		          <label for="" class="weui-label">教练：</label>
+		        </div>
+               <div class="weui-cell__bd">
+                   <label id="placetimecoach" for="" class="weui-label"></label>
+               </div>
+           </div>
+           <div class="weui-cell">
+          		<div class="weui-cell__hd">
+		          <label for="" class="weui-label">开始:</label>
+		        </div>
+               <div class="weui-cell__bd">
+                   <label id="startDate" for=""></label>
+               </div>
+           </div>
+           <div class="weui-cell">
+          		<div class="weui-cell__hd">
+		          <label for="" class="weui-label">到:</label>
+		        </div>
+               <div class="weui-cell__bd">
+                   <label id="endDate" for=""></label>
+               </div>
+           </div>
+	    </div>
+	    <a href="javascript:;" class="weui-btn weui-btn_plain-primary" onclick="selall();">查询</a>
+    </header>
+
+    <div id="content" class="weui-grids">
+      <!-- <a href="javascript:;" class="weui-grid js_grid" onclick="nextpage('1');" >
+        <div class="weui-grid__icon"><img src="lib/icon_nav_button.png" alt=""></div><p class="weui-grid__label">
+          空位置
+        </p></a>
+      <a href="javascript:;" class="weui-grid js_grid" onclick="nextpage('1');">
+        <div class="weui-grid__icon">
+          <img src="lib/icon_nav_button.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          空位置
+        </p>
+      </a>
+      <a href="javascript:;" class="weui-grid js_grid" onclick="nextpage('1');">
+        <div class="weui-grid__icon">
+          <img src="lib/icon_nav_button.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          空位置
+        </p>
+      </a>
+      <a href="javascript:;" class="weui-grid js_grid" onclick="nextpage('1');">
+        <div class="weui-grid__icon">
+          <img src="lib/icon_nav_button.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          空位置
+        </p>
+      </a>
+      <a href="javascript:;" class="weui-grid js_grid" onclick="nextpage('1');">
+        <div class="weui-grid__icon">
+          <img src="lib/icon_nav_toast.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          已预约
+        </p>
+      </a>
+      <a href="javascript:;" class="weui-grid js_grid" onclick="nextpage('1');">
+        <div class="weui-grid__icon">
+          <img src="lib/icon_nav_toast.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          已预约
+        </p>
+      </a>
+      <a href="javascript:;" class="weui-grid js_grid" onclick="nextpage('1');">
+        <div class="weui-grid__icon">
+          <img src="lib/icon_nav_toast.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          已预约
+        </p>
+      </a>
+      <a href="javascript:;" class="weui-grid js_grid" onclick="nextpage('1');">
+        <div class="weui-grid__icon">
+          <img src="lib/icon_nav_toast.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          已预约
+        </p>
+      </a>
+      <a href="javascript:;" class="weui-grid js_grid" onclick="nextpage('1');">
+        <div class="weui-grid__icon">
+          <img src="lib/icon_nav_toast.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          已预约
+        </p>
+      </a> -->
+    </div>
+	<script src="../zrlextpages/common/jsutil.js"></script>
+	<script src="lib/jquery-2.1.4.js"></script>
+	<script src="lib/fastclick.js"></script>
+	<script>
+		$(function() {
+			FastClick.attach(document.body);
+			var dd = new Date();
+		    dd.setDate(dd.getDate()+1);//获取AddDayCount天后的日期
+		    var ddmin = new Date();
+		    ddmin.setDate(ddmin.getDate()-1);//获取AddDayCount天后的日期
+			$("#placetimedate").calendar({
+				minDate:[getstringdate(ddmin)],
+				maxDate:[getstringdate(dd)]
+			});
+			$("#placetimedate").val(getstringdate()) ;
+			$("#placetimedetail").change(function(){
+				selall();
+			});
+			$("#placetimedetail").click(function(){
+				loadplacetimedetail();
+			});
+			$("#placetimedate").change(function(){
+				loadplacetimedetail();
+			});
+			$("#placetimeproject").change(function(){
+				loadplacetimedetail();
+			});
+		});
+	</script>
+	<script src="lib/jquery-weui.min.js"></script>
+
+	<script>
+	function selall(){
+		$.ajax({
+			url:"PlacetimeService.do?method=selAllPlace",
+			type:"post",
+			data:{
+				wheresql:"startDate like '"+$("#placetimedate").val()
+				+"%' and placetimeproject='"+$("#placetimeproject").val()
+				+"' and placetimedetail='"+$("#placetimedetail").val()
+				+"' and placetimestadium='"+window.localStorage.getItem('stadium')
+				+"'"
+			},
+			success: function(r) {
+    			var resp = eval('('+r+')'); 
+    			$("#content").html("");
+    			$("#placetimecoach").html("");
+   				$("#startDate").html("");
+   				$("#endDate").html("");
+    			$.each(resp.root, function(i, item) {
+    				$("#placetimecoach").html(resp.placetimecoachname);
+       				$("#startDate").html(resp.startDate);
+       				$("#endDate").html(resp.endDate);
+       				$("#content").append('<a href="javascript:;" class="weui-grid js_grid" onclick="nextpage(\''
+       						+item.placecode+'\',\''+item.placename+'\');" >'
+       				        +'<div class="weui-grid__icon"><img src="lib/'
+       				        +item.placedetail+'" alt=""></div><p class="weui-grid__label">'
+       				        +item.placecode+item.placestatue
+       				        +'</p></a>');
+    			});
+    		},
+    		error:function(r) {
+    			var resp = eval(r); 
+    			alert(resp.msg);
+    		}
+		});
+	}
+	function loadplacetimedetail(){
+		$.ajax({
+			url:"PlacetimeService.do?method=selAll",
+			type:"post",
+			data:{
+				wheresql:"startDate like '"+$("#placetimedate").val()
+				+"%' and placetimeproject='"+$("#placetimeproject").val()
+				+"' and placetimestadium='"+window.localStorage.getItem('stadium')
+				+"'"
+			},
+			success: function(r) {
+    			var resp = eval('('+r+')'); 
+    			$("#placetimedetail").html("");
+    			$.each(resp.root, function(i, item) {	
+    				$("#placetimedetail").append('<option value="'+item.placetimedetail+'">'+item.placetimedetail+'</option>');
+    			});
+    			selall();
+    		},
+    		error:function(r) {
+    			var resp = eval(r); 
+    			alert(resp.msg);
+    		}
+		});
+	}
+	function nextpage(placecode,placename){
+		$.confirm("确认预约？", function() {
+		  //点击确认后的回调函数
+			$.ajax({
+				url:"AppiontService.do?method=placetimeAppiont",
+				type:"post",
+				data:{
+					json:"[{'appointcustomer':'"+customer.customerid
+					+"','appointcard':'"+customer.cuscardid
+					+"','appointstadium':'"+window.localStorage.getItem('stadium')
+					+"','appointproject':'"+$("#placetimeproject").val()
+					+"','appointplace':'"+placecode
+					+"','appointplacename':'"+placename
+					+"','appointcoachname':'"+$("#placetimecoach").html()
+					+"','appointdate':'"+$("#placetimedate").val()
+					+"','appointbegin':'"+$("#startDate").html()
+					+"','appointend':'"+$("#endDate").html()
+					+"','appointdetail':'"+$("#placetimedetail").val()
+					+"','appointdetail':'"+$("#placetimedetail").val()
+					+"','appointtype':'公共课"
+					+"','appointstatue':'已预约"
+					+"','appointinswhen':'"+getdatetime()
+					+"'}]"
+				},
+				success: function(r) {
+					var resp = eval('('+r+')'); 
+					if(resp.code==202) window.location.href = "success.html";
+					else if(resp.code==400) {
+						$.confirm("位置已被抢占，是否服从调剂，调剂后系统会自动为您分配位置", function() {
+							  //点击确认后的回调函数
+							  nextpage("appointplace",placename);
+							  }, function() {
+							  //点击取消后的回调函数
+							  });
+					}else{
+						alert(resp.msg);
+					}
+	    		},
+	    		error:function(r) {
+	    			var resp = eval(r); 
+	    			alert(resp.msg);
+	    		}
+			});
+		  }, function() {
+		  //点击取消后的回调函数
+		  });
+	}
+	</script>
+</body>
+</html>

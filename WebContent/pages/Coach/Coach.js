@@ -27,6 +27,7 @@ Ext.onReady(function() {
 		items : [ {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
@@ -38,7 +39,14 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : stadiumStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '场馆',
 				id : 'Coachcoachstadium',
 				name : 'coachstadium'
@@ -98,7 +106,14 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : sexStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '性别',
 				id : 'Coachcoachsex',
 				name : 'coachsex'
@@ -138,30 +153,17 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : coachStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '状态',
 				id : 'Coachcoachstatue',
 				name : 'coachstatue'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '创建人',
-				id : 'Coachcoachinswho',
-				name : 'coachinswho'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '创建时间',
-				id : 'Coachcoachinswhen',
-				name : 'coachinswhen'
 			} ]
 		}
 		]
@@ -176,10 +178,6 @@ Ext.onReady(function() {
 		bbar : Coachbbar,
 	    selModel: {
 	        type: 'checkboxmodel'
-	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
 	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
@@ -279,22 +277,6 @@ Ext.onReady(function() {
                 xtype: 'textfield'
             }
 		}
-		, {
-			header : '创建人',
-			dataIndex : 'coachinswho',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '创建时间',
-			dataIndex : 'coachinswhen',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
 		],
 		tbar : [{
 				text : Ext.os.deviceType === 'Phone' ? null : "新增",
@@ -329,6 +311,18 @@ Ext.onReady(function() {
 					Ext.getCmp("Coachcoachid").setEditable (false);
 					createTextWindow(basePath + Coachaction + "?method=updAll", "修改", CoachdataForm, Coachstore);
 					CoachdataForm.form.loadRecord(selections[0]);
+				}
+			},'-',{
+				text : Ext.os.deviceType === 'Phone' ? null : "上传照片",
+				iconCls : 'edit',
+				handler : function() {
+					var selections = Coachgrid.getSelection();
+					if (selections.length != 1) {
+						Ext.Msg.alert('提示', '请选择一条数据！', function() {
+						});
+						return;
+					}
+					commonImageUpload("coach","coachimage","coachid",selections[0].data['coachid']);
 				}
 			},'-',{
 	            text: '操作',
@@ -428,6 +422,12 @@ Ext.onReady(function() {
 		]
 	});
 	Coachgrid.region = 'center';
+	Coachstore.on("beforeload",function(){ 
+		Coachstore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryCoachaction").getValue()
+		}; 
+	});
 	Coachstore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

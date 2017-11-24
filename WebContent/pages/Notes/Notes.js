@@ -1,18 +1,17 @@
 Ext.onReady(function() {
 	var Notesclassify = "notes";
 	var Notestitle = "当前位置:业务管理》" + Notesclassify;
-	var Notesaction = "NotesService.do";
+	var Notesaction = "NotesviewService.do";
 	var Notesfields = ['notesid'
 	        			    ,'notescustomer' 
 	        			    ,'notescard' 
 	        			    ,'notesstadium' 
-	        			    ,'notescoach' 
-	        			    ,'notescourse' 
 	        			    ,'notesname' 
 	        			    ,'notesdetail' 
 	        			    ,'notestype' 
-	        			    ,'notsinswhen' 
+	        			    ,'notesinswhen' 
 	        			    ,'notesinswho' 
+	        			    ,'customername' 
 	        			      ];// 全部字段
 	var Noteskeycolumn = [ 'notesid' ];// 主键
 	var Notesstore = dataStore(Notesfields, basePath + Notesaction + "?method=selQuery");// 定义Notesstore
@@ -24,6 +23,7 @@ Ext.onReady(function() {
 		items : [ {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
@@ -66,26 +66,6 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '教练',
-				id : 'Notesnotescoach',
-				name : 'notescoach'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '课程',
-				id : 'Notesnotescourse',
-				name : 'notescourse'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
 				fieldLabel : '事件',
 				id : 'Notesnotesname',
 				name : 'notesname'
@@ -117,8 +97,8 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '创建时间',
-				id : 'Notesnotsinswhen',
-				name : 'notsinswhen'
+				id : 'Notesnotesinswhen',
+				name : 'notesinswhen'
 			} ]
 		}
 		, {
@@ -144,10 +124,6 @@ Ext.onReady(function() {
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
-	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
 			header : 'ID',
@@ -160,7 +136,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '会员',
-			dataIndex : 'notescustomer',
+			dataIndex : 'customername',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -177,22 +153,6 @@ Ext.onReady(function() {
 		, {
 			header : '场馆',
 			dataIndex : 'notesstadium',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '教练',
-			dataIndex : 'notescoach',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '课程',
-			dataIndex : 'notescourse',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -224,7 +184,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '创建时间',
-			dataIndex : 'notsinswhen',
+			dataIndex : 'notesinswhen',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -240,40 +200,6 @@ Ext.onReady(function() {
 		}
 		],
 		tbar : [{
-				text : Ext.os.deviceType === 'Phone' ? null : "新增",
-				iconCls : 'add',
-				handler : function() {
-					NotesdataForm.form.reset();
-					Ext.getCmp("Notesnotesid").setEditable (true);
-					createTextWindow(basePath + Notesaction + "?method=insAll", "新增", NotesdataForm, Notesstore);
-				}
-			},'-',{
-				text : Ext.os.deviceType === 'Phone' ? null : "保存",
-				iconCls : 'ok',
-				handler : function() {
-					var selections = Notesgrid.getSelection();
-					if (Ext.isEmpty(selections)) {
-						Ext.Msg.alert('提示', '请至少选择一条数据！');
-						return;
-					}
-					commonSave(basePath + Notesaction + "?method=updAll",selections);
-				}
-			},'-',{
-				text : Ext.os.deviceType === 'Phone' ? null : "修改",
-				iconCls : 'edit',
-				handler : function() {
-					var selections = Notesgrid.getSelection();
-					if (selections.length != 1) {
-						Ext.Msg.alert('提示', '请选择一条数据！', function() {
-						});
-						return;
-					}
-					NotesdataForm.form.reset();
-					Ext.getCmp("Notesnotesid").setEditable (false);
-					createTextWindow(basePath + Notesaction + "?method=updAll", "修改", NotesdataForm, Notesstore);
-					NotesdataForm.form.loadRecord(selections[0]);
-				}
-			},'-',{
 	            text: '操作',
 	            menu: {
 	                xtype: 'menu',
@@ -281,23 +207,6 @@ Ext.onReady(function() {
 	                    xtype: 'buttongroup',
 	                    columns: 3,
 	                    items: [{
-	                    	text : "删除",
-	        				iconCls : 'delete',
-	        				handler : function() {
-	        					var selections = Notesgrid.getSelection();
-	        					if (Ext.isEmpty(selections)) {
-	        						Ext.Msg.alert('提示', '请至少选择一条数据！');
-	        						return;
-	        					}
-	        					commonDelete(basePath + Notesaction + "?method=delAll",selections,Notesstore,Noteskeycolumn);
-	        				}
-	                    },{
-	                    	text : "导入",
-	        				iconCls : 'imp',
-	        				handler : function() {
-	        					commonImp(basePath + Notesaction + "?method=impAll","导入",Notesstore);
-	        				}
-	                    },{
 	                    	text : "导出",
 	        				iconCls : 'exp',
 	        				handler : function() {
@@ -306,22 +215,6 @@ Ext.onReady(function() {
 	        							window.location.href = basePath + Notesaction + "?method=expAll&json="+queryjson+"&query="+Ext.getCmp("queryNotesaction").getValue(); 
 	        						}
 	        					});
-	        				}
-	                    },{
-	                    	text : "附件",
-	        				iconCls : 'attach',
-	        				handler : function() {
-	        					var selections = Notesgrid.getSelection();
-	        					if (selections.length != 1) {
-	        						Ext.Msg.alert('提示', '请选择一条数据！', function() {
-	        						});
-	        						return;
-	        					}
-	        					var fid = '';
-	        					for (var i=0;i<Noteskeycolumn.length;i++){
-	        						fid += selections[0].data[Noteskeycolumn[i]] + ","
-	        					}
-	        					commonAttach(fid, Notesclassify);
 	        				}
 	                    },{
 	        				text : "筛选",
@@ -371,6 +264,12 @@ Ext.onReady(function() {
 		]
 	});
 	Notesgrid.region = 'center';
+	Notesstore.on("beforeload",function(){ 
+		Notesstore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryNotesaction").getValue()
+		}; 
+	});
 	Notesstore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

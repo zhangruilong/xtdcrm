@@ -94,7 +94,7 @@ Ext.onReady(function() {
 						}
 					},
 					focus : function(field, e) {
-						timer = setInterval(myrefresh,2000); //指定2秒刷新一次
+						timer = setInterval(myrefresh,5000); //指定5秒刷新一次
 					},
 					blur : function(field, e) {
 						clearInterval(timer);
@@ -143,8 +143,8 @@ Ext.onReady(function() {
 			},{
 				xtype : 'textfield',
 				fieldLabel : '分类',
-				id : 'cuscardtype',
-				name : 'cuscardtype',
+				id : 'cuscardtypeclass',
+				name : 'cuscardtypeclass',
 				maxLength : 100,
 				readOnly:true,
 				anchor : '100%'
@@ -167,8 +167,8 @@ Ext.onReady(function() {
 			},{
 				xtype : 'textfield',
 				fieldLabel : '状态',
-				id : 'customerstatue',
-				name : 'customerstatue',
+				id : 'cuscardstatue',
+				name : 'cuscardstatue',
 				maxLength : 100,
 				readOnly:true,
 				anchor : '100%'
@@ -267,6 +267,14 @@ Ext.onReady(function() {
 				readOnly:true,
 				maxLength : 100,
 				anchor : '100%'
+			},{
+				xtype : 'hidden',
+				fieldLabel : '场馆',
+				id : 'cuscardstadium',
+				name : 'cuscardstadium',
+				value : currentuser.roledetail,
+				maxLength : 100,
+				anchor : '100%'
 			} ]
 		}
 		, {
@@ -295,7 +303,15 @@ Ext.onReady(function() {
 	]
 	});
 	function insNotesupdCuscard() {
-		if(Ext.getCmp("cuscardtimes").getValue()==0){
+		if("停用"==Ext.getCmp("cuscardstatue").getValue()||"禁用"==Ext.getCmp("cuscardstatue").getValue()){
+			Ext.Msg.alert('提示', '该卡未被启用', function() {
+			});
+			return;
+		}else if(dateUtil.dayMinus(dateUtil.strTurnDate(Ext.getCmp("cuscardend").getValue()),new Date())>0){
+			Ext.Msg.alert('提示', '已经过了有效期', function() {
+			});
+			return;
+		}else if(Ext.getCmp("cuscardtypeclass").getValue()=="次数卡"&&Ext.getCmp("cuscardtimes").getValue()<0){
 			Ext.Msg.alert('提示', '剩余卡次为0', function() {
 			});
 			return;
@@ -313,6 +329,7 @@ Ext.onReady(function() {
 						success : function(form, action) {
 							Ext.Msg.alert('提示', action.result.msg,function(){
 								CustomercuscardviewdataForm.form.reset();
+								Ext.getCmp("customerimage").getEl().dom.src = "";
 							});
 						},
 						failure : function(form, action) {
@@ -354,6 +371,18 @@ Ext.onReady(function() {
 		
 	}
 	function myrefresh(){ 
+		var st = CActiveXCtrl.OpenDevice();//打开设备
+		var ret = CActiveXCtrl.RfReset(st,10);
+		ret = CActiveXCtrl.RfCard(st,0);
+		ret = CActiveXCtrl.RfAuthenticationKey(st,0,1,"FFFFFFFFFFFF");
+		ret = CActiveXCtrl.RfRead(st,1);
+		if(CActiveXCtrl.lErrorCode == 0)
+		{
+			ret = ret.substring(0,7);
+			Ext.getCmp("cuscardno").setValue(ret);
+			CActiveXCtrl.RfBeep(st,20);//蜂鸣
+		}
+		ret = CActiveXCtrl.CloseDevice(st);
 		if(!isnull(Ext.getCmp("cuscardno").getValue()))
 		{
 			Customercuscardviewstore.load({

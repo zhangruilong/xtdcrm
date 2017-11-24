@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="lib/weui.min.css">
+<link rel="stylesheet" href="lib/jquery-weui.min.css">
+<script src="common/common.js"></script>
+</head>
+
+<body ontouchstart>
+	<div class="weui-tab">
+      <div class="weui-navbar">
+        <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+          公共课
+        </a>
+        <a class="weui-navbar__item" href="#tab2">
+          私教课
+        </a>
+      </div>
+      <div class="weui-tab__bd">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+          	<div class="weui-panel weui-panel_access">
+			  <div class="weui-panel__bd">
+			    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+			      <div class="weui-media-box__bd">
+			        <h4 class="weui-media-box__title">标题一</h4>
+			        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+			      </div>
+			    </a>
+			  </div>
+			</div>
+        </div>
+        <div id="tab2" class="weui-tab__bd-item">
+          <div class="weui-panel weui-panel_access">
+			  <div class="weui-panel__bd">
+			    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+			      <div class="weui-media-box__bd">
+			        <h4 class="weui-media-box__title">标题一</h4>
+			        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+			      </div>
+			    </a>
+			  </div>
+			</div>
+        </div>
+      </div>
+    </div>
+	<script src="lib/jquery-2.1.4.js"></script>
+	<script src="lib/fastclick.js"></script>
+	<script>
+		$(function() {
+			FastClick.attach(document.body);
+			customer = JSON.parse(window.localStorage.getItem("customer"));
+			$.ajax({
+				url:"AppiontService.do?method=selAll",
+				type:"post",
+				data:{
+					wheresql : "appointtype='公共课' and Appointcustomer='"+customer.customerid+"'"
+				},
+				success: function(r) {
+	    			var resp = eval('('+r+')'); 
+	    			$("#tab1 .weui-panel__bd").html("");
+	    			$.each(resp.root, function(i, item) {	
+	    				$("#tab1 .weui-panel__bd").append('<a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">'
+	    						+'<div class="weui-media-box__bd"><h4 class="weui-media-box__title">'
+	    						+item.appointproject+' '+item.appointplacename+' '+item.appointplace+'</h4>'
+	    						+'<p class="weui-media-box__desc">'
+	    						+item.appointbegin+'~'+item.appointend+'</p></div></a>');
+	    			});
+	    		},
+	    		error:function(r) {
+	    			var resp = eval(r); 
+	    			alert(resp.msg);
+	    		}
+			});
+			$.ajax({
+				url:"AppiontService.do?method=selAll",
+				type:"post",
+				data:{
+					wheresql : "appointtype='私教课' and Appointcustomer='"+customer.customerid+"'"
+				},
+				success: function(r) {
+	    			var resp = eval('('+r+')'); 
+	    			$("#tab2 .weui-panel__bd").html("");
+	    			$.each(resp.root, function(i, item) {	
+	    				$("#tab2 .weui-panel__bd").append('<a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" onclick="nextpage(\''
+	    						+item.appointid+'\',\''+item.appointstatue+'\',\''+item.appointcourse+'\');">'
+	    						+'<div class="weui-media-box__bd"><h4 class="weui-media-box__title">'
+	    						+item.appointproject+' '+item.appointplacename+'</h4>'
+	    						+'<p class="weui-media-box__desc">'
+	    						+item.appointdate+' '+item.appointbegin+'~'+item.appointend+'</p></div></a>');
+	    			});
+	    		},
+	    		error:function(r) {
+	    			var resp = eval(r); 
+	    			alert(resp.msg);
+	    		}
+			});
+		});
+	</script>
+	<script src="lib/jquery-weui.min.js"></script>
+
+	<script>
+		function nextpage(appointid,appointstatue,appointcourse){
+			if("已确认"==appointstatue) {
+				alert("已成功确认，无需重复操作");
+				return;
+			}else
+			$.confirm("上课确认", function() {
+				  //点击确认后的回调函数
+				$.ajax({
+					url:"AppiontService.do?method=okcoachcourse",
+					type:"post",
+					data:{
+						json : "[{'appointid':'"+appointid+"','appointcourse':'"+appointcourse+"','appointstatue'='已确认'}]"
+					},
+					success: function(r) {
+		    			var resp = eval('('+r+')'); 
+		    			alert(resp.msg);
+		    		},
+		    		error:function(r) {
+		    			var resp = eval(r); 
+		    			alert(resp.msg);
+		    		}
+				});
+				  }, function() {
+				  //点击取消后的回调函数
+				  });
+		}
+	</script>
+</body>
+</html>

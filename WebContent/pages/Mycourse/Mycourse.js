@@ -20,9 +20,10 @@ Ext.onReady(function() {
 	        			    ,'mycourseend' 
 	        			    ,'mycourseinswhen' 
 	        			    ,'mycourseupdwhen' 
+	        			    ,'customername'
 	        			      ];// 全部字段
 	var Mycoursekeycolumn = [ 'mycourseid' ];// 主键
-	var Mycoursestore = dataStore(Mycoursefields, basePath + Mycourseaction + "?method=selQuery");// 定义Mycoursestore
+	var Mycoursestore = dataStore(Mycoursefields, basePath + "MycourseviewService.do?method=selQuery&wheresql=mycoursetype='培训课'");// 定义Mycoursestore
 	var MycoursedataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'MycoursedataForm',
 		labelAlign : 'right',
@@ -40,8 +41,8 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '会员',
-				id : 'Mycoursemycoursecustomer',
-				name : 'mycoursecustomer',
+				id : 'customername',
+				name : 'customername',
 				allowBlank : false,
 				editable : false,
 				triggers: {
@@ -52,6 +53,18 @@ Ext.onReady(function() {
 			            }
 			        }
 				}
+			} ]
+		}
+		, {
+			hidden : true,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '会员',
+				id : 'Mycoursemycoursecustomer',
+				name : 'mycoursecustomer',
+				allowBlank : false,
+				editable : false
 			} ]
 		}
 		, {
@@ -86,12 +99,6 @@ Ext.onReady(function() {
 			} ]
 		}
 		, {
-			xtype : 'hidden',
-			fieldLabel : '教练',
-			id : 'Mycoursemycoursecoach',
-			name : 'mycoursecoach'
-		}
-		, {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
@@ -115,6 +122,7 @@ Ext.onReady(function() {
 		}
 		, {
 			columnWidth : .5,
+			hidden : true,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
@@ -139,10 +147,48 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '优惠码',
+				id : 'Mycoursemycoursecoach',
+				name : 'mycoursecoach',
+				maxLength : 100,
+				anchor : '100%',
+				listeners : {
+					blur : function(field, e) {
+						Ext.Ajax.request({
+							url : basePath + "HuodongService.do?method=selAll",
+							method : 'POST',
+							params : {
+								wheresql : "huodongcode='"+Ext.getCmp("Mycoursemycoursecoach").getValue()
+								+"' and huodongcardtype='"+Ext.getCmp("Mycoursemycourseproject").getValue()
+								+"' and huodongstatue is null"
+							},
+							success : function(response) {
+								var resp = Ext.decode(response.responseText); 
+								Ext.getCmp("Mycoursemycoursedikou").setValue(0);
+								Ext.each(resp.root, function(temp, index) {  
+									Ext.getCmp("Mycoursemycoursedikou").setValue(temp.huodongmoney);
+									window.localStorage.setItem("huodong",temp.huodongid);
+							    });
+								Ext.getCmp("Mycoursemycoursemoney").setValue(Ext.getCmp("Mycoursemycourseprice").getValue()-Ext.getCmp("Mycoursemycoursedikou").getValue());
+							},
+							failure : function(response) {
+								Ext.Msg.alert('提示', '网络出现问题，请稍后再试');
+							}
+						});
+					}
+				}
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
 				xtype : 'numberfield',
 				fieldLabel : '抵扣',
 				id : 'Mycoursemycoursedikou',
 				name : 'mycoursedikou',
+				value :0,
 				listeners : {
 					blur : function(field, e) {
 						Ext.getCmp("Mycoursemycoursemoney").setValue(Ext.getCmp("Mycoursemycourseprice").getValue()-Ext.getCmp("Mycoursemycoursedikou").getValue());
@@ -211,7 +257,7 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '备注',
+				fieldLabel : '备注(场次)',
 				id : 'Mycoursemycoursedetail',
 				name : 'mycoursedetail'
 			} ]
@@ -229,15 +275,11 @@ Ext.onReady(function() {
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
-	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
 			header : 'ID',
 			dataIndex : 'mycourseid',
-			sortable : true, 
+			hidden : true,  
 			editor: {
                 xtype: 'textfield',
                 editable: false
@@ -245,8 +287,16 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '会员',
-			dataIndex : 'mycoursecustomer',
+			dataIndex : 'customername',
 			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '会员',
+			dataIndex : 'mycoursecustomer',
+			hidden : true,  
 			editor: {
                 xtype: 'textfield'
             }
@@ -268,9 +318,9 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '教练',
+			header : '优惠码',
 			dataIndex : 'mycoursecoach',
-			sortable : true,  
+			hidden : true,  
 			editor: {
                 xtype: 'textfield'
             }
@@ -381,14 +431,14 @@ Ext.onReady(function() {
 		}
 		],
 		tbar : [{
-				text : Ext.os.deviceType === 'Phone' ? null : "新增",
+				text : Ext.os.deviceType === 'Phone' ? null : "购买培训课",
 				iconCls : 'add',
 				handler : function() {
 					MycoursedataForm.form.reset();
-					createTextWindow(basePath + Mycourseaction + "?method=insAll", "新增", MycoursedataForm, Mycoursestore);
+					createTextWindow(basePath + Mycourseaction + "?method=buycourse&huodong="+window.localStorage.getItem("huodong"), "新增", MycoursedataForm, Mycoursestore);
 				}
 			},'-',{
-				text : Ext.os.deviceType === 'Phone' ? null : "保存",
+				text : Ext.os.deviceType === 'Phone' ? null : "确认上课",
 				iconCls : 'ok',
 				handler : function() {
 					var selections = Mycoursegrid.getSelection();
@@ -396,6 +446,12 @@ Ext.onReady(function() {
 						Ext.Msg.alert('提示', '请至少选择一条数据！');
 						return;
 					}
+					for (var i = 0; i < selections.length; i++) {
+						if(selections[i].get('mycoursenuma')>0){
+							selections[i].set('mycourseupdwhen',getdatetime());
+							selections[i].set('mycoursenuma',(selections[i].get('mycoursenuma')-1));
+						}
+					};
 					commonSave(basePath + Mycourseaction + "?method=updAll",selections);
 				}
 			},'-',{
@@ -510,6 +566,12 @@ Ext.onReady(function() {
 		]
 	});
 	Mycoursegrid.region = 'center';
+	Mycoursestore.on("beforeload",function(){ 
+		Mycoursestore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryMycourseaction").getValue()
+		}; 
+	});
 	Mycoursestore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

@@ -37,17 +37,28 @@
 	<bean id="CardtypeService" class="com.server.service.CardtypeService" />
 	<bean id="CcustomerService" class="com.server.service.CcustomerService" />
 	<bean id="CoachService" class="com.server.service.CoachService" />
+	<bean id="CoachcourseService" class="com.server.service.CoachcourseService" />
 	<bean id="CuscardService" class="com.server.service.CuscardService" />
 	<bean id="CuscardviewService" class="com.server.service.CuscardviewService" />
 	<bean id="CustomerService" class="com.server.service.CustomerService" />
+	<bean id="CustomerbigService" class="com.server.service.CustomerbigService" />
+	<bean id="RecordsService" class="com.server.service.RecordsService" />
 	<bean id="EmpService" class="com.server.service.EmpService" />
 	<bean id="GoodsService" class="com.server.service.GoodsService" />
 	<bean id="HuodongService" class="com.server.service.HuodongService" />
 	<bean id="MycourseService" class="com.server.service.MycourseService" />
+	<bean id="MycourseviewService" class="com.server.service.MycourseviewService" />
 	<bean id="NotesService" class="com.server.service.NotesService" />
+	<bean id="NotesviewService" class="com.server.service.NotesviewService" />
+	<bean id="NotescoachService" class="com.server.service.NotescoachService" />
+	<bean id="NotesappiontService" class="com.server.service.NotesappiontService" />
+	<bean id="NotesmoneysService" class="com.server.service.NotesmoneysService" />
+	<bean id="NotesmoneysviewService" class="com.server.service.NotesmoneysviewService" />
 	<bean id="OrdermService" class="com.server.service.OrdermService" />
 	<bean id="PlaceService" class="com.server.service.PlaceService" />
 	<bean id="PlacetimeService" class="com.server.service.PlacetimeService" />
 	<bean id="StadiumService" class="com.server.service.StadiumService" />
+	<bean id="BodyinfoService" class="com.server.service.BodyinfoService" />
+	<bean id="NoticeService" class="com.server.service.NoticeService" />
 	<bean id="TuifeiService" class="com.server.service.TuifeiService" />
 </beans>

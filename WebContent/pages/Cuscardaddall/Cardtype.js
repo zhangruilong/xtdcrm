@@ -177,6 +177,12 @@ function selectCardtype() {
 		]
 	});
 	Cardtypegrid.region = 'center';
+	Cardtypestore.on("beforeload",function(){ 
+		Cardtypestore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryCardtypeaction").getValue()
+		}; 
+	});
 	Cardtypestore.load();//加载数据
 	var selectgridWindow = new Ext.Window({
 		layout : 'fit', // 设置窗口布局模式

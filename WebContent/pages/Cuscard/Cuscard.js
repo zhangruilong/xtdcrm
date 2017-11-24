@@ -16,6 +16,7 @@ Ext.onReady(function() {
 	        			    ,'cuscardmoney' 
 	        			    ,'cuscardstop' 
 	        			    ,'cuscardstopmoney' 
+	        			    ,'cuscardnums' 
 	        			    ,'cuscardtimes' 
 	        			    ,'cuscardpoint' 
 	        			    ,'cuscarddetail' 
@@ -26,9 +27,10 @@ Ext.onReady(function() {
 	        			    ,'cuscardinswho' 
 	        			    ,'cuscardupdwhen' 
 	        			    ,'cuscardupdwho' 
+	        			    ,'customername' 
 	        			      ];// 全部字段
 	var Cuscardkeycolumn = [ 'cuscardid' ];// 主键
-	var Cuscardstore = dataStore(Cuscardfields, basePath + Cuscardaction + "?method=selQuery");// 定义Cuscardstore
+	var Cuscardstore = dataStore(Cuscardfields, basePath + "CuscardviewService.do?method=selQuery");// 定义Cuscardstore
 	var CuscarddataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'CuscarddataForm',
 		labelAlign : 'right',
@@ -37,6 +39,7 @@ Ext.onReady(function() {
 		items : [ {
 			columnWidth : .5,
 			layout : 'form',
+			hidden : true,
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : 'ID',
@@ -276,7 +279,260 @@ Ext.onReady(function() {
 		}
 		]
 	});
-	
+	var CuscardchangedataForm = new Ext.form.FormPanel({// 定义新增和修改的FormPanel
+		id:'CuscardchangedataForm',
+		labelAlign : 'right',
+		frame : true,
+		layout : 'column',
+		items : [{
+			columnWidth : 1,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '新卡号',
+				id : 'Cuscardchangenonew',
+				name : 'cuscardnonew',
+				maxLength : 100,
+				allowBlank : false,
+				anchor : '95%'
+			} ]
+		}
+		,{
+				xtype : 'textfield',
+				id : 'Cuscardchangeid',
+				name : 'cuscardid',
+				hidden : true
+		}
+		, {
+			columnWidth : 1,
+			layout : 'form',
+			items : [ {
+				xtype : 'hidden',
+				fieldLabel : '会员ID',
+				id : 'Cuscardchangecustomer',
+				name : 'cuscardcustomer',
+				maxLength : 100,
+				anchor : '95%'
+			} ]
+		}
+		, {
+			columnWidth : 1,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '旧卡号',
+				id : 'Cuscardchangeno',
+				name : 'cuscardno',
+				maxLength : 100,
+				editable : false,
+				anchor : '95%'
+			} ]
+		}
+		]
+	});
+	var CuscardcontinuedataForm = new Ext.form.FormPanel({// 定义新增和修改的FormPanel
+		id:'CuscardcontinuedataForm',
+		labelAlign : 'right',
+		frame : true,
+		layout : 'column',
+		items : [{
+			columnWidth : 1,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '卡种',
+				id : 'cuscardtypename',
+				name : 'cuscardtypename',
+				allowBlank : false,
+				editable : false,
+				maxLength : 100,
+				anchor : '100%'
+			},{
+				xtype : 'numberfield',
+				fieldLabel : '原价',
+				id : 'cuscardprice',
+				name : 'cuscardprice',
+				allowBlank : false,
+				readOnly:true,
+				maxLength : 100,
+				anchor : '100%'
+			},{
+				xtype : 'textfield',
+				fieldLabel : '优惠码',
+				id : 'huodongcuscarddikou',
+				name : 'huodongcuscarddikou',
+				maxLength : 100,
+				anchor : '100%',
+				listeners : {
+					blur : function(field, e) {
+						Ext.Ajax.request({
+							url : basePath + "HuodongService.do?method=selAll",
+							method : 'POST',
+							params : {
+								wheresql : "huodongcode='"+Ext.getCmp("huodongcuscarddikou").getValue()
+								+"' and huodongcardtypename='"+Ext.getCmp("cuscardtypename").getValue()
+								+"'"
+							},
+							success : function(response) {
+								var resp = Ext.decode(response.responseText); 
+								Ext.getCmp("cuscarddikou").setValue(0);
+								Ext.each(resp.root, function(temp, index) {  
+									Ext.getCmp("cuscarddikou").setValue(temp.huodongmoney);
+									window.localStorage.setItem("huodong",temp.huodongid);
+							    });
+								Ext.getCmp("cuscardmoney").setValue(Ext.getCmp("cuscardprice").getValue()-Ext.getCmp("cuscarddikou").getValue());
+							},
+							failure : function(response) {
+								Ext.Msg.alert('提示', '网络出现问题，请稍后再试');
+							}
+						});
+					}
+				}
+			},{
+				xtype : 'numberfield',
+				fieldLabel : '折让',
+				id : 'cuscarddikou',
+				name : 'cuscarddikou',
+				value : 0,
+				maxLength : 100,
+				anchor : '100%',
+				listeners : {
+					blur : function(field, e) {
+						Ext.getCmp("cuscardmoney").setValue(Ext.getCmp("cuscardprice").getValue()-Ext.getCmp("cuscarddikou").getValue());
+					}
+				}
+			},{
+				xtype : 'numberfield',
+				fieldLabel : '售价',
+				id : 'cuscardmoney',
+				name : 'cuscardmoney',
+				allowBlank : false,
+				editable : false,
+				maxLength : 100,
+				anchor : '100%'
+			} ]
+		},{
+			columnWidth : 1,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
+				fieldLabel : '新卡余次',
+				id : 'Cuscardcontinuetimesnew',
+				name : 'cuscardtimesnew',
+				maxLength : 100,
+				allowBlank : false,
+				anchor : '95%'
+			} ]
+		}
+		, {
+			columnWidth : 1,
+			layout : 'form',
+			items : [ {
+				xtype : 'datefield',
+				fieldLabel : '新有效期结束',
+				id : 'Cuscardcontinueend',
+				name : 'cuscardendnew',
+				format : 'Y-m-d',
+				allowBlank : false,
+				maxLength : 100,
+				anchor : '95%'
+			} ]
+		}
+		,{
+				xtype : 'textfield',
+				id : 'Cuscardcontinueid',
+				name : 'cuscardid',
+				hidden : true
+		}
+		, {
+			columnWidth : 1,
+			layout : 'form',
+			items : [ {
+				xtype : 'hidden',
+				fieldLabel : '会员ID',
+				id : 'Cuscardcontinuecustomer',
+				name : 'cuscardcustomer',
+				maxLength : 100,
+				anchor : '95%'
+			} ]
+		}
+		, {
+			columnWidth : 1,
+			layout : 'form',
+			items : [ {
+				xtype : 'hidden',
+				fieldLabel : '卡号',
+				id : 'Cuscardcontinueno',
+				name : 'cuscardno',
+				maxLength : 100,
+				allowBlank : false,
+				anchor : '95%'
+			} ]
+		}
+		, {
+			columnWidth : 1,
+			layout : 'form',
+			items : [ {
+				xtype : 'hidden',
+				fieldLabel : '卡总次数',
+				id : 'Cuscardcontinuenums',
+				name : 'cuscardnums',
+				maxLength : 100,
+				editable : false,
+				anchor : '95%'
+			} ]
+		}
+		, {
+			columnWidth : 1,
+			layout : 'form',
+			items : [ {
+				xtype : 'numberfield',
+				fieldLabel : '卡余次',
+				id : 'Cuscardcontinuetimes',
+				name : 'cuscardtimes',
+				maxLength : 100,
+				editable : false,
+				anchor : '95%'
+			} ]
+		}
+		, {
+			columnWidth : 1,
+			layout : 'form',
+			items : [ {
+				xtype : 'datefield',
+				fieldLabel : '有效期开始',
+				id : 'Cuscardcuscardbegin',
+				name : 'cuscardbegin',
+				format : 'Y-m-d',
+				allowBlank : false,
+				maxLength : 100,
+				anchor : '95%'
+			} ]
+		},{
+			xtype : 'hidden',
+			fieldLabel : '有效期',
+			id : 'Cuscardcuscardday',
+			name : 'cuscardday',
+			maxLength : 100,
+			readOnly:true,
+			anchor : '100%'
+		}
+		, {
+			columnWidth : 1,
+			layout : 'form',
+			items : [ {
+				xtype : 'datefield',
+				fieldLabel : '有效期结束',
+				id : 'Cuscardcuscardend',
+				name : 'cuscardend',
+				format : 'Y-m-d',
+				allowBlank : false,
+				maxLength : 100,
+				anchor : '95%'
+			} ]
+		}
+		]
+	});
 	var Cuscardbbar = pagesizebar(Cuscardstore);//定义分页
 	var Cuscardgrid =  Ext.create('Ext.grid.Panel', {
 		height : document.documentElement.clientHeight - 4,
@@ -287,15 +543,11 @@ Ext.onReady(function() {
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
-	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
 			header : 'ID',
 			dataIndex : 'cuscardid',
-			sortable : true, 
+			hidden : true, 
 			editor: {
                 xtype: 'textfield',
                 editable: false
@@ -304,6 +556,30 @@ Ext.onReady(function() {
 		, {
 			header : '会员ID',
 			dataIndex : 'cuscardcustomer',
+			hidden : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '卡号',
+			dataIndex : 'cuscardno',
+			sortable : true,  
+			editor: {
+				xtype: 'textfield'
+			}
+		}
+		, {
+			header : '卡种',
+			dataIndex : 'cuscardtypename',
+			sortable : true,  
+			editor: {
+				xtype: 'textfield'
+			}
+		}
+		, {
+			header : '姓名',
+			dataIndex : 'customername',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -318,16 +594,8 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '卡号',
-			dataIndex : 'cuscardno',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '卡种',
-			dataIndex : 'cuscardtypename',
+			header : '场次',
+			dataIndex : 'cuscardchangci',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -336,7 +604,7 @@ Ext.onReady(function() {
 		, {
 			header : '分类',
 			dataIndex : 'cuscardtypeclass',
-			sortable : true,  
+			hidden : true,  
 			editor: {
                 xtype: 'textfield'
             }
@@ -406,6 +674,14 @@ Ext.onReady(function() {
             }
 		}
 		, {
+			header : '卡种次数',
+			dataIndex : 'cuscardnums',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
 			header : '余次',
 			dataIndex : 'cuscardtimes',
 			sortable : true,  
@@ -424,14 +700,6 @@ Ext.onReady(function() {
 		, {
 			header : '备注',
 			dataIndex : 'cuscarddetail',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '场次',
-			dataIndex : 'cuscardchangci',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -487,6 +755,89 @@ Ext.onReady(function() {
 		}
 		],
 		tbar : [{
+					text :"操作查询",
+					handler : function() {
+						var selections = Cuscardgrid.getSelection();
+						if (selections.length != 1) {
+							Ext.Msg.alert('提示', '请选择一条数据！', function() {
+							});
+							return;
+						}
+						getnotes(selections[0].data["cuscardno"]);
+					}
+			},'-',{
+			text : "开卡",
+			iconCls : 'edit',
+			handler : function() {
+				var selections = Cuscardgrid.getSelection();
+				if (selections.length != 1) {
+					Ext.Msg.alert('提示', '请选择一条要过户的记录！', function() {
+					});
+					return;
+				}
+				var cuscardbegin = getstringdate();
+				var dtend = Ext.Date.add(new Date(), Ext.Date.DAY, selections[0].data["cuscardday"]);
+				var cuscardend = getstringdate(dtend);
+				var cuscardid = selections[0].data["cuscardid"];
+				Ext.Ajax.request({
+					url : basePath + "CuscardService.do" + "?method=updAll",
+					method : 'POST',
+					params : {
+						json : "[{'cuscardstatue':'启用','cuscardbegin':'"+cuscardbegin + "','cuscardend':'"+cuscardend+"','cuscardid':'"+cuscardid+"'}]"
+					},
+					success : function(response) {
+						var resp = Ext.decode(response.responseText); 
+						Ext.Msg.alert('提示', resp.msg, function(){
+							Cuscardstore.reload();
+						});
+					},
+					failure : function(response) {
+						Ext.Msg.alert('提示', '网络出现问题，请稍后再试');
+					}
+				});
+			}
+		},'-',{
+			text : "过户",
+			iconCls : 'edit',
+			handler : function() {
+				var selections = Cuscardgrid.getSelection();
+				if (selections.length != 1) {
+					Ext.Msg.alert('提示', '请选择一条要过户的记录！', function() {
+					});
+					return;
+				}
+				selectCustomer(selections[0]);
+			}
+		},'-',{
+			text : "换卡",
+			iconCls : 'edit',
+			handler : function() {
+				var selections = Cuscardgrid.getSelection();
+				if (selections.length != 1) {
+					Ext.Msg.alert('提示', '请选择一条要换卡的记录！', function() {
+					});
+					return;
+				}
+				createTextWindow(basePath + "CuscardService.do" + "?method=change", "换卡", CuscardchangedataForm, Cuscardstore);
+				CuscardchangedataForm.form.loadRecord(selections[0]);
+			}
+		},'-',{
+			text : "续卡",
+			iconCls : 'edit',
+			handler : function() {
+				var selections = Cuscardgrid.getSelection();
+				if (selections.length != 1) {
+					Ext.Msg.alert('提示', '请选择一条要续卡的记录！', function() {
+					});
+					return;
+				}
+				selections[0].data["cuscardtimesnew"] = parseInt(selections[0].data["cuscardtimes"])+parseInt(selections[0].data["cuscardnums"]);
+				var dtend = Ext.Date.add(new Date(), Ext.Date.DAY, selections[0].data["cuscardday"]);
+				selections[0].data["cuscardendnew"] = getstringdate(dtend);
+				createTextWindow(basePath + "CuscardService.do?method=ccontinue&huodong="+window.localStorage.getItem("huodong"), "续卡", CuscardcontinuedataForm, Cuscardstore);
+				CuscardcontinuedataForm.form.loadRecord(selections[0]);
+			}
+		},'-',{
 				text : Ext.os.deviceType === 'Phone' ? null : "新增",
 				iconCls : 'add',
 				handler : function() {
@@ -618,6 +969,12 @@ Ext.onReady(function() {
 		]
 	});
 	Cuscardgrid.region = 'center';
+	Cuscardstore.on("beforeload",function(){ 
+		Cuscardstore.getProxy().extraParams = {
+				json : queryjson,
+				query : Ext.getCmp("queryCuscardaction").getValue()
+		}; 
+	});
 	Cuscardstore.load();//加载数据
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,

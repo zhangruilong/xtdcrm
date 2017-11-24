@@ -20,6 +20,7 @@ Ext.onReady(function() {
 		layout : 'column',
 		items : [ {
 			columnWidth : .5,
+			hidden : true,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
@@ -110,10 +111,6 @@ Ext.onReady(function() {
 		bbar : Stadiumbbar,
 	    selModel: {
 	        type: 'checkboxmodel'
-	    },
-	    plugins: {
-	         ptype: 'cellediting',
-	         clicksToEdit: 1
 	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
