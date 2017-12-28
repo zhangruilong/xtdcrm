@@ -68,6 +68,7 @@ public class CuscardviewPoco
 	 	"更新时间",
 	 	"更新人",
 	 	"编码",
+	 	"卡种次数",
 	};
 	/**
 	 * 实体英文字段
@@ -119,6 +120,7 @@ public class CuscardviewPoco
 	 	"customerupdwhen",
 	 	"customerupdwho",
 	 	"customercode",
+	 	"cuscardnums",
    };
    /**
     * 实体排序
@@ -174,6 +176,7 @@ public class CuscardviewPoco
 	 	"customerupdwhen",
 	 	"customerupdwho",
 	 	"customercode",
+	 	"cuscardnums",
    };
 }
 

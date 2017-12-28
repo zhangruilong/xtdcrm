@@ -1,4 +1,6 @@
 Ext.onReady(function() {
+	var MycourseviewsuiService = "MycourseviewService.do";
+	if("sui"==currentuser.rolecode) MycourseviewsuiService = "MycourseviewsuiService.do";
 	var Mycourseclassify = "mycourse";
 	var Mycoursetitle = "当前位置:业务管理》" + Mycourseclassify;
 	var Mycourseaction = "MycourseService.do";
@@ -23,7 +25,7 @@ Ext.onReady(function() {
 	        			    ,'customername'
 	        			      ];// 全部字段
 	var Mycoursekeycolumn = [ 'mycourseid' ];// 主键
-	var Mycoursestore = dataStore(Mycoursefields, basePath + "MycourseviewService.do?method=selQuery&wheresql=mycoursetype='培训课'");// 定义Mycoursestore
+	var Mycoursestore = dataStore(Mycoursefields, basePath + MycourseviewsuiService+"?method=selQuery&wheresql=mycoursetype='培训课'");// 定义Mycoursestore
 	var MycoursedataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'MycoursedataForm',
 		labelAlign : 'right',

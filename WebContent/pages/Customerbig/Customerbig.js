@@ -116,8 +116,8 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '价格',
-				id : 'Customerbigcuscardprice',
-				name : 'cuscardprice'
+				id : 'Customerbigcuscardmoney',
+				name : 'cuscardmoney'
 			} ]
 		}
 		, {
@@ -136,8 +136,8 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '待付款',
-				id : 'Customerbigcuscardmoney',
-				name : 'cuscardmoney'
+				id : 'Customerbigcuscardprice',
+				name : 'cuscardprice'
 			} ]
 		}
 		, {

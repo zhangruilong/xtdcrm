@@ -70,7 +70,7 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '备注',
+				fieldLabel : '会员',
 				id : 'Tuifeituifeidetail',
 				name : 'tuifeidetail'
 			} ]
@@ -148,7 +148,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '备注',
+			header : '会员',
 			dataIndex : 'tuifeidetail',
 			sortable : true,  
 			editor: {

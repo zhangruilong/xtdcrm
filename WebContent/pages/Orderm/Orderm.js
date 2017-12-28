@@ -1,4 +1,24 @@
 Ext.onReady(function() {
+	var Goodsaction = "GoodsService.do";
+	var Goodsfields = ['goodsid'
+	        			    ,'goodsstadium' 
+	        			    ,'goodscode' 
+	        			    ,'goodsname' 
+	        			    ,'goodsclass' 
+	        			    ,'goodsprice' 
+	        			    ,'goodsorgprice' 
+	        			    ,'goodsnum' 
+	        			    ,'goodsimage' 
+	        			    ,'goodsdetail' 
+	        			    ,'goodsstatue' 
+	        			    ,'goodsinswhen' 
+	        			    ,'goodsinswho' 
+	        			    ,'goodsupdwhen' 
+	        			    ,'goodsupdwho' 
+	        			      ];// 全部字段
+	var Goodskeycolumn = [ 'goodsid' ];// 主键
+	var Goodsstore = dataStore(Goodsfields, basePath + Goodsaction + "?method=selQuery");// 定义Goodsstore
+	
 	var Ordermclassify = "orderm";
 	var Ordermtitle = "当前位置:业务管理》" + Ordermclassify;
 	var Ordermaction = "OrdermService.do";
@@ -68,7 +88,7 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '会员',
+				fieldLabel : '姓名',
 				id : 'Ordermorderupdwho',
 				name : 'orderupdwho'
 			} ]
@@ -80,7 +100,20 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				fieldLabel : '商品编码',
 				id : 'Ordermordercode',
-				name : 'ordercode'
+				name : 'ordercode',
+				enableKeyEvents : true,
+				listeners : {
+					specialkey : function(field, e) {
+						if (e.getKey() == Ext.EventObject.ENTER) {
+							Goodsstore.load({
+								params : {
+									wheresql : "goodscode='"+field.getValue()+"'"
+								},
+								callback : formloadRecord
+							});
+						}
+					}
+				}
 			} ]
 		}
 		, {
@@ -107,17 +140,34 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '数量',
-				id : 'Ordermorderstatue',
-				name : 'orderstatue'
+				xtype : 'numberfield',
+				fieldLabel : '单价',
+				id : 'Ordermorderdiscount',
+				name : 'orderdiscount'
 			} ]
 		}
 		, {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'numberfield',
+				fieldLabel : '数量',
+				id : 'Ordermorderstatue',
+				name : 'orderstatue',
+				listeners : {
+					blur : function(field, e) {
+						var money = Ext.getCmp("Ordermorderstatue").getValue()*Ext.getCmp("Ordermorderdiscount").getValue();
+						Ext.getCmp("Ordermordermoney").setValue(money);
+						Ext.getCmp("Ordermorderrightmoney").setValue(money);
+					}
+				}
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'numberfield',
 				fieldLabel : '下单金额',
 				id : 'Ordermordermoney',
 				name : 'ordermoney'
@@ -127,17 +177,7 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '打折',
-				id : 'Ordermorderdiscount',
-				name : 'orderdiscount'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
+				xtype : 'numberfield',
 				fieldLabel : '实际金额',
 				id : 'Ordermorderrightmoney',
 				name : 'orderrightmoney'
@@ -216,7 +256,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '会员',
+			header : '姓名',
 			dataIndex : 'orderupdwho',
 			sortable : true,  
 			editor: {
@@ -248,6 +288,14 @@ Ext.onReady(function() {
             }
 		}
 		, {
+			header : '单价',
+			dataIndex : 'orderdiscount',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
 			header : '数量',
 			dataIndex : 'orderstatue',
 			sortable : true,  
@@ -258,14 +306,6 @@ Ext.onReady(function() {
 		, {
 			header : '下单金额',
 			dataIndex : 'ordermoney',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '打折',
-			dataIndex : 'orderdiscount',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -310,7 +350,7 @@ Ext.onReady(function() {
 				handler : function() {
 					OrdermdataForm.form.reset();
 					Ext.getCmp("Ordermorderid").setEditable (true);
-					createTextWindow(basePath + Ordermaction + "?method=insAll", "新增", OrdermdataForm, Ordermstore);
+					createTextWindow(basePath + Ordermaction + "?method=addorderm", "新增", OrdermdataForm, Ordermstore);
 				}
 			},'-',{
 				text : Ext.os.deviceType === 'Phone' ? null : "保存",
@@ -449,4 +489,13 @@ Ext.onReady(function() {
 		bodyStyle : 'padding:0px;',
 		items : [ Ordermgrid ]
 	});
+	function formloadRecord() {
+		Goodsstore.each(function(record) {
+			Ext.getCmp("Ordermordername").setValue(record.get("goodsname"));
+			Ext.getCmp("Ordermordername").setValue(record.get("goodsname"));
+			Ext.getCmp("Ordermorderclass").setValue(record.get("goodsclass"));
+			Ext.getCmp("Ordermorderdiscount").setValue(record.get("goodsprice"));
+		    return;
+		});
+	}
 })

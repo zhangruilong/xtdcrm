@@ -155,7 +155,7 @@ function getnotes(dataid) {
 	        			    ,'notescourse' 
 	        			    ,'notesmoney' 
 	        			    ,'notesname' 
-	        			    ,'notesdetail' 
+//	        			    ,'notesdetail' 
 	        			    ,'notestype' 
 	        			    ,'notesinswhen' 
 	        			    ,'notesinswho' 

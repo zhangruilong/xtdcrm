@@ -179,6 +179,14 @@ Ext.onReady(function() {
 				maxLength : 100,
 				anchor : '100%'
 			},{
+				xtype : 'numberfield',
+				fieldLabel : '卡种次数',
+				id : 'cuscardnums',
+				hidden:true,
+				name : 'cuscardnums',
+				maxLength : 100,
+				anchor : '100%'
+			},{
 				xtype : 'textfield',
 				fieldLabel : '场次',
 				id : 'cuscardchangci',
@@ -192,7 +200,7 @@ Ext.onReady(function() {
 				fieldLabel : '卡积分',
 				id : 'cuscardint',
 				name : 'cuscardint',
-				allowBlank : false,
+				hidden : false,
 				value : 0,
 				maxLength : 100,
 				anchor : '100%'
@@ -299,6 +307,7 @@ Ext.onReady(function() {
 				anchor : '100%'
 			},{
 				xtype : 'filefield',
+				hidden : true,
 				fieldLabel : '照片',
 				id : 'customerimage',
 				name : 'customerimage',
@@ -309,7 +318,15 @@ Ext.onReady(function() {
 				id : 'customercdcard',
 				name : 'customercdcard',
 				maxLength : 100,
-				anchor : '100%'
+				anchor : '100%',
+				listeners : {
+					focus : function(field, e) {
+						timer = setInterval(myrefresh,5000); //指定5秒刷新一次
+					},
+					blur : function(field, e) {
+						clearInterval(timer);
+					}
+				}
 			},{
 				xtype : 'datefield',
 				fieldLabel : '生日',
@@ -407,7 +424,7 @@ Ext.onReady(function() {
 				var num = GetRandomNum(1000000000,4294967294);//闸机的客户号4字节无符号整形
 				Ext.getCmp("customercode").setValue(num);
 				if (CustomercuscardviewdataForm.form.isValid()) {
-					var dtbegin = Ext.Date.add(new Date(), Ext.Date.DAY, 60);
+					var dtbegin = Ext.Date.add(new Date(), Ext.Date.DAY, 180);
 					Ext.getCmp("cuscardbegin").setValue(dtbegin);
 					var dtend = Ext.Date.add(new Date(Ext.getCmp("cuscardbegin").getValue()), Ext.Date.DAY, Ext.getCmp("cuscardday").getValue());
 					Ext.getCmp("cuscardend").setValue(dtend);
@@ -451,4 +468,16 @@ Ext.onReady(function() {
 		bodyStyle : 'padding:0px;',
 		items : [ CustomercuscardviewdataForm ]
 	});
+	function myrefresh(){ 
+		IDinfo = ReadIDCardInfo.ReadIDCardInfo(port, baud, timeout, ifCreatePhoto);	
+		var str = IDinfo.toString();
+		var arr = str.split("|");
+		for( i=0;i<arr.length;i++)
+		{
+			Ext.getCmp("customername").setValue(arr[0]);
+			Ext.getCmp("customersex").setValue(arr[1]);
+			Ext.getCmp("customerbirthday").setValue(arr[3]);
+			Ext.getCmp("customercdcard").setValue(arr[6]);
+		}
+	}
 })

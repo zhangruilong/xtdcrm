@@ -1,0 +1,185 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+ <Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" disableUploadTimeout="true" URIEncoding="utf-8" redirectPort="8443" />
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+  <object classid="CLSID:A8AC0369-45BA-4CF2-9F73-A0F065AD8495" id="ReadIDCardInfo" width="1" height="1" name="ReadIDCardInfo"></object>
+  
+
+ <body>
+
+   <INPUT id=idrRead  type=submit value="读身份证"  onClick="Read();" style="position:absolute; left:5px; top:5px; width:100px; height:42px; ; ; text-align: left ; font-family:'Arial'; font-size: 13px; color:#000000; font-style:normal; font-weight:normal; text-decoration:none" > 
+
+   <INPUT id=idrCancel  type=submit value="清除"  onClick="Cancel();" style="position:absolute; left:210px; top:5px; width:100px; height:42px; ; ; text-align: left ; font-family:'Arial'; font-size: 13px; color:#000000; font-style:normal; font-weight:normal; text-decoration:none" > 
+   
+   
+
+   <textarea id=tData  type=text value="" style="position:absolute; left:5px; top:50px; width:310px; height:230px; ; ; text-align: left ; font-family:'Arial'; font-size: 13px; color:#000000; font-style:normal; font-weight:normal; text-decoration:none">
+  </textarea>
+
+
+ <img  name="ps" id="ps" src=""  alt="个人照片"  style="position:absolute; left:450px; top:290px;" />
+ <img  name="ps1" id="ps1" src=""  alt="正面照片"  style="position:absolute; left:600px; top:290px;" />
+ <img  name="ps2" id="ps2" src=""  alt="反面照片"  style="position:absolute; left:990px; top:290px;" />
+
+ <table id="oTable" border="1"  style="position:absolute; left:5px; top:290px;">
+　<caption><em>身份证信息</em></caption>
+　 <tr>
+	<td >姓名：</td>
+	<td >&nbsp;</td>
+	</tr>
+	<tr>
+	<td>性别：</td>
+	<td>&nbsp;</td>
+	</tr>
+	<tr>
+	<td>民族：</td>
+	<td>&nbsp;</td>
+	</tr>
+	<tr>
+	<td>出生日期：</td>
+	<td>&nbsp;</td>
+	</tr>
+	<tr>
+	<td>住址：</td>
+	<td>&nbsp;</td>
+	</tr>
+	<tr>
+	<td>身份证号：</td>
+	<td>&nbsp;</td>
+	</tr>
+	<tr>
+	<td>签发机关：</td>
+	<td>&nbsp;</td>
+	</tr>
+	<tr>
+	<td>有效日期：</td>
+	<td >&nbsp;</td>
+	</tr>
+</table>
+ </body>
+ <script> 
+		var ReadIDCardInfo=document.getElementById("ReadIDCardInfo");
+		var port = 1003;
+		var baud = 115200;
+		var extendCmd = "abc";
+		var idCardInfo = "abc";
+		var timeout = 10;
+		var ifCreatePhoto=1;
+		var IDinfo = "123";
+		
+		function Read()
+		{
+			IDinfo = ReadIDCardInfo.ReadIDCardInfo(port, baud, timeout, ifCreatePhoto);			
+			Display("tData",IDinfo);
+			if(IDinfo.length > 100)
+			{
+				disphoto();
+				disinfos(IDinfo);
+			}
+			
+			
+			return 0;
+		}
+
+		function Cancel()
+		{
+			//ReadIDCardInfo.IdrOperCancel();
+			clear ();
+			return 0;
+		}
+
+		function Display(id,msg) 
+        {
+		  var temp = document.getElementById(id).value;
+		  if(temp!="")
+			document.getElementById(id).innerText=temp + msg+"\n";
+		  else
+			document.getElementById(id).innerText=temp + msg+"\n";
+			//document.getElementById(id).innerText=temp + "\n";
+        }
+
+		function splitstr(data,flag,index)
+        {
+		   var str = data.toString();
+		   var  sf = flag.toString();
+		   var arr = str.split(sf);
+		   var _in =parseInt(index,10); 
+		   var res="";
+		   for( i=0;i<arr.length;i++)
+		   {
+			   if (_in==i)
+			   {
+				   res=arr[i];
+			   }
+		   }
+		   return res;
+		}
+		function disinfos(data)
+		{
+			 document.all.oTable.rows(0).cells(1).innerText=splitstr(data,"|",0);
+			 document.all.oTable.rows(1).cells(1).innerText=splitstr(data,"|",1);
+			 document.all.oTable.rows(2).cells(1).innerText=splitstr(data,"|",2);
+			 document.all.oTable.rows(3).cells(1).innerText=splitstr(data,"|",3);
+			 document.all.oTable.rows(4).cells(1).innerText=splitstr(data,"|",4);
+			 document.all.oTable.rows(5).cells(1).innerText=splitstr(data,"|",5);
+			 document.all.oTable.rows(6).cells(1).innerText=splitstr(data,"|",6);
+			 document.all.oTable.rows(7).cells(1).innerText=splitstr(data,"|",7);
+			 document.all.oTable.rows(8).cells(1).innerText=splitstr(data,"|",8); 
+			 return 0;
+		}
+		function disphoto()
+		{
+					var ps=document.getElementById("ps");
+		            ps.src ="head.jpg?"+Math.random(); 
+					var ps=document.getElementById("ps1");
+		            ps.src ="front.jpg?"+Math.random(); 
+					var ps=document.getElementById("ps2");
+		            ps.src ="back.jpg?"+Math.random(); 
+					
+					//var ps=document.getElementById("ps");
+		            //ps.src ="E:\\GHC\\NEW\\ocx\\1305331987040616110.jpg?"+Math.random(); 
+					//var ps=document.getElementById("ps1");
+					//ps.src ="E:\\GHC\\NEW\\ocx\\1305331987040616111.jpg?"+Math.random(); 
+					//var ps=document.getElementById("ps2");
+		            //ps.src ="E:\\GHC\\NEW\\ocx\\1305331987040616112.jpg?"+Math.random(); 
+					
+					//var ps=document.getElementById("ps");
+		            //ps.src ="E:\\GHC\\NEW\\ocx\\马华臣1305331987040616110头像.jpg?"+Math.random(); 
+					//var ps=document.getElementById("ps1");
+		            //ps.src ="E:\\GHC\\NEW\\ocx\\马华臣1305331987040616111正面.jpg?"+Math.random(); 
+					//var ps=document.getElementById("ps2");
+		            //ps.src ="E:\\GHC\\NEW\\ocx\\马华臣1305331987040616112反面.jpg?"+Math.random(); 
+		}
+
+		function clear ()
+		{
+			 var ps=document.getElementById("ps");
+		            ps.src =""; 
+			 var ps=document.getElementById("ps1");
+			        ps.src =""; 
+			 var ps=document.getElementById("ps2");
+			        ps.src ="";
+
+			 document.all.oTable.rows(0).cells(1).innerText="";
+			 document.all.oTable.rows(1).cells(1).innerText="";
+			 document.all.oTable.rows(2).cells(1).innerText="";
+			 document.all.oTable.rows(3).cells(1).innerText="";
+			 document.all.oTable.rows(4).cells(1).innerText="";
+			 document.all.oTable.rows(5).cells(1).innerText="";
+			 document.all.oTable.rows(6).cells(1).innerText="";
+			 document.all.oTable.rows(7).cells(1).innerText="";
+			 document.all.oTable.rows(8).cells(1).innerText=""; 
+			 
+
+			 return 0;
+		}
+
+  </script>
+  
+</html>

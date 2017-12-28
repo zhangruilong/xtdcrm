@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="lib/weui.min.css">
+<link rel="stylesheet" href="lib/jquery-weui.min.css">
+<link rel="stylesheet" type="text/css" href="../zrlextpages/common/buttonstyle.css" />
+<link rel="stylesheet" href="../zrlextpages/common/sencha/build/classic/theme-crisp/resources/theme-crisp-all.css"/>
+<script type="text/javascript" src="../zrlextpages/common/sencha/build/ext-all.js"></script>  
+<script type="text/javascript" src="../zrlextpages/common/sencha/build/classic/locale/locale-zh_CN.js"></script>  
+<script type="text/javascript" src="../zrlextpages/common/jsutil.js"></script>
+<script type="text/javascript" src="../zrlextpages/common/common.js"></script>
+<link rel="stylesheet" href="../pages/crisp/resources/charts-all.css"/>
+	<script type="text/javascript" src="../pages/charts.js"></script>
+<script src="common/common.js"></script>
+</head>
+
+<body ontouchstart>
+<!-- 容器 -->
+<div class="weui-tab">
+  <div class="weui-navbar">
+    <a id="ttab1" class="weui-navbar__item weui-bar__item--on" href="#tab1">
+      详细数据
+    </a>
+    <a id="ttab2" class="weui-navbar__item" href="#tab2">
+      历史数据
+    </a>
+    <!-- <a class="weui-navbar__item" href="#tab2">
+      数据趋势
+    </a> -->
+  </div>
+  <div class="weui-tab__bd">
+    <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+      <div class="weui-grids" style="margin-top: 10px;">
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      身高(cm)
+		    </div>
+		    <p id="bodyinfohight" class="weui-grid__label">
+		      0
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      体重(kg)
+		    </div>
+		    <p id="bodyinfoweight" class="weui-grid__label">
+		      0
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      身体质量参数
+		    </div>
+		    <p id="bodyinfobmi" class="weui-grid__label">
+		      0
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      骨骼肌
+		    </div>
+		    <p id="bodyinfoggj" class="weui-grid__label">
+		      0
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      脂肪
+		    </div>
+		    <p id="bodyinfozf" class="weui-grid__label">
+		      0
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      腰臀脂肪比
+		    </div>
+		    <p id="bodyinfoytzfb" class="weui-grid__label">
+		      0
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      血糖
+		    </div>
+		    <p id="bodyinfoxt" class="weui-grid__label">
+		      0
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      血脂
+		    </div>
+		    <p id="bodyinfoxz" class="weui-grid__label">
+		      0
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      血压
+		    </div>
+		    <p id="bodyinfoxy" class="weui-grid__label">
+		      0
+		    </p>
+		  </a>
+		</div>
+    </div>
+    <div id="tab2" class="weui-tab__bd-item">
+      <div class="weui-cells">
+		  <a class="weui-cell weui-cell_access" href="javascript:;"><div class="weui-cell__bd"><p>
+		  体重 65kg 身体质量参数 28</p></div><div class="weui-cell__ft">
+		  2017-07-07</div></a>
+		  <a class="weui-cell weui-cell_access" href="javascript:;">
+		    <div class="weui-cell__bd">
+		      <p>体重 65kg 身体质量参数 28</p>
+		    </div>
+		    <div class="weui-cell__ft">
+		    2017-07-07
+		    </div>
+		  </a>
+		</div>
+    </div>
+    <div id="tab3" class="weui-tab__bd-item">
+    </div>
+  </div>
+</div>
+
+	<script src="lib/jquery-2.1.4.js"></script>
+	<script src="lib/fastclick.js"></script>
+	<script>
+		$(function() {
+			FastClick.attach(document.body);
+			customer = JSON.parse(window.localStorage.getItem("customer"));
+			$.ajax({
+				url:"BodyinfoService.do?method=selAll",
+				type:"post",
+				data:{
+					wheresql:"bodyinfoname='"+customer.customername+"' and bodyinfophone='"+customer.customerphone+"'"
+				},
+				success: function(r) {
+	    			var resp = eval('('+r+')'); 
+	    			$("#tab2 .weui-cells").html("");
+	    			$.each(resp.root, function(i, item) {
+	    				$("#bodyinfohight").html(item.bodyinfohight);
+	    				$("#bodyinfoweight").html(item.bodyinfoweight);
+	    				$("#bodyinfobmi").html(item.bodyinfobmi);
+	    				$("#bodyinfoggj").html(item.bodyinfoggj);
+	    				$("#bodyinfozf").html(item.bodyinfozf);
+	    				$("#bodyinfoytzfb").html(item.bodyinfoytzfb);
+	    				$("#bodyinfoxt").html(item.bodyinfoxt);
+	    				$("#bodyinfoxz").html(item.bodyinfoxz);
+	    				$("#bodyinfoxy").html(item.bodyinfoxy);
+	    				$("#tab2 .weui-cells").append('<a class="weui-cell weui-cell_access" onclick="nextpage(\''
+	    						  +item.bodyinfoid+'\')"><div class="weui-cell__bd"><p>体重 '
+	    						  +item.bodyinfoweight+'kg 脂肪 '+item.bodyinfozf+'</p></div><div class="weui-cell__ft">'
+	    						  +item.bodyinfoinswhen+'</div></a>');
+	    			});
+	    		},
+	    		error:function(r) {
+	    			var resp = eval(r); 
+	    			alert(resp.msg);
+	    		}
+			});
+			/* var Bodyinfoaction = "BodyinfoService.do";
+			var Bodyinfofields = ['bodyinfoid'
+			        			    ,'bodyinfoname' 
+			        			    ,'bodyinfophone' 
+			        			    ,'bodyinfohight' 
+			        			    ,'bodyinfoweight' 
+			        			    ,'bodyinfobmi' 
+			        			    ,'bodyinfoggj' 
+			        			    ,'bodyinfozf' 
+			        			    ,'bodyinfoytzfb' 
+			        			    ,'bodyinfoxt' 
+			        			    ,'bodyinfoxz' 
+			        			    ,'bodyinfoxy' 
+			        			    ,'bodyinfoinswhen' 
+			        			    ,'bodyinfoinswho' 
+			        			      ];// 全部字段
+			var Bodyinfokeycolumn = [ 'bodyinfoid' ];// 主键
+			var Bodyinfostore = dataStore(Bodyinfofields, Bodyinfoaction + "?method=selAll");// 定义Bodyinfostore
+			var jccount = Ext.create({
+				   xtype: 'cartesian',
+				   height : 350,
+				   width : '100%',
+				   renderTo: 'tab3',
+				   store: Bodyinfostore,
+				   axes: [{
+				       type: 'numeric',
+				       position: 'left',
+				       fields: ['notesname'],
+				       title: {
+				           text: '人数',
+				           fontSize: 15
+				       },
+				       grid: true,
+				       minimum: 0
+				   }, {
+				       type: 'category',
+				       position: 'bottom',
+				       fields: ['notestype'],
+				       title: {
+				           text: '从5:00到22:00区间',
+				           fontSize: 15
+				       }
+				   }],
+				   series: [{
+				       type: 'line',
+				       style: {
+				           stroke: '#30BDA7',
+				           lineWidth: 2
+				       },
+				       xField: 'notestype',
+				       yField: 'notesname',
+				       marker: {
+				           type: 'path',
+				           path: ['M', - 4, 0, 0, 4, 4, 0, 0, - 4, 'Z'],
+				           stroke: '#30BDA7',
+				           lineWidth: 2,
+				           fill: 'white'
+				       }
+				   }]
+				}); */
+		});
+		function nextpage(value){
+			window.localStorage.setItem('bodyinfodetail',value);
+			window.location.href = "bodyinfodetail.html";
+		}
+	</script>
+	<script src="lib/jquery-weui.min.js"></script>
+</body>
+</html>

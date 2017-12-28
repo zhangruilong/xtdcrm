@@ -457,7 +457,8 @@ Ext.onReady(function() {
 		}
 		],
 		tbar : [{
-					text : Ext.os.deviceType === 'Phone' ? null : "操作查询",
+					id : "caozuobutton",
+					text : "操作查询",
 					handler : function() {
 						var selections = Customergrid.getSelection();
 						if (selections.length != 1) {
@@ -629,6 +630,7 @@ Ext.onReady(function() {
 		}; 
 	});
 	Customerstore.load();//加载数据
+	if("sui"==currentuser.rolecode) Ext.getCmp("caozuobutton").hide();
 	var win = new Ext.Viewport({//只能有一个viewport
 		resizable : true,
 		layout : 'border',

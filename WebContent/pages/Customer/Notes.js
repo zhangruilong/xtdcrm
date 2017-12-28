@@ -1199,6 +1199,7 @@ function getnotes(dataid) {
 				}else if("已确认"==selections[0].get('appointstatue')){
 					Ext.Msg.alert('提示', '已确认的记录不能取消！', function() {
 					});
+					return;
 				}
 				commonDelete(basePath + "AppiontService.do?method=delAll",selections,Appiontshijiaostore,Appiontkeycolumn);
 			}

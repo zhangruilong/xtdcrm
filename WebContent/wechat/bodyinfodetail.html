@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="lib/weui.min.css">
+<link rel="stylesheet" href="lib/jquery-weui.min.css">
+<script src="common/common.js"></script>
+</head>
+
+<body ontouchstart>
+<!-- 容器 -->
+<div class="weui-tab">
+  <div class="weui-navbar">
+    <a class="weui-navbar__item weui-bar__item--on" href="bodyinfo.html">
+      返回上一页
+    </a>
+    <!-- <a class="weui-navbar__item" href="#tab2">
+      数据趋势
+    </a> -->
+  </div>
+  <div class="weui-tab__bd">
+    <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+      <div class="weui-grids" style="margin-top: 10px;">
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      身高(cm)
+		    </div>
+		    <p id="bodyinfohight" class="weui-grid__label">
+		      178
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      体重(kg)
+		    </div>
+		    <p id="bodyinfoweight" class="weui-grid__label">
+		      65
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      身体质量参数
+		    </div>
+		    <p id="bodyinfobmi" class="weui-grid__label">
+		      28
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      骨骼肌
+		    </div>
+		    <p id="bodyinfoggj" class="weui-grid__label">
+		      28
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      脂肪
+		    </div>
+		    <p id="bodyinfozf" class="weui-grid__label">
+		      28
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      腰臀脂肪比
+		    </div>
+		    <p id="bodyinfoytzfb" class="weui-grid__label">
+		      28
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      血糖
+		    </div>
+		    <p id="bodyinfoxt" class="weui-grid__label">
+		      28
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      血脂
+		    </div>
+		    <p id="bodyinfoxz" class="weui-grid__label">
+		      28
+		    </p>
+		  </a>
+		  <a href="" class="weui-grid js_grid">
+		    <div class="weui-grid__label">
+		      血压
+		    </div>
+		    <p id="bodyinfoxy" class="weui-grid__label">
+		      28
+		    </p>
+		  </a>
+		</div>
+    </div>
+  </div>
+</div>
+
+	<script src="lib/jquery-2.1.4.js"></script>
+	<script src="lib/fastclick.js"></script>
+	<script>
+		$(function() {
+			FastClick.attach(document.body);
+			customer = JSON.parse(window.localStorage.getItem("customer"));
+			$.ajax({
+				url:"BodyinfoService.do?method=selAll",
+				type:"post",
+				data:{
+					wheresql:"bodyinfoid='"+value
+					+"'"
+				},
+				success: function(r) {
+	    			var resp = eval('('+r+')'); 
+	    			$.each(resp.root, function(i, item) {
+	    				$("#bodyinfohight").html(item.bodyinfohight);
+	    				$("#bodyinfoweight").html(item.bodyinfoweight);
+	    				$("#bodyinfobmi").html(item.bodyinfobmi);
+	    				$("#bodyinfoggj").html(item.bodyinfoggj);
+	    				$("#bodyinfozf").html(item.bodyinfozf);
+	    				$("#bodyinfoytzfb").html(item.bodyinfoytzfb);
+	    				$("#bodyinfoxt").html(item.bodyinfoxt);
+	    				$("#bodyinfoxz").html(item.bodyinfoxz);
+	    				$("#bodyinfoxy").html(item.bodyinfoxy);
+	    			});
+	    		},
+	    		error:function(r) {
+	    			var resp = eval(r); 
+	    			alert(resp.msg);
+	    		}
+			});
+		});
+	</script>
+	<script src="lib/jquery-weui.min.js"></script>
+</body>
+</html>

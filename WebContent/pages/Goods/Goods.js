@@ -52,6 +52,7 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '编码',
+				allowBlank : false,
 				id : 'Goodsgoodscode',
 				name : 'goodscode'
 			} ]

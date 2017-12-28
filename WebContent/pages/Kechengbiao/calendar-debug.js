@@ -1094,10 +1094,11 @@ Ext.define('Ext.calendar.form.AbstractForm', {
          */
         calendarField: {
             xtype: 'calendar-calendar-picker',
-            fieldLabel: '场馆',
+            fieldLabel: '课表',
             name: 'calendarId',
             forceSelection: true,
             editable: false,
+            hidden:true,
             queryMode: 'local',
             displayField: 'title',
             valueField: 'id'
@@ -1283,6 +1284,20 @@ Ext.define('Ext.calendar.form.AbstractForm', {
                     {
 	                	xtype : 'combo',
 	    				emptyText : '请选择',
+	    				store : stadiumStore,
+	    				mode : 'local',
+	    				displayField : 'name',
+	    				valueField : 'name',
+	    				hiddenName : 'name',
+	    				triggerAction : 'all',
+	                    fieldLabel: '场馆',
+	                    id:'placetimestadium',
+	                    name: 'placetimestadium',
+	                    allowBlank: false
+	                },
+                    {
+	                	xtype : 'combo',
+	    				emptyText : '请选择',
 	    				store : courseStore,
 	    				mode : 'local',
 	    				displayField : 'name',
@@ -1304,7 +1319,7 @@ Ext.define('Ext.calendar.form.AbstractForm', {
 	    			        bar: {
 	    			            cls: 'my-bar-trigger',
 	    			            handler: function() {
-	    			            	selectplace("新天地东城馆",Ext.getCmp("placetimeproject").getValue());
+	    			            	selectplace(Ext.getCmp("placetimestadium").getValue(),Ext.getCmp("placetimeproject").getValue());
 	    			            }
 	    			        }
 	    				}
@@ -1325,7 +1340,7 @@ Ext.define('Ext.calendar.form.AbstractForm', {
 	    			        bar: {
 	    			            cls: 'my-bar-trigger',
 	    			            handler: function() {
-	    			            	selectcoach("新天地东城馆");
+	    			            	selectcoach(Ext.getCmp("placetimestadium").getValue());
 	    			            }
 	    			        }
 	    				}
@@ -1384,7 +1399,7 @@ Ext.define('Ext.calendar.form.AbstractForm', {
           //保存到服务器
 //            var placetimestadium = calendarTostadium(Ext.getCmp("calendarId").getValue().substring(28));
 //            values.calendarId = Ext.getCmp("calendarId").getValue().substring(28);
-            values.placetimestadium = '新天地东城馆';
+//            values.placetimestadium = '新天地东城馆';
             var method = "updAll";
             if(isnull(values.placetimeid)) {
             	values.placetimeid = getNewId();
@@ -1548,6 +1563,7 @@ Ext.define('Ext.calendar.form.Form', {
                 calendarId: event.getCalendarId(),
                 title: event.getTitle(),
                 placetimeid: event.getPlacetimeid(),
+                placetimestadium: event.getPlacetimestadium(),
                 placetimeproject: event.getPlacetimeproject(),
                 placetimeplacename: event.getPlacetimeplacename(),
                 placetimedetail: event.getPlacetimedetail(),
@@ -2255,9 +2271,13 @@ Ext.define('Ext.calendar.model.Event', {
 	        name: 'placetimeid'
 	    },
     	{
-	        name: 'placetimeproject',
+	        name: 'placetimestadium',
 	        type: 'string'
     	 },
+     	{
+ 	        name: 'placetimeproject',
+ 	        type: 'string'
+     	 },
     	 {
  	        name: 'placetimecoachname',
  	        type: 'string'
@@ -2404,6 +2424,12 @@ Ext.define('Ext.calendar.model.Event', {
     },
     setPlacetimeid: function(placetimeid) {
     	this.set('placetimeid', placetimeid);
+    },
+    getPlacetimestadium: function() {
+        return this.data.placetimestadium;
+    },
+    setPlacetimestadium: function(placetimestadium) {
+    	this.set('placetimestadium', placetimestadium);
     },
     getPlacetimeproject: function() {
         return this.data.placetimeproject;

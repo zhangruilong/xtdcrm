@@ -1,4 +1,6 @@
 Ext.onReady(function() {
+	var CuscardviewsuiService = "CuscardviewService.do";
+	if("sui"==currentuser.rolecode) CuscardviewsuiService = "CuscardviewsuiService.do";
 	var Cuscardclassify = "cuscard";
 	var Cuscardtitle = "当前位置:业务管理》" + Cuscardclassify;
 	var Cuscardaction = "CuscardService.do";
@@ -30,7 +32,7 @@ Ext.onReady(function() {
 	        			    ,'customername' 
 	        			      ];// 全部字段
 	var Cuscardkeycolumn = [ 'cuscardid' ];// 主键
-	var Cuscardstore = dataStore(Cuscardfields, basePath + "CuscardviewService.do?method=selQuery&wheresql=cuscardtypeclass='后付费卡'");// 定义Cuscardstore
+	var Cuscardstore = dataStore(Cuscardfields, basePath + CuscardviewsuiService+"?method=selQuery&wheresql=cuscardtypeclass='后付费卡'");// 定义Cuscardstore
 	var CuscarddataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'CuscarddataForm',
 		labelAlign : 'right',

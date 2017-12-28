@@ -215,7 +215,7 @@ function selectCardtype() {
 							Ext.getCmp('cuscardtypeclass').setValue(selectRows[0].get("cardtypeclass"));
 							Ext.getCmp('cuscardday').setValue(selectRows[0].get("cardtypeday"));
 							Ext.getCmp('cuscardmoney').setValue(selectRows[0].get("cardtypeprice"));
-							Ext.getCmp('cuscardprice').setValue(selectRows[0].get("cardtypetimes"));
+							Ext.getCmp('cuscardprice').setValue(selectRows[0].get("cardtypeprice"));
 							Ext.getCmp('cuscardtimes').setValue(selectRows[0].get("cardtypetimes"));
 							Ext.getCmp('cuscardstadium').setValue(selectRows[0].get("cardtypestadium"));
 							Ext.getCmp('customerstadium').setValue(selectRows[0].get("cardtypestadium"));

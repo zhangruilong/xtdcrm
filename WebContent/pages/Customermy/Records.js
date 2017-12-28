@@ -190,7 +190,14 @@ function createTextWindow1(url,title,selection,store,selections) {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : crmStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '步骤',
 				id : 'Recordsrecordstitle',
 				name : 'recordstitle'
@@ -261,6 +268,20 @@ function createTextWindow1(url,title,selection,store,selections) {
 								},
 								success : function(form, action) {
 									Ext.Msg.alert('提示', action.result.msg,function(){
+										if("死单"==Ext.getCmp("Recordsrecordstitle").getValue())
+										Ext.Ajax.request({
+											url : basePath + "CustomerService.do?method=updAll",
+											method : 'POST',
+											params : {
+												json : "[{'customerid':'"+selections[0].get('customerid')
+												+"','customerstatue':'死单'}]"
+											},
+											success : function(response) {
+											},
+											failure : function(response) {
+												Ext.Msg.alert('提示', '网络出现问题，请稍后再试');
+											}
+										});
 										dataWindow1.close();
 										store.reload();
 									});

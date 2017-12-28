@@ -43,6 +43,7 @@
 	<bean id="CustomerService" class="com.server.service.CustomerService" />
 	<bean id="CustomerbigService" class="com.server.service.CustomerbigService" />
 	<bean id="RecordsService" class="com.server.service.RecordsService" />
+	<bean id="RecordsviewService" class="com.server.service.RecordsviewService" />
 	<bean id="EmpService" class="com.server.service.EmpService" />
 	<bean id="GoodsService" class="com.server.service.GoodsService" />
 	<bean id="HuodongService" class="com.server.service.HuodongService" />
@@ -61,4 +62,7 @@
 	<bean id="BodyinfoService" class="com.server.service.BodyinfoService" />
 	<bean id="NoticeService" class="com.server.service.NoticeService" />
 	<bean id="TuifeiService" class="com.server.service.TuifeiService" />
+	<bean id="CompetService" class="com.server.service.CompetService" />
+	<bean id="MycourseviewsuiService" class="com.server.service.MycourseviewsuiService" />
+	<bean id="CuscardviewsuiService" class="com.server.service.CuscardviewsuiService" />
 </beans>

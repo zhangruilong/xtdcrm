@@ -121,7 +121,7 @@ Ext.onReady(function() {
 			items : [ {
 				xtype : 'textfield',
 				fieldLabel : '停用期限',
-				value : '62',
+				value : '0',
 				allowBlank : false,
 				id : 'Cardtypecardtypestop',
 				name : 'cardtypestop'

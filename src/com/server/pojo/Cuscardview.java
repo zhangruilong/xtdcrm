@@ -192,6 +192,10 @@ public class Cuscardview
     * 编码
     */
    private String customercode;   
+   /**
+    * 卡种次数
+    */
+   private String cuscardnums;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -974,6 +978,23 @@ public class Cuscardview
 	{
 		return this.customercode;
 	}	   
+
+	/**
+	 *设置"卡种次数"属性
+	 *@param cuscardnums 实体的Cuscardnums属性
+	 */
+	public void setCuscardnums(String cuscardnums)
+	{
+		this.cuscardnums = cuscardnums;
+	}
+	
+	/**
+	 *获取"卡种次数"属性
+	 */
+	public String getCuscardnums()
+	{
+		return this.cuscardnums;
+	}	   
 	public Cuscardview() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -1025,6 +1046,7 @@ public class Cuscardview
 	 	,String customerupdwhen
 	 	,String customerupdwho
 	 	,String customercode
+	 	,String cuscardnums
 		 ){
 		super();
 		this.cuscardid = cuscardid;
@@ -1073,6 +1095,7 @@ public class Cuscardview
 	 	this.customerupdwhen = customerupdwhen;
 	 	this.customerupdwho = customerupdwho;
 	 	this.customercode = customercode;
+	 	this.cuscardnums = cuscardnums;
 	}
 }
 

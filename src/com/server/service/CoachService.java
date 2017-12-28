@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 //import org.apache.solr.common.SolrDocumentList;
 import com.server.pojo.Coach;
+import com.server.pojo.Emp;
 import com.server.poco.CoachPoco;
 import com.server.action.CoachAction;
 import com.system.tools.CommonConst;
@@ -23,5 +24,24 @@ import com.system.tools.pojo.Pageinfo;
  *@author ZhangRuiLong
  */
 public class CoachService extends CoachAction {
-
+	//报表
+	public void selBi(HttpServletRequest request, HttpServletResponse response){
+		String wheresql = request.getParameter("wheresql");
+		String query = request.getParameter("query");
+		if(CommonUtil.isNull(wheresql)) wheresql="1=1";
+		if(CommonUtil.isNull(query)) query="";
+		String sql = "SELECT *,TRUNCATE(100*coachcode/coachstadium,0) as coachname from "
+					+" (SELECT mycoursecoachname as coachid,"
+					+" (SELECT count(*) from customer "
+					+" where customerdetail=mycoursecoachname"
+					+" GROUP BY customerdetail) as coachstadium,"
+					+" count(*) as coachcode from mycourse"
+					+" where mycoursecoachname like '%"+query+"%' and "+wheresql 
+					+" and mycoursetype='私教课' "
+					+" GROUP BY mycoursecoachname"
+					+" ) as a";
+		Pageinfo pageinfo = new Pageinfo(0, selAll(Coach.class,sql));
+		result = CommonConst.GSON.toJson(pageinfo);
+		responsePW(response, result);
+	}
 }

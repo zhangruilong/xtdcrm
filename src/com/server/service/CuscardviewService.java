@@ -1,8 +1,15 @@
 package com.server.service;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Type;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 //import org.apache.solr.common.SolrDocumentList;

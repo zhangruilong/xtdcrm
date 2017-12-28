@@ -11,7 +11,7 @@ Ext.onReady(function() {
 	        			    ,'placestatue' 
 	        			      ];// 全部字段
 	var Placekeycolumn = [ 'placeid' ];// 主键
-	var Placestore = dataStore(Placefields, basePath + Placeaction + "?method=selQuery&wheresql=placeproject!='球类'");// 定义Placestore
+	var Placestore = dataStore(Placefields, basePath + Placeaction + "?method=selQuery");// 定义Placestore
 	var PlacedataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'PlacedataForm',
 		labelAlign : 'right',
@@ -282,6 +282,7 @@ Ext.onReady(function() {
 									params : {
 										start : 0,
 										limit : PAGESIZE,
+										wheresql: "placeproject not like '%球'",
 										json : queryjson,
 										query : Ext.getCmp("queryPlaceaction").getValue()
 									}
@@ -297,6 +298,7 @@ Ext.onReady(function() {
 							params : {
 								start : 0,
 								limit : PAGESIZE,
+								wheresql: "placeproject not like '%球'",
 								json : queryjson,
 								query : Ext.getCmp("queryPlaceaction").getValue()
 							}
@@ -308,6 +310,7 @@ Ext.onReady(function() {
 	Placegrid.region = 'center';
 	Placestore.on("beforeload",function(){ 
 		Placestore.getProxy().extraParams = {
+				wheresql: "placeproject not like '%球'",
 				json : queryjson,
 				query : Ext.getCmp("queryPlaceaction").getValue()
 		}; 

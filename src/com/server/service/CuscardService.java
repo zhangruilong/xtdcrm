@@ -15,6 +15,9 @@ import com.server.pojo.Customerbig;
 import com.server.pojo.Notes;
 import com.server.pojo.Notesmoneys;
 import com.server.poco.CuscardPoco;
+import com.server.ZhajiApi;
+import com.server.ZhajiCard;
+import com.server.ZhajiResult;
 import com.server.action.CuscardAction;
 import com.server.bean.CuscardBean;
 import com.system.tools.CommonConst;
@@ -84,7 +87,7 @@ public class CuscardService extends CuscardAction {
 		//增加凭证记录
 		Notesmoneys mNotes = new Notesmoneys(newid, newid, cuss.get(0).getCuscardno(),cuss.get(0).getCuscardstadium(), null, null, cuss.get(0).getCuscardmoney(), "发卡","活动"+ huodong, "卡操作", DateUtils.getDateTime(), cuss.get(0).getCuscardinswho());
 		//查询用户手机是否已存在
-		ArrayList<Customer> s2Customer = (ArrayList<Customer>) selAll(Customer.class,"select * from customer where customerphone='"+temp.getCustomerphone()+"'");
+		ArrayList<Customer> s2Customer = (ArrayList<Customer>) selAll(Customer.class,"select * from customer where customerphone='"+temp.getCustomerphone()+"' and customername='"+temp.getCustomername()+"'");
 		if(s2Customer.size()>0){
 //			responsePW(response, "{success:true,code:200,msg:'手机号为"+temp.getCustomerphone()+"的用户已存在'}");
 			mCuscard.setCuscardid(newid);
@@ -113,6 +116,7 @@ public class CuscardService extends CuscardAction {
 		Cuscard temp = cuss.get(0);
 		String cuscardaddnum = request.getParameter("cuscardaddnum");
 		int cuscardnobegin = TypeUtil.stringToInt(temp.getCuscardno());
+		ZhajiResult token = ZhajiApi.getToken();
 		for(int i=0;i<TypeUtil.stringToInt(cuscardaddnum);i++){
 			ArrayList<String> sqls = new ArrayList<String>();
 			String newid = CommonUtil.getNewId();
@@ -129,6 +133,17 @@ public class CuscardService extends CuscardAction {
 			mCustomer.setCustomercode(cuscardno);
 			sqls.add(getInsSingleSql(mCustomer));
 			result = doAll(sqls);
+			if(CommonConst.SUCCESS.equals(result)&&"时间卡".equals(cuss.get(0).getCuscardtypeclass())){
+				
+				ZhajiCard card = new ZhajiCard();
+				card.setToken(token.getToken());
+//				card.setUid(cuss.get(0).getCuscardno());
+				card.setCard(cuscardno);
+				card.setCard_xtd(cuscardno);
+				card.setExpire_from(cuss.get(0).getCuscardbegin().replaceAll("-", ""));
+				card.setExpire_to(cuss.get(0).getCuscardend().replaceAll("-", ""));
+				ZhajiApi.updUser(card);
+			}
 		}
 		//新增大客户信息
 		if("后付费卡".equals(temp.getCuscardtypeclass())){
@@ -197,6 +212,69 @@ public class CuscardService extends CuscardAction {
 				"卡操作", DateUtils.getDateTime(), getCurrentUsername(request));
 		sqls.add(getInsSingleSql(mNotes));
 		result = doAll(sqls);
+		if(CommonConst.SUCCESS.equals(result)&&"时间卡".equals(cuss.get(0).getCuscardtypeclass())){
+			ZhajiResult token = ZhajiApi.getToken();
+			ZhajiCard card = new ZhajiCard();
+			card.setToken(token.getToken());
+//			card.setUid(cuss.get(0).getCuscardno());
+			card.setCard(cuss.get(0).getCuscardno());
+			card.setCard_xtd(cuss.get(0).getCuscardno());
+			card.setExpire_from(cuss.get(0).getCuscardbegin().replaceAll("-", ""));
+			card.setExpire_to(CuscardBeancuss.get(0).getCuscardendnew().replaceAll("-", ""));
+			ZhajiApi.updUser(card);
+		}
+		responsePW(response, result);
+	}
+	//封卡
+	public void cfeng(HttpServletRequest request, HttpServletResponse response){
+		String json = request.getParameter("json");
+		System.out.println("json : " + json);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		Cuscard temp = new Cuscard();	
+		temp.setCuscardid(cuss.get(0).getCuscardid());
+		temp.setCuscardend(cuss.get(0).getCuscardend());
+		temp.setCuscardstop(cuss.get(0).getCuscardstop());
+		ArrayList<String> sqls = new ArrayList<String>();
+		sqls.add(getUpdSingleSql(temp,CuscardPoco.KEYCOLUMN));
+		//增加凭证记录
+		Notesmoneys mNotes = new Notesmoneys(CommonUtil.getNewId(), cuss.get(0).getCuscardcustomer(), cuss.get(0).getCuscardno(),cuss.get(0).getCuscardstadium(), 
+				null, null, cuss.get(0).getCuscardmoney(), "封卡", 
+				"封卡天数："+cuss.get(0).getCuscardmoney()+",新卡有效期："+cuss.get(0).getCuscardend(),
+				"卡操作", DateUtils.getDateTime(), getCurrentUsername(request));
+		sqls.add(getInsSingleSql(mNotes));
+		result = doAll(sqls);
+		if(CommonConst.SUCCESS.equals(result)&&"时间卡".equals(cuss.get(0).getCuscardtypeclass())){
+			ZhajiResult token = ZhajiApi.getToken();
+			ZhajiCard card = new ZhajiCard();
+			card.setToken(token.getToken());
+//			card.setUid(cuss.get(0).getCuscardno());
+			card.setCard(cuss.get(0).getCuscardno());
+			card.setCard_xtd(cuss.get(0).getCuscardno());
+			card.setExpire_from(cuss.get(0).getCuscardbegin().replaceAll("-", ""));
+			card.setExpire_to(cuss.get(0).getCuscardbegin().replaceAll("-", ""));
+			ZhajiApi.updUser(card);
+		}
+		responsePW(response, result);
+	}
+	//开卡
+	public void ckaika(HttpServletRequest request, HttpServletResponse response){
+		String json = request.getParameter("json");
+		System.out.println("json : " + json);
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		for(Cuscard temp:cuss){
+			result = updSingle(temp,CuscardPoco.KEYCOLUMN);
+			if(CommonConst.SUCCESS.equals(result)&&"时间卡".equals(cuss.get(0).getCuscardtypeclass())){
+				ZhajiResult token = ZhajiApi.getToken();
+				ZhajiCard card = new ZhajiCard();
+				card.setToken(token.getToken());
+//				card.setUid(cuss.get(0).getCuscardno());
+				card.setCard(cuss.get(0).getCuscardno());
+				card.setCard_xtd(cuss.get(0).getCuscardno());
+				card.setExpire_from(cuss.get(0).getCuscardbegin().replaceAll("-", ""));
+				card.setExpire_to(cuss.get(0).getCuscardend().replaceAll("-", ""));
+				ZhajiApi.updUser(card);
+			}
+		}
 		responsePW(response, result);
 	}
 }

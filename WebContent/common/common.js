@@ -122,7 +122,7 @@ var stadiumStore = new Ext.data.ArrayStore({//场馆下拉
 });
 var cardStore = new Ext.data.ArrayStore({//卡种分类下拉
 	fields:["name"],
-	data:[["时间卡"],["次数卡"],["特殊卡"],["后付费卡"]]
+	data:[["时间卡"],["次数卡"],["特殊卡"],["后付费卡"],["培训卡"]]
 });
 var changciStore = new Ext.data.ArrayStore({//卡种分类下拉
 	fields:["name"],
@@ -135,4 +135,8 @@ var ruhuiStore = new Ext.data.ArrayStore({//卡种分类下拉
 var coachStore = new Ext.data.ArrayStore({//卡种分类下拉
 	fields:["name"],
 	data:[["在岗"],["离职"],["兼职"]]
+});
+var crmStore = new Ext.data.ArrayStore({//卡种分类下拉
+	fields:["name"],
+	data:[["录入"],["拜访"],["成单"],["死单"]]
 });
