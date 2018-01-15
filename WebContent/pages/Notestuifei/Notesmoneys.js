@@ -24,6 +24,7 @@ Ext.onReady(function() {
 		layout : 'column',
 		items : [ {
 			columnWidth : .5,
+			hidden : true,
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
@@ -39,7 +40,15 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				fieldLabel : '会员',
 				id : 'Notesmoneysnotescustomer',
-				name : 'notescustomer'
+				name : 'notescustomer',
+				triggers: {
+			        bar: {
+			            cls: 'my-bar-trigger',
+			            handler: function() {
+			            	selectCustomer();
+			            }
+			        }
+				}
 			} ]
 		}
 		, {
@@ -56,7 +65,14 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : stadiumStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '场馆',
 				id : 'Notesmoneysnotesstadium',
 				name : 'notesstadium'
@@ -96,7 +112,14 @@ Ext.onReady(function() {
 			columnWidth : .5,
 			layout : 'form',
 			items : [ {
-				xtype : 'textfield',
+				xtype : 'combo',
+				emptyText : '请选择',
+				store : cwStore,
+				mode : 'local',
+				displayField : 'name',
+				valueField : 'name',
+				hiddenName : 'name',
+				triggerAction : 'all',
 				fieldLabel : '事件',
 				id : 'Notesmoneysnotesname',
 				name : 'notesname'

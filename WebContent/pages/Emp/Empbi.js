@@ -34,6 +34,15 @@ Ext.onReady(function() {
 	    },
 		columns : [{xtype: 'rownumberer',width:50}, 
 		{// 改
+			header : '场馆',
+			dataIndex : 'empstadium',
+			sortable : true, 
+			editor: {
+                xtype: 'textfield',
+                editable: false
+            }
+		}, 
+		{// 改
 			header : '会籍',
 			dataIndex : 'empid',
 			sortable : true, 
@@ -44,7 +53,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '录入客户',
-			dataIndex : 'empstadium',
+			dataIndex : 'empphone',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -84,6 +93,17 @@ Ext.onReady(function() {
 		}
 		],
 		tbar : [{
+			xtype : 'combo',
+			emptyText : '请选择场馆',
+			store : stadiumStore,
+			mode : 'local',
+			displayField : 'name',
+			valueField : 'name',
+			hiddenName : 'name',
+			triggerAction : 'all',
+			id : 'stadium',
+			name : 'stadium'
+		},{
 			xtype : 'datefield',
 			fieldLabel : '开始日期',
 			id : 'cuscardbegin',
@@ -109,12 +129,15 @@ Ext.onReady(function() {
 				text : "查询",
 				xtype: 'button',
 				handler : function() {
+					var wheresqlstadium = "";
+					if(!isnull(Ext.getCmp("stadium").getValue()))
+						wheresqlstadium = "customerstadium='"+Ext.getCmp("stadium").getValue()+"' and ";
 					Empstore.load({
 							params : {
 								start : 0,
 								limit : PAGESIZE,
 								json : queryjson,
-								wheresql : wheresqlplus+" customerinswhen >= '"+Ext.util.Format.date(Ext.getCmp("cuscardbegin").getValue(), 'Y-m-d')
+								wheresql : wheresqlplus+wheresqlstadium+" customerinswhen >= '"+Ext.util.Format.date(Ext.getCmp("cuscardbegin").getValue(), 'Y-m-d')
 										+"' and customerinswhen <= '"+Ext.util.Format.date(Ext.getCmp("cuscardend").getValue(), 'Y-m-d')
 										+"'",
 								query : Ext.getCmp("queryEmpService").getValue()

@@ -117,7 +117,15 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				fieldLabel : '身份证',
 				id : 'Customercustomercdcard',
-				name : 'customercdcard'
+				name : 'customercdcard',
+				listeners : {
+					focus : function(field, e) {
+						timer = setInterval(myrefresh,5000); //指定5秒刷新一次
+					},
+					blur : function(field, e) {
+						clearInterval(timer);
+					}
+				}
 			} ]
 		}
 		, {
@@ -125,7 +133,7 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '住址',
+				fieldLabel : '全民健身卡',
 				id : 'Customercustomerhome',
 				name : 'customerhome'
 			} ]
@@ -408,7 +416,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '住址',
+			header : '全民健身卡',
 			dataIndex : 'customerhome',
 			sortable : true,  
 			editor: {
@@ -637,4 +645,16 @@ Ext.onReady(function() {
 		bodyStyle : 'padding:0px;',
 		items : [ Customergrid ]
 	});
+	function myrefresh(){ 
+		IDinfo = ReadIDCardInfo.ReadIDCardInfo(port, baud, timeout, ifCreatePhoto);	
+		var str = IDinfo.toString();
+		var arr = str.split("|");
+		var age = new Date().getFullYear() - arr[3].substr(0, 4);
+		
+		Ext.getCmp("Customercustomerage").setValue(age);
+		Ext.getCmp("Customercustomername").setValue(arr[0]);
+		Ext.getCmp("Customercustomersex").setValue(arr[1]);
+		Ext.getCmp("Customercustomerbirthday").setValue(arr[3]);
+		Ext.getCmp("Customercustomercdcard").setValue(arr[5]);
+	}
 })

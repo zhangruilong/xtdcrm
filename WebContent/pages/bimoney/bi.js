@@ -33,7 +33,7 @@ Ext.onReady(function() {
 		}
 		, {
 			header : '分类',
-			dataIndex : 'notestype',
+			dataIndex : 'notesname',
 			sortable : true,
 			width:250
 		}
@@ -49,14 +49,13 @@ Ext.onReady(function() {
 		],
 		tbar : [{
 			xtype : 'combo',
-			emptyText : '请选择',
+			emptyText : '请选择场馆',
 			store : stadiumStore,
 			mode : 'local',
 			displayField : 'name',
 			valueField : 'name',
 			hiddenName : 'name',
 			triggerAction : 'all',
-			fieldLabel : '场馆',
 			id : 'stadium',
 			name : 'stadium'
 		},{
@@ -65,7 +64,6 @@ Ext.onReady(function() {
 			id : 'begin',
 			name : 'begin',
 			format : 'Y-m-d',
-			maxLength : 100,
 			anchor : '100%'
 		},{
 			xtype : 'datefield',
@@ -73,7 +71,6 @@ Ext.onReady(function() {
 			id : 'end',
 			name : 'end',
 			format : 'Y-m-d',
-			maxLength : 100,
 			anchor : '100%'
 		},{
 			text : "查询",
@@ -89,6 +86,18 @@ Ext.onReady(function() {
 							wheresql : wheresql
 						}
 				});
+			}
+		},{
+			text : "详情",
+			xtype: 'button',
+			handler : function() {
+				var selections = Notesmoneysgrid.getSelection();
+				if (selections.length != 1) {
+					Ext.Msg.alert('提示', '请选择一条记录！', function() {
+					});
+					return;
+				}
+				detail(selections);
 			}
 		}
 	]

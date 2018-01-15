@@ -36,7 +36,7 @@ public class NotesmoneysService extends NotesmoneysAction {
 	//营业额
 	public void selBi(HttpServletRequest request, HttpServletResponse response){
 		String wheresql = request.getParameter("wheresql");
-		if(CommonUtil.isNull(wheresql)) wheresql="1=1";
+		if(CommonUtil.isNull(wheresql)) wheresql="notestype!='退费'";
 		cuss = (ArrayList<Notesmoneys>) selAll(Notesmoneys.class, 
 				"select o.notesstadium,o.notesname,sum(o.notesmoney) as notesmoney from notesmoneys o where "+wheresql+" group by o.notesname,o.notesstadium ORDER BY o.notesstadium");
 		Pageinfo pageinfo = new Pageinfo(0, cuss);

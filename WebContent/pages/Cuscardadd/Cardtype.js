@@ -219,11 +219,10 @@ function selectCardtype() {
 							Ext.getCmp('cuscardtimes').setValue(selectRows[0].get("cardtypetimes"));
 							Ext.getCmp('cuscardnums').setValue(selectRows[0].get("cardtypetimes"));
 							Ext.getCmp('cuscardstadium').setValue(selectRows[0].get("cardtypestadium"));
-							Ext.getCmp('customerstadium').setValue(selectRows[0].get("cardtypestadium"));
 							Ext.getCmp('cuscardstop').setValue(selectRows[0].get("cardtypestop"));
 							Ext.getCmp('cuscardstopmoney').setValue(selectRows[0].get("cardtypestopmoney"));
 							Ext.getCmp('cuscardproject').setValue(selectRows[0].get("cardtypeproject"));
-							Ext.getCmp('cuscarddetail').setValue(selectRows[0].get("cardtypedetail"));
+//							Ext.getCmp('cuscarddetail').setValue(selectRows[0].get("cardtypedetail"));
 							Ext.getCmp('cuscardchangci').setValue(selectRows[0].get("cardtypechangci"));
 							selectgridWindow.close();
 						}

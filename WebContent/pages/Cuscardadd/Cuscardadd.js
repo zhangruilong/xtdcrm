@@ -38,6 +38,7 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				id : 'customerstadium',
 				name : 'customerstadium',
+				value : currentuser.roledetail,
 				hidden : true
 			} ]
 		}
@@ -243,11 +244,12 @@ Ext.onReady(function() {
 				maxLength : 100,
 				anchor : '100%'
 			},{
-				xtype : 'textfield',
+				xtype : 'hidden',
 				fieldLabel : '备注',
 				id : 'cuscarddetail',
 				name : 'cuscarddetail',
 				maxLength : 100,
+				value : currentuser.roledetail,
 				anchor : '100%'
 			} ]
 		}
@@ -354,6 +356,7 @@ Ext.onReady(function() {
 				fieldLabel : '会籍管家',
 				id : 'customeremp',
 				name : 'customeremp',
+				value : currentuser.username,
 				maxLength : 100,
 				anchor : '100%',
 				triggers: {
@@ -365,7 +368,7 @@ Ext.onReady(function() {
 				}
 			},{
 				xtype : 'textfield',
-				fieldLabel : '住址',
+				fieldLabel : '全民健身卡',
 				id : 'customerhome',
 				name : 'customerhome',
 				maxLength : 100,
@@ -470,14 +473,16 @@ Ext.onReady(function() {
 	});
 	function myrefresh(){ 
 		IDinfo = ReadIDCardInfo.ReadIDCardInfo(port, baud, timeout, ifCreatePhoto);	
-		var str = IDinfo.toString();
-		var arr = str.split("|");
-		for( i=0;i<arr.length;i++)
+		if(IDinfo.length > 100)
 		{
+			var str = IDinfo.toString();
+			var arr = str.split("|");
+			var age = new Date().getFullYear() - arr[3].substr(0, 4);
+			Ext.getCmp("customerage").setValue(age);
 			Ext.getCmp("customername").setValue(arr[0]);
 			Ext.getCmp("customersex").setValue(arr[1]);
 			Ext.getCmp("customerbirthday").setValue(arr[3]);
-			Ext.getCmp("customercdcard").setValue(arr[6]);
+			Ext.getCmp("customercdcard").setValue(arr[5]);
 		}
 	}
 })

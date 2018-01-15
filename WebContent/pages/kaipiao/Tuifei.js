@@ -50,6 +50,24 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
+				fieldLabel : '会员',
+				id : 'Tuifeituifeidetail',
+				name : 'tuifeidetail',
+				triggers: {
+			        bar: {
+			            cls: 'my-bar-trigger',
+			            handler: function() {
+			            	selectCustomer();
+			            }
+			        }
+				}
+			} ]
+		}
+		, {
+			columnWidth : .5,
+			layout : 'form',
+			items : [ {
+				xtype : 'textfield',
 				fieldLabel : '会员卡',
 				id : 'Tuifeituifeiname',
 				name : 'tuifeiname'
@@ -63,16 +81,6 @@ Ext.onReady(function() {
 				fieldLabel : '课程',
 				id : 'Tuifeituifeimoney',
 				name : 'tuifeimoney'
-			} ]
-		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '会员',
-				id : 'Tuifeituifeidetail',
-				name : 'tuifeidetail'
 			} ]
 		}
 		, {
@@ -132,6 +140,14 @@ Ext.onReady(function() {
             }
 		}
 		, {
+			header : '会员',
+			dataIndex : 'tuifeidetail',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
 			header : '会员卡',
 			dataIndex : 'tuifeiname',
 			sortable : true,  
@@ -142,14 +158,6 @@ Ext.onReady(function() {
 		, {
 			header : '课程',
 			dataIndex : 'tuifeimoney',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '会员',
-			dataIndex : 'tuifeidetail',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'

@@ -282,7 +282,7 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '住址',
+				fieldLabel : '全民健身卡',
 				id : 'Appiontviewcustomerhome',
 				name : 'customerhome'
 			} ]
@@ -906,7 +906,7 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '住址',
+			header : '全民健身卡',
 			dataIndex : 'customerhome',
 			sortable : true,  
 			editor: {

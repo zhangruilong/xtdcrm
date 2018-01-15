@@ -1,4 +1,6 @@
 Ext.onReady(function() {
+	var wheresql = "1=1";
+	if(!isnull(currentuser.roledetail)) wheresql="placetimestadium='"+currentuser.roledetail+"'";
 	Ext.create({
 		xtype : 'calendar',
 		renderTo : Ext.getBody(),
@@ -14,7 +16,7 @@ Ext.onReady(function() {
 				proxy : {
 					type : 'ajax',
 //					url : 'calendars2.json'
-					url : "PlacetimeService.do?method=selAll",
+					url : "PlacetimeService.do?method=selAll&wheresql="+wheresql,
 					reader: {
 			             type: 'json',
 			             rootProperty: 'root',

@@ -305,6 +305,12 @@ Ext.onReady(function() {
 				name : 'cuscardid',
 				hidden : true
 		}
+		,{
+			xtype : 'textfield',
+			id : 'Cuscardchangedetail',
+			name : 'cuscarddetail',
+			hidden : true
+		}
 		, {
 			columnWidth : 1,
 			layout : 'form',
@@ -445,6 +451,12 @@ Ext.onReady(function() {
 				name : 'cuscardid',
 				hidden : true
 		}
+		,{
+			xtype : 'textfield',
+			id : 'Cuscardcontinuedetail',
+			name : 'cuscarddetail',
+			hidden : true
+		}
 		, {
 			columnWidth : 1,
 			layout : 'form',
@@ -567,6 +579,11 @@ Ext.onReady(function() {
 				anchor : '100%',
 				listeners : {
 					blur : function(field, e) {
+						if(Ext.getCmp("fengcuscardstop").getValue()<Ext.getCmp("fengcuscardmoney").getValue()){
+							alert('不能超过剩余停用天数！');
+							Ext.getCmp("fengcuscardmoney").setValue("");
+							return;
+						}
 						var dtend = Ext.Date.add(new Date(Ext.getCmp("fengcuscardend").getValue()), Ext.Date.DAY, Ext.getCmp("fengcuscardmoney").getValue());
 						Ext.getCmp("fengcuscardend").setValue(dtend);
 						Ext.getCmp("fengcuscardstop").setValue(Ext.getCmp("fengcuscardstop").getValue()-Ext.getCmp("fengcuscardmoney").getValue());
@@ -612,6 +629,10 @@ Ext.onReady(function() {
 		,{
 			xtype : 'hidden',
 			name : 'cuscardno'
+		}
+		,{
+			xtype : 'hidden',
+			name : 'cuscarddetail'
 		}
 		,{
 			xtype : 'hidden',
@@ -880,6 +901,17 @@ Ext.onReady(function() {
 					success : function(response) {
 						var resp = Ext.decode(response.responseText); 
 						Ext.Msg.alert('提示', resp.msg, function(){
+							if("时间卡"==selections[0].data["cuscardtypeclass"]){
+								var mcuscardbegin = cuscardbegin.replace(/-/g,"");
+								var mcuscardend = cuscardend.replace(/-/g,"");
+								var zhajicard;
+								zhajicard.UID = cuscardno;
+								zhajicard.CARD = cuscardno;
+								zhajicard.CARD_XTD = cuscardno;
+								zhajicard.EXPIRE_FROM = mcuscardbegin;
+								zhajicard.EXPIRE_TO = mcuscardend;
+								zhajiall(zhajicard);
+							}
 							Cuscardstore.reload();
 						});
 					},

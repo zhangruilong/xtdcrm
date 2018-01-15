@@ -108,7 +108,7 @@ function selectCustomer(cuscard) {
             }
 		}
 		, {
-			header : '住址',
+			header : '全民健身卡',
 			dataIndex : 'customerhome',
 			sortable : true,  
 			editor: {

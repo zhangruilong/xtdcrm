@@ -288,8 +288,7 @@ function selectCustomer() {
 								});
 								return;
 							} 
-							Ext.getCmp('Bodyinfobodyinfoname').setValue(selectRows[0].get("customername"));
-							Ext.getCmp('Bodyinfobodyinfophone').setValue(selectRows[0].get("customerphone"));
+							Ext.getCmp('Tuifeituifeidetail').setValue(selectRows[0].get("customername"));
 							selectgridWindow.close();
 						}
 					}, '-', {

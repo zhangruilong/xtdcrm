@@ -324,7 +324,7 @@ Ext.onReady(function() {
 				anchor : '100%'
 			},{
 				xtype : 'textfield',
-				fieldLabel : '住址',
+				fieldLabel : '全民健身卡',
 				id : 'customerhome',
 				name : 'customerhome',
 				hidden : true,

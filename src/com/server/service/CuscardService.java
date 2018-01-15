@@ -20,6 +20,8 @@ import com.server.ZhajiCard;
 import com.server.ZhajiResult;
 import com.server.action.CuscardAction;
 import com.server.bean.CuscardBean;
+import com.system.pojo.System_roleuserview;
+import com.system.pojo.System_user;
 import com.system.tools.CommonConst;
 import com.system.tools.base.BaseActionDao;
 import com.system.tools.pojo.Fileinfo;
@@ -85,7 +87,7 @@ public class CuscardService extends CuscardAction {
 		huodong = mCuscard.getCuscardid();
 		String newid = CommonUtil.getNewId();
 		//增加凭证记录
-		Notesmoneys mNotes = new Notesmoneys(newid, newid, cuss.get(0).getCuscardno(),cuss.get(0).getCuscardstadium(), null, null, cuss.get(0).getCuscardmoney(), "发卡","活动"+ huodong, "卡操作", DateUtils.getDateTime(), cuss.get(0).getCuscardinswho());
+		Notesmoneys mNotes = new Notesmoneys(newid, newid, cuss.get(0).getCuscardno(), cuss.get(0).getCuscarddetail(), null, null, cuss.get(0).getCuscardmoney(), "发卡","活动"+ huodong, "卡操作", DateUtils.getDateTime(), cuss.get(0).getCuscardinswho());
 		//查询用户手机是否已存在
 		ArrayList<Customer> s2Customer = (ArrayList<Customer>) selAll(Customer.class,"select * from customer where customerphone='"+temp.getCustomerphone()+"' and customername='"+temp.getCustomername()+"'");
 		if(s2Customer.size()>0){
@@ -133,17 +135,16 @@ public class CuscardService extends CuscardAction {
 			mCustomer.setCustomercode(cuscardno);
 			sqls.add(getInsSingleSql(mCustomer));
 			result = doAll(sqls);
-			if(CommonConst.SUCCESS.equals(result)&&"时间卡".equals(cuss.get(0).getCuscardtypeclass())){
-				
-				ZhajiCard card = new ZhajiCard();
-				card.setToken(token.getToken());
-//				card.setUid(cuss.get(0).getCuscardno());
-				card.setCard(cuscardno);
-				card.setCard_xtd(cuscardno);
-				card.setExpire_from(cuss.get(0).getCuscardbegin().replaceAll("-", ""));
-				card.setExpire_to(cuss.get(0).getCuscardend().replaceAll("-", ""));
-				ZhajiApi.updUser(card);
-			}
+//			if(CommonConst.SUCCESS.equals(result)&&"时间卡".equals(cuss.get(0).getCuscardtypeclass())){
+//				ZhajiCard card = new ZhajiCard();
+//				card.setToken(token.getToken());
+////				card.setUid(cuss.get(0).getCuscardno());
+//				card.setCard(cuscardno);
+//				card.setCard_xtd(cuscardno);
+//				card.setExpire_from(cuss.get(0).getCuscardbegin().replaceAll("-", ""));
+//				card.setExpire_to(cuss.get(0).getCuscardend().replaceAll("-", ""));
+//				ZhajiApi.updUser(card);
+//			}
 		}
 		//新增大客户信息
 		if("后付费卡".equals(temp.getCuscardtypeclass())){
@@ -167,7 +168,7 @@ public class CuscardService extends CuscardAction {
 		ArrayList<CuscardBean> CuscardBeancuss = CommonConst.GSON.fromJson(json, new TypeToken<ArrayList<CuscardBean>>() {}.getType());
 		Cuscard temp = cuss.get(0);
 		//增加凭证记录
-		Notesmoneys mNotes = new Notesmoneys(CommonUtil.getNewId(), temp.getCuscardcustomer(), temp.getCuscardno(),temp.getCuscardstadium(), 
+		Notesmoneys mNotes = new Notesmoneys(CommonUtil.getNewId(), temp.getCuscardcustomer(), temp.getCuscardno(),temp.getCuscarddetail(), 
 				null, null, "100", "过户", "老用户ID:"+temp.getCuscardcustomer()+",新用户ID:"+CuscardBeancuss.get(0).getCuscardcustomernew(), "卡操作", DateUtils.getDateTime(), getCurrentUsername(request));
 		temp.setCuscardcustomer(CuscardBeancuss.get(0).getCuscardcustomernew());
 		ArrayList<String> sqls = new ArrayList<String>();
@@ -187,7 +188,7 @@ public class CuscardService extends CuscardAction {
 		ArrayList<String> sqls = new ArrayList<String>();
 		sqls.add(getUpdSingleSql(temp,CuscardPoco.KEYCOLUMN));
 		//增加凭证记录
-		Notesmoneys mNotes = new Notesmoneys(CommonUtil.getNewId(), temp.getCuscardcustomer(), temp.getCuscardno(),temp.getCuscardstadium(), 
+		Notesmoneys mNotes = new Notesmoneys(CommonUtil.getNewId(), temp.getCuscardcustomer(), temp.getCuscardno(),temp.getCuscarddetail(), 
 				null, null, "100", "换卡", "老卡号："+CuscardBeancuss.get(0).getCuscardno()+"，新卡号："+CuscardBeancuss.get(0).getCuscardnonew(), "卡操作", DateUtils.getDateTime(), getCurrentUsername(request));
 		sqls.add(getInsSingleSql(mNotes));
 		result = doAll(sqls);
@@ -206,7 +207,7 @@ public class CuscardService extends CuscardAction {
 		ArrayList<String> sqls = new ArrayList<String>();
 		sqls.add(getUpdSingleSql(temp,CuscardPoco.KEYCOLUMN));
 		//增加凭证记录
-		Notesmoneys mNotes = new Notesmoneys(CommonUtil.getNewId(), temp.getCuscardcustomer(), temp.getCuscardno(),temp.getCuscardstadium(), 
+		Notesmoneys mNotes = new Notesmoneys(CommonUtil.getNewId(), temp.getCuscardcustomer(), temp.getCuscardno(),temp.getCuscarddetail(), 
 				null, null, temp.getCuscardmoney(), "续卡", 
 				"活动"+huodong+",老卡有效期："+CuscardBeancuss.get(0).getCuscardend()+"，老卡余次："+CuscardBeancuss.get(0).getCuscardtimes()+"，新卡有效期："+CuscardBeancuss.get(0).getCuscardendnew()+"，新卡余次："+CuscardBeancuss.get(0).getCuscardtimesnew(),
 				"卡操作", DateUtils.getDateTime(), getCurrentUsername(request));
@@ -237,7 +238,7 @@ public class CuscardService extends CuscardAction {
 		ArrayList<String> sqls = new ArrayList<String>();
 		sqls.add(getUpdSingleSql(temp,CuscardPoco.KEYCOLUMN));
 		//增加凭证记录
-		Notesmoneys mNotes = new Notesmoneys(CommonUtil.getNewId(), cuss.get(0).getCuscardcustomer(), cuss.get(0).getCuscardno(),cuss.get(0).getCuscardstadium(), 
+		Notesmoneys mNotes = new Notesmoneys(CommonUtil.getNewId(), cuss.get(0).getCuscardcustomer(), cuss.get(0).getCuscardno(),cuss.get(0).getCuscarddetail(), 
 				null, null, cuss.get(0).getCuscardmoney(), "封卡", 
 				"封卡天数："+cuss.get(0).getCuscardmoney()+",新卡有效期："+cuss.get(0).getCuscardend(),
 				"卡操作", DateUtils.getDateTime(), getCurrentUsername(request));

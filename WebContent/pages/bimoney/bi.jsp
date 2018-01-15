@@ -2,6 +2,7 @@
 <html>
   <head>
 	<%@ include file="/zrlextpages/common/common.jsp" %>
+	<script type="text/javascript" src="Notesmoneysview.js"></script>
 	<script type="text/javascript" src="bi.js"></script>
   </head>
 </html>

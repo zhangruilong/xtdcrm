@@ -56,8 +56,8 @@ function zhajiall(zhajicard){
 		success : function(response) {
 			var resp = Ext.decode(response.responseText); 
 			if(resp.CODE==0){
-				Ext.Msg.alert('提示', resp.TOKEN, function(){
-				});
+//				Ext.Msg.alert('提示', resp.TOKEN, function(){
+//				});
 				window.localStorage.setItem("TOKEN",resp.TOKEN);
 				Ext.Ajax.request({
 					url : 'http://172.168.1.98/interface_xtd.php',
@@ -135,6 +135,10 @@ var ruhuiStore = new Ext.data.ArrayStore({//卡种分类下拉
 var coachStore = new Ext.data.ArrayStore({//卡种分类下拉
 	fields:["name"],
 	data:[["在岗"],["离职"],["兼职"]]
+});
+var cwStore = new Ext.data.ArrayStore({//退费事件下拉
+	fields:["name"],
+	data:[["卡券"],["培训课"],["私教课"]]
 });
 var crmStore = new Ext.data.ArrayStore({//卡种分类下拉
 	fields:["name"],

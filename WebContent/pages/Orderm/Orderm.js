@@ -90,7 +90,15 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				fieldLabel : '姓名',
 				id : 'Ordermorderupdwho',
-				name : 'orderupdwho'
+				name : 'orderupdwho',
+				triggers: {
+			        bar: {
+			            cls: 'my-bar-trigger',
+			            handler: function() {
+			            	selectCustomer();
+			            }
+			        }
+				}
 			} ]
 		}
 		, {

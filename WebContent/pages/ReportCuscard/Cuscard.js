@@ -51,14 +51,14 @@ Ext.onReady(function() {
                 editable: false
             }
 		}
-		, {
-			header : '会员ID',
-			dataIndex : 'cuscardcustomer',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
+//		, {
+//			header : '会员ID',
+//			dataIndex : 'cuscardcustomer',
+//			sortable : true,  
+//			editor: {
+//                xtype: 'textfield'
+//            }
+//		}
 		, {
 			header : '场馆',
 			dataIndex : 'cuscardstadium',

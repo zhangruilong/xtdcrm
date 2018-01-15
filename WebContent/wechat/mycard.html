@@ -64,7 +64,7 @@
 			$("#tab1 .weui-cells").html("");
 			$.each(resp.root, function(i, item) {
 				if(item.cuscardtypeclass=="时间卡"){
-					$("#tab1 .weui-cells").append('<a class="weui-cell weui-cell_access" href="javascript:;" onclick="nextpage(\''
+					$("#tab1 .weui-cells").append('<a class="weui-cell weui-cell_access" href="javascript:;" onclick="opcard(\''
 							+item.cuscardid+'\');">'
 							+'<div class="weui-cell__bd"><p>'
 							+item.cuscardtypename+' '+item.cuscardno+'</p></div>'
@@ -111,8 +111,20 @@
 <script src="lib/jquery-weui.min.js"></script>
 
     <script>
-    function nextpage(value){
+    function opcard(value){
+    	/* $.actions({
+    		  actions: [{
+    		    text: "封卡",
+    		    onClick: function() {
+    		      //do something
+    		      
+    		    }
+    		  }]
+    		}); */
 	}
+    function nextpage(value){
+    	
+    }
     </script>
   </body>
 </html>

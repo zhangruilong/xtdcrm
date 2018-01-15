@@ -29,8 +29,8 @@ public class EmpService extends EmpAction {
 		String query = request.getParameter("query");
 		if(CommonUtil.isNull(wheresql)) wheresql="1=1";
 		if(CommonUtil.isNull(query)) query="";
-		String sql = "SELECT *,TRUNCATE(100*empcode/empstadium,0) as empname,TRUNCATE(100*empsysname/empstadium,0) as empposition FROM"
-					+" (SELECT customeremp as empid,count(*) as empstadium,"
+		String sql = "SELECT *,TRUNCATE(100*empcode/empphone,0) as empname,TRUNCATE(100*empsysname/empphone,0) as empposition FROM"
+					+" (SELECT customeremp as empid,customerstadium as empstadium,count(*) as empphone,"
 					+" (SELECT count(*) FROM cuscard "
 					+" where cuscardinswho=customeremp and cuscardtypeclass='培训卡'"
 					+" ) as empcode,"
@@ -39,7 +39,7 @@ public class EmpService extends EmpAction {
 					+" ) as empsysname"
 					+" from customer where "
 					+ " customeremp like '%"+query+"%' and "+wheresql 
-					+" GROUP BY customeremp) as a";
+					+" GROUP BY customeremp,customerstadium) as a";
 		Pageinfo pageinfo = new Pageinfo(0, selAll(Emp.class,sql));
 		result = CommonConst.GSON.toJson(pageinfo);
 		responsePW(response, result);
