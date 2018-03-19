@@ -1,4 +1,6 @@
 Ext.onReady(function() {
+	var wheresql = "";
+	if(!isnull(currentuser.roledetail)) wheresql="customerstadium='"+currentuser.roledetail+"'";
 	var Customerclassify = "customer";
 	var Customertitle = "当前位置:业务管理》" + Customerclassify;
 	var Customeraction = "CustomerService.do";
@@ -26,7 +28,7 @@ Ext.onReady(function() {
 	        			    ,'customerupdwho' 
 	        			      ];// 全部字段
 	var Customerkeycolumn = [ 'customerid' ];// 主键
-	var Customerstore = dataStore(Customerfields, basePath + Customeraction + "?method=selQuery");// 定义Customerstore
+	var Customerstore = dataStore(Customerfields, basePath + Customeraction + "?method=selQuery&wheresql="+wheresql);// 定义Customerstore
 	var CustomerdataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'CustomerdataForm',
 		labelAlign : 'right',

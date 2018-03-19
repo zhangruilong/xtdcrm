@@ -55,6 +55,13 @@ Ext.onReady(function() {
 				anchor : '100%'
 			},{
 				xtype : 'textfield',
+				fieldLabel : '手环号',
+				id : 'cuscardupdwhen',
+				name : 'cuscardupdwhen',
+				maxLength : 100,
+				anchor : '100%'
+			},{
+				xtype : 'textfield',
 				fieldLabel : '卡种',
 				id : 'cuscardtypename',
 				name : 'cuscardtypename',
@@ -87,36 +94,27 @@ Ext.onReady(function() {
 				maxLength : 100,
 				anchor : '100%'
 			},{
+				xtype : 'hidden',
+				fieldLabel : '优惠码',
+				id : 'cuscardhuodong',
+				name : 'cuscardhuodong',
+				maxLength : 100,
+				editable : false,
+				anchor : '100%'
+			},{
 				xtype : 'textfield',
 				fieldLabel : '优惠码',
 				id : 'cuscardid',
 				name : 'cuscardid',
 				maxLength : 100,
+				editable : false,
 				anchor : '100%',
-				listeners : {
-					blur : function(field, e) {
-						Ext.Ajax.request({
-							url : basePath + "HuodongService.do?method=selAll",
-							method : 'POST',
-							params : {
-								wheresql : "huodongcode='"+Ext.getCmp("cuscardid").getValue()
-								+"' and huodongcardtypename='"+Ext.getCmp("cuscardtypename").getValue()
-								+"' and huodongstatue is null"
-							},
-							success : function(response) {
-								var resp = Ext.decode(response.responseText); 
-								Ext.getCmp("cuscarddikou").setValue(0);
-								Ext.each(resp.root, function(temp, index) {  
-									Ext.getCmp("cuscarddikou").setValue(temp.huodongmoney);
-									window.localStorage.setItem("huodong",temp.huodongid);
-							    });
-								Ext.getCmp("cuscardmoney").setValue(Ext.getCmp("cuscardprice").getValue()-Ext.getCmp("cuscarddikou").getValue());
-							},
-							failure : function(response) {
-								Ext.Msg.alert('提示', '网络出现问题，请稍后再试');
-							}
-						});
-					}
+				triggers: {
+			        bar: {
+			            handler: function() {
+			            	huodongdetail(currentuser.roledetail,Ext.getCmp("cuscardtypename").getValue());
+			            }
+			        }
 				}
 			},{
 				xtype : 'numberfield',
@@ -128,7 +126,20 @@ Ext.onReady(function() {
 				anchor : '100%',
 				listeners : {
 					blur : function(field, e) {
-						Ext.getCmp("cuscardmoney").setValue(Ext.getCmp("cuscardprice").getValue()-Ext.getCmp("cuscarddikou").getValue());
+						Ext.getCmp("cuscardmoney").setValue(Ext.getCmp("cuscardprice").getValue()-Ext.getCmp("cuscarddikou2").getValue()-Ext.getCmp("cuscarddikou").getValue());
+					}
+				}
+			},{
+				xtype : 'numberfield',
+				fieldLabel : '其他折扣',
+				id : 'cuscarddikou2',
+				name : 'cuscarddikou2',
+				value : 0,
+				maxLength : 100,
+				anchor : '100%',
+				listeners : {
+					blur : function(field, e) {
+						Ext.getCmp("cuscardmoney").setValue(Ext.getCmp("cuscardprice").getValue()-Ext.getCmp("cuscarddikou2").getValue()-Ext.getCmp("cuscarddikou").getValue());
 					}
 				}
 			},{
@@ -245,7 +256,7 @@ Ext.onReady(function() {
 				anchor : '100%'
 			},{
 				xtype : 'hidden',
-				fieldLabel : '备注',
+				fieldLabel : '所属场馆',
 				id : 'cuscarddetail',
 				name : 'cuscarddetail',
 				maxLength : 100,
@@ -356,8 +367,8 @@ Ext.onReady(function() {
 				fieldLabel : '会籍管家',
 				id : 'customeremp',
 				name : 'customeremp',
-				value : currentuser.username,
 				maxLength : 100,
+				allowBlank : false,
 				anchor : '100%',
 				triggers: {
 			        bar: {
@@ -415,7 +426,13 @@ Ext.onReady(function() {
 				name : 'cuscardstatue',
 				maxLength : 100,
 				value : "停用",
-				hidden:true,
+				anchor : '100%'
+			},{
+				xtype : 'textfield',
+				fieldLabel : '备注',
+				id : 'cuscardbeizhu',
+				name : 'cuscardbeizhu',
+				maxLength : 100,
 				anchor : '100%'
 			}]
 		}

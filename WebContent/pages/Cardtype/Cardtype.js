@@ -1,4 +1,6 @@
 Ext.onReady(function() {
+	var wheresql = "";
+	if(!isnull(currentuser.roledetail)) wheresql="cardtypestadium='"+currentuser.roledetail+"'";
 	var Cardtypeclassify = "cardtype";
 	var Cardtypetitle = "当前位置:业务管理》" + Cardtypeclassify;
 	var Cardtypeaction = "CardtypeService.do";
@@ -17,7 +19,7 @@ Ext.onReady(function() {
 	        			    ,'cardtypeproject' 
 	        			      ];// 全部字段
 	var Cardtypekeycolumn = [ 'cardtypeid' ];// 主键
-	var Cardtypestore = dataStore(Cardtypefields, basePath + Cardtypeaction + "?method=selQuery");// 定义Cardtypestore
+	var Cardtypestore = dataStore(Cardtypefields, basePath + Cardtypeaction + "?method=selQuery&wheresql="+wheresql);// 定义Cardtypestore
 	var CardtypedataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'CardtypedataForm',
 		labelAlign : 'right',

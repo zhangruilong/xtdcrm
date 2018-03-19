@@ -1,4 +1,6 @@
-function huodongdetail(selection) {
+Ext.onReady(function() {
+	var wheresql = "";
+	if(!isnull(currentuser.roledetail)) wheresql="huodongstadium='"+currentuser.roledetail+"'";
 	var Huodongclassify = "huodong";
 	var Huodongtitle = "当前位置:业务管理》" + Huodongclassify;
 	var Huodongaction = "HuodongService.do";
@@ -17,8 +19,7 @@ function huodongdetail(selection) {
 	        			    ,'huodonginswho' 
 	        			      ];// 全部字段
 	var Huodongkeycolumn = [ 'huodongid' ];// 主键
-	var Huodongstore = dataStore(Huodongfields, basePath + Huodongaction + "?method=selQuery&wheresql=huodongstadium='"
-			+selection.data['huodongstadium']+"' and huodongname='"+selection.data['huodongname']+"' and huodongcardtypename='"+selection.data['huodongcardtypename']+"'");// 定义Huodongstore
+	var Huodongstore = dataStore(Huodongfields, basePath + Huodongaction + "?method=selHuodongm&wheresql="+wheresql);// 定义Huodongstore
 	var HuodongdataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'HuodongdataForm',
 		labelAlign : 'right',
@@ -117,6 +118,26 @@ function huodongdetail(selection) {
 				name : 'huodongnum'
 			} ]
 		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '开始',
+//				id : 'Huodonghuodongbegin',
+//				name : 'huodongbegin'
+//			} ]
+//		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '结束',
+//				id : 'Huodonghuodongend',
+//				name : 'huodongend'
+//			} ]
+//		}
 		, {
 			columnWidth : .5,
 			layout : 'form',
@@ -127,16 +148,44 @@ function huodongdetail(selection) {
 				name : 'huodongmoney'
 			} ]
 		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '状态',
+//				id : 'Huodonghuodongstatue',
+//				name : 'huodongstatue'
+//			} ]
+//		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '创建时间',
+//				id : 'Huodonghuodonginswhen',
+//				name : 'huodonginswhen'
+//			} ]
+//		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '创建人',
+//				id : 'Huodonghuodonginswho',
+//				name : 'huodonginswho'
+//			} ]
+//		}
 		]
 	});
 	
-	var Huodongbbar = pagesizebar(Huodongstore);//定义分页
 	var Huodonggrid =  Ext.create('Ext.grid.Panel', {
 		height : document.documentElement.clientHeight - 4,
 		width : '100%',
 		//title : Huodongtitle,
 		store : Huodongstore,
-		bbar : Huodongbbar,
 	    selModel: {
 	        type: 'checkboxmodel'
 	    },
@@ -153,16 +202,7 @@ function huodongdetail(selection) {
 		, {
 			header : '场馆',
 			dataIndex : 'huodongstadium',
-			hidden : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '优惠码',
-			dataIndex : 'huodongcode',
 			sortable : true,  
-			width:180,
 			editor: {
                 xtype: 'textfield'
             }
@@ -175,16 +215,10 @@ function huodongdetail(selection) {
                 xtype: 'textfield'
             }
 		}
-//		, {
-//			header : '项目',
-//			dataIndex : 'huodongcardtype',
-//			editor: {
-//                xtype: 'textfield'
-//            }
-//		}
 		, {
 			header : '卡种',
 			dataIndex : 'huodongcardtypename',
+			width:250,
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -198,22 +232,6 @@ function huodongdetail(selection) {
                 xtype: 'textfield'
             }
 		}
-//		, {
-//			header : '开始',
-//			dataIndex : 'huodongbegin',
-//			sortable : true,  
-//			editor: {
-//                xtype: 'textfield'
-//            }
-//		}
-//		, {
-//			header : '结束',
-//			dataIndex : 'huodongend',
-//			sortable : true,  
-//			editor: {
-//                xtype: 'textfield'
-//            }
-//		}
 		, {
 			header : '折让',
 			dataIndex : 'huodongmoney',
@@ -222,34 +240,10 @@ function huodongdetail(selection) {
                 xtype: 'textfield'
             }
 		}
-		, {
-			header : '状态',
-			dataIndex : 'huodongstatue',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-//		, {
-//			header : '创建时间',
-//			dataIndex : 'huodonginswhen',
-//			sortable : true,  
-//			editor: {
-//                xtype: 'textfield'
-//            }
-//		}
-//		, {
-//			header : '创建人',
-//			dataIndex : 'huodonginswho',
-//			sortable : true,  
-//			editor: {
-//                xtype: 'textfield'
-//            }
-//		}
 		],
 		tbar : [
 			{
-				text : Ext.os.deviceType === 'Phone' ? null : "查看参与人员",
+				text : Ext.os.deviceType === 'Phone' ? null : "查看活动详情",
 				iconCls : 'query',
 				handler : function() {
 					var selections = Huodonggrid.getSelection();
@@ -258,7 +252,7 @@ function huodongdetail(selection) {
 						});
 						return;
 					}
-					selnotes(selections[0]);
+					huodongdetail(selections[0]);
 				}
 			},'-',
 			{
@@ -269,35 +263,9 @@ function huodongdetail(selection) {
 					Ext.getCmp("Huodonghuodongid").setEditable (true);
 					createTextWindow(basePath + Huodongaction + "?method=addhuodong", "新增", HuodongdataForm, Huodongstore);
 				}
-			},'-',{
-				text : Ext.os.deviceType === 'Phone' ? null : "修改",
-				iconCls : 'edit',
-				handler : function() {
-					var selections = Huodonggrid.getSelection();
-					if (selections.length != 1) {
-						Ext.Msg.alert('提示', '请选择一条数据！', function() {
-						});
-						return;
-					}
-					HuodongdataForm.form.reset();
-					Ext.getCmp("Huodonghuodongid").setEditable (false);
-					createTextWindow(basePath + Huodongaction + "?method=updAll", "修改", HuodongdataForm, Huodongstore);
-					HuodongdataForm.form.loadRecord(selections[0]);
-				}
-			},'-',{
-            	text : "删除",
-				iconCls : 'delete',
-				handler : function() {
-					var selections = Huodonggrid.getSelection();
-					if (Ext.isEmpty(selections)) {
-						Ext.Msg.alert('提示', '请至少选择一条数据！');
-						return;
-					}
-					commonDelete(basePath + Huodongaction + "?method=delAll",selections,Huodongstore,Huodongkeycolumn);
-				}
 			},'->',{
 				xtype : 'textfield',
-				id : 'queryHuodongaction',
+				id : 'queryHuodongmaction',
 				name : 'query',
 				emptyText : '模糊匹配',
 				width : 100,
@@ -310,7 +278,7 @@ function huodongdetail(selection) {
 										start : 0,
 										limit : PAGESIZE,
 										json : queryjson,
-										query : Ext.getCmp("queryHuodongaction").getValue()
+										query : Ext.getCmp("queryHuodongmaction").getValue()
 									}
 							});
 						}
@@ -325,7 +293,7 @@ function huodongdetail(selection) {
 								start : 0,
 								limit : PAGESIZE,
 								json : queryjson,
-								query : Ext.getCmp("queryHuodongaction").getValue()
+								query : Ext.getCmp("queryHuodongmaction").getValue()
 							}
 					});
 				}
@@ -336,46 +304,14 @@ function huodongdetail(selection) {
 	Huodongstore.on("beforeload",function(){ 
 		Huodongstore.getProxy().extraParams = {
 				json : queryjson,
-				query : Ext.getCmp("queryHuodongaction").getValue()
+				query : Ext.getCmp("queryHuodongmaction").getValue()
 		}; 
 	});
 	Huodongstore.load();//加载数据
-	var selectgridWindow = new Ext.Window({
-		layout : 'fit', // 设置窗口布局模式
-		width : 620, // 窗口宽度
-		height : 580, // 窗口高度
-		modal : true,
-		//closeAction: 'hide',
-		closable : true, // 是否可关闭
-		collapsible : true, // 是否可收缩
-		maximizable : true, // 设置是否可以最大化
-		border : false, // 边框线设置
-		constrain : true, // 设置窗口是否可以溢出父容器
-		animateTarget : Ext.getBody(),
-		pageY : 50, // 页面定位Y坐标
-		pageX : document.body.clientWidth / 2 - 620 / 2, // 页面定位X坐标
-		items : Huodonggrid, // 嵌入的表单面板
-		buttons : [
-					{
-						text : '确定',
-						iconCls : 'ok',
-						handler : function() {
-							var selectRows = Huodonggrid.getSelection();
-							if (selectRows.length != 1) {
-								Ext.Msg.alert('提示', '请选择一条！', function() {
-								});
-								return;
-							} 
-//							Ext.getCmp('Huodonghuodongcardtypename').setValue(selectRows[0].get("cardtypename"));
-							selectgridWindow.close();
-						}
-					}, '-', {
-						text : '关闭',
-						iconCls : 'close',
-						handler : function() {
-							selectgridWindow.close();
-						}
-					}]
+	var win = new Ext.Viewport({//只能有一个viewport
+		resizable : true,
+		layout : 'border',
+		bodyStyle : 'padding:0px;',
+		items : [ Huodonggrid ]
 	});
-	selectgridWindow.show();
-}
+})

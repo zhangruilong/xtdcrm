@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="lib/weui.min.css">
+<link rel="stylesheet" href="lib/jquery-weui.min.css">
+<script src="common/common.js"></script>
+</head>
+
+<body ontouchstart>
+	<header class='demos-header'>
+		温馨提示：预约前必须先和教练沟通，否则概不负责。
+       <div class="weui-cells">
+	      <div class="weui-cell">
+	        <div class="weui-cell__hd"><label for="" class="weui-label">日期：</label></div>
+	        <div class="weui-cell__bd">
+	          <input id="placetimedate" type="text" data-toggle="date">
+	        </div>
+	      </div>
+           <div class="weui-cell weui-cell_select weui-cell_select-after">
+	        <div class="weui-cell__hd">
+	          <label for="" class="weui-label">开始：</label>
+	        </div>
+	        <div class="weui-cell__bd">
+	          <select id="startDate" class="weui-select" name="select1">
+	            <option value="9:00 上午">9:00 上午</option>
+	          	<option value="10:00 上午">10:00 上午</option>
+	          	<option value="11:00 上午">11:00 上午</option>
+	          	<option value="12:00 下午">12:00 下午</option>
+	          	<option value="1:00 下午">1:00 下午</option>
+	          	<option value="2:00 下午">2:00 下午</option>
+	          	<option value="3:00 下午">3:00 下午</option>
+	          	<option value="4:00 下午">4:00 下午</option>
+	          	<option value="5:00 下午">5:00 下午</option>
+	          	<option value="6:00 下午">6:00 下午</option>
+	          	<option value="7:00 下午">7:00 下午</option>
+	          	<option value="8:00 下午">8:00 下午</option>
+	          	<option value="9:00 下午">9:00 下午</option>
+	          </select>
+	        </div>
+	      </div>
+          <div class="weui-cell weui-cell_select weui-cell_select-after">
+	        <div class="weui-cell__hd">
+	          <label for="" class="weui-label">结束：</label>
+	        </div>
+	        <div class="weui-cell__bd">
+	          <select id="endDate" class="weui-select" name="select2">
+	          	<option value="10:00 上午">10:00 上午</option>
+	          	<option value="11:00 上午">11:00 上午</option>
+	          	<option value="12:00 下午">12:00 下午</option>
+	          	<option value="1:00 下午">1:00 下午</option>
+	          	<option value="2:00 下午">2:00 下午</option>
+	          	<option value="3:00 下午">3:00 下午</option>
+	          	<option value="4:00 下午">4:00 下午</option>
+	          	<option value="5:00 下午">5:00 下午</option>
+	          	<option value="6:00 下午">6:00 下午</option>
+	          	<option value="7:00 下午">7:00 下午</option>
+	          	<option value="8:00 下午">8:00 下午</option>
+	          	<option value="9:00 下午">9:00 下午</option>
+	          	<option value="10:00 下午">10:00 下午</option>
+	          </select>
+	        </div>
+	      </div>
+	      <div class="weui-cell">
+	        <div class="weui-cell__hd">
+	          <label for="" class="weui-label">场地：</label>
+	        </div>
+	        <div class="weui-cell__bd">
+            	<input id="appointplacename" class="weui-input" type="text" placeholder="请输入场地">
+	        </div>
+	      </div>
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea id="appointdetail" class="weui-textarea" placeholder="请输入备注" rows="3"></textarea>
+                    <div class="weui-textarea-counter"><span>0</span>/200</div>
+                </div>
+            </div>
+	    </div>
+	    <a href="javascript:;" class="weui-btn weui-btn_plain-primary" onclick="nextpage();">提交</a>
+	    <a href="javascript:;" class="weui-btn weui-btn_warn" onclick="javascript:window.history.go(-1)">取消</a>
+    </header>
+
+	<script src="../zrlextpages/common/jsutil.js"></script>
+	<script src="lib/jquery-2.1.4.js"></script>
+	<script src="lib/fastclick.js"></script>
+	<script src="lib/jquery-weui.min.js"></script>
+	<script>
+		$(function() {
+			FastClick.attach(document.body);
+			var dd = new Date();
+		    dd.setDate(dd.getDate()+1);//获取AddDayCount天后的日期
+		    var ddmin = new Date();
+		    ddmin.setDate(ddmin.getDate()-1);//获取AddDayCount天后的日期
+			$("#placetimedate").calendar({
+				minDate:[getstringdate(ddmin)],
+				maxDate:[getstringdate(dd)]
+			});
+			$("#placetimedate").val(getstringdate());
+		});
+		function nextpage(){
+			$.confirm("确认预约？", function() {
+			  //点击确认后的回调函数
+				$.ajax({
+					url:"AppiontService.do?method=wxCoachcourseAppiont",
+					type:"post",
+					data:{
+						json:"[{'appointcustomer':'"+customer.customerid
+						+"','appointstadium':'"+window.localStorage.getItem('stadium')
+						+"','appointcourse':'"+window.localStorage.getItem("mycourseid")
+						+"','appointplacename':'"+$("#appointplacename").val()
+						+"','appointdate':'"+$("#placetimedate").val()
+						+"','appointbegin':'"+$("#startDate").val()
+						+"','appointend':'"+$("#endDate").val()
+						+"','appointdetail':'"+$("#appointdetail").val()
+						+"','appointtype':'私教课"
+						+"','appointstatue':'已预约"
+						+"','appointinswhen':'"+getdatetime()
+						+"'}]"
+					},
+					success: function(r) {
+						var resp = eval('('+r+')'); 
+						if(resp.code==202) window.location.href = "success.html";
+						else{
+							alert(resp.msg);
+						}
+		    		},
+		    		error:function(r) {
+		    			var resp = eval(r); 
+		    			alert(resp.msg);
+		    		}
+				});
+			  }, function() {
+			  //点击取消后的回调函数
+			  });
+		}
+	</script>
+</body>
+</html>

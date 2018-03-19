@@ -87,7 +87,13 @@ public class CuscardService extends CuscardAction {
 		huodong = mCuscard.getCuscardid();
 		String newid = CommonUtil.getNewId();
 		//增加凭证记录
-		Notesmoneys mNotes = new Notesmoneys(newid, newid, cuss.get(0).getCuscardno(), cuss.get(0).getCuscarddetail(), null, null, cuss.get(0).getCuscardmoney(), "发卡","活动"+ huodong, "卡操作", DateUtils.getDateTime(), cuss.get(0).getCuscardinswho());
+		String notesdetail = "发卡";
+		String notestype = "卡操作";
+		if(mCuscard.getCuscardtypeclass().equals("培训卡")){
+			notesdetail = "培训课";
+			notestype = "课程";
+		}
+		Notesmoneys mNotes = new Notesmoneys(newid, newid, cuss.get(0).getCuscardno(), cuss.get(0).getCuscarddetail(), null, null, cuss.get(0).getCuscardmoney(), notesdetail,"活动"+ huodong, notestype, DateUtils.getDateTime(), cuss.get(0).getCuscardinswho());
 		//查询用户手机是否已存在
 		ArrayList<Customer> s2Customer = (ArrayList<Customer>) selAll(Customer.class,"select * from customer where customerphone='"+temp.getCustomerphone()+"' and customername='"+temp.getCustomername()+"'");
 		if(s2Customer.size()>0){
@@ -135,7 +141,7 @@ public class CuscardService extends CuscardAction {
 			mCustomer.setCustomercode(cuscardno);
 			sqls.add(getInsSingleSql(mCustomer));
 			result = doAll(sqls);
-//			if(CommonConst.SUCCESS.equals(result)&&"时间卡".equals(cuss.get(0).getCuscardtypeclass())){
+//			if(CommonConst.SUCCESS.equals(result)){
 //				ZhajiCard card = new ZhajiCard();
 //				card.setToken(token.getToken());
 ////				card.setUid(cuss.get(0).getCuscardno());
@@ -213,12 +219,16 @@ public class CuscardService extends CuscardAction {
 				"卡操作", DateUtils.getDateTime(), getCurrentUsername(request));
 		sqls.add(getInsSingleSql(mNotes));
 		result = doAll(sqls);
-		if(CommonConst.SUCCESS.equals(result)&&"时间卡".equals(cuss.get(0).getCuscardtypeclass())){
+		if(CommonConst.SUCCESS.equals(result)&&"新天地万科馆".equals(temp.getCuscarddetail())&&"时间卡".equals(temp.getCuscardtypeclass())){
 			ZhajiResult token = ZhajiApi.getToken();
 			ZhajiCard card = new ZhajiCard();
-			card.setToken(token.getToken());
-//			card.setUid(cuss.get(0).getCuscardno());
-			card.setCard(cuss.get(0).getCuscardno());
+			card.setToken(token.getTOKEN());
+			String uid = cuss.get(0).getCuscardno();
+			if(cuss.get(0).getCuscardno().length()>6){
+				uid = uid.substring(1, 7);
+			}
+			card.setUid(TypeUtil.stringToInt(uid));
+			card.setCard(cuss.get(0).getCuscardupdwhen());
 			card.setCard_xtd(cuss.get(0).getCuscardno());
 			card.setExpire_from(cuss.get(0).getCuscardbegin().replaceAll("-", ""));
 			card.setExpire_to(CuscardBeancuss.get(0).getCuscardendnew().replaceAll("-", ""));
@@ -244,12 +254,16 @@ public class CuscardService extends CuscardAction {
 				"卡操作", DateUtils.getDateTime(), getCurrentUsername(request));
 		sqls.add(getInsSingleSql(mNotes));
 		result = doAll(sqls);
-		if(CommonConst.SUCCESS.equals(result)&&"时间卡".equals(cuss.get(0).getCuscardtypeclass())){
+		if(CommonConst.SUCCESS.equals(result)&&"新天地万科馆".equals(temp.getCuscarddetail())&&"时间卡".equals(temp.getCuscardtypeclass())){
 			ZhajiResult token = ZhajiApi.getToken();
 			ZhajiCard card = new ZhajiCard();
-			card.setToken(token.getToken());
-//			card.setUid(cuss.get(0).getCuscardno());
-			card.setCard(cuss.get(0).getCuscardno());
+			card.setToken(token.getTOKEN());
+			String uid = cuss.get(0).getCuscardno();
+			if(cuss.get(0).getCuscardno().length()>6){
+				uid = uid.substring(1, 7);
+			}
+			card.setUid(TypeUtil.stringToInt(uid));
+			card.setCard(cuss.get(0).getCuscardupdwhen());
 			card.setCard_xtd(cuss.get(0).getCuscardno());
 			card.setExpire_from(cuss.get(0).getCuscardbegin().replaceAll("-", ""));
 			card.setExpire_to(cuss.get(0).getCuscardbegin().replaceAll("-", ""));
@@ -264,12 +278,16 @@ public class CuscardService extends CuscardAction {
 		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
 		for(Cuscard temp:cuss){
 			result = updSingle(temp,CuscardPoco.KEYCOLUMN);
-			if(CommonConst.SUCCESS.equals(result)&&"时间卡".equals(cuss.get(0).getCuscardtypeclass())){
+			if(CommonConst.SUCCESS.equals(result)&&"新天地万科馆".equals(temp.getCuscarddetail())&&"时间卡".equals(temp.getCuscardtypeclass())){
 				ZhajiResult token = ZhajiApi.getToken();
 				ZhajiCard card = new ZhajiCard();
-				card.setToken(token.getToken());
-//				card.setUid(cuss.get(0).getCuscardno());
-				card.setCard(cuss.get(0).getCuscardno());
+				card.setToken(token.getTOKEN());
+				String uid = cuss.get(0).getCuscardno();
+				if(cuss.get(0).getCuscardno().length()>6){
+					uid = uid.substring(1, 7);
+				}
+				card.setUid(TypeUtil.stringToInt(uid));
+				card.setCard(cuss.get(0).getCuscardupdwhen());
 				card.setCard_xtd(cuss.get(0).getCuscardno());
 				card.setExpire_from(cuss.get(0).getCuscardbegin().replaceAll("-", ""));
 				card.setExpire_to(cuss.get(0).getCuscardend().replaceAll("-", ""));

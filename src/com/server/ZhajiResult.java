@@ -1,41 +1,43 @@
 package com.server;
 
 public class ZhajiResult {
-	int code;
-	String message;
-	String token;
-	String result;
-	public int getCode() {
-		return code;
+	int CODE;
+	String MESSAGE;
+	String TOKEN;
+	String RESULT;
+	
+	public int getCODE() {
+		return CODE;
 	}
-	public void setCode(int code) {
-		this.code = code;
+
+	public void setCODE(int cODE) {
+		CODE = cODE;
 	}
-	public String getMessage() {
-		return message;
+
+	public String getMESSAGE() {
+		return MESSAGE;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+
+	public void setMESSAGE(String mESSAGE) {
+		MESSAGE = mESSAGE;
 	}
-	public String getToken() {
-		return token;
+
+	public String getTOKEN() {
+		return TOKEN;
 	}
-	public void setToken(String token) {
-		this.token = token;
+
+	public void setTOKEN(String tOKEN) {
+		TOKEN = tOKEN;
 	}
-	public String getResult() {
-		return result;
+
+	public String getRESULT() {
+		return RESULT;
 	}
-	public void setResult(String result) {
-		this.result = result;
+
+	public void setRESULT(String rESULT) {
+		RESULT = rESULT;
 	}
-	public ZhajiResult(int code, String message, String token, String result) {
-		super();
-		this.code = code;
-		this.message = message;
-		this.token = token;
-		this.result = result;
-	}
+
 	public ZhajiResult() {
 		super();
 		// TODO Auto-generated constructor stub

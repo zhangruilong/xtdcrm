@@ -17,17 +17,13 @@ public class Orderm
     */
    private String orderstadium;   
    /**
-    * 商品编码
+    * 客户
     */
-   private String ordercode;   
+   private String ordercustomer;   
    /**
-    * 商品名称
+    * 手机
     */
-   private String ordername;   
-   /**
-    * 商品分类
-    */
-   private String orderclass;   
+   private String orderphone;   
    /**
     * 下单金额
     */
@@ -40,10 +36,6 @@ public class Orderm
     * 实际金额
     */
    private String orderrightmoney;   
-   /**
-    * 照片
-    */
-   private String orderimage;   
    /**
     * 备注
     */
@@ -60,14 +52,6 @@ public class Orderm
     * 创建人
     */
    private String orderinswho;   
-   /**
-    * 更新时间
-    */
-   private String orderupdwhen;   
-   /**
-    * 更新人
-    */
-   private String orderupdwho;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -104,54 +88,37 @@ public class Orderm
 	}	   
 
 	/**
-	 *设置"商品编码"属性
-	 *@param ordercode 实体的Ordercode属性
+	 *设置"客户"属性
+	 *@param ordercustomer 实体的Ordercustomer属性
 	 */
-	public void setOrdercode(String ordercode)
+	public void setOrdercustomer(String ordercustomer)
 	{
-		this.ordercode = ordercode;
+		this.ordercustomer = ordercustomer;
 	}
 	
 	/**
-	 *获取"商品编码"属性
+	 *获取"客户"属性
 	 */
-	public String getOrdercode()
+	public String getOrdercustomer()
 	{
-		return this.ordercode;
+		return this.ordercustomer;
 	}	   
 
 	/**
-	 *设置"商品名称"属性
-	 *@param ordername 实体的Ordername属性
+	 *设置"手机"属性
+	 *@param orderphone 实体的Orderphone属性
 	 */
-	public void setOrdername(String ordername)
+	public void setOrderphone(String orderphone)
 	{
-		this.ordername = ordername;
+		this.orderphone = orderphone;
 	}
 	
 	/**
-	 *获取"商品名称"属性
+	 *获取"手机"属性
 	 */
-	public String getOrdername()
+	public String getOrderphone()
 	{
-		return this.ordername;
-	}	   
-
-	/**
-	 *设置"商品分类"属性
-	 *@param orderclass 实体的Orderclass属性
-	 */
-	public void setOrderclass(String orderclass)
-	{
-		this.orderclass = orderclass;
-	}
-	
-	/**
-	 *获取"商品分类"属性
-	 */
-	public String getOrderclass()
-	{
-		return this.orderclass;
+		return this.orderphone;
 	}	   
 
 	/**
@@ -203,23 +170,6 @@ public class Orderm
 	public String getOrderrightmoney()
 	{
 		return this.orderrightmoney;
-	}	   
-
-	/**
-	 *设置"照片"属性
-	 *@param orderimage 实体的Orderimage属性
-	 */
-	public void setOrderimage(String orderimage)
-	{
-		this.orderimage = orderimage;
-	}
-	
-	/**
-	 *获取"照片"属性
-	 */
-	public String getOrderimage()
-	{
-		return this.orderimage;
 	}	   
 
 	/**
@@ -289,40 +239,6 @@ public class Orderm
 	{
 		return this.orderinswho;
 	}	   
-
-	/**
-	 *设置"更新时间"属性
-	 *@param orderupdwhen 实体的Orderupdwhen属性
-	 */
-	public void setOrderupdwhen(String orderupdwhen)
-	{
-		this.orderupdwhen = orderupdwhen;
-	}
-	
-	/**
-	 *获取"更新时间"属性
-	 */
-	public String getOrderupdwhen()
-	{
-		return this.orderupdwhen;
-	}	   
-
-	/**
-	 *设置"更新人"属性
-	 *@param orderupdwho 实体的Orderupdwho属性
-	 */
-	public void setOrderupdwho(String orderupdwho)
-	{
-		this.orderupdwho = orderupdwho;
-	}
-	
-	/**
-	 *获取"更新人"属性
-	 */
-	public String getOrderupdwho()
-	{
-		return this.orderupdwho;
-	}	   
 	public Orderm() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -330,36 +246,28 @@ public class Orderm
 	public Orderm(
 		String orderid
 	 	,String orderstadium
-	 	,String ordercode
-	 	,String ordername
-	 	,String orderclass
+	 	,String ordercustomer
+	 	,String orderphone
 	 	,String ordermoney
 	 	,String orderdiscount
 	 	,String orderrightmoney
-	 	,String orderimage
 	 	,String orderdetail
 	 	,String orderstatue
 	 	,String orderinswhen
 	 	,String orderinswho
-	 	,String orderupdwhen
-	 	,String orderupdwho
 		 ){
 		super();
 		this.orderid = orderid;
 	 	this.orderstadium = orderstadium;
-	 	this.ordercode = ordercode;
-	 	this.ordername = ordername;
-	 	this.orderclass = orderclass;
+	 	this.ordercustomer = ordercustomer;
+	 	this.orderphone = orderphone;
 	 	this.ordermoney = ordermoney;
 	 	this.orderdiscount = orderdiscount;
 	 	this.orderrightmoney = orderrightmoney;
-	 	this.orderimage = orderimage;
 	 	this.orderdetail = orderdetail;
 	 	this.orderstatue = orderstatue;
 	 	this.orderinswhen = orderinswhen;
 	 	this.orderinswho = orderinswho;
-	 	this.orderupdwhen = orderupdwhen;
-	 	this.orderupdwho = orderupdwho;
 	}
 }
 

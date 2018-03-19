@@ -1,6 +1,8 @@
 Ext.onReady(function() {
 	var CuscardviewsuiService = "CuscardviewService.do";
 	if("sui"==currentuser.rolecode) CuscardviewsuiService = "CuscardviewsuiService.do";
+	var wheresql = "";
+	if(!isnull(currentuser.roledetail)) wheresql="cuscarddetail='"+currentuser.roledetail+"'";
 	var Cuscardclassify = "cuscard";
 	var Cuscardtitle = "当前位置:业务管理》" + Cuscardclassify;
 	var Cuscardaction = "CuscardService.do";
@@ -32,7 +34,7 @@ Ext.onReady(function() {
 	        			    ,'customername' 
 	        			      ];// 全部字段
 	var Cuscardkeycolumn = [ 'cuscardid' ];// 主键
-	var Cuscardstore = dataStore(Cuscardfields, basePath + CuscardviewsuiService+"?method=selQuery");// 定义Cuscardstore
+	var Cuscardstore = dataStore(Cuscardfields, basePath + CuscardviewsuiService+"?method=selQuery&wheresql="+wheresql);// 定义Cuscardstore
 	var CuscarddataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'CuscarddataForm',
 		labelAlign : 'right',
@@ -204,7 +206,7 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '备注',
+				fieldLabel : '所属场馆',
 				id : 'Cuscardcuscarddetail',
 				name : 'cuscarddetail'
 			} ]
@@ -264,21 +266,21 @@ Ext.onReady(function() {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '更新时间',
+				fieldLabel : '手环号',
 				id : 'Cuscardcuscardupdwhen',
 				name : 'cuscardupdwhen'
 			} ]
 		}
-		, {
-			columnWidth : .5,
-			layout : 'form',
-			items : [ {
-				xtype : 'textfield',
-				fieldLabel : '更新人',
-				id : 'Cuscardcuscardupdwho',
-				name : 'cuscardupdwho'
-			} ]
-		}
+//		, {
+//			columnWidth : .5,
+//			layout : 'form',
+//			items : [ {
+//				xtype : 'textfield',
+//				fieldLabel : '更新人',
+//				id : 'Cuscardcuscardupdwho',
+//				name : 'cuscardupdwho'
+//			} ]
+//		}
 		]
 	});
 	var CuscardchangedataForm = new Ext.form.FormPanel({// 定义新增和修改的FormPanel
@@ -456,6 +458,18 @@ Ext.onReady(function() {
 			id : 'Cuscardcontinuedetail',
 			name : 'cuscarddetail',
 			hidden : true
+		}
+		,{
+			xtype : 'hidden',
+			name : 'cuscarddetail'
+		}
+		,{
+			xtype : 'hidden',
+			name : 'cuscardtypeclass'
+		}
+		,{
+			xtype : 'hidden',
+			name : 'cuscardupdwhen'
 		}
 		, {
 			columnWidth : 1,
@@ -636,6 +650,14 @@ Ext.onReady(function() {
 		}
 		,{
 			xtype : 'hidden',
+			name : 'cuscardtypeclass'
+		}
+		,{
+			xtype : 'hidden',
+			name : 'cuscardupdwhen'
+		}
+		,{
+			xtype : 'hidden',
 			name : 'cuscardcustomer'
 		}
 		,{
@@ -697,6 +719,30 @@ Ext.onReady(function() {
             }
 		}
 		, {
+			header : '联系方式',
+			dataIndex : 'customerphone',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '有效期开始',
+			dataIndex : 'cuscardbegin',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
+			header : '有效期结束',
+			dataIndex : 'cuscardend',
+			sortable : true,  
+			editor: {
+                xtype: 'textfield'
+            }
+		}
+		, {
 			header : '场馆',
 			dataIndex : 'cuscardstadium',
 			sortable : true,  
@@ -723,22 +769,6 @@ Ext.onReady(function() {
 		, {
 			header : '有效期',
 			dataIndex : 'cuscardday',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '有效期开始',
-			dataIndex : 'cuscardbegin',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '有效期结束',
-			dataIndex : 'cuscardend',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -849,21 +879,21 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '更新时间',
+			header : '手环号',
 			dataIndex : 'cuscardupdwhen',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
             }
 		}
-		, {
-			header : '更新人',
-			dataIndex : 'cuscardupdwho',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
+//		, {
+//			header : '更新人',
+//			dataIndex : 'cuscardupdwho',
+//			sortable : true,  
+//			editor: {
+//                xtype: 'textfield'
+//            }
+//		}
 		],
 		tbar : [{
 					text :"操作查询",
@@ -889,29 +919,29 @@ Ext.onReady(function() {
 				var cuscardbegin = getstringdate();
 				var dtend = Ext.Date.add(new Date(), Ext.Date.DAY, selections[0].data["cuscardday"]);
 				var cuscardend = getstringdate(dtend);
-				var cuscardid = selections[0].data["cuscardid"];
-				var cuscardno = selections[0].data["cuscardno"];
 				Ext.Ajax.request({
 					url : basePath + "CuscardService.do" + "?method=ckaika",
 					method : 'POST',
 					params : {
 						json : "[{'cuscardstatue':'启用','cuscardbegin':'"+cuscardbegin + "','cuscardend':'"+cuscardend
-							+"','cuscardid':'"+cuscardid+"','cuscardno':'"+cuscardno+"'}]"
+							+"','cuscardid':'"+selections[0].data["cuscardid"]+"','cuscarddetail':'"+selections[0].data["cuscarddetail"]
+							+"','cuscardtypeclass':'"+selections[0].data["cuscardtypeclass"]+"','cuscardupdwhen':'"+selections[0].data["cuscardupdwhen"]
+							+"','cuscardno':'"+selections[0].data["cuscardno"]+"'}]"
 					},
 					success : function(response) {
 						var resp = Ext.decode(response.responseText); 
 						Ext.Msg.alert('提示', resp.msg, function(){
-							if("时间卡"==selections[0].data["cuscardtypeclass"]){
-								var mcuscardbegin = cuscardbegin.replace(/-/g,"");
-								var mcuscardend = cuscardend.replace(/-/g,"");
-								var zhajicard;
-								zhajicard.UID = cuscardno;
-								zhajicard.CARD = cuscardno;
-								zhajicard.CARD_XTD = cuscardno;
-								zhajicard.EXPIRE_FROM = mcuscardbegin;
-								zhajicard.EXPIRE_TO = mcuscardend;
-								zhajiall(zhajicard);
-							}
+//							if("时间卡"==selections[0].data["cuscardtypeclass"]){
+//								var mcuscardbegin = cuscardbegin.replace(/-/g,"");
+//								var mcuscardend = cuscardend.replace(/-/g,"");
+//								var zhajicard;
+//								zhajicard.UID = cuscardno;
+//								zhajicard.CARD = cuscardno;
+//								zhajicard.CARD_XTD = cuscardno;
+//								zhajicard.EXPIRE_FROM = mcuscardbegin;
+//								zhajicard.EXPIRE_TO = mcuscardend;
+//								zhajiall(zhajicard);
+//							}
 							Cuscardstore.reload();
 						});
 					},
@@ -974,6 +1004,20 @@ Ext.onReady(function() {
 				selections[0].data["cuscardmoney"] = 0;
 				createTextWindow(basePath + "CuscardService.do?method=cfeng", "封卡", CuscardfengdataForm, Cuscardstore);
 				CuscardfengdataForm.form.loadRecord(selections[0]);
+			}
+		},'-',{
+			text : "掌静脉",
+			iconCls : 'add',
+			handler : function() {
+				var selections = Cuscardgrid.getSelection();
+				if (selections.length != 1) {
+					Ext.Msg.alert('提示', '请选择一条记录！', function() {
+					});
+					return;
+				}
+				var uid = selections[0].data['cuscardno'];
+				if(uid.length>6) uid = uid.substring(1);
+				window.open("http://222.184.253.71:8081/zjm.php?uid="+uid);
 			}
 		},'-',{
 				text : Ext.os.deviceType === 'Phone' ? null : "新增",

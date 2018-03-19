@@ -79,8 +79,8 @@ Ext.onReady(function() {
 				var wheresql = " 1=1 ";
 				
 				if(Ext.getCmp("stadium").getValue()) wheresql += " and notesstadium='"+Ext.getCmp("stadium").getValue()+"'"
-				if(Ext.getCmp("begin").getValue()) wheresql += " and notesinswhen>='"+Ext.Date.format(new Date(Ext.getCmp("begin").getValue()),'Y-m-d')+"'"
-				if(Ext.getCmp("end").getValue()) wheresql += " and notesinswhen<='"+Ext.Date.format(new Date(Ext.getCmp("end").getValue()),'Y-m-d')+"'"
+				if(Ext.getCmp("begin").getValue()) wheresql += " and notesinswhen>='"+Ext.Date.format(new Date(Ext.getCmp("begin").getValue()),'Y-m-d')+" 00:00:00'"
+				if(Ext.getCmp("end").getValue()) wheresql += " and notesinswhen<='"+Ext.Date.format(new Date(Ext.getCmp("end").getValue()),'Y-m-d')+" 23:59:59'"
 				Notesmoneysstore.load({
 						params : {
 							wheresql : wheresql

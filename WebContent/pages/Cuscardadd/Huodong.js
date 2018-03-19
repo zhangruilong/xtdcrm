@@ -1,4 +1,4 @@
-function huodongdetail(selection) {
+function huodongdetail(huodongstadium,huodongcardtypename) {
 	var Huodongclassify = "huodong";
 	var Huodongtitle = "当前位置:业务管理》" + Huodongclassify;
 	var Huodongaction = "HuodongService.do";
@@ -18,7 +18,7 @@ function huodongdetail(selection) {
 	        			      ];// 全部字段
 	var Huodongkeycolumn = [ 'huodongid' ];// 主键
 	var Huodongstore = dataStore(Huodongfields, basePath + Huodongaction + "?method=selQuery&wheresql=huodongstadium='"
-			+selection.data['huodongstadium']+"' and huodongname='"+selection.data['huodongname']+"' and huodongcardtypename='"+selection.data['huodongcardtypename']+"'");// 定义Huodongstore
+			+huodongstadium+"' and huodongcardtypename='"+huodongcardtypename+"'");// 定义Huodongstore
 	var HuodongdataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'HuodongdataForm',
 		labelAlign : 'right',
@@ -151,14 +151,6 @@ function huodongdetail(selection) {
             }
 		}
 		, {
-			header : '场馆',
-			dataIndex : 'huodongstadium',
-			hidden : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
 			header : '优惠码',
 			dataIndex : 'huodongcode',
 			sortable : true,  
@@ -191,30 +183,6 @@ function huodongdetail(selection) {
             }
 		}
 		, {
-			header : '数量',
-			dataIndex : 'huodongnum',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-//		, {
-//			header : '开始',
-//			dataIndex : 'huodongbegin',
-//			sortable : true,  
-//			editor: {
-//                xtype: 'textfield'
-//            }
-//		}
-//		, {
-//			header : '结束',
-//			dataIndex : 'huodongend',
-//			sortable : true,  
-//			editor: {
-//                xtype: 'textfield'
-//            }
-//		}
-		, {
 			header : '折让',
 			dataIndex : 'huodongmoney',
 			sortable : true,  
@@ -230,72 +198,9 @@ function huodongdetail(selection) {
                 xtype: 'textfield'
             }
 		}
-//		, {
-//			header : '创建时间',
-//			dataIndex : 'huodonginswhen',
-//			sortable : true,  
-//			editor: {
-//                xtype: 'textfield'
-//            }
-//		}
-//		, {
-//			header : '创建人',
-//			dataIndex : 'huodonginswho',
-//			sortable : true,  
-//			editor: {
-//                xtype: 'textfield'
-//            }
-//		}
 		],
 		tbar : [
 			{
-				text : Ext.os.deviceType === 'Phone' ? null : "查看参与人员",
-				iconCls : 'query',
-				handler : function() {
-					var selections = Huodonggrid.getSelection();
-					if (selections.length != 1) {
-						Ext.Msg.alert('提示', '请选择一条数据！', function() {
-						});
-						return;
-					}
-					selnotes(selections[0]);
-				}
-			},'-',
-			{
-				text : Ext.os.deviceType === 'Phone' ? null : "新增",
-				iconCls : 'add',
-				handler : function() {
-					HuodongdataForm.form.reset();
-					Ext.getCmp("Huodonghuodongid").setEditable (true);
-					createTextWindow(basePath + Huodongaction + "?method=addhuodong", "新增", HuodongdataForm, Huodongstore);
-				}
-			},'-',{
-				text : Ext.os.deviceType === 'Phone' ? null : "修改",
-				iconCls : 'edit',
-				handler : function() {
-					var selections = Huodonggrid.getSelection();
-					if (selections.length != 1) {
-						Ext.Msg.alert('提示', '请选择一条数据！', function() {
-						});
-						return;
-					}
-					HuodongdataForm.form.reset();
-					Ext.getCmp("Huodonghuodongid").setEditable (false);
-					createTextWindow(basePath + Huodongaction + "?method=updAll", "修改", HuodongdataForm, Huodongstore);
-					HuodongdataForm.form.loadRecord(selections[0]);
-				}
-			},'-',{
-            	text : "删除",
-				iconCls : 'delete',
-				handler : function() {
-					var selections = Huodonggrid.getSelection();
-					if (Ext.isEmpty(selections)) {
-						Ext.Msg.alert('提示', '请至少选择一条数据！');
-						return;
-					}
-					commonDelete(basePath + Huodongaction + "?method=delAll",selections,Huodongstore,Huodongkeycolumn);
-				}
-			},'->',{
 				xtype : 'textfield',
 				id : 'queryHuodongaction',
 				name : 'query',
@@ -365,8 +270,16 @@ function huodongdetail(selection) {
 								Ext.Msg.alert('提示', '请选择一条！', function() {
 								});
 								return;
-							} 
-//							Ext.getCmp('Huodonghuodongcardtypename').setValue(selectRows[0].get("cardtypename"));
+							}
+							if("已使用"==selectRows[0].data["huodongstatue"]){
+								Ext.Msg.alert('提示', '请选择一条未使用的活动！', function() {
+								});
+								return;
+							}
+							Ext.getCmp("cuscardid").setValue(selectRows[0].data["huodongid"]);
+							Ext.getCmp("cuscardhuodong").setValue(selectRows[0].data["huodongid"]);
+							Ext.getCmp("cuscarddikou").setValue(selectRows[0].data["huodongmoney"]);
+							Ext.getCmp("cuscardmoney").setValue(Ext.getCmp("cuscardprice").getValue()-Ext.getCmp("cuscarddikou").getValue());
 							selectgridWindow.close();
 						}
 					}, '-', {

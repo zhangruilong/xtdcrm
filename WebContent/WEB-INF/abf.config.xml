@@ -56,6 +56,7 @@
 	<bean id="NotesmoneysService" class="com.server.service.NotesmoneysService" />
 	<bean id="NotesmoneysviewService" class="com.server.service.NotesmoneysviewService" />
 	<bean id="OrdermService" class="com.server.service.OrdermService" />
+	<bean id="OrderdService" class="com.server.service.OrderdService" />
 	<bean id="PlaceService" class="com.server.service.PlaceService" />
 	<bean id="PlacetimeService" class="com.server.service.PlacetimeService" />
 	<bean id="StadiumService" class="com.server.service.StadiumService" />

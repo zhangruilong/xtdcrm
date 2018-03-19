@@ -3,6 +3,7 @@
   <head>
 	<%@ include file="/zrlextpages/common/common.jsp" %>
 	<script type="text/javascript" src="Customer.js"></script>
+	<script type="text/javascript" src="Orderd.js"></script>
 	<script type="text/javascript" src="Orderm.js"></script>
   </head>
 </html>

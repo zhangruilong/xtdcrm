@@ -24,19 +24,15 @@ Ext.onReady(function() {
 	var Ordermaction = "OrdermService.do";
 	var Ordermfields = ['orderid'
 	        			    ,'orderstadium' 
-	        			    ,'ordercode' 
-	        			    ,'ordername' 
-	        			    ,'orderclass' 
+	        			    ,'ordercustomer' 
+	        			    ,'orderphone' 
 	        			    ,'ordermoney' 
 	        			    ,'orderdiscount' 
 	        			    ,'orderrightmoney' 
-	        			    ,'orderimage' 
 	        			    ,'orderdetail' 
 	        			    ,'orderstatue' 
 	        			    ,'orderinswhen' 
 	        			    ,'orderinswho' 
-	        			    ,'orderupdwhen' 
-	        			    ,'orderupdwho' 
 	        			      ];// 全部字段
 	var Ordermkeycolumn = [ 'orderid' ];// 主键
 	var Ordermstore = dataStore(Ordermfields, basePath + Ordermaction + "?method=selQuery");// 定义Ordermstore
@@ -256,56 +252,16 @@ Ext.onReady(function() {
             }
 		}
 		, {
-			header : '手机号',
-			dataIndex : 'orderupdwhen',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
 			header : '姓名',
-			dataIndex : 'orderupdwho',
+			dataIndex : 'ordercustomer',
 			sortable : true,  
 			editor: {
-                xtype: 'textfield'
-            }
+				xtype: 'textfield'
+			}
 		}
 		, {
-			header : '商品编码',
-			dataIndex : 'ordercode',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '商品名称',
-			dataIndex : 'ordername',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '商品分类',
-			dataIndex : 'orderclass',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '单价',
-			dataIndex : 'orderdiscount',
-			sortable : true,  
-			editor: {
-                xtype: 'textfield'
-            }
-		}
-		, {
-			header : '数量',
-			dataIndex : 'orderstatue',
+			header : '手机号',
+			dataIndex : 'orderphone',
 			sortable : true,  
 			editor: {
                 xtype: 'textfield'
@@ -318,6 +274,14 @@ Ext.onReady(function() {
 			editor: {
                 xtype: 'textfield'
             }
+		}
+		, {
+			header : '折扣',
+			dataIndex : 'orderdiscount',
+			sortable : true,  
+			editor: {
+				xtype: 'textfield'
+			}
 		}
 		, {
 			header : '实际金额',
@@ -361,15 +325,16 @@ Ext.onReady(function() {
 					createTextWindow(basePath + Ordermaction + "?method=addorderm", "新增", OrdermdataForm, Ordermstore);
 				}
 			},'-',{
-				text : Ext.os.deviceType === 'Phone' ? null : "保存",
-				iconCls : 'ok',
+				text : Ext.os.deviceType === 'Phone' ? null : "查看订单详情",
+				iconCls : 'query',
 				handler : function() {
 					var selections = Ordermgrid.getSelection();
-					if (Ext.isEmpty(selections)) {
-						Ext.Msg.alert('提示', '请至少选择一条数据！');
+					if (selections.length != 1) {
+						Ext.Msg.alert('提示', '请选择一条数据！', function() {
+						});
 						return;
 					}
-					commonSave(basePath + Ordermaction + "?method=updAll",selections);
+					showorderd(selections[0].data["orderid"]);
 				}
 			},'-',{
 				text : Ext.os.deviceType === 'Phone' ? null : "修改",

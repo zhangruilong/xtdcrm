@@ -73,7 +73,7 @@ public class Cuscardview
     */
    private String cuscardpoint;   
    /**
-    * 备注
+    * 所属场馆
     */
    private String cuscarddetail;   
    /**
@@ -196,6 +196,18 @@ public class Cuscardview
     * 卡种次数
     */
    private String cuscardnums;   
+   /**
+    * 其他抵扣
+    */
+   private String cuscarddikou2;   
+   /**
+    * 活动
+    */
+   private String cuscardhuodong;   
+   /**
+    * 备注
+    */
+   private String cuscardbeizhu;   
     //属性方法	    
      /**
 	 *设置主键"ID"属性
@@ -470,7 +482,7 @@ public class Cuscardview
 	}	   
 
 	/**
-	 *设置"备注"属性
+	 *设置"所属场馆"属性
 	 *@param cuscarddetail 实体的Cuscarddetail属性
 	 */
 	public void setCuscarddetail(String cuscarddetail)
@@ -479,7 +491,7 @@ public class Cuscardview
 	}
 	
 	/**
-	 *获取"备注"属性
+	 *获取"所属场馆"属性
 	 */
 	public String getCuscarddetail()
 	{
@@ -995,6 +1007,57 @@ public class Cuscardview
 	{
 		return this.cuscardnums;
 	}	   
+
+	/**
+	 *设置"其他抵扣"属性
+	 *@param cuscarddikou2 实体的Cuscarddikou2属性
+	 */
+	public void setCuscarddikou2(String cuscarddikou2)
+	{
+		this.cuscarddikou2 = cuscarddikou2;
+	}
+	
+	/**
+	 *获取"其他抵扣"属性
+	 */
+	public String getCuscarddikou2()
+	{
+		return this.cuscarddikou2;
+	}	   
+
+	/**
+	 *设置"活动"属性
+	 *@param cuscardhuodong 实体的Cuscardhuodong属性
+	 */
+	public void setCuscardhuodong(String cuscardhuodong)
+	{
+		this.cuscardhuodong = cuscardhuodong;
+	}
+	
+	/**
+	 *获取"活动"属性
+	 */
+	public String getCuscardhuodong()
+	{
+		return this.cuscardhuodong;
+	}	   
+
+	/**
+	 *设置"备注"属性
+	 *@param cuscardbeizhu 实体的Cuscardbeizhu属性
+	 */
+	public void setCuscardbeizhu(String cuscardbeizhu)
+	{
+		this.cuscardbeizhu = cuscardbeizhu;
+	}
+	
+	/**
+	 *获取"备注"属性
+	 */
+	public String getCuscardbeizhu()
+	{
+		return this.cuscardbeizhu;
+	}	   
 	public Cuscardview() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -1047,6 +1110,9 @@ public class Cuscardview
 	 	,String customerupdwho
 	 	,String customercode
 	 	,String cuscardnums
+	 	,String cuscarddikou2
+	 	,String cuscardhuodong
+	 	,String cuscardbeizhu
 		 ){
 		super();
 		this.cuscardid = cuscardid;
@@ -1096,6 +1162,9 @@ public class Cuscardview
 	 	this.customerupdwho = customerupdwho;
 	 	this.customercode = customercode;
 	 	this.cuscardnums = cuscardnums;
+	 	this.cuscarddikou2 = cuscarddikou2;
+	 	this.cuscardhuodong = cuscardhuodong;
+	 	this.cuscardbeizhu = cuscardbeizhu;
 	}
 }
 

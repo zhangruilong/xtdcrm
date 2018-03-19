@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 //import org.apache.solr.common.SolrDocumentList;
-import com.server.pojo.Placetime;
-import com.server.poco.PlacetimePoco;
+import com.server.pojo.Orderd;
+import com.server.poco.OrderdPoco;
 import com.system.tools.CommonConst;
 import com.system.tools.base.BaseActionDao;
 import com.system.tools.pojo.Fileinfo;
@@ -18,12 +18,12 @@ import com.system.tools.util.TypeUtil;
 import com.system.tools.pojo.Pageinfo;
 
 /**
- * placetime 逻辑层
+ * orderd 逻辑层
  *@author ZhangRuiLong
  */
-public class PlacetimeAction extends BaseActionDao {
-	public ArrayList<Placetime> cuss = null;
-	public Type TYPE = new TypeToken<ArrayList<Placetime>>() {}.getType();
+public class OrderdAction extends BaseActionDao {
+	public ArrayList<Orderd> cuss = null;
+	public Type TYPE = new TypeToken<ArrayList<Orderd>>() {}.getType();
 
 	//新增
 	public void insAll(HttpServletRequest request, HttpServletResponse response){
@@ -31,9 +31,9 @@ public class PlacetimeAction extends BaseActionDao {
 		System.out.println("json : " + json);
 		json = json.replace("\"\"", "null");
 		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
-		for(Placetime temp:cuss){
-			if(CommonUtil.isNull(temp.getPlacetimeid()))
-				temp.setPlacetimeid(CommonUtil.getNewId());
+		for(Orderd temp:cuss){
+			if(CommonUtil.isNull(temp.getOrderdid()))
+				temp.setOrderdid(CommonUtil.getNewId());
 			result = insSingle(temp);
 //			if(CommonConst.SUCCESS.equals(result)) updSolr(temp);
 		}
@@ -44,9 +44,9 @@ public class PlacetimeAction extends BaseActionDao {
 		String json = request.getParameter("json");
 		System.out.println("json : " + json);
 		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
-		for(Placetime temp:cuss){
-			result = delSingle(temp,PlacetimePoco.KEYCOLUMN);
-//			if(CommonConst.SUCCESS.equals(result)) delSolr(temp,PlacetimePoco.KEYCOLUMN);
+		for(Orderd temp:cuss){
+			result = delSingle(temp,OrderdPoco.KEYCOLUMN);
+//			if(CommonConst.SUCCESS.equals(result)) delSolr(temp,OrderdPoco.KEYCOLUMN);
 		}
 		responsePW(response, result);
 	}
@@ -55,57 +55,57 @@ public class PlacetimeAction extends BaseActionDao {
 		String json = request.getParameter("json");
 		System.out.println("json : " + json);
 		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
-		for(Placetime temp:cuss){
-			if(CommonUtil.isNull(temp.getPlacetimeid())){
-				temp.setPlacetimeid(CommonUtil.getNewId());
+		for(Orderd temp:cuss){
+			if(CommonUtil.isNull(temp.getOrderdid())){
+				temp.setOrderdid(CommonUtil.getNewId());
 				result = insSingle(temp);
-			}else result = updSingle(temp,PlacetimePoco.KEYCOLUMN);
+			}else result = updSingle(temp,OrderdPoco.KEYCOLUMN);
 //			if(CommonConst.SUCCESS.equals(result)) updSolr(temp);
 		}
 		responsePW(response, result);
 	}
 	//导入
 	public void impAll(HttpServletRequest request, HttpServletResponse response){
-		Fileinfo fileinfo = FileUtil.upload(request,0,null,PlacetimePoco.NAME,"impAll");
-		String json = FileUtil.impExcel(fileinfo.getPath(),PlacetimePoco.FIELDNAME); 
+		Fileinfo fileinfo = FileUtil.upload(request,0,null,OrderdPoco.NAME,"impAll");
+		String json = FileUtil.impExcel(fileinfo.getPath(),OrderdPoco.FIELDNAME); 
 		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
-		for(Placetime temp:cuss){
-			if(CommonUtil.isNull(temp.getPlacetimeid()))
-				temp.setPlacetimeid(CommonUtil.getNewId());
+		for(Orderd temp:cuss){
+			if(CommonUtil.isNull(temp.getOrderdid()))
+				temp.setOrderdid(CommonUtil.getNewId());
 			result = insSingle(temp);
 		}
 		responsePW(response, result);
 	}
 	//导出
 	public void expAll(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		Queryinfo queryinfo = getQueryinfo(request, Placetime.class, PlacetimePoco.QUERYFIELDNAME, PlacetimePoco.ORDER, TYPE);
-		cuss = (ArrayList<Placetime>) selAll(queryinfo);
-		FileUtil.expExcel(response,cuss,PlacetimePoco.CHINESENAME,PlacetimePoco.FIELDNAME,PlacetimePoco.NAME);
+		Queryinfo queryinfo = getQueryinfo(request, Orderd.class, OrderdPoco.QUERYFIELDNAME, OrderdPoco.ORDER, TYPE);
+		cuss = (ArrayList<Orderd>) selAll(queryinfo);
+		FileUtil.expExcel(response,cuss,OrderdPoco.CHINESENAME,OrderdPoco.NAME);
 	}
 	//查询所有
 	public void selAll(HttpServletRequest request, HttpServletResponse response){
-		Queryinfo queryinfo = getQueryinfo(request, Placetime.class, PlacetimePoco.QUERYFIELDNAME, PlacetimePoco.ORDER, TYPE);
+		Queryinfo queryinfo = getQueryinfo(request, Orderd.class, OrderdPoco.QUERYFIELDNAME, OrderdPoco.ORDER, TYPE);
 		Pageinfo pageinfo = new Pageinfo(0, selAll(queryinfo));
 		result = CommonConst.GSON.toJson(pageinfo);
 		responsePW(response, result);
 	}
 	//分页查询
 	public void selQuery(HttpServletRequest request, HttpServletResponse response){
-		Queryinfo queryinfo = getQueryinfo(request, Placetime.class, PlacetimePoco.QUERYFIELDNAME, PlacetimePoco.ORDER, TYPE);
+		Queryinfo queryinfo = getQueryinfo(request, Orderd.class, OrderdPoco.QUERYFIELDNAME, OrderdPoco.ORDER, TYPE);
 		Pageinfo pageinfo = new Pageinfo(getTotal(queryinfo), selQuery(queryinfo));
 		result = CommonConst.GSON.toJson(pageinfo);
 		responsePW(response, result);
 	}
 	//查询LIMIT条
 	public void selLimit(HttpServletRequest request, HttpServletResponse response){
-		Queryinfo queryinfo = getQueryinfo(request, Placetime.class, PlacetimePoco.QUERYFIELDNAME, PlacetimePoco.ORDER, TYPE, CommonConst.LIMIT);
+		Queryinfo queryinfo = getQueryinfo(request, Orderd.class, OrderdPoco.QUERYFIELDNAME, OrderdPoco.ORDER, TYPE, CommonConst.LIMIT);
 		Pageinfo pageinfo = new Pageinfo(0, selQuery(queryinfo));
 		result = CommonConst.GSON.toJson(pageinfo);
 		responsePW(response, result);
 	}
 	//solr查询
 //	public void selSolr(HttpServletRequest request, HttpServletResponse response){
-//		Queryinfo queryinfo = getSolrquery(request, Placetime.class, PlacetimePoco.QUERYFIELDNAME, PlacetimePoco.ORDER, TYPE);
+//		Queryinfo queryinfo = getSolrquery(request, Orderd.class, OrderdPoco.QUERYFIELDNAME, OrderdPoco.ORDER, TYPE);
 //		SolrDocumentList solrDocumentList = selSolr(queryinfo);
 //		Pageinfo pageinfo = new Pageinfo(TypeUtil.stringToInt(""+solrDocumentList.getNumFound()), solrDocumentList);
 //		result = CommonConst.GSON.toJson(pageinfo);

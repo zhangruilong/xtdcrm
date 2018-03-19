@@ -29,6 +29,24 @@ import com.system.tools.pojo.Pageinfo;
  *@author ZhangRuiLong
  */
 public class AppiontService extends AppiontAction {
+	//微信预约私教课
+	public void wxCoachcourseAppiont(HttpServletRequest request, HttpServletResponse response){
+		String json = request.getParameter("json");
+		System.out.println("json : " + json);
+		json = json.replace("\"\"", "null");
+		if(!CommonUtil.isNull(json)) cuss = CommonConst.GSON.fromJson(json, TYPE);
+		for(Appiont temp:cuss){
+			if(CommonUtil.isNull(temp.getAppointid()))
+				temp.setAppointid(CommonUtil.getNewId());
+			ArrayList<Mycourse> sMycourse=  (ArrayList<Mycourse>)selAll(Mycourse.class,"select * from Mycourse where Mycourseid = '"+temp.getAppointcourse()+"'");
+			temp.setAppointcoach(sMycourse.get(0).getMycoursecoach());
+			temp.setAppointcoachname(sMycourse.get(0).getMycoursecoachname());
+			temp.setAppointcoursename(sMycourse.get(0).getMycoursename());
+			temp.setAppointproject(sMycourse.get(0).getMycourseproject());
+			result = insSingle(temp);
+		}
+		responsePW(response, result);
+	}
 	//确认上课-私教课
 	public void okcoachcourse(HttpServletRequest request, HttpServletResponse response){
 		String json = request.getParameter("json");

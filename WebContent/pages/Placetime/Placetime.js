@@ -350,12 +350,6 @@ Ext.onReady(function() {
 	        					commonDelete(basePath + Placetimeaction + "?method=delAll",selections,Placetimestore,Placetimekeycolumn);
 	        				}
 	                    },{
-	                    	text : "导入",
-	        				iconCls : 'imp',
-	        				handler : function() {
-	        					commonImp(basePath + Placetimeaction + "?method=impAll","导入",Placetimestore);
-	        				}
-	                    },{
 	                    	text : "导出",
 	        				iconCls : 'exp',
 	        				handler : function() {
@@ -364,22 +358,6 @@ Ext.onReady(function() {
 	        							window.location.href = basePath + Placetimeaction + "?method=expAll&json="+queryjson+"&query="+Ext.getCmp("queryPlacetimeaction").getValue(); 
 	        						}
 	        					});
-	        				}
-	                    },{
-	                    	text : "附件",
-	        				iconCls : 'attach',
-	        				handler : function() {
-	        					var selections = Placetimegrid.getSelection();
-	        					if (selections.length != 1) {
-	        						Ext.Msg.alert('提示', '请选择一条数据！', function() {
-	        						});
-	        						return;
-	        					}
-	        					var fid = '';
-	        					for (var i=0;i<Placetimekeycolumn.length;i++){
-	        						fid += selections[0].data[Placetimekeycolumn[i]] + ","
-	        					}
-	        					commonAttach(fid, Placetimeclassify);
 	        				}
 	                    },{
 	        				text : "筛选",

@@ -5,5 +5,6 @@
 	<script type="text/javascript" src="Cardtype.js"></script>
 	<script type="text/javascript" src="Notesmoneys.js"></script>
 	<script type="text/javascript" src="Huodong.js"></script>
+	<script type="text/javascript" src="HuodongM.js"></script>
   </head>
 </html>

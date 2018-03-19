@@ -39,7 +39,7 @@ public class OrdermService extends OrdermAction {
 			if(CommonUtil.isNull(temp.getOrderid()))
 				temp.setOrderid(CommonUtil.getNewId());
 			String ordermsql = getInsSingleSql(temp);
-			String selectsql = "select * from goods where goodscode='"+temp.getOrdercode()+"'";
+			String selectsql = "select * from goods where goodscode='"+temp.getOrdercustomer()+"'";
 			ArrayList<Goods> cuss = (ArrayList<Goods>) selAll(Goods.class, selectsql);
 			if(cuss.size()>0){
 				Goods mGoods = cuss.get(0);

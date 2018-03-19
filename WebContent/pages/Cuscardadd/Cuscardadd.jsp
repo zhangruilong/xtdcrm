@@ -4,6 +4,7 @@
 	<%@ include file="/zrlextpages/common/common.jsp" %>
 	<script type="text/javascript" src="Emp.js"></script>
 	<script type="text/javascript" src="Cardtype.js"></script>
+	<script type="text/javascript" src="Huodong.js"></script>
 	<script type="text/javascript" src="Cuscardadd.js"></script>
 </head>
 <OBJECT classid="CLSID:A8AC0369-45BA-4CF2-9F73-A0F065AD8495" id="ReadIDCardInfo" width="1" height="1" name="ReadIDCardInfo">

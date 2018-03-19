@@ -1,4 +1,6 @@
 Ext.onReady(function() {
+	var wheresql = "";
+	if(!isnull(currentuser.roledetail)) wheresql="empstadium='"+currentuser.roledetail+"'";
 	var Empclassify = "emp";
 	var Emptitle = "当前位置:业务管理》" + Empclassify;
 	var EmpService = "EmpService.do";
@@ -20,7 +22,7 @@ Ext.onReady(function() {
 	        			    ,'empinswho' 
 	        			      ];// 全部字段
 	var Empkeycolumn = [ 'empid' ];// 主键
-	var Empstore = dataStore(Empfields, basePath + EmpService + "?method=selQuery");// 定义Empstore
+	var Empstore = dataStore(Empfields, basePath + EmpService + "?method=selQuery&wheresql="+wheresql);// 定义Empstore
 	var EmpdataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'EmpdataForm',
 		labelAlign : 'right',

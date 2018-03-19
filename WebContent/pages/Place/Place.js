@@ -1,4 +1,6 @@
 Ext.onReady(function() {
+	var wheresql = "";
+	if(!isnull(currentuser.roledetail)) wheresql="placestadium='"+currentuser.roledetail+"'";
 	var Placeclassify = "place";
 	var Placetitle = "当前位置:业务管理》" + Placeclassify;
 	var Placeaction = "PlaceService.do";
@@ -11,7 +13,7 @@ Ext.onReady(function() {
 	        			    ,'placestatue' 
 	        			      ];// 全部字段
 	var Placekeycolumn = [ 'placeid' ];// 主键
-	var Placestore = dataStore(Placefields, basePath + Placeaction + "?method=selQuery");// 定义Placestore
+	var Placestore = dataStore(Placefields, basePath + Placeaction + "?method=selQuery&wheresql="+wheresql);// 定义Placestore
 	var PlacedataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'PlacedataForm',
 		labelAlign : 'right',

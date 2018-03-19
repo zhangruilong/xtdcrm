@@ -203,7 +203,6 @@ function insappiont(mycourse) {
 			layout : 'form',
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : '创建时间',
 				id : 'Appiontappointstatue',
 				name : 'appointstatue',
 				value : '已预约'

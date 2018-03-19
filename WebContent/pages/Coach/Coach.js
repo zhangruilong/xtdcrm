@@ -1,4 +1,6 @@
 Ext.onReady(function() {
+	var wheresql = "";
+	if(!isnull(currentuser.roledetail)) wheresql="coachstadium='"+currentuser.roledetail+"'";
 	var Coachclassify = "coach";
 	var Coachtitle = "当前位置:业务管理》" + Coachclassify;
 	var Coachaction = "CoachService.do";
@@ -18,7 +20,7 @@ Ext.onReady(function() {
 	        			    ,'coachinswhen' 
 	        			      ];// 全部字段
 	var Coachkeycolumn = [ 'coachid' ];// 主键
-	var Coachstore = dataStore(Coachfields, basePath + Coachaction + "?method=selQuery");// 定义Coachstore
+	var Coachstore = dataStore(Coachfields, basePath + Coachaction + "?method=selQuery&wheresql="+wheresql);// 定义Coachstore
 	var CoachdataForm = Ext.create('Ext.form.Panel', {// 定义新增和修改的FormPanel
 		id:'CoachdataForm',
 		labelAlign : 'right',
